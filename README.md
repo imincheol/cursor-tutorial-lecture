@@ -1,301 +1,241 @@
-# 🚀 Cursor 마스터 클래스
+# Cursor 마스터 클래스
 
-> **Copilot 사용자를 위한 Cursor 전환 가이드**
-> 
-> ⚠️ **Privacy Mode (Enterprise)** 환경 기준
+> **Copilot 사용자를 위한 Cursor 전환 완벽 가이드**
 
-## 📑 목차
+## 📋 목차
 
-- [강의 개요](#-강의-개요)
-- [핵심: IDE 모드 vs CLI 모드](#-핵심-ide-모드-vs-cli-모드)
-- [Copilot과의 차이점](#-copilot과의-차이점)
-- [커리큘럼](#-커리큘럼)
-- [학습 목표](#-학습-목표)
-- [이 강의를 들으면 무엇을 배울 수 있는가?](#-이-강의를-들으면-무엇을-배울-수-있는가)
-- [제공되는 실습 자료](#-제공되는-실습-자료)
-- [디렉토리 구조](#-디렉토리-구조)
-- [사전 준비](#-사전-준비)
-- [참고 자료](#-참고-자료)
+- [강의 소개](#-강의-소개)
+- [학습 방법](#-학습-방법)
+- [교시 구성](#-교시-구성)
+- [시작하기](#-시작하기)
 
 ---
 
-## 📋 강의 개요
+## 🎯 강의 소개
 
-| 항목 | 내용 |
-|------|------|
-| **대상** | GitHub Copilot 사용 경험이 있는 FE/마크업 개발자 |
-| **시간** | 6시간 (50분 × 6교시, 교시별 10분 휴식) |
-| **형식** | 이론 최소화 + 실습 중심 |
-| **환경** | Cursor Enterprise (Privacy Mode) |
+### 대상
+- GitHub Copilot 경험자
+- 프론트엔드/마크업 개발자
+- Cursor로 전환을 고려하는 개발자
+
+### 시간
+- **총 6시간** (50분 × 6교시)
+
+### 특징
+- 이론 최소화, 실습 중심
+- 각 교시마다 독립적인 실습 프로젝트
+- 즉시 사용 가능한 코드 제공
 
 ---
 
-## 🔑 핵심: IDE 모드 vs CLI 모드
+## 📚 학습 방법
+
+### 구조
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        Cursor Agent 사용 방식                        │
-├────────────────────────────────┬────────────────────────────────────┤
-│         IDE 모드               │           CLI 모드                 │
-│    (Cursor 앱 내에서)          │      (터미널에서 cursor agent)     │
-├────────────────────────────────┼────────────────────────────────────┤
-│ • GUI 기반                     │ • 터미널 기반                      │
-│ • Visual Editor 가능           │ • Shell Mode 가능                  │
-│ • Debug Mode 가능              │ • Worktree Multi-Agent 가능        │
-├────────────────────────────────┼────────────────────────────────────┤
-│ ⚠️ 같은 브랜치에서 작업        │ ✅ 독립 환경 가능                  │
-│ ⚠️ Multi-Agent 충돌 주의       │ ✅ 병렬 작업 가능                  │
-└────────────────────────────────┴────────────────────────────────────┘
+sessions/
+├── session-01/          # 1교시
+│   ├── README.md       # 교재 (개념 설명)
+│   └── projects/       # 실습 프로젝트들
+│       ├── project-1/  # 프로젝트 1
+│       │   ├── README.md  # 실습 가이드
+│       │   └── [파일들]   # 실습 파일
+│       └── project-2/  # 프로젝트 2
+└── session-02/          # 2교시
+    └── ...
 ```
 
----
+### 학습 순서
 
-## 📊 Copilot vs Cursor
-
-### 비슷한 것
-
-| Copilot | Cursor |
-|---------|--------|
-| Instructions | Rules (globs 패턴 가능) |
-| Prompts | Commands |
-| MCP | MCP |
-| Plan Mode | Plan Mode |
-
-### 🔥 Cursor에만 있는 것 (이 강의에서 다룰 내용)
-
-| 기능 | 교시 | 설명 |
-|------|------|------|
-| **Rules** | 1교시 | globs 패턴으로 조건부 규칙 (예: `*.tsx`에만 적용) |
-| **Hooks** | 1교시 | Agent 동작 감시/제어 (위험 명령 차단 등) |
-| **Debug Mode** | 2교시 | 자동 로그 삽입으로 버그 추적 |
-| **Visual Editor** | 2교시 | 브라우저에서 UI 요소 직접 선택/수정 |
-| **대화형 CLI** | 3교시 | 대화하듯이 단계별 코드 작업 🔥 |
-| **Shell Mode** | 3교시 | 자연어 → 터미널 명령어 변환 |
-| **Worktree Multi-Agent** | 4교시 | 독립 환경에서 여러 접근법 동시 비교 |
+1. **교재 읽기**: `sessions/session-XX/README.md`
+2. **프로젝트 선택**: `projects/project-name/`
+3. **실습 가이드**: `projects/project-name/README.md`
+4. **실습 진행**: Cursor Agent로 직접 실습
 
 ---
 
-## 📚 커리큘럼
+## 📖 교시 구성
 
-### IDE 모드 (1-2교시)
+### [1교시: Rules & Hooks](./sessions/session-01/README.md)
+**시간**: 50분 | **난이도**: 🟢 초급
 
-| 교시 | 시간 | 내용 | 실습 | 난이도 |
-|------|------|------|------|--------|
-| [**1교시**](./curriculum/01-session.md) | 50분 | Copilot 차이점, Rules, **Hooks** | [기본 5개 + 보너스 9개](../exercises/01-ide-rules-hooks/) | 🟢 초급 |
-| [**2교시**](./curriculum/02-session.md) | 50분 | **Debug Mode**, **Visual Editor**, IDE Multi-Agent | [기본 4개 + 보너스 9개](../exercises/02-ide-debug-visual/) | 🟡 중급 |
+**학습 내용**:
+- Rules: globs 패턴으로 조건부 규칙 작성
+- Hooks: Agent 동작 감시 및 제어
 
-### CLI 모드 (3-6교시)
-
-| 교시 | 시간 | 내용 | 실습 | 난이도 |
-|------|------|------|------|--------|
-| [**3교시**](./curriculum/03-session.md) | 50분 | CLI 설치, 기본 사용, **Shell Mode** | [기본 4개 + 보너스 10개](../exercises/03-cli-shell/) | 🟢 초급 |
-| [**4교시**](./curriculum/04-session.md) | 50분 | **IDE + CLI 통합**, Worktree Multi-Agent, 실전 워크플로우 | [기본 11개 + 보너스 10개](../exercises/04-cli-multi-agent/) | 🔴 고급 |
-| [**5교시**](./curriculum/05-session.md) | 50분 | **반복 작업 자동화**, Worktree 기반 검토 워크플로우 | [기본 3개 + 보너스 9개](./exercises/05-workflow-automation/) | 🔴 고급 |
-| [**6교시**](./curriculum/06-session.md) | 50분 | **마크업 품질 자동화**, HTML/CSS 검증 워크플로우 | [기본 3개 + 보너스 9개](./exercises/06-cicd-integration/) | 🔴 고급 |
+**프로젝트** (4개):
+1. `rules-basic` - 기본 Rules 작성
+2. `rules-globs` - Globs 패턴 활용
+3. `hooks-basic` - 기본 Hook 작성
+4. `hooks-security` - 보안 Hook 구현
 
 ---
 
-## 🗂 디렉토리 구조
+### [2교시: Debug Mode & Visual Editor](./sessions/session-02/README.md)
+**시간**: 50분 | **난이도**: 🟡 중급
 
-```
-cursor-tutorial/
-├── README.md                    # 프로젝트 메인 문서
-│
-├── sessions/                    # 교시별 실습 ⭐ NEW
-│   ├── README.md               # 전체 학습 가이드
-│   ├── session-01/             # 1교시: Rules & Hooks
-│   │   ├── README.md          # 교재
-│   │   └── projects/          # 실습 프로젝트 (4개)
-│   ├── session-02/             # 2교시: Debug & Visual
-│   │   ├── README.md
-│   │   └── projects/          # 실습 프로젝트 (4개)
-│   ├── session-03/             # 3교시: CLI & Shell
-│   │   ├── README.md
-│   │   └── projects/          # 실습 프로젝트 (3개)
-│   ├── session-04/             # 4교시: Multi-Agent
-│   │   ├── README.md
-│   │   └── projects/          # 실습 프로젝트 (3개)
-│   ├── session-05/             # 5교시: 반복 자동화
-│   │   ├── README.md
-│   │   └── projects/          # 실습 프로젝트 (3개)
-│   └── session-06/             # 6교시: 품질 자동화
-│       ├── README.md
-│       └── projects/          # 실습 프로젝트 (3개)
-│
-├── curriculum/                  # 강의 참고 자료 (7개)
-│   ├── 00-overview.md
-│   └── 01-06-session.md
-│
-├── examples/                    # 예제 프로젝트 (3개)
-│   ├── basic-html-css-js/
-│   ├── react-project/
-│   └── automation-scripts/
-│
-├── docs/                        # 문서
-│   ├── guides/                 # 가이드 (2개)
-│   ├── reference/              # 참고 (3개)
-│   └── *.md                    # 종합 문서 (4개)
-│
-├── cheatsheet/                  # 치트시트
-│   └── shortcuts.md
-│
-└── resources/                   # 참고 자료
-    ├── changelog-summary.md
-    └── links.md
-```
+**학습 내용**:
+- Debug Mode: 자동 로그 삽입으로 버그 추적
+- Visual Editor: 브라우저에서 UI 직접 편집
 
-> 📘 **상세 구조**: [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) 참고  
-> 🚀 **학습 시작**: [sessions/README.md](./sessions/README.md) 참고
+**프로젝트** (4개):
+1. `debug-login-bug` - 로그인 버그 해결
+2. `debug-api-error` - API 에러 디버깅
+3. `visual-button-style` - 버튼 스타일 수정
+4. `visual-card-layout` - 카드 레이아웃 조정
 
 ---
 
-## 🛠 사전 준비
+### [3교시: CLI & Shell Mode](./sessions/session-03/README.md)
+**시간**: 50분 | **난이도**: 🟢 초급
+
+**학습 내용**:
+- CLI 설치 및 기본 사용
+- 대화형 Agent: 대화하듯이 코드 작업
+- Shell Mode: 자연어로 명령어 생성
+
+**프로젝트** (3개):
+1. `cli-basic` - CLI 기본 사용
+2. `shell-file-ops` - 파일 작업 자동화
+3. `shell-git-ops` - Git 작업 자동화
+
+---
+
+### [4교시: Multi-Agent & 오케스트레이션](./sessions/session-04/README.md)
+**시간**: 50분 | **난이도**: 🔴 고급
+
+**학습 내용**:
+- Worktree: 독립 환경 구성
+- Multi-Agent: 여러 접근법 동시 비교
+- 오케스트레이션: 수동 → 자동 → Workflow
+
+**프로젝트** (3개):
+1. `worktree-basic` - Worktree 기본
+2. `multi-approach` - 여러 접근법 비교
+3. `ide-cli-integration` - IDE + CLI 통합
+
+---
+
+### [5교시: 반복 작업 자동화](./sessions/session-05/README.md)
+**시간**: 50분 | **난이도**: 🔴 고급
+
+**학습 내용**:
+- 병렬 검토: 여러 검사 동시 실행
+- 시간 절약: 57% (35분 → 15분)
+
+**프로젝트** (3개):
+1. `parallel-checks` - 병렬 검사
+2. `responsive-validation` - 반응형 검증
+3. `performance-optimization` - 성능 최적화
+
+---
+
+### [6교시: 마크업 품질 자동화](./sessions/session-06/README.md)
+**시간**: 50분 | **난이도**: 🔴 고급
+
+**학습 내용**:
+- HTML/CSS 품질 검증
+- 다중 테마 검증
+- 시간 절약: 60% (45분 → 18분)
+
+**프로젝트** (3개):
+1. `html-css-quality` - HTML/CSS 품질 검증
+2. `theme-validation` - 테마 검증
+3. `component-library` - 컴포넌트 관리
+
+---
+
+## 🚀 시작하기
+
+### 1. 사전 준비
 
 ```bash
-# Cursor CLI 설치
-# Cursor IDE에서: Cmd+Shift+P → "Shell Command: Install"
+# Cursor 설치
+# https://cursor.com
 
+# CLI 설치 (Cursor IDE에서)
+# Cmd+Shift+P → "Shell Command: Install"
+
+# 버전 확인
 cursor --version
 ```
+
+### 2. 학습 시작
+
+```bash
+# 1교시 시작
+cd sessions/session-01
+cat README.md
+
+# 첫 번째 프로젝트
+cd projects/rules-basic
+cat README.md
+cursor .
+```
+
+---
+
+## 📊 학습 성과
+
+### 강의 완료 후
+
+- ✅ **Rules & Hooks**: Agent 제어 능력
+- ✅ **Debug & Visual**: 버그 해결 70% 빠름
+- ✅ **CLI & Shell**: 터미널 작업 80% 자동화
+- ✅ **Multi-Agent**: 의사결정 3배 빠름
+- ✅ **반복 자동화**: 검토 시간 57% 단축
+- ✅ **품질 자동화**: 검증 시간 60% 단축
+
+### 전체 시간 절약
+
+| 작업 | 기존 | 개선 | 절감 |
+|------|------|------|------|
+| 반복 검토 | 35분 | 15분 | 57% |
+| 품질 검증 | 45분 | 18분 | 60% |
+| **총합** | **80분** | **33분** | **59%** |
+
+---
+
+## 🎓 Cursor 전용 기능
+
+| 기능 | 설명 | 교시 |
+|------|------|------|
+| **Rules** | globs 패턴 조건부 규칙 | 1교시 |
+| **Hooks** | Agent 동작 감시/제어 | 1교시 |
+| **Debug Mode** | 자동 로그 삽입 | 2교시 |
+| **Visual Editor** | 브라우저 UI 편집 | 2교시 |
+| **대화형 CLI** | 대화하듯이 코드 작업 | 3교시 |
+| **Shell Mode** | 자연어 → 명령어 | 3교시 |
+| **Worktree Multi-Agent** | 독립 환경 병렬 작업 | 4교시 |
 
 ---
 
 ## 🔗 공식 문서
 
-| 주제 | 링크 |
-|------|------|
-| Cursor 문서 | https://cursor.com/docs |
-| Agent | https://cursor.com/docs/agent/overview |
-| CLI | https://cursor.com/docs/cli/overview |
-| Hooks | https://cursor.com/docs/agent/hooks |
-| Browser | https://cursor.com/docs/agent/browser |
-| Worktrees | https://cursor.com/docs/configuration/worktrees |
+- [Cursor 문서](https://cursor.com/docs)
+- [Agent](https://cursor.com/docs/agent/overview)
+- [CLI](https://cursor.com/docs/cli/overview)
+- [Hooks](https://cursor.com/docs/agent/hooks)
+- [Worktrees](https://cursor.com/docs/configuration/worktrees)
 
 ---
 
-## ⏭ 시작하기
-
-### 📚 교시별 실습으로 시작 (권장)
-
-**[전체 학습 가이드 →](./sessions/README.md)**
-
-**[1교시: Rules & Hooks →](./sessions/session-01/README.md)**
-
-### 📖 이론 중심 학습
-
-**[개요: IDE vs CLI →](./curriculum/00-overview.md)**
-
-**[커리큘럼 상세 →](./docs/CURRICULUM_OVERVIEW.md)**
-
----
-
----
-
-## 🎯 이 강의를 들으면 무엇을 배울 수 있는가?
-
-### 📚 학습 목표
-
-#### **Cursor의 핵심 기능 마스터 (1-4교시)**
-- **Rules**: globs 패턴으로 조건부 적용하는 프로젝트 규칙 설정
-- **Hooks**: Agent 동작을 감시/제어하는 자동화 시스템 구축
-- **Debug Mode**: 자동 로그 삽입으로 버그 추적 및 해결
-- **Visual Editor**: 브라우저에서 직접 UI 요소 선택 및 수정
-- **Shell Mode**: 자연어로 터미널 명령어 자동 생성
-- **대화형 CLI Agent**: 대화하듯이 단계별로 문제 해결 🔥
-- **Worktree Multi-Agent**: 독립 환경에서 여러 접근법 동시 비교
-
-#### **업무 자동화 워크플로우 구축 (5-6교시)**
-- **반복 작업 자동화**: 접근성/성능/호환성 검사를 병렬 처리
-- **검토 워크플로우**: Worktree로 여러 검증을 동시에 실행
-- **마크업 품질 관리**: HTML/CSS 품질을 자동으로 검증
-- **디자인 시스템 검증**: 테마/컴포넌트/스타일 가이드 자동 체크
-
-#### **실전 개발 워크플로우 구축**
-- IDE 모드와 CLI 모드를 상황에 맞게 선택하는 전략
-- Copilot에서 Cursor로의 완전한 전환 방법
-- Privacy Mode(Enterprise) 환경 최적화 기법
-- 팀 전체에 Cursor 표준 적용하는 방법
-
-### 🚀 기대 효과
-
-#### **개인 생산성 향상**
-- **버그 해결 속도 70% 향상**: Debug Mode로 즉시 원인 파악
-- **UI 개발 속도 2배 향상**: Visual Editor로 디자이너 도움 없이도 프로덕션급 UI 구현
-- **터미널 작업 80% 자동화**: Shell Mode로 자연어 기반 명령어 생성
-- **의사결정 속도 3배 향상**: Multi-Agent로 여러 접근법 동시 비교
-- **검토 시간 60% 단축**: Worktree 병렬 처리로 반복 검증 자동화
-
-#### **팀 협업 효율화**
-- **코드 리뷰 시간 50% 단축**: Rules로 일관된 코드 스타일 유지
-- **표준화된 개발 환경**: Hooks로 팀 전체에 Cursor 규칙 적용
-- **기술 결정 데이터화**: Multi-Agent로 객관적 비교 근거 확보
-
-### 💡 실무 적용 사례
-
-#### **프론트엔드 개발자**
-- React/Vue 컴포넌트 구조를 Visual Editor로 즉시 이해하고 수정
-- 복잡한 상태 관리 로직을 Debug Mode로 빠르게 디버깅
-- 반복적인 빌드/테스트 작업을 Shell Mode로 자동화
-- 접근성/성능/호환성 검사를 Worktree로 병렬 처리
-
-#### **마크업 개발자**
-- HTML 시맨틱 구조를 자동으로 검증하고 개선
-- CSS 품질(구조/성능/네이밍)을 동시에 검사
-- 다중 테마(라이트/다크/고대비)를 병렬로 검증
-- 디자인 시스템 준수 여부를 자동으로 체크
-
-#### **팀 리드/시니어 개발자**
-- 프로젝트별 Rules로 기술 표준화 및 품질 관리
-- Worktree Multi-Agent로 아키텍처 결정에 데이터 기반 근거 제공
-- 자동화 스크립트로 팀 전체 검토 프로세스 표준화
-- 반복 업무 자동화로 팀 생산성 60% 향상
-
-### 🎓 수강생 프로필
-
-**이 강의는 다음과 같은 분들에게 최적화되어 있습니다:**
-
-✅ **Copilot 경험자**: GitHub Copilot을 사용해본 경험이 있는 개발자
-✅ **Enterprise 환경**: Privacy Mode나 보안이 중요한 환경에서 일하는 개발자
-✅ **실전 중심 학습자**: 이론보다 실습과 즉시 적용 가능한 기술을 선호하는 분
-✅ **팀 리드 지망생**: 개발팀의 표준화와 생산성 향상을 고민하는 분
-
-### 📈 학습 경로
+## 📁 프로젝트 구조
 
 ```
-1-2교시 (IDE 기초)
-    ↓
-Rules & Hooks → Debug Mode → Visual Editor
-    ↓
-3-4교시 (CLI 심화)
-    ↓
-Shell Mode → Multi-Agent → IDE+CLI 통합
-    ↓
-5-6교시 (업무 자동화)
-    ↓
-반복 작업 자동화 → 마크업 품질 관리
-    ↓
-실전 적용 & 팀 확산
+cursor-tutorial/
+├── README.md              # 이 파일
+└── sessions/              # 교시별 실습
+    ├── session-01/        # 1교시 (4개 프로젝트)
+    ├── session-02/        # 2교시 (4개 프로젝트)
+    ├── session-03/        # 3교시 (3개 프로젝트)
+    ├── session-04/        # 4교시 (3개 프로젝트)
+    ├── session-05/        # 5교시 (3개 프로젝트)
+    └── session-06/        # 6교시 (3개 프로젝트)
 ```
 
-이 강의를 통해 단순한 AI 도구 사용법을 넘어, **현대적인 개발 워크플로우를 완전히 재정의하는 방법을 배우게 됩니다.**
+**총 20개 실습 프로젝트**
 
 ---
 
-## 📦 제공되는 실습 자료
-
-### 예제 프로젝트
-- **basic-html-css-js**: Visual Editor 실습용 반응형 웹사이트
-- **react-project**: 전체 실습용 React 앱 (의도된 버그 포함)
-
-### 자동화 스크립트 (5-6교시용)
-- **check-parallel.sh**: 4가지 검사 동시 실행 (35분 → 15분)
-- **check-responsive.sh**: 반응형 검증 (25분 → 10분)
-- **check-html-css.sh**: HTML/CSS 품질 (45분 → 18분)
-- **check-themes.sh**: 테마 검증 (30분 → 12분)
-
-### 총 시간 절약 효과
-**순차 실행**: 135분 → **병렬 실행**: 55분 = **59% 단축** ⚡
-
----
-
-**Made for Copilot users in Enterprise environments 🚀**
+**즐거운 학습 되세요!** 🎉
