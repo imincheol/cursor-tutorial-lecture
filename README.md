@@ -101,37 +101,40 @@
 cursor-tutorial/
 ├── README.md                    # 프로젝트 메인 문서
 │
-├── curriculum/                  # 강의 자료 (7개)
-│   ├── 00-overview.md          # 전체 개요
-│   ├── 01-session.md           # 1교시: Rules & Hooks
-│   ├── 02-session.md           # 2교시: Debug & Visual
-│   ├── 03-session.md           # 3교시: CLI & Shell
-│   ├── 04-session.md           # 4교시: Multi-Agent
-│   ├── 05-session.md           # 5교시: 반복 작업 자동화
-│   └── 06-session.md           # 6교시: 마크업 품질 자동화
+├── sessions/                    # 교시별 실습 ⭐ NEW
+│   ├── README.md               # 전체 학습 가이드
+│   ├── session-01/             # 1교시: Rules & Hooks
+│   │   ├── README.md          # 교재
+│   │   └── projects/          # 실습 프로젝트 (4개)
+│   ├── session-02/             # 2교시: Debug & Visual
+│   │   ├── README.md
+│   │   └── projects/          # 실습 프로젝트 (4개)
+│   ├── session-03/             # 3교시: CLI & Shell
+│   │   ├── README.md
+│   │   └── projects/          # 실습 프로젝트 (3개)
+│   ├── session-04/             # 4교시: Multi-Agent
+│   │   ├── README.md
+│   │   └── projects/          # 실습 프로젝트 (3개)
+│   ├── session-05/             # 5교시: 반복 자동화
+│   │   ├── README.md
+│   │   └── projects/          # 실습 프로젝트 (3개)
+│   └── session-06/             # 6교시: 품질 자동화
+│       ├── README.md
+│       └── projects/          # 실습 프로젝트 (3개)
 │
-├── exercises/                   # 실습 자료 (6개)
-│   ├── 01-ide-rules-hooks/
-│   ├── 02-ide-debug-visual/
-│   ├── 03-cli-shell/
-│   ├── 04-cli-multi-agent/
-│   ├── 05-workflow-automation/
-│   └── 06-cicd-integration/
+├── curriculum/                  # 강의 참고 자료 (7개)
+│   ├── 00-overview.md
+│   └── 01-06-session.md
 │
 ├── examples/                    # 예제 프로젝트 (3개)
-│   ├── basic-html-css-js/      # HTML/CSS/JS 예제
-│   ├── react-project/          # React 예제
-│   └── automation-scripts/     # 자동화 스크립트
+│   ├── basic-html-css-js/
+│   ├── react-project/
+│   └── automation-scripts/
 │
-├── docs/                        # 보조 문서
-│   ├── guides/                 # 가이드 문서
-│   │   ├── CLI_MODES_EXPLAINED.md
-│   │   └── INTERACTIVE_MODE_GUIDE.md
-│   ├── reference/              # 참고 문서
-│   │   ├── CHECKLIST.md
-│   │   ├── SUMMARY.md
-│   │   └── UPDATE_SUMMARY.md
-│   └── PROJECT_STRUCTURE.md    # 프로젝트 구조 상세
+├── docs/                        # 문서
+│   ├── guides/                 # 가이드 (2개)
+│   ├── reference/              # 참고 (3개)
+│   └── *.md                    # 종합 문서 (4개)
 │
 ├── cheatsheet/                  # 치트시트
 │   └── shortcuts.md
@@ -141,7 +144,8 @@ cursor-tutorial/
     └── links.md
 ```
 
-> 📘 **상세 구조**: [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) 참고
+> 📘 **상세 구조**: [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) 참고  
+> 🚀 **학습 시작**: [sessions/README.md](./sessions/README.md) 참고
 
 ---
 
@@ -171,9 +175,17 @@ cursor --version
 
 ## ⏭ 시작하기
 
+### 📚 교시별 실습으로 시작 (권장)
+
+**[전체 학습 가이드 →](./sessions/README.md)**
+
+**[1교시: Rules & Hooks →](./sessions/session-01/README.md)**
+
+### 📖 이론 중심 학습
+
 **[개요: IDE vs CLI →](./curriculum/00-overview.md)**
 
-**[1교시: IDE 모드 시작 →](./curriculum/01-session.md)**
+**[커리큘럼 상세 →](./docs/CURRICULUM_OVERVIEW.md)**
 
 ---
 
