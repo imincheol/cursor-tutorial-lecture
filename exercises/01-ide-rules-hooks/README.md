@@ -361,8 +361,23 @@ function detectProjectType(cwd) {
 1. [ ] `.cursor/rules/` 폴더 생성
 2. [ ] globs 패턴 Rule 작성 (React/Vue/테스트 중 택1)
 3. [ ] `.cursor/hooks/` 폴더 생성
-4. [ ] 감사 로그 Hook 작성
-5. [ ] 위험 명령 차단 Hook 작성
+4. [ ] 감사 로그 Hook 작성 (preToolExecution + postToolExecution)
+5. [ ] 위험 명령 차단 Hook 작성 (다양한 위험 패턴 포함)
+6. [ ] **Hook 실행 순서 확인**
+   - 로그를 보면서 pre/post가 언제 실행되는지 관찰
+   - context 객체의 구조 파악 (tool, args, result)
+
+### Hook 동작 이해 실습 🎯
+7. [ ] **도구별 Hook 호출 조사**
+   - "파일을 읽어줘" 요청 → read 도구
+   - "파일을 수정해줘" 요청 → edit 도구
+   - "터미널 명령 실행해줘" 요청 → terminal 도구
+   - 각 도구마다 어떤 context가 전달되는지 로그로 확인
+
+8. [ ] **실행 차단 실습**
+   - 위험 명령 차단 Hook으로 실제 명령어 차단해보기
+   - 폴더 보호 Hook으로 파일 수정 차단해보기
+   - 차단된 이유가 올바르게 표시되는지 확인
 
 ### 🔥 보너스 실습 (선택)
 
