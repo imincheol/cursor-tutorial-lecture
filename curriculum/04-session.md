@@ -168,6 +168,35 @@ cd ../proj-zustand && cursor agent "Zustand로 상태 관리 개선해줘"
 └─────────────────────────────────────────────────────────────┘
 ```
 
+### 🔥 IDE에서 작업 중 + CLI로 동시 작업
+
+**실전 시나리오: 현재 IDE에서 `feat/user-profile` 작업 중**
+
+```bash
+# IDE에서 현재 상태:
+# - develop 브랜치에서 feat/user-profile 작업 진행 중
+# - Cursor IDE가 열려 있고, 채팅 세션 활성화
+# - UI 수정 중이거나 버그 수정 중
+
+# 그 상태에서 터미널 열기 (완전히 독립적!)
+# develop 브랜치로부터 새로운 worktree 생성
+git worktree add ../project-refactor -b refactor-investigation
+
+# 새로운 터미널에서 해당 worktree로 이동
+cd ../project-refactor
+cursor agent "현재 user-profile 관련 코드를 분석하고 리팩토링 방안을 제안해줘"
+
+# 또 다른 터미널에서 main 브랜치 기반으로 다른 작업
+git worktree add ../project-api -b api-improvement
+cd ../project-api
+cursor agent "API 호출 부분을 개선할 수 있는 방법 찾아줘"
+
+# 결과: 동시에 3가지 작업 진행 가능!
+# 1. IDE: feat/user-profile UI 작업 (계속)
+# 2. 터미널1: 리팩토링 조사 (refactor-investigation 브랜치)
+# 3. 터미널2: API 개선 조사 (api-improvement 브랜치)
+```
+
 ### 일상 개발 흐름
 
 ```
@@ -184,11 +213,38 @@ cd ../proj-zustand && cursor agent "Zustand로 상태 관리 개선해줘"
 
 터미널 작업:
   CLI: Shell Mode로 명령어 생성
+
+동시 작업:
+  IDE에서 feat/user-profile 진행 중
+  + 터미널에서 다른 브랜치 조사
+  + 필요시 3번째 터미널로 추가 작업
 ```
 
 ### 🔥 실습: 종합 시나리오
 
-**시나리오: 새 기능 개발 + 여러 방안 비교**
+**시나리오 1: IDE 작업 중 + CLI로 동시 조사**
+
+```bash
+# 상황: IDE에서 develop 브랜치의 feat/user-profile 작업 진행 중
+# (Cursor IDE 열린 상태, 채팅 세션 활성)
+
+# 터미널 1: develop 기반으로 리팩토링 조사
+git worktree add ../project-refactor -b refactor-investigation
+cd ../project-refactor
+cursor agent "user-profile 관련 코드를 분석하고 구조 개선 방안 제안해줘"
+
+# 터미널 2: main 기반으로 API 개선 조사
+git worktree add ../project-api -b api-improvement
+cd ../project-api
+cursor agent "API 호출 부분의 에러 처리와 성능 개선 방안 찾아줘"
+
+# 결과: IDE + 2개 터미널 = 3가지 작업 동시 진행
+# IDE 계속: UI/UX 작업
+# 터미널1: 코드 구조 분석
+# 터미널2: API 개선 조사
+```
+
+**시나리오 2: 새 기능 개발 + 여러 방안 비교**
 
 ```bash
 # 1. 먼저 CLI로 여러 방안 비교
