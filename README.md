@@ -73,8 +73,8 @@
 |------|------|------|------|--------|
 | [**3교시**](./curriculum/03-session.md) | 50분 | CLI 설치, 기본 사용, **Shell Mode** | [기본 4개 + 보너스 10개](../exercises/03-cli-shell/) | 🟢 초급 |
 | [**4교시**](./curriculum/04-session.md) | 50분 | **IDE + CLI 통합**, Worktree Multi-Agent, 실전 워크플로우 | [기본 11개 + 보너스 10개](../exercises/04-cli-multi-agent/) | 🔴 고급 |
-| [**5교시**](./curriculum/05-session.md) | 50분 | **업무 프로세스 자동화**, 코드 리뷰, 검토 워크플로우 | [기본 8개 + 보너스 12개](../exercises/05-workflow-automation/) | 🔴 고급 |
-| [**6교시**](./curriculum/06-session.md) | 50분 | **CI/CD 통합**, 배포 자동화, 모니터링 | [기본 6개 + 보너스 8개](../exercises/06-cicd-integration/) | 🔴 고급 |
+| [**5교시**](./curriculum/05-session.md) | 50분 | **반복 작업 자동화**, Worktree 기반 검토 워크플로우 | [기본 3개 + 보너스 9개](./exercises/05-workflow-automation/) | 🔴 고급 |
+| [**6교시**](./curriculum/06-session.md) | 50분 | **마크업 품질 자동화**, HTML/CSS 검증 워크플로우 | [기본 3개 + 보너스 9개](./exercises/06-cicd-integration/) | 🔴 고급 |
 
 ---
 
@@ -88,12 +88,20 @@ cursor-tutorial/
 │   ├── 01-session.md       # IDE: Rules, Hooks
 │   ├── 02-session.md       # IDE: Debug, Visual
 │   ├── 03-session.md       # CLI: Shell Mode
-│   └── 04-session.md       # CLI: Multi-Agent
+│   ├── 04-session.md       # CLI: Multi-Agent
+│   ├── 05-session.md       # 반복 작업 자동화
+│   └── 06-session.md       # 마크업 품질 자동화
 ├── exercises/
 │   ├── 01-ide-rules-hooks/
 │   ├── 02-ide-debug-visual/
 │   ├── 03-cli-shell/
-│   └── 04-cli-multi-agent/
+│   ├── 04-cli-multi-agent/
+│   ├── 05-workflow-automation/
+│   └── 06-cicd-integration/
+├── examples/
+│   ├── basic-html-css-js/  # Visual Editor 실습용
+│   ├── react-project/      # 전체 실습용
+│   └── automation-scripts/ # 자동화 스크립트들
 ├── cheatsheet/
 │   └── shortcuts.md
 └── resources/
@@ -141,13 +149,19 @@ cursor --version
 
 ### 📚 학습 목표
 
-#### **Cursor의 핵심 기능 마스터**
+#### **Cursor의 핵심 기능 마스터 (1-4교시)**
 - **Rules**: globs 패턴으로 조건부 적용하는 프로젝트 규칙 설정
 - **Hooks**: Agent 동작을 감시/제어하는 자동화 시스템 구축
 - **Debug Mode**: 자동 로그 삽입으로 버그 추적 및 해결
 - **Visual Editor**: 브라우저에서 직접 UI 요소 선택 및 수정
 - **Shell Mode**: 자연어로 터미널 명령어 자동 생성
 - **Worktree Multi-Agent**: 독립 환경에서 여러 접근법 동시 비교
+
+#### **업무 자동화 워크플로우 구축 (5-6교시)**
+- **반복 작업 자동화**: 접근성/성능/호환성 검사를 병렬 처리
+- **검토 워크플로우**: Worktree로 여러 검증을 동시에 실행
+- **마크업 품질 관리**: HTML/CSS 품질을 자동으로 검증
+- **디자인 시스템 검증**: 테마/컴포넌트/스타일 가이드 자동 체크
 
 #### **실전 개발 워크플로우 구축**
 - IDE 모드와 CLI 모드를 상황에 맞게 선택하는 전략
@@ -162,6 +176,7 @@ cursor --version
 - **UI 개발 속도 2배 향상**: Visual Editor로 디자이너 도움 없이도 프로덕션급 UI 구현
 - **터미널 작업 80% 자동화**: Shell Mode로 자연어 기반 명령어 생성
 - **의사결정 속도 3배 향상**: Multi-Agent로 여러 접근법 동시 비교
+- **검토 시간 60% 단축**: Worktree 병렬 처리로 반복 검증 자동화
 
 #### **팀 협업 효율화**
 - **코드 리뷰 시간 50% 단축**: Rules로 일관된 코드 스타일 유지
@@ -173,17 +188,20 @@ cursor --version
 #### **프론트엔드 개발자**
 - React/Vue 컴포넌트 구조를 Visual Editor로 즉시 이해하고 수정
 - 복잡한 상태 관리 로직을 Debug Mode로 빠르게 디버깅
-- 반복적인 빌드/배포 작업을 Shell Mode로 자동화
+- 반복적인 빌드/테스트 작업을 Shell Mode로 자동화
+- 접근성/성능/호환성 검사를 Worktree로 병렬 처리
 
-#### **풀스택 개발자**
-- API 호출 및 데이터 플로우를 Multi-Agent로 최적화 전략 비교
-- 데이터베이스 마이그레이션 작업을 안전하게 Hooks로 보호
-- CI/CD 파이프라인에 Cursor 자동화를 통합
+#### **마크업 개발자**
+- HTML 시맨틱 구조를 자동으로 검증하고 개선
+- CSS 품질(구조/성능/네이밍)을 동시에 검사
+- 다중 테마(라이트/다크/고대비)를 병렬로 검증
+- 디자인 시스템 준수 여부를 자동으로 체크
 
-#### **팀 리드/아키텍트**
+#### **팀 리드/시니어 개발자**
 - 프로젝트별 Rules로 기술 표준화 및 품질 관리
 - Worktree Multi-Agent로 아키텍처 결정에 데이터 기반 근거 제공
-- 팀 전체 생산성 모니터링 및 개선 포인트 식별
+- 자동화 스크립트로 팀 전체 검토 프로세스 표준화
+- 반복 업무 자동화로 팀 생산성 60% 향상
 
 ### 🎓 수강생 프로필
 
@@ -197,14 +215,39 @@ cursor --version
 ### 📈 학습 경로
 
 ```
-기초 → 심화 → 실전 적용 → 팀 확산
-  ↓      ↓        ↓        ↓
-Rules ← Hooks ← Debug ← Multi-Agent
-        ↓        ↓        ↓
-     Visual ← Shell ← IDE+CLI 통합
+1-2교시 (IDE 기초)
+    ↓
+Rules & Hooks → Debug Mode → Visual Editor
+    ↓
+3-4교시 (CLI 심화)
+    ↓
+Shell Mode → Multi-Agent → IDE+CLI 통합
+    ↓
+5-6교시 (업무 자동화)
+    ↓
+반복 작업 자동화 → 마크업 품질 관리
+    ↓
+실전 적용 & 팀 확산
 ```
 
 이 강의를 통해 단순한 AI 도구 사용법을 넘어, **현대적인 개발 워크플로우를 완전히 재정의하는 방법을 배우게 됩니다.**
+
+---
+
+## 📦 제공되는 실습 자료
+
+### 예제 프로젝트
+- **basic-html-css-js**: Visual Editor 실습용 반응형 웹사이트
+- **react-project**: 전체 실습용 React 앱 (의도된 버그 포함)
+
+### 자동화 스크립트 (5-6교시용)
+- **check-parallel.sh**: 4가지 검사 동시 실행 (35분 → 15분)
+- **check-responsive.sh**: 반응형 검증 (25분 → 10분)
+- **check-html-css.sh**: HTML/CSS 품질 (45분 → 18분)
+- **check-themes.sh**: 테마 검증 (30분 → 12분)
+
+### 총 시간 절약 효과
+**순차 실행**: 135분 → **병렬 실행**: 55분 = **59% 단축** ⚡
 
 ---
 

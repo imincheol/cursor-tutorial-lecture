@@ -384,7 +384,7 @@ cursor agent "애니메이션을 검사해줘
 - Rules & Hooks로 프로젝트 표준화
 - Debug Mode & Visual Editor로 개발 효율화
 
-**CLI 모드 (3-4교시):**
+**CLI 모드 (3-6교시):**
 - Shell Mode로 터미널 자동화
 - Worktree Multi-Agent로 병렬 작업
 

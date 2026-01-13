@@ -318,7 +318,7 @@ git worktree remove ../proj-option-b
 | Debug Mode | Copilot에 없음 🔥 |
 | Visual Editor | Copilot에 없음 🔥 |
 
-**CLI 모드 (3-4교시):**
+**CLI 모드 (3-6교시):**
 | 기능 | Copilot 대비 |
 |------|-------------|
 | cursor agent | Copilot에 없음 🔥 |
@@ -379,4 +379,10 @@ git worktree remove ../proj-option-b
 
 ---
 
-**감사합니다! 🙏**
+## ⏭ 다음 교시
+
+**[5교시: 반복 작업 자동화 →](./05-session.md)**
+
+---
+
+**Cursor로 개발 워크플로우를 혁신하세요! 🚀**
