@@ -2,13 +2,29 @@
 
 > ⏱ 50분 | IDE 모드 Part 1
 
+## 📑 목차
+
+- [이 시간의 목표](#-이-시간의-목표)
+- [1️⃣ Copilot과 비슷한 것들 (20분)](#️⃣-copilot과-비슷한-것들---차이만-빠르게-20분)
+  - [Rules vs Instructions](#rules-vs-instructions)
+  - [Commands vs Prompts](#commands-vs-prompts)
+  - [MCP (Model Context Protocol)](#mcp-model-context-protocol)
+  - [Plan Mode](#plan-mode)
+- [2️⃣ Cursor에만 있는 것: Hooks (30분)](#️⃣-cursor에만-있는-것-hooks-30분)
+  - [Hooks란?](#hooks란)
+  - [Hook의 동작 원리](#hook의-동작-원리)
+  - [Hook 타입 상세](#hook-타입-상세)
+  - [실전 Hook 예제](#실전-hook-예제)
+- [체크리스트](#-1교시-체크리스트)
+- [다음 교시](#-다음-교시)
+
 ---
 
 ## 📋 이 시간의 목표
 
 - [ ] Copilot과 비슷한 기능들의 **차이점** 파악
 - [ ] Rules 설정 (globs 패턴)
-- [ ] Hooks로 Agent 동작 제어
+- [ ] **Hooks로 Agent 동작 제어** (핵심!)
 
 ---
 

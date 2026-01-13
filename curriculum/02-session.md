@@ -2,12 +2,29 @@
 
 > ⏱ 50분 | IDE 모드 Part 2
 
+## 📑 목차
+
+- [이 시간의 목표](#-이-시간의-목표)
+- [1️⃣ Debug Mode (15분)](#️⃣-debug-mode-15분-)
+  - [Debug Mode 작동 방식](#debug-mode-작동-방식)
+  - [실습: 버그 추적](#-실습-버그-추적)
+  - [Debug Mode 팁](#debug-mode-팁)
+- [2️⃣ Visual Editor (20분)](#️⃣-visual-editor-20분-)
+  - [Visual Editor 시작](#visual-editor-시작)
+  - [실습: UI 수정](#-실습-ui-수정)
+  - [고급 기능](#고급-기능)
+- [3️⃣ IDE Multi-Agent 주의점 (15분)](#️⃣-ide-multi-agent-주의점-15분-)
+  - [충돌 시나리오](#충돌-시나리오)
+  - [안전한 사용법](#안전한-사용법)
+- [체크리스트](#-2교시-체크리스트)
+- [다음 교시](#-다음-교시)
+
 ---
 
 ## 📋 이 시간의 목표
 
-- [ ] Debug Mode로 복잡한 버그 해결
-- [ ] Visual Editor로 실시간 UI 편집
+- [ ] **Debug Mode로 복잡한 버그 해결** (핵심!)
+- [ ] **Visual Editor로 실시간 UI 편집** (핵심!)
 - [ ] IDE에서 Multi-Agent 사용 시 주의점
 
 ---

@@ -2,13 +2,30 @@
 
 > ⏱ 50분 | CLI 모드 Part 2
 
+## 📑 목차
+
+- [이 시간의 목표](#-이-시간의-목표)
+- [1️⃣ CLI Multi-Agent with Worktree (25분)](#️⃣-cli-multi-agent-with-worktree-25분)
+  - [IDE Multi-Agent의 한계](#ide-multi-agent의-한계-복습)
+  - [CLI + Worktree 해결책](#cli--worktree-해결책)
+  - [Worktree 기본 명령어](#worktree-기본-명령어)
+  - [실습: 3가지 접근법 동시 비교](#-실습-3가지-접근법-동시-비교)
+  - [IDE vs CLI Multi-Agent 비교](#ide-multi-agent-vs-cli-multi-agent-비교)
+- [2️⃣ 실전 워크플로우 (20분)](#️⃣-실전-워크플로우-20분)
+  - [IDE + CLI 통합 사용](#ide--cli-통합-사용)
+  - [IDE에서 작업 중 + CLI로 동시 작업](#-ide에서-작업-중--cli로-동시-작업)
+  - [일상 개발 흐름](#일상-개발-흐름)
+- [3️⃣ 실습: 종합 시나리오 (5분)](#️⃣-실습-종합-시나리오-5분)
+- [체크리스트](#-4교시-체크리스트)
+- [다음 교시](#-다음-교시)
+
 ---
 
 ## 📋 이 시간의 목표
 
 - [ ] Worktree로 독립 Multi-Agent 환경 구성
 - [ ] CLI에서 여러 접근법 동시 비교
-- [ ] IDE + CLI 통합 워크플로우
+- [ ] **IDE + CLI 통합 워크플로우** (핵심!)
 
 ---
 
