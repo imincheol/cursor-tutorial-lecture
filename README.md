@@ -48,12 +48,13 @@
 
 ### 🔥 Cursor에만 있는 것
 
-| 기능 | IDE | CLI |
-|------|-----|-----|
-| **Visual Editor** | ✅ | ❌ |
-| **Debug Mode** | ✅ | ❌ |
-| **Hooks** | ✅ | ✅ |
-| **Shell Mode** | ❌ | ✅ |
+| 기능 | IDE | CLI | 설명 |
+|------|-----|-----|------|
+| **Visual Editor** | ✅ | ❌ | 브라우저 UI 직접 편집 |
+| **Debug Mode** | ✅ | ❌ | 자동 로그 삽입 버그 추적 |
+| **Hooks** | ✅ | ✅ | Agent 동작 감시/제어 |
+| **Shell Mode** | ❌ | ✅ | 자연어로 명령어 생성 |
+| **대화형 CLI** | ❌ | ✅ | 지금 이 대화처럼 단계별 작업 🔥 |
 | **Worktree Multi-Agent** | ❌ | ✅ |
 
 ---
@@ -155,6 +156,7 @@ cursor --version
 - **Debug Mode**: 자동 로그 삽입으로 버그 추적 및 해결
 - **Visual Editor**: 브라우저에서 직접 UI 요소 선택 및 수정
 - **Shell Mode**: 자연어로 터미널 명령어 자동 생성
+- **대화형 CLI Agent**: 지금 이 대화처럼 단계별로 문제 해결 🔥
 - **Worktree Multi-Agent**: 독립 환경에서 여러 접근법 동시 비교
 
 #### **업무 자동화 워크플로우 구축 (5-6교시)**

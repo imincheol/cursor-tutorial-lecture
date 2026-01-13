@@ -172,29 +172,97 @@ cd ../proj-zustand && cursor agent "Zustand로 상태 관리 개선해줘"
 
 **실전 시나리오: 현재 IDE에서 `feat/user-profile` 작업 중**
 
+#### IDE에서 대화형 작업 (메인 작업)
+
+```
+IDE Cursor Agent (대화 진행 중):
+
+> 사용자 프로필 페이지에 아바타 업로드 추가해줘
+
+Agent: FileUpload 컴포넌트를 만들겠습니다...
+
+> 이미지 미리보기도 필요해
+
+Agent: 미리보기 기능 추가했습니다...
+
+> 드래그 앤 드롭도 되게 해줘
+
+Agent: 드래그 앤 드롭 기능을 구현하겠습니다...
+```
+
+#### 동시에 터미널 1 - 대화형 리팩토링 조사
+
 ```bash
-# IDE에서 현재 상태:
-# - develop 브랜치에서 feat/user-profile 작업 진행 중
-# - Cursor IDE가 열려 있고, 채팅 세션 활성화
-# - UI 수정 중이거나 버그 수정 중
-
-# 그 상태에서 터미널 열기 (완전히 독립적!)
-# develop 브랜치로부터 새로운 worktree 생성
+# IDE 작업 중단 없이 새 터미널 열기
 git worktree add ../project-refactor -b refactor-investigation
-
-# 새로운 터미널에서 해당 worktree로 이동
 cd ../project-refactor
-cursor agent "현재 user-profile 관련 코드를 분석하고 리팩토링 방안을 제안해줘"
 
-# 또 다른 터미널에서 main 브랜치 기반으로 다른 작업
+# 대화형 모드 시작 (IDE와 완전 독립)
+cursor agent
+
+> 현재 프로필 관련 코드 구조 분석해줘
+
+Agent: UserProfile.tsx가 500줄입니다...
+
+> 어떻게 개선할 수 있어?
+
+Agent: 4개 컴포넌트로 분리를 제안합니다...
+
+> 분리 작업 해줘
+
+Agent: UserAvatar 컴포넌트부터 생성하겠습니다...
+
+> 테스트 코드도 필요해
+
+Agent: UserAvatar.test.tsx를 생성했습니다...
+```
+
+#### 동시에 터미널 2 - 대화형 API 개선 조사
+
+```bash
+# 또 다른 터미널
 git worktree add ../project-api -b api-improvement
 cd ../project-api
-cursor agent "API 호출 부분을 개선할 수 있는 방법 찾아줘"
 
-# 결과: 동시에 3가지 작업 진행 가능!
-# 1. IDE: feat/user-profile UI 작업 (계속)
-# 2. 터미널1: 리팩토링 조사 (refactor-investigation 브랜치)
-# 3. 터미널2: API 개선 조사 (api-improvement 브랜치)
+cursor agent
+
+> 프로필 API 성능 분석해줘
+
+Agent: N+1 쿼리 문제 발견...
+
+> 해결 방법은?
+
+Agent: DataLoader 패턴 추천...
+
+> 구현 예제 보여줘
+
+Agent: 다음과 같이 구현합니다...
+
+> 기존 코드에 적용해줘
+
+Agent: API 라우터를 수정하겠습니다...
+```
+
+**핵심**: 3개의 **독립적인 대화**가 동시에 진행! 🔥
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  동시 진행 중인 3개의 대화형 세션                            │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  IDE (feat/user-profile)                                    │
+│  ├─ "드래그 앤 드롭 추가해줘"                               │
+│  └─ "파일 크기 제한은?"                                     │
+│                                                             │
+│  터미널 1 (refactor-investigation)                          │
+│  ├─ "컴포넌트 분리해줘"                                     │
+│  └─ "테스트 코드도 작성해줘"                                │
+│                                                             │
+│  터미널 2 (api-improvement)                                 │
+│  ├─ "DataLoader 적용해줘"                                   │
+│  └─ "캐싱도 추가할까?"                                      │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### 일상 개발 흐름
