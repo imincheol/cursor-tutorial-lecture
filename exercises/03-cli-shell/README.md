@@ -26,7 +26,7 @@ cursor --version
 # 대화형 Agent 시작
 cursor agent
 
-# 지금 이 대화처럼 계속 이어가며 작업!
+# 대화하듯이 계속 이어가며 작업!
 > 이 프로젝트 구조 설명해줘
 
 Agent: src/ 폴더에 3개 주요 디렉토리가...

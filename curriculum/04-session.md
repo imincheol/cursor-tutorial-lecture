@@ -31,11 +31,35 @@
 
 ## 💡 이 교시에서 배울 것
 
-### Worktree Multi-Agent (독립 환경)
-Git Worktree로 완전히 분리된 폴더를 만들어서 여러 Agent를 동시에 실행합니다.
+### Worktree Multi-Agent (로컬 오케스트레이션)
 
-**예시**:
+**핵심 개념**: Worktree를 사용해서 **로컬에서 Multi-Agent 오케스트레이션**을 구현합니다.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  발전 경로                                                   │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Claude Code (CLI)                                          │
+│    ↓                                                        │
+│  Cursor Agent (CLI + IDE 통합)                             │
+│    ↓                                                        │
+│  Worktree Multi-Agent (로컬 오케스트레이션) ← 이 교시!     │
+│    ↓                                                        │
+│  OpenCode (자동 오케스트레이션)                             │
+│    ↓                                                        │
+│  Oh My OpenCode (Workflow 기반 팀 시스템)                   │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### 오케스트레이션이란?
+
+**여러 Agent를 조율해서 복잡한 작업을 수행하는 것**
+
+**수동 오케스트레이션 (이 교시에서 배울 것)**:
 ```bash
+# 당신이 오케스트레이터 역할
 # 터미널 1: useReducer 접근
 git worktree add ../exp-reducer -b exp-reducer
 cd ../exp-reducer
@@ -46,13 +70,40 @@ git worktree add ../exp-zustand -b exp-zustand
 cd ../exp-zustand
 cursor agent "Zustand로 리팩토링해줘"
 
-# 결과 비교 후 최선 선택
+# 당신이 결과 비교하고 최선 선택
 ```
 
-**특징**:
-- 완전히 독립된 폴더 (충돌 없음)
-- 같은 파일을 다르게 수정 가능
-- 여러 접근법 동시 비교
+**자동 오케스트레이션 (OpenCode 방식)**:
+```bash
+# OpenCode가 자동으로 여러 접근법 시도하고 최선 선택
+opencode "상태 관리 리팩토링해줘"
+→ 내부적으로 여러 Agent가 다른 방식 시도
+→ 자동으로 결과 비교 및 최선 선택
+```
+
+#### Workflow 개념 (Oh My OpenCode 방식)
+
+각 Worktree에 **역할(Workflow)**을 부여해서 팀처럼 작동:
+
+```
+신규 페이지 추가 요청:
+  → 기획 Workflow: 요구사항 분석
+  → 디자인 Workflow: UI/UX 설계
+  → 마크업 Workflow: HTML/CSS 작성
+  → FE Workflow: 로직 구현
+  → QA Workflow: 테스트 수행
+
+버튼 문구 수정 요청:
+  → 기획 Workflow: 문구 검토
+  → FE Workflow: 코드 수정
+  (디자인/마크업/QA 생략)
+```
+
+**오케스트레이터가 자동으로 판단**:
+- 어떤 작업인지 분석
+- 필요한 Workflow 선택
+- 순서 결정
+- 결과 통합
 
 ### IDE + CLI 통합 (실전 워크플로우)
 IDE에서 메인 작업을 하면서, 동시에 터미널에서 조사/실험을 합니다.
@@ -405,6 +456,131 @@ git worktree remove ../proj-option-a
 git worktree remove ../proj-option-b
 ```
 
+### 🎯 오케스트레이션의 진화 (고급)
+
+#### 현재 단계: 수동 오케스트레이션
+
+**당신이 오케스트레이터**:
+```bash
+# 1. 작업 분석 (당신이 판단)
+"상태 관리를 개선해야겠다"
+
+# 2. 접근법 결정 (당신이 선택)
+"useReducer, Zustand, Custom Hook 3가지 시도해보자"
+
+# 3. Worktree 생성 및 Agent 실행 (당신이 실행)
+git worktree add ../try-reducer -b try-reducer
+cd ../try-reducer && cursor agent "useReducer로..."
+
+# 4. 결과 비교 및 선택 (당신이 판단)
+"Zustand가 가장 좋네, 이걸로 하자"
+```
+
+#### 다음 단계: OpenCode (자동 오케스트레이션)
+
+**OpenCode가 오케스트레이터**:
+```bash
+opencode "상태 관리 개선해줘"
+
+# 내부 동작:
+# 1. 작업 분석 (자동)
+# 2. 여러 접근법 자동 시도 (자동)
+# 3. 결과 비교 (자동)
+# 4. 최선 선택 (자동)
+```
+
+#### 최종 단계: Oh My OpenCode (Workflow 기반)
+
+**Workflow 시스템**:
+
+```
+각 Worktree = Workflow (역할)
+  - planning/: 기획 Workflow
+  - design/: 디자인 Workflow
+  - markup/: 마크업 Workflow
+  - frontend/: FE Workflow
+  - qa/: QA Workflow
+```
+
+**작업별 자동 할당**:
+
+```bash
+# 신규 페이지 추가
+oh-my-opencode "로그인 페이지 추가해줘"
+
+→ 오케스트레이터 판단:
+  1. planning/: 요구사항 분석
+  2. design/: UI/UX 설계
+  3. markup/: HTML/CSS 작성
+  4. frontend/: 로직 구현
+  5. qa/: 테스트 수행
+
+# 버튼 문구 수정
+oh-my-opencode "로그인 버튼 문구 '로그인'으로 변경"
+
+→ 오케스트레이터 판단:
+  1. planning/: 문구 검토
+  2. frontend/: 코드 수정
+  (design, markup, qa 생략)
+```
+
+**핵심 차이**:
+
+| 단계 | 오케스트레이터 | 판단 | 실행 |
+|------|---------------|------|------|
+| **수동** (이 교시) | 당신 | 수동 | 수동 |
+| **OpenCode** | AI | 자동 | 자동 |
+| **Oh My OpenCode** | AI + Workflow | 자동 + 역할 기반 | 자동 |
+
+#### 실습: Workflow 개념 적용해보기
+
+**시나리오: 신규 기능 개발**
+
+```bash
+# 1. Workflow별 Worktree 생성
+git worktree add ../wf-planning -b wf-planning
+git worktree add ../wf-frontend -b wf-frontend
+git worktree add ../wf-qa -b wf-qa
+
+# 2. 각 Workflow에 역할 부여 (Rules로)
+# wf-planning/.cursor/rules/planning.mdc
+---
+globs: ["**/*"]
+---
+당신은 기획자입니다. 요구사항을 분석하고 명세를 작성하세요.
+
+# wf-frontend/.cursor/rules/frontend.mdc
+---
+globs: ["**/*"]
+---
+당신은 프론트엔드 개발자입니다. 기획 명세에 따라 구현하세요.
+
+# wf-qa/.cursor/rules/qa.mdc
+---
+globs: ["**/*"]
+---
+당신은 QA입니다. 구현된 기능을 테스트하세요.
+
+# 3. 순차 실행 (수동 오케스트레이션)
+cd ../wf-planning
+cursor agent "사용자 프로필 페이지 요구사항 분석해줘"
+# → SPEC.md 생성
+
+cd ../wf-frontend
+cursor agent "SPEC.md 보고 구현해줘"
+# → 코드 생성
+
+cd ../wf-qa
+cursor agent "구현된 기능 테스트해줘"
+# → 테스트 결과
+```
+
+**미래 (자동 오케스트레이션)**:
+```bash
+oh-my-opencode "사용자 프로필 페이지 만들어줘"
+# → 자동으로 planning → frontend → qa 순서 실행
+```
+
 ### 팀 도입 가이드
 
 #### Week 1: 기본
@@ -423,9 +599,9 @@ git worktree remove ../proj-option-b
 
 #### Week 3: 고급
 ```
-- Worktree Multi-Agent
+- Worktree Multi-Agent (수동 오케스트레이션)
+- Workflow 개념 실험
 - 팀 Rules 표준화
-- 베스트 프랙티스 공유
 ```
 
 ---

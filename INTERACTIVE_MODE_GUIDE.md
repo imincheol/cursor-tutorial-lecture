@@ -1,6 +1,6 @@
 # 🎯 Cursor CLI 대화형 모드 완벽 가이드
 
-> **핵심**: Cursor CLI Agent는 지금 이 대화처럼 사용하는 것이 가장 강력합니다!
+> **핵심**: Cursor CLI Agent는 대화하듯이 사용하는 것이 가장 강력합니다!
 
 ---
 
@@ -371,7 +371,7 @@ cursor agent
 
 ## 🎯 핵심 메시지
 
-**Cursor CLI Agent는 지금 이 대화처럼 사용하세요!**
+**Cursor CLI Agent는 대화하듯이 사용하세요!**
 
 - ✅ 한 번에 완벽한 질문 안 해도 됨
 - ✅ 대화하며 점진적으로 개선
