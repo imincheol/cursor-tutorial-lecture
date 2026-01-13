@@ -1,8 +1,8 @@
 # 💻 3교시 실습: CLI 모드 - Shell Mode
 
 > 📚 **공식 문서**
-> - CLI Overview: https://docs.cursor.com/cli/overview
-> - Shell Mode: https://docs.cursor.com/cli/shell-mode
+> - CLI Overview: https://cursor.com/docs/cli/overview
+> - Shell Mode: https://cursor.com/docs/cli/shell-mode
 
 ---
 

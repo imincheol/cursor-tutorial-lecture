@@ -60,7 +60,7 @@ Agent가 도구를 실행하기 전/후에 JavaScript 코드를 실행해서 제
 | 전체 적용만 | **globs 패턴** 조건부 적용 |
 | 개인 설정만 | 팀 Rules (Git 공유 가능) |
 
-📚 **공식 문서**: https://docs.cursor.com/context/rules
+📚 **공식 문서**: https://cursor.com/docs/context/rules
 
 ### 🔥 실습: globs 패턴 Rules 작성
 
@@ -112,7 +112,7 @@ Cursor만의 차이는 크지 않음 → 넘어감
 
 둘 다 MCP 지원. 차이 거의 없음 → 넘어감
 
-📚 **공식 문서**: https://docs.cursor.com/context/mcp/overview
+📚 **공식 문서**: https://cursor.com/docs/context/mcp/overview
 
 ---
 
@@ -125,7 +125,7 @@ Copilot: Agent가 뭘 하든 통제 불가
 Cursor: Hooks로 모든 동작 감시/제어
 ```
 
-📚 **공식 문서**: https://docs.cursor.com/agent/hooks
+📚 **공식 문서**: https://cursor.com/docs/agent/hooks
 
 ### Hooks 개념
 
@@ -537,9 +537,9 @@ module.exports = {
 
 | 주제 | 링크 |
 |------|------|
-| Rules | https://docs.cursor.com/context/rules |
-| Hooks | https://docs.cursor.com/agent/hooks |
-| Agent Overview | https://docs.cursor.com/agent/overview |
+| Rules | https://cursor.com/docs/context/rules |
+| Hooks | https://cursor.com/docs/agent/hooks |
+| Agent Overview | https://cursor.com/docs/agent/overview |
 
 ---
 

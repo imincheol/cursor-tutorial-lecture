@@ -1,8 +1,8 @@
 # 🔄 5교시 실습: 반복 작업 자동화 - Worktree 기반 검토 워크플로우
 
 > 📚 **공식 문서**
-> - Worktrees: https://docs.cursor.com/configuration/worktrees
-> - Agent CLI: https://docs.cursor.com/cli/overview
+> - Worktrees: https://cursor.com/docs/configuration/worktrees
+> - Agent CLI: https://cursor.com/docs/cli/overview
 
 ---
 
@@ -283,7 +283,7 @@ git commit -m "Add team quality checks"
 
 - [5교시 강의 자료](../../curriculum/05-session.md)
 - [자동화 스크립트 상세 가이드](../../examples/automation-scripts/README.md)
-- [Worktrees 공식 문서](https://docs.cursor.com/configuration/worktrees)
+- [Worktrees 공식 문서](https://cursor.com/docs/configuration/worktrees)
 
 ---
 

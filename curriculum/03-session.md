@@ -103,7 +103,7 @@ AI: find . -name "*.tsx" -mtime -3
 
 ## 1️⃣ CLI 설치 (10분)
 
-📚 **공식 문서**: https://docs.cursor.com/cli/installation
+📚 **공식 문서**: https://cursor.com/docs/cli/installation
 
 ### 설치 방법
 
@@ -133,7 +133,7 @@ cursor agent --help
 
 ## 2️⃣ CLI Agent 기본 사용 (15분)
 
-📚 **공식 문서**: https://docs.cursor.com/cli/using
+📚 **공식 문서**: https://cursor.com/docs/cli/using
 
 ### Agent 시작
 
@@ -265,7 +265,7 @@ Copilot: 터미널 명령은 직접 타이핑 (외워야 함)
 Cursor Shell Mode: 자연어로 설명 → 명령어 자동 생성
 ```
 
-📚 **공식 문서**: https://docs.cursor.com/cli/shell-mode
+📚 **공식 문서**: https://cursor.com/docs/cli/shell-mode
 
 ### Shell Mode 시작
 
@@ -362,7 +362,7 @@ cursor agent -p --output-format json "변경사항 분석해줘"
 cursor agent -p --output-format text "이 함수 설명해줘"
 ```
 
-📚 **공식 문서**: https://docs.cursor.com/cli/reference/agent
+📚 **공식 문서**: https://cursor.com/docs/cli/reference/agent
 
 ---
 
@@ -393,11 +393,11 @@ cas  # Shell Mode 바로 시작
 
 | 주제 | 링크 |
 |------|------|
-| CLI Overview | https://docs.cursor.com/cli/overview |
-| CLI Installation | https://docs.cursor.com/cli/installation |
-| Using Agent in CLI | https://docs.cursor.com/cli/using |
-| Shell Mode | https://docs.cursor.com/cli/shell-mode |
-| CLI Reference | https://docs.cursor.com/cli/reference/agent |
+| CLI Overview | https://cursor.com/docs/cli/overview |
+| CLI Installation | https://cursor.com/docs/cli/installation |
+| Using Agent in CLI | https://cursor.com/docs/cli/using |
+| Shell Mode | https://cursor.com/docs/cli/shell-mode |
+| CLI Reference | https://cursor.com/docs/cli/reference/agent |
 
 ---
 

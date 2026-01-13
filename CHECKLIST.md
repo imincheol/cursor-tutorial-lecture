@@ -52,14 +52,14 @@
 - [x] exercises 간 링크 (이전/다음 실습)
 
 ### 외부 링크 (Cursor 공식 문서)
-- [x] https://docs.cursor.com
-- [x] https://docs.cursor.com/agent/overview
-- [x] https://docs.cursor.com/cli/overview
-- [x] https://docs.cursor.com/agent/hooks
-- [x] https://docs.cursor.com/agent/browser
-- [x] https://docs.cursor.com/agent/debug-mode
-- [x] https://docs.cursor.com/configuration/worktrees
-- [x] https://docs.cursor.com/context/rules
+- [x] https://cursor.com/docs
+- [x] https://cursor.com/docs/agent/overview
+- [x] https://cursor.com/docs/cli/overview
+- [x] https://cursor.com/docs/agent/hooks
+- [x] https://cursor.com/docs/agent/browser
+- [x] https://cursor.com/docs/agent/debug-mode
+- [x] https://cursor.com/docs/configuration/worktrees
+- [x] https://cursor.com/docs/context/rules
 
 ---
 

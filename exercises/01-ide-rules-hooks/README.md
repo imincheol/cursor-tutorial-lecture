@@ -1,8 +1,8 @@
 # 📁 1교시 실습: IDE 모드 - Rules & Hooks
 
 > 📚 **공식 문서**
-> - Rules: https://docs.cursor.com/context/rules
-> - Hooks: https://docs.cursor.com/agent/hooks
+> - Rules: https://cursor.com/docs/context/rules
+> - Hooks: https://cursor.com/docs/agent/hooks
 
 ---
 

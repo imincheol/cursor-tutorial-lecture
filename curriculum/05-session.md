@@ -378,8 +378,8 @@ git branch -d check/a11y check/browsers check/performance check/design
 
 | 주제 | 링크 |
 |------|------|
-| Worktrees | https://docs.cursor.com/configuration/worktrees |
-| Agent CLI | https://docs.cursor.com/cli/overview |
+| Worktrees | https://cursor.com/docs/configuration/worktrees |
+| Agent CLI | https://cursor.com/docs/cli/overview |
 
 ---
 

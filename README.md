@@ -143,12 +143,12 @@ cursor --version
 
 | 주제 | 링크 |
 |------|------|
-| Cursor 문서 | https://docs.cursor.com |
-| Agent | https://docs.cursor.com/agent/overview |
-| CLI | https://docs.cursor.com/cli/overview |
-| Hooks | https://docs.cursor.com/agent/hooks |
-| Browser | https://docs.cursor.com/agent/browser |
-| Worktrees | https://docs.cursor.com/configuration/worktrees |
+| Cursor 문서 | https://cursor.com/docs |
+| Agent | https://cursor.com/docs/agent/overview |
+| CLI | https://cursor.com/docs/cli/overview |
+| Hooks | https://cursor.com/docs/agent/hooks |
+| Browser | https://cursor.com/docs/agent/browser |
+| Worktrees | https://cursor.com/docs/configuration/worktrees |
 
 ---
 

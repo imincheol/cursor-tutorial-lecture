@@ -1,6 +1,6 @@
 # 🤖 4교시 실습: CLI 모드 - Worktree Multi-Agent
 
-> 📚 **공식 문서**: https://docs.cursor.com/configuration/worktrees
+> 📚 **공식 문서**: https://cursor.com/docs/configuration/worktrees
 
 ---
 
@@ -301,14 +301,14 @@ git worktree add ../proj-zustand -b try-zustand
 
 | 주제 | 링크 |
 |------|------|
-| Cursor 문서 | https://docs.cursor.com |
-| CLI | https://docs.cursor.com/cli/overview |
-| Agent | https://docs.cursor.com/agent/overview |
-| Rules | https://docs.cursor.com/context/rules |
-| Hooks | https://docs.cursor.com/agent/hooks |
-| Browser | https://docs.cursor.com/agent/browser |
-| Debug Mode | https://docs.cursor.com/agent/debug-mode |
-| Worktrees | https://docs.cursor.com/configuration/worktrees |
+| Cursor 문서 | https://cursor.com/docs |
+| CLI | https://cursor.com/docs/cli/overview |
+| Agent | https://cursor.com/docs/agent/overview |
+| Rules | https://cursor.com/docs/context/rules |
+| Hooks | https://cursor.com/docs/agent/hooks |
+| Browser | https://cursor.com/docs/agent/browser |
+| Debug Mode | https://cursor.com/docs/agent/debug-mode |
+| Worktrees | https://cursor.com/docs/configuration/worktrees |
 
 ---
 

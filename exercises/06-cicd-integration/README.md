@@ -1,9 +1,9 @@
 # 🎨 6교시 실습: 마크업 품질 자동화 - HTML/CSS 검증 워크플로우
 
 > 📚 **공식 문서**
-> - Worktrees: https://docs.cursor.com/configuration/worktrees
-> - Agent CLI: https://docs.cursor.com/cli/overview
-> - Browser: https://docs.cursor.com/agent/browser
+> - Worktrees: https://cursor.com/docs/configuration/worktrees
+> - Agent CLI: https://cursor.com/docs/cli/overview
+> - Browser: https://cursor.com/docs/agent/browser
 
 ---
 
@@ -291,7 +291,7 @@ bash check-html-css.sh
 
 - [6교시 강의 자료](../../curriculum/06-session.md)
 - [자동화 스크립트 상세 가이드](../../examples/automation-scripts/README.md)
-- [Browser 공식 문서](https://docs.cursor.com/agent/browser)
+- [Browser 공식 문서](https://cursor.com/docs/agent/browser)
 
 ---
 

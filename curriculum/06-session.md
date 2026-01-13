@@ -411,9 +411,9 @@ cursor agent "애니메이션을 검사해줘
 
 | 주제 | 링크 |
 |------|------|
-| Worktrees | https://docs.cursor.com/configuration/worktrees |
-| Agent CLI | https://docs.cursor.com/cli/overview |
-| Browser | https://docs.cursor.com/agent/browser |
+| Worktrees | https://cursor.com/docs/configuration/worktrees |
+| Agent CLI | https://cursor.com/docs/cli/overview |
+| Browser | https://cursor.com/docs/agent/browser |
 
 ---
 

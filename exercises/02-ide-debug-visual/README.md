@@ -1,8 +1,8 @@
 # 🎨 2교시 실습: IDE 모드 - Debug Mode & Visual Editor
 
 > 📚 **공식 문서**
-> - Debug Mode: https://docs.cursor.com/agent/debug-mode
-> - Browser: https://docs.cursor.com/agent/browser
+> - Debug Mode: https://cursor.com/docs/agent/debug-mode
+> - Browser: https://cursor.com/docs/agent/browser
 
 ---
 

@@ -58,7 +58,7 @@ Copilot: "이 버그 어떻게 고쳐?" → 코드만 보고 추측
 Cursor: "이 버그 고쳐줘" → 실제 실행하며 원인 추적
 ```
 
-📚 **공식 문서**: https://docs.cursor.com/agent/debug-mode
+📚 **공식 문서**: https://cursor.com/docs/agent/debug-mode
 
 ### Debug Mode 작동 방식
 
@@ -125,7 +125,7 @@ Copilot: 코드 작성 → 저장 → 브라우저 확인 → 다시 코드
 Cursor: 브라우저에서 직접 선택 → Agent에게 수정 요청
 ```
 
-📚 **공식 문서**: https://docs.cursor.com/agent/browser
+📚 **공식 문서**: https://cursor.com/docs/agent/browser
 
 ### FE 개발에 왜 중요한가?
 
@@ -278,9 +278,9 @@ Agent 2: "이 버그 원인 분석해줘" (코드 수정 X)
 
 | 주제 | 링크 |
 |------|------|
-| Debug Mode | https://docs.cursor.com/agent/debug-mode |
-| Browser | https://docs.cursor.com/agent/browser |
-| Agent Overview | https://docs.cursor.com/agent/overview |
+| Debug Mode | https://cursor.com/docs/agent/debug-mode |
+| Browser | https://cursor.com/docs/agent/browser |
+| Agent Overview | https://cursor.com/docs/agent/overview |
 
 ---
 
