@@ -29,6 +29,53 @@
 
 ---
 
+## 💡 이 교시에서 배울 것
+
+### Worktree Multi-Agent (독립 환경)
+Git Worktree로 완전히 분리된 폴더를 만들어서 여러 Agent를 동시에 실행합니다.
+
+**예시**:
+```bash
+# 터미널 1: useReducer 접근
+git worktree add ../exp-reducer -b exp-reducer
+cd ../exp-reducer
+cursor agent "useReducer로 리팩토링해줘"
+
+# 터미널 2: Zustand 접근
+git worktree add ../exp-zustand -b exp-zustand
+cd ../exp-zustand
+cursor agent "Zustand로 리팩토링해줘"
+
+# 결과 비교 후 최선 선택
+```
+
+**특징**:
+- 완전히 독립된 폴더 (충돌 없음)
+- 같은 파일을 다르게 수정 가능
+- 여러 접근법 동시 비교
+
+### IDE + CLI 통합 (실전 워크플로우)
+IDE에서 메인 작업을 하면서, 동시에 터미널에서 조사/실험을 합니다.
+
+**예시**:
+```
+IDE: feat/user-profile 작업 중
+  → 아바타 업로드 기능 구현
+
+터미널 1: 리팩토링 조사
+  → 현재 코드 구조 분석
+
+터미널 2: API 개선 조사
+  → 성능 최적화 방안 탐색
+```
+
+**특징**:
+- 3개의 독립적인 대화 동시 진행
+- 메인 작업 방해 없이 조사 가능
+- 각 터미널마다 다른 브랜치
+
+---
+
 ## 1️⃣ CLI Multi-Agent with Worktree (25분) 🤖🤖
 
 ### IDE Multi-Agent의 한계 복습

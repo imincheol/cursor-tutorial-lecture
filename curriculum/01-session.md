@@ -23,8 +23,28 @@
 ## 📋 이 시간의 목표
 
 - [ ] Copilot과 비슷한 기능들의 **차이점** 파악
-- [ ] Rules 설정 (globs 패턴)
-- [ ] **Hooks로 Agent 동작 제어** (핵심!)
+- [ ] **Rules**: globs 패턴으로 조건부 규칙 적용
+- [ ] **Hooks**: Agent 동작 감시/제어 (핵심!)
+
+---
+
+## 💡 이 교시에서 배울 것
+
+### Rules (globs 패턴)
+Copilot Instructions는 전체 프로젝트에만 적용되지만, Cursor Rules는 특정 파일 패턴에만 적용 가능합니다.
+
+**예시**:
+- `*.tsx` 파일에만 "함수형 컴포넌트 사용" 규칙
+- `**/api/**` 폴더에만 "try-catch 필수" 규칙
+- `*.test.ts` 파일에만 "describe/it 사용" 규칙
+
+### Hooks (Agent 제어)
+Agent가 도구를 실행하기 전/후에 JavaScript 코드를 실행해서 제어할 수 있습니다.
+
+**예시**:
+- `rm -rf` 같은 위험한 명령 자동 차단
+- 특정 폴더 보호 (`.env`, `config/` 등)
+- 모든 Agent 동작 로그 기록
 
 ---
 
