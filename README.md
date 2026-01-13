@@ -9,7 +9,7 @@
 | 항목 | 내용 |
 |------|------|
 | **대상** | GitHub Copilot 사용 경험이 있는 FE/마크업 개발자 |
-| **시간** | 4시간 (50분 × 4교시, 교시별 10분 휴식) |
+| **시간** | 6시간 (50분 × 6교시, 교시별 10분 휴식) |
 | **형식** | 이론 최소화 + 실습 중심 |
 | **환경** | Cursor Enterprise (Privacy Mode) |
 
@@ -67,12 +67,14 @@
 | [**1교시**](./curriculum/01-session.md) | 50분 | Copilot 차이점, Rules, **Hooks** | [기본 5개 + 보너스 9개](../exercises/01-ide-rules-hooks/) | 🟢 초급 |
 | [**2교시**](./curriculum/02-session.md) | 50분 | **Debug Mode**, **Visual Editor**, IDE Multi-Agent | [기본 4개 + 보너스 9개](../exercises/02-ide-debug-visual/) | 🟡 중급 |
 
-### CLI 모드 (3-4교시)
+### CLI 모드 (3-6교시)
 
 | 교시 | 시간 | 내용 | 실습 | 난이도 |
 |------|------|------|------|--------|
 | [**3교시**](./curriculum/03-session.md) | 50분 | CLI 설치, 기본 사용, **Shell Mode** | [기본 4개 + 보너스 10개](../exercises/03-cli-shell/) | 🟢 초급 |
 | [**4교시**](./curriculum/04-session.md) | 50분 | **IDE + CLI 통합**, Worktree Multi-Agent, 실전 워크플로우 | [기본 11개 + 보너스 10개](../exercises/04-cli-multi-agent/) | 🔴 고급 |
+| [**5교시**](./curriculum/05-session.md) | 50분 | **업무 프로세스 자동화**, 코드 리뷰, 검토 워크플로우 | [기본 8개 + 보너스 12개](../exercises/05-workflow-automation/) | 🔴 고급 |
+| [**6교시**](./curriculum/06-session.md) | 50분 | **CI/CD 통합**, 배포 자동화, 모니터링 | [기본 6개 + 보너스 8개](../exercises/06-cicd-integration/) | 🔴 고급 |
 
 ---
 
