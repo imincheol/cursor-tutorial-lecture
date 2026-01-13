@@ -99,32 +99,49 @@
 
 ```
 cursor-tutorial/
-├── README.md
-├── curriculum/
-│   ├── 00-overview.md      # IDE vs CLI 개요
-│   ├── 01-session.md       # IDE: Rules, Hooks
-│   ├── 02-session.md       # IDE: Debug, Visual
-│   ├── 03-session.md       # CLI: Shell Mode
-│   ├── 04-session.md       # CLI: Multi-Agent
-│   ├── 05-session.md       # 반복 작업 자동화
-│   └── 06-session.md       # 마크업 품질 자동화
-├── exercises/
+├── README.md                    # 프로젝트 메인 문서
+│
+├── curriculum/                  # 강의 자료 (7개)
+│   ├── 00-overview.md          # 전체 개요
+│   ├── 01-session.md           # 1교시: Rules & Hooks
+│   ├── 02-session.md           # 2교시: Debug & Visual
+│   ├── 03-session.md           # 3교시: CLI & Shell
+│   ├── 04-session.md           # 4교시: Multi-Agent
+│   ├── 05-session.md           # 5교시: 반복 작업 자동화
+│   └── 06-session.md           # 6교시: 마크업 품질 자동화
+│
+├── exercises/                   # 실습 자료 (6개)
 │   ├── 01-ide-rules-hooks/
 │   ├── 02-ide-debug-visual/
 │   ├── 03-cli-shell/
 │   ├── 04-cli-multi-agent/
 │   ├── 05-workflow-automation/
 │   └── 06-cicd-integration/
-├── examples/
-│   ├── basic-html-css-js/  # Visual Editor 실습용
-│   ├── react-project/      # 전체 실습용
-│   └── automation-scripts/ # 자동화 스크립트들
-├── cheatsheet/
+│
+├── examples/                    # 예제 프로젝트 (3개)
+│   ├── basic-html-css-js/      # HTML/CSS/JS 예제
+│   ├── react-project/          # React 예제
+│   └── automation-scripts/     # 자동화 스크립트
+│
+├── docs/                        # 보조 문서
+│   ├── guides/                 # 가이드 문서
+│   │   ├── CLI_MODES_EXPLAINED.md
+│   │   └── INTERACTIVE_MODE_GUIDE.md
+│   ├── reference/              # 참고 문서
+│   │   ├── CHECKLIST.md
+│   │   ├── SUMMARY.md
+│   │   └── UPDATE_SUMMARY.md
+│   └── PROJECT_STRUCTURE.md    # 프로젝트 구조 상세
+│
+├── cheatsheet/                  # 치트시트
 │   └── shortcuts.md
-└── resources/
+│
+└── resources/                   # 참고 자료
     ├── changelog-summary.md
     └── links.md
 ```
+
+> 📘 **상세 구조**: [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) 참고
 
 ---
 
