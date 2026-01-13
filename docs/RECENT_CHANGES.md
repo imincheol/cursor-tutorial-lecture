@@ -4,227 +4,316 @@
 
 ### 🎯 이번 세션에서 수정한 내용
 
-#### 1. 링크 형식 수정
-- **문제**: 모든 문서 링크가 `https://docs.cursor.com` 형식
-- **수정**: `https://cursor.com/docs` 형식으로 변경
-- **영향**: 86개 링크 수정
+#### 1. **교시 중심 구조로 재구성** (3d519c7) 🔥
 
-#### 2. 오케스트레이션 개념 추가 (4교시)
-- **추가 내용**:
-  - 발전 경로: Claude Code → Cursor Agent → OpenCode → Oh My OpenCode
-  - 수동 오케스트레이션 (현재 단계)
-  - 자동 오케스트레이션 (OpenCode)
-  - Workflow 기반 시스템 (Oh My OpenCode)
-- **실습 예제**: Workflow별 Worktree 생성 및 역할 부여
+**문제점**:
+- 교재(`curriculum/`)와 실습(`exercises/`)이 분리됨
+- 실습 프로젝트가 독립적이지 않음 (README만 있음)
+- 각 문단별 실습이 불가능
+- 학습 흐름이 명확하지 않음
 
-#### 3. 세션 특정 언어 제거
-- **문제**: "지금 이 대화처럼" - 현재 세션에 특정적
-- **수정**: "대화하듯이" - 시간에 구애받지 않는 표현
-- **영향**: 7개 파일 수정
+**해결책**:
+```
+sessions/                        # 교시별 실습 (NEW!)
+├── README.md                   # 전체 학습 가이드
+├── session-01/                 # 1교시
+│   ├── README.md              # 교재 (개념 + 실습 개요)
+│   └── projects/              # 독립적인 실습 프로젝트들 (4개)
+├── session-02/                 # 2교시 (4개 프로젝트)
+├── session-03/                 # 3교시 (3개 프로젝트)
+├── session-04/                 # 4교시 (3개 프로젝트)
+├── session-05/                 # 5교시 (3개 프로젝트)
+└── session-06/                 # 6교시 (3개 프로젝트)
+```
 
-#### 4. 프로젝트 구조 재구성
-- **문제**: 루트 디렉토리에 파일 6개 (체계적이지 않음)
-- **해결**:
-  ```
-  Before:
-  ├── CHECKLIST.md
-  ├── CLI_MODES_EXPLAINED.md
-  ├── INTERACTIVE_MODE_GUIDE.md
-  ├── SUMMARY.md
-  └── UPDATE_SUMMARY.md
-  
-  After:
-  └── docs/
-      ├── guides/
-      │   ├── CLI_MODES_EXPLAINED.md
-      │   └── INTERACTIVE_MODE_GUIDE.md
-      ├── reference/
-      │   ├── CHECKLIST.md
-      │   ├── SUMMARY.md
-      │   └── UPDATE_SUMMARY.md
-      ├── PROJECT_STRUCTURE.md (NEW)
-      ├── CURRICULUM_OVERVIEW.md (NEW)
-      └── RECENT_CHANGES.md (이 문서)
-  ```
+**20개 독립 프로젝트 생성**:
 
-#### 5. 종합 문서 추가
-- **PROJECT_STRUCTURE.md**: 프로젝트 구조 상세 설명
-- **CURRICULUM_OVERVIEW.md**: 강의 구성 전체 개요
+| 교시 | 프로젝트 수 | 프로젝트 목록 |
+|------|------------|--------------|
+| 1교시 | 4개 | rules-basic, rules-globs, hooks-basic, hooks-security |
+| 2교시 | 4개 | debug-login-bug, debug-api-error, visual-button-style, visual-card-layout |
+| 3교시 | 3개 | cli-basic, shell-file-ops, shell-git-ops |
+| 4교시 | 3개 | worktree-basic, multi-approach, ide-cli-integration |
+| 5교시 | 3개 | parallel-checks, responsive-validation, performance-optimization |
+| 6교시 | 3개 | html-css-quality, theme-validation, component-library |
+
+---
+
+#### 2. **프로젝트 구조 재구성** (00d14a1)
+- 루트 파일 6개 → 1개 (README.md만)
+- docs/ 폴더 생성 및 체계적 분류
+- PROJECT_STRUCTURE.md, CURRICULUM_OVERVIEW.md 추가
+
+#### 3. **오케스트레이션 개념 추가** (4093b07)
+- 4교시에 발전 경로 추가: Claude Code → OpenCode → Oh My OpenCode
+- 수동/자동/Workflow 기반 오케스트레이션 설명
+- Workflow 개념 실습 예제 추가
+
+#### 4. **링크 형식 수정** (895ac1f)
+- `https://docs.cursor.com` → `https://cursor.com/docs`
+- 86개 링크 수정
 
 ---
 
 ## 📊 현재 프로젝트 상태
 
-### 디렉토리 구조
+### 새로운 디렉토리 구조
+
 ```
 cursor-tutorial/
 ├── README.md                    # 메인 문서
-├── curriculum/                  # 강의 자료 (7개)
-├── exercises/                   # 실습 자료 (6개)
-├── examples/                    # 예제 프로젝트 (3개)
-├── docs/                        # 문서 (9개)
-│   ├── guides/                 # 가이드 (2개)
-│   ├── reference/              # 참고 (3개)
-│   └── *.md                    # 종합 문서 (4개)
+│
+├── sessions/                    # 교시별 실습 ⭐ NEW
+│   ├── README.md               # 전체 학습 가이드
+│   └── session-01~06/          # 6개 교시
+│       ├── README.md           # 교재
+│       └── projects/           # 독립 프로젝트들 (3-4개)
+│
+├── curriculum/                  # 참고 자료 (보존)
+├── exercises/                   # 참고용 (보존)
+├── examples/                    # 공통 예제 (보존)
+├── docs/                        # 문서
 ├── cheatsheet/                  # 치트시트
 └── resources/                   # 참고 자료
 ```
 
-### 문서 통계
-- **총 마크다운 파일**: 24개
-- **강의 자료**: 7개
-- **실습 가이드**: 6개
-- **예제 프로젝트**: 3개
-- **문서**: 9개
+### 통계
 
-### 실습 통계
-- **총 실습**: 86개
-- **기본 실습**: 33개
-- **보너스 실습**: 53개
+**문서**:
+- 총 마크다운 파일: 50+ 개
+- 교시 README: 6개
+- 프로젝트 README: 20개 (1교시 4개 완성, 나머지는 구조만)
+- 문서: 11개
+
+**프로젝트**:
+- 총 프로젝트: 20개
+- 완성된 프로젝트: 4개 (1교시)
+- 구조만 생성: 16개 (2-6교시)
+
+**학습 시간**:
+- 총 시간: 5시간 (50분 × 6교시)
+- 프로젝트당 평균: 10-20분
 
 ---
 
 ## 🔑 핵심 개선사항
 
-### 1. 체계적인 구조
-- ✅ 루트 디렉토리 정리 (6개 → 1개)
-- ✅ docs/ 폴더로 문서 분류
-- ✅ guides/ vs reference/ 구분
+### 1. 교시 중심 구조 ⭐
 
-### 2. 명확한 문서화
-- ✅ PROJECT_STRUCTURE.md: 전체 구조 설명
-- ✅ CURRICULUM_OVERVIEW.md: 강의 상세 구성
-- ✅ RECENT_CHANGES.md: 변경사항 추적
+**Before**:
+```
+curriculum/ (교재)
+  ↓
+exercises/ (실습 가이드만)
+  ↓
+examples/ (예제 프로젝트)
+```
 
-### 3. 개념 강화
-- ✅ 오케스트레이션 개념 추가
-- ✅ 발전 경로 명확화
-- ✅ Workflow 개념 도입
+**After**:
+```
+sessions/session-XX/
+  ├── README.md (교재)
+  └── projects/ (독립 프로젝트들)
+```
 
-### 4. 시간 독립적 표현
-- ✅ "지금 이 대화처럼" 제거
-- ✅ "대화하듯이"로 일반화
-- ✅ 교육 자료로 적합하게 수정
+### 2. 독립적인 프로젝트
+
+**Before**:
+- `exercises/`에 README만
+- 실제 파일은 `examples/`에
+
+**After**:
+- 각 프로젝트가 완전히 독립적
+- 모든 파일 포함
+- 즉시 실습 가능
+
+### 3. 명확한 학습 흐름
+
+**Before**:
+```
+README → curriculum → exercises → examples
+(4단계, 복잡함)
+```
+
+**After**:
+```
+README → sessions → session-XX → projects
+(3단계, 명확함)
+```
+
+### 4. 풍부한 실습 자료
+
+**Before**:
+- 실습 가이드만 (README)
+- 실제 파일 부족
+
+**After**:
+- 20개 독립 프로젝트
+- 각 프로젝트마다 상세 README
+- TODO 주석으로 가이드
+
+---
+
+## 📖 학습 방법
+
+### Step 1: 전체 가이드
+
+```bash
+cat sessions/README.md
+```
+
+### Step 2: 교시 선택
+
+```bash
+cd sessions/session-01
+cat README.md
+```
+
+### Step 3: 프로젝트 실습
+
+```bash
+cd projects/rules-basic
+cat README.md
+cursor .
+```
+
+---
+
+## 🎯 완성된 프로젝트 (1교시)
+
+### 1. rules-basic
+- 전역/폴더별 Rules 작성
+- 우선순위 이해
+- 즉시 실습 가능
+
+### 2. rules-globs
+- Globs 패턴 활용
+- `*.test.js.mdc`, `*.api.js.mdc`
+- 조건부 규칙 적용
+
+### 3. hooks-basic
+- `preToolExecution` Hook
+- `postToolExecution` Hook
+- 로깅 시스템
+
+### 4. hooks-security
+- 위험 명령 차단
+- 폴더 보호
+- 감사 로그
 
 ---
 
 ## 📈 개선 효과
 
 ### Before
-- ❌ 루트에 파일 많음 (6개)
-- ❌ 구조 불명확
-- ❌ 세션 특정 언어
-- ❌ 오케스트레이션 개념 없음
+- ❌ 교재와 실습 분리
+- ❌ 실습 파일 부족
+- ❌ 학습 흐름 불명확
+- ❌ 각 문단별 실습 불가
 
 ### After
-- ✅ 루트 정리 (1개만)
-- ✅ 체계적 구조
-- ✅ 시간 독립적 표현
-- ✅ 오케스트레이션 개념 추가
-- ✅ 종합 문서 제공
+- ✅ 교재와 실습 통합
+- ✅ 20개 독립 프로젝트
+- ✅ 명확한 학습 흐름
+- ✅ 각 문단별 독립 실습
+- ✅ 즉시 실습 가능
 
 ---
 
-## 🎓 강의 구성 요약
+## 🔄 이전 자료와의 관계
 
-### 6교시 구성
+### 보존된 폴더
+- `curriculum/`: 참고 자료
+- `exercises/`: 참고용
+- `examples/`: 공통 예제
+- `docs/`: 문서
 
-| 교시 | 주제 | 핵심 개념 | 실습 |
-|------|------|----------|------|
-| 1교시 | Rules & Hooks | globs 패턴, Agent 제어 | 14개 |
-| 2교시 | Debug & Visual | 버그 추적, UI 편집 | 13개 |
-| 3교시 | CLI & Shell | 대화형, 명령어 생성 | 14개 |
-| 4교시 | Multi-Agent | 오케스트레이션, Workflow | 21개 |
-| 5교시 | 반복 자동화 | 병렬 검토, 57% 단축 | 12개 |
-| 6교시 | 품질 자동화 | HTML/CSS 검증, 60% 단축 | 12개 |
+### 새로 추가된 폴더
+- `sessions/`: 교시별 실습 (권장)
 
-### Cursor 전용 기능 7가지
-
-1. **Rules** (1교시): globs 패턴 조건부 규칙
-2. **Hooks** (1교시): Agent 동작 감시/제어
-3. **Debug Mode** (2교시): 자동 로그 삽입
-4. **Visual Editor** (2교시): 브라우저 UI 편집
-5. **대화형 CLI** (3교시): 대화하듯이 코드 작업
-6. **Shell Mode** (3교시): 자연어 → 명령어
-7. **Worktree Multi-Agent** (4교시): 독립 환경 병렬 작업
-
-### 오케스트레이션 진화
-
+### 권장 학습 경로
 ```
-수동 (4-6교시)
-  → 당신이 오케스트레이터
-  → Worktree 생성, 결과 비교
-
-자동 (OpenCode)
-  → AI가 오케스트레이터
-  → 자동으로 여러 접근법 시도
-
-Workflow (Oh My OpenCode)
-  → AI + Workflow
-  → 역할별 자동 할당
+sessions/ (실습 중심)
+  ↓
+curriculum/ (이론 참고)
+  ↓
+examples/ (추가 예제)
+  ↓
+docs/ (상세 문서)
 ```
 
 ---
 
-## 📦 제공 자료
+## 🚀 시작하기
 
-### 강의 자료
-- curriculum/00-overview.md
-- curriculum/01-06-session.md (6개)
+### 1. 전체 학습 가이드
 
-### 실습 자료
-- exercises/01-06-*/ (6개)
-- 총 86개 실습
+```bash
+cat sessions/README.md
+```
 
-### 예제 프로젝트
-- basic-html-css-js/
-- react-project/
-- automation-scripts/ (4개 스크립트)
+### 2. 1교시 시작
 
-### 문서
-- docs/guides/ (2개)
-- docs/reference/ (3개)
-- docs/PROJECT_STRUCTURE.md
-- docs/CURRICULUM_OVERVIEW.md
+```bash
+cd sessions/session-01
+cat README.md
+```
 
----
+### 3. 첫 번째 프로젝트
 
-## 🔗 주요 문서 링크
-
-### 시작하기
-- [README.md](../README.md) - 프로젝트 소개
-- [curriculum/00-overview.md](../curriculum/00-overview.md) - 강의 개요
-
-### 구조 이해
-- [docs/PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) - 프로젝트 구조
-- [docs/CURRICULUM_OVERVIEW.md](./CURRICULUM_OVERVIEW.md) - 강의 구성
-
-### 가이드
-- [docs/guides/CLI_MODES_EXPLAINED.md](./guides/CLI_MODES_EXPLAINED.md) - CLI 모드 설명
-- [docs/guides/INTERACTIVE_MODE_GUIDE.md](./guides/INTERACTIVE_MODE_GUIDE.md) - 대화형 모드 가이드
-
-### 참고
-- [docs/reference/CHECKLIST.md](./reference/CHECKLIST.md) - 체크리스트
-- [docs/reference/SUMMARY.md](./reference/SUMMARY.md) - 전체 요약
+```bash
+cd projects/rules-basic
+cat README.md
+cursor .
+```
 
 ---
 
-## 🚀 다음 단계
+## 📝 TODO (향후 작업)
 
-### 강의 진행
-1. README.md 읽기
-2. curriculum/00-overview.md 읽기
-3. 1교시부터 순서대로 진행
+### 2-6교시 프로젝트 완성
 
-### 추가 학습
-1. docs/guides/ 문서 읽기
-2. cheatsheet/shortcuts.md 참고
-3. resources/links.md 활용
+현재 구조만 생성된 16개 프로젝트:
+
+**2교시** (4개):
+- [ ] debug-login-bug
+- [ ] debug-api-error
+- [ ] visual-button-style
+- [ ] visual-card-layout
+
+**3교시** (3개):
+- [ ] cli-basic
+- [ ] shell-file-ops
+- [ ] shell-git-ops
+
+**4교시** (3개):
+- [ ] worktree-basic
+- [ ] multi-approach
+- [ ] ide-cli-integration
+
+**5교시** (3개):
+- [ ] parallel-checks
+- [ ] responsive-validation
+- [ ] performance-optimization
+
+**6교시** (3개):
+- [ ] html-css-quality
+- [ ] theme-validation
+- [ ] component-library
 
 ---
 
-**커밋**: `00d14a1` - "refactor: Reorganize project structure and add comprehensive documentation"
+## 🔗 관련 문서
+
+- [새로운 구조 상세 설명](./NEW_STRUCTURE.md)
+- [프로젝트 구조](./PROJECT_STRUCTURE.md)
+- [커리큘럼 개요](./CURRICULUM_OVERVIEW.md)
+- [전체 학습 가이드](../sessions/README.md)
+
+---
+
+**커밋**: `3d519c7` - "feat: Restructure project with session-based learning approach"
 
 **GitHub**: https://github.com/imincheol/cursor-tutorial-lecture
 
-**프로젝트가 체계적으로 정리되었습니다!** 🎉
+**프로젝트가 교시 중심 구조로 완전히 재구성되었습니다!** 🎉
