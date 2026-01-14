@@ -56,18 +56,23 @@ sessions/
 
 ## 📖 교시 구성
 
-### [1교시: Rules & Hooks](./sessions/session-01/README.md)
+### [1교시: Rules & Hooks - AI를 제어하는 법](./sessions/session-01/README.md)
 **시간**: 50분 | **난이도**: 🟢 초급
 
+**스토리**: Copilot에서 느낀 답답함, AI가 말을 안 듣는 문제를 Rules와 Hooks로 해결
+
 **학습 내용**:
-- Rules: globs 패턴으로 조건부 규칙 작성
-- Hooks: Agent 동작 감시 및 제어
+- 문제: AI가 말을 안 듣는다 (프롬프트의 한계)
+- 해결책 1: Rules (조건부 제어)
+- 해결책 2: Hooks (강제 차단)
 
 **프로젝트** (4개):
-1. `rules-basic` - 기본 Rules 작성
-2. `rules-globs` - Globs 패턴 활용
-3. `hooks-basic` - 기본 Hook 작성
-4. `hooks-security` - 보안 Hook 구현
+1. `01-rules-basic` - 기본 Rules 작성
+2. `02-rules-globs` - Globs 패턴 활용
+3. `03-hooks-basic` - 기본 Hook 작성
+4. `04-hooks-security` - 보안 Hook 구현
+
+**효과**: 리뷰 시간 70% 단축, 위험 작업 100% 차단
 
 ---
 
@@ -79,10 +84,10 @@ sessions/
 - Visual Editor: 브라우저에서 UI 직접 편집
 
 **프로젝트** (4개):
-1. `debug-login-bug` - 로그인 버그 해결
-2. `debug-api-error` - API 에러 디버깅
-3. `visual-button-style` - 버튼 스타일 수정
-4. `visual-card-layout` - 카드 레이아웃 조정
+1. `01-debug-login-bug` - 로그인 버그 해결
+2. `02-debug-api-error` - API 에러 디버깅
+3. `03-visual-button-style` - 버튼 스타일 수정
+4. `04-visual-card-layout` - 카드 레이아웃 조정
 
 ---
 
@@ -95,9 +100,9 @@ sessions/
 - Shell Mode: 자연어로 명령어 생성
 
 **프로젝트** (3개):
-1. `cli-basic` - CLI 기본 사용
-2. `shell-file-ops` - 파일 작업 자동화
-3. `shell-git-ops` - Git 작업 자동화
+1. `01-cli-basic` - CLI 기본 사용
+2. `02-shell-file-ops` - 파일 작업 자동화
+3. `03-shell-git-ops` - Git 작업 자동화
 
 ---
 
@@ -110,9 +115,9 @@ sessions/
 - IDE + CLI 통합 워크플로우
 
 **프로젝트** (3개):
-1. `worktree-basic` - Worktree 기본
-2. `multi-approach` - 여러 접근법 비교
-3. `ide-cli-integration` - IDE + CLI 통합
+1. `01-worktree-basic` - Worktree 기본
+2. `02-multi-approach` - 여러 접근법 비교
+3. `03-ide-cli-integration` - IDE + CLI 통합
 
 **심화**: [Role 기반 오케스트레이션](./sessions/session-04/ADVANCED_ORCHESTRATION.md)
 - 1 Agent = 1 Role 원칙
@@ -129,9 +134,9 @@ sessions/
 - 시간 절약: 57% (35분 → 15분)
 
 **프로젝트** (3개):
-1. `parallel-checks` - 병렬 검사
-2. `responsive-validation` - 반응형 검증
-3. `performance-optimization` - 성능 최적화
+1. `01-parallel-checks` - 병렬 검사
+2. `02-responsive-validation` - 반응형 검증
+3. `03-performance-optimization` - 성능 최적화
 
 ---
 
@@ -144,9 +149,9 @@ sessions/
 - 시간 절약: 60% (45분 → 18분)
 
 **프로젝트** (3개):
-1. `html-css-quality` - HTML/CSS 품질 검증
-2. `theme-validation` - 테마 검증
-3. `component-library` - 컴포넌트 관리
+1. `01-html-css-quality` - HTML/CSS 품질 검증
+2. `02-theme-validation` - 테마 검증
+3. `03-component-library` - 컴포넌트 관리
 
 ---
 
