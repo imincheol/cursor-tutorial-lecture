@@ -101,18 +101,19 @@ sessions/
 
 ---
 
-### [4교시: Multi-Agent & 오케스트레이션](./sessions/session-04/README.md)
+### [4교시: 오케스트레이션 전략 (Multi-Agent & Workflow)](./sessions/session-04/README.md)
 **시간**: 50분 | **난이도**: 🔴 고급
 
 **학습 내용**:
-- Worktree: 독립 환경 구성
-- Multi-Agent: 여러 접근법 동시 비교
-- 오케스트레이션: 수동 → 자동 → Workflow
+- Agent vs Workflow 개념
+- 3가지 전략: 1P-1A, 1P-NA, NP-NA
+- Worktree 기반 병렬 처리
+- OpenCode 흉내내기
 
 **프로젝트** (3개):
-1. `worktree-basic` - Worktree 기본
-2. `multi-approach` - 여러 접근법 비교
-3. `ide-cli-integration` - IDE + CLI 통합
+1. `1p-1a-strategy` - 프롬프트 기반 Workflow
+2. `1p-na-strategy` - Worktree 기반 Multi-Agent
+3. `np-na-strategy` - 그룹 기반 대규모 처리
 
 ---
 
