@@ -114,7 +114,10 @@ sessions/
 2. `multi-approach` - 여러 접근법 비교
 3. `ide-cli-integration` - IDE + CLI 통합
 
-**심화**: [오케스트레이션 전략](./sessions/session-04/ADVANCED_ORCHESTRATION.md)
+**심화**: [Role 기반 오케스트레이션](./sessions/session-04/ADVANCED_ORCHESTRATION.md)
+- 1 Agent = 1 Role 원칙
+- Planning, Design, Markup, Frontend, QA Role
+- 병렬 처리로 70% 시간 절약
 
 ---
 
