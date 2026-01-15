@@ -173,6 +173,31 @@ sessions/
 
 ---
 
+### [보너스: Nightly 빌드 실험적 기능 - 미래를 엿보다](./sessions/BONUS_NIGHTLY_FEATURES.md)
+**시간**: 20분 | **난이도**: 🔵 정보
+
+**스토리**: 현재 Nightly 빌드에서 실험 중인 기능들! 다음 버전에 도입 예상
+
+**내용**:
+- Agent Skills: Agent 능력 무한 확장
+- Sub-Agent: Agent가 Sub-Agent 생성/관리
+- 자동 오케스트레이션: 수동 Worktree → 자동 Sub-Agent
+
+**미래 전망**:
+```
+현재: Worktree로 수동 Multi-Agent
+미래: Sub-Agent로 자동 오케스트레이션
+
+"새 페이지 만들어줘"
+→ Agent가 자동으로 기획/디자인/마크업/FE/QA Sub-Agent 생성
+→ 자동으로 결과 통합
+→ "완료했습니다!"
+```
+
+⚠️ Nightly 빌드는 불안정할 수 있음
+
+---
+
 ## 🚀 시작하기
 
 ### 1. 사전 준비
