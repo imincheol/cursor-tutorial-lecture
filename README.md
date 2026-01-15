@@ -98,17 +98,16 @@ sessions/
 ### [3교시: CLI Agent - IDE를 넘어서](./sessions/session-03/README.md)
 **시간**: 50분 | **난이도**: 🟢 초급
 
-**스토리**: Shell Mode는 Copilot도 된다. 진짜 차이는 Agent Mode! IDE 없이 터미널에서 전체 개발
+**스토리**: IDE 없이도 Agent 사용 가능! 터미널에서 전체 개발하는 Agentic 개발
 
 **학습 내용**:
-- CLI도 공통점: Shell Mode는 둘 다 동일
-- 차이점: Cursor CLI Agent = IDE 없이 코드 작업 가능
-- Agentic 개발: 터미널에서 전체 개발
+- IDE의 한계 (SSH, CI/CD, 빠른 작업)
+- CLI Agent: 터미널에서 코드 작업 가능
+- Agentic 개발: IDE 없이 전체 개발
 
-**프로젝트** (3개):
-1. `01-cli-basic` - CLI 기본 (Shell vs Agent 차이)
-2. `02-shell-file-ops` - Shell Mode (Copilot과 동일)
-3. `03-agent-terminal-dev` - Agent Mode (Cursor만!)
+**프로젝트** (2개):
+1. `01-cli-basic` - CLI Agent 설치 및 기본
+2. `02-terminal-dev` - IDE 없이 기능 개발
 
 **효과**: IDE 없이 Agentic 개발, SSH/CI/CD 활용 가능
 
@@ -259,7 +258,7 @@ cursor .
 | **CLI Agent Mode** | IDE 없이 터미널에서 코드 작업 | 3교시 |
 | **Worktree Multi-Agent** | 독립 환경 병렬 작업 | 4교시 |
 
-※ Rules, Shell Mode, MCP 등은 Copilot과 동일하게 지원
+※ Rules, MCP 등은 Copilot과 동일하게 지원
 
 ---
 
@@ -281,13 +280,13 @@ cursor-tutorial/
 └── sessions/              # 교시별 실습
     ├── session-01/        # 1교시 (4개 프로젝트)
     ├── session-02/        # 2교시 (4개 프로젝트)
-    ├── session-03/        # 3교시 (3개 프로젝트)
+    ├── session-03/        # 3교시 (2개 프로젝트)
     ├── session-04/        # 4교시 (3개 프로젝트)
     ├── session-05/        # 5교시 (3개 프로젝트)
     └── session-06/        # 6교시 (3개 프로젝트)
 ```
 
-**총 20개 실습 프로젝트**
+**총 19개 실습 프로젝트**
 
 ---
 

@@ -16,8 +16,8 @@
 
 ```
 Copilot vs Cursor:
-- 95% 동일 (Agent, Plan, Rules, Commands, MCP, CLI/Shell)
-- 5% 차이: Hooks (Cursor만!)
+- 대부분 동일 (Agent, Plan, Rules, Commands, MCP)
+- 핵심 차이: Hooks (Cursor만!)
 
 Hooks의 강력함:
 - 코드 레벨 제어
