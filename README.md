@@ -76,7 +76,7 @@ sessions/
 
 ---
 
-### [2교시: Debug Mode, Visual Editor, Agent Skills - Cursor의 다채로운 기능](./sessions/session-02/README.md)
+### [2교시: Debug Mode & Visual Editor - Cursor의 다채로운 기능](./sessions/session-02/README.md)
 **시간**: 50분 | **난이도**: 🟡 중급
 
 **스토리**: Hooks 말고도 Cursor만의 기능이 더 있다! 추측이 아닌 확인, 설명이 아닌 클릭
@@ -84,7 +84,6 @@ sessions/
 **학습 내용**:
 - Debug Mode: 추측 → 확인 (자동 로그 삽입)
 - Visual Editor: 설명 → 클릭 (UI 직접 선택)
-- Agent Skills: Agent 능력 확장 (NEW!)
 
 **프로젝트** (4개):
 1. `01-debug-login-bug` - 로그인 버그 해결

@@ -1,4 +1,4 @@
-# 2교시: Debug Mode, Visual Editor, Agent Skills - Cursor의 다채로운 기능
+# 2교시: Debug Mode & Visual Editor - Cursor의 다채로운 기능
 
 ## 📋 목차
 
@@ -6,7 +6,6 @@
 - [Hooks 말고도 더 있다](#hooks-말고도-더-있다)
 - [Debug Mode](#debug-mode)
 - [Visual Editor](#visual-editor)
-- [Agent Skills](#agent-skills-new)
 - [실습 프로젝트](#실습-프로젝트)
 
 ---
@@ -30,7 +29,7 @@ Hooks의 강력함:
 
 **"Hooks 말고 Cursor만의 기능이 더 있나요?"**
 
-**답: 네, 훨씬 더 있습니다!**
+**답: 네, 더 있습니다!**
 
 ---
 
@@ -41,7 +40,7 @@ Hooks의 강력함:
 ```
 1교시: Hooks (Agent 제어)
   ↓
-2교시: Debug Mode, Visual Editor, Agent Skills (이번 시간!)
+2교시: Debug Mode, Visual Editor (이번 시간!)
   ↓
 3교시: CLI Agent, Shell Mode
   ↓
@@ -54,7 +53,6 @@ Hooks의 강력함:
 |------|------|---------|
 | **Debug Mode** | 자동 로그 삽입 | ❌ 없음 |
 | **Visual Editor** | 브라우저에서 UI 직접 편집 | ❌ 없음 |
-| **Agent Skills** | Agent 능력 확장 (NEW!) | ❌ 없음 |
 
 ---
 
@@ -188,61 +186,12 @@ Step 5: 정확한 수정
 
 ---
 
-## 🆕 Agent Skills (NEW!)
-
-### 방금 업데이트된 기능!
-
-**Agent Skills**:
-```
-Agent의 능력을 확장하는 기능
-- 새로운 도구 추가
-- 커스텀 기능 정의
-- Agent가 할 수 있는 일 확장
-```
-
-### 기본 제공 Skills
-
-```
-- Web Search: 웹 검색
-- Code Execution: 코드 실행
-- File Operations: 파일 작업
-- Terminal: 터미널 명령
-```
-
-### 커스텀 Skills
-
-```javascript
-// 예: 디자인 시스템 검증 Skill
-{
-  name: "design-system-check",
-  description: "디자인 시스템 준수 여부 검증",
-  execute: async (code) => {
-    // 색상 팔레트 검증
-    // 타이포그래피 검증
-    // 간격 시스템 검증
-    return { violations, suggestions };
-  }
-}
-```
-
-### Agent 능력 확장
-
-| 기능 | 기본 Agent | Agent + Skills |
-|------|-----------|----------------|
-| **웹 검색** | ❌ | ✅ |
-| **코드 실행** | 제한적 | ✅ |
-| **커스텀 기능** | ❌ | ✅ |
-| **확장성** | 고정 | 무한 |
-
----
-
 ## 🎯 학습 목표
 
 이 교시를 마치면:
 
 - [ ] Debug Mode로 버그 원인 정확히 파악
 - [ ] Visual Editor로 UI 직접 선택해서 수정
-- [ ] Agent Skills 개념 이해
 - [ ] 버그 해결 시간 50% 단축
 - [ ] UI 수정 시간 70% 단축
 
@@ -335,7 +284,6 @@ Agent의 능력을 확장하는 기능
 이 README를 읽으면서:
 1. Debug Mode의 강력함 이해
 2. Visual Editor의 편리함 이해
-3. Agent Skills의 가능성 이해
 
 ### Step 2: Debug Mode 실습 (20분)
 
@@ -357,7 +305,6 @@ Agent의 능력을 확장하는 기능
 
 - [ ] Debug Mode 활용 가능?
 - [ ] Visual Editor 사용 가능?
-- [ ] Agent Skills 개념 이해?
 
 ---
 
@@ -370,7 +317,6 @@ Cursor만의 기능들:
 - Hooks (1교시): Agent 제어
 - Debug Mode: 추측 → 확인
 - Visual Editor: 설명 → 클릭
-- Agent Skills: 능력 확장
 
 Copilot에는 없는 기능들!
 ```
