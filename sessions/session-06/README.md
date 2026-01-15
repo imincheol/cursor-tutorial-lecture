@@ -18,10 +18,10 @@
 1교시: Hooks (Agent 제어)
   → Copilot에 없는 기능!
 
-2교시: Debug Mode, Visual Editor, Agent Skills
+2교시: Debug Mode, Visual Editor
   → 추측 → 확인, 설명 → 클릭
 
-3교시: CLI Agent, Shell Mode
+3교시: CLI Agent
   → IDE를 넘어 터미널로
 
 4교시: Multi-Agent & Worktree
@@ -390,7 +390,7 @@ Cursor Master가 되셨습니다! 🚀
 
 - [1교시: Rules & Hooks](../session-01/README.md)
 - [2교시: Debug Mode & Visual Editor](../session-02/README.md)
-- [3교시: CLI Agent & Shell Mode](../session-03/README.md)
+- [3교시: CLI Agent](../session-03/README.md)
 - [4교시: Multi-Agent & Worktree](../session-04/README.md)
 - [5교시: 반복 작업 자동화](../session-05/README.md)
 - [6교시: 마크업 품질 자동화](../session-06/README.md) (현재)

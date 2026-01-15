@@ -33,7 +33,7 @@ cat README.md
 ### Step 2: 프로젝트 선택
 
 ```bash
-cd projects/rules-basic
+cd projects/01-rules-basic
 ```
 
 ### Step 3: 실습 가이드 읽기
@@ -69,12 +69,12 @@ Cursor Agent와 대화하며 실습
 - **난이도**: 🟡 중급
 - **프로젝트**: 4개
 
-### 3교시: CLI & Shell Mode
+### 3교시: CLI Agent
 - **시간**: 50분
 - **난이도**: 🟢 초급
 - **프로젝트**: 3개
 
-### 4교시: Multi-Agent & 오케스트레이션
+### 4교시: Multi-Agent & Worktree
 - **시간**: 50분
 - **난이도**: 🔴 고급
 - **프로젝트**: 3개

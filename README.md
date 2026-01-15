@@ -253,13 +253,13 @@ cursor .
 
 | 기능 | 설명 | 교시 |
 |------|------|------|
-| **Rules** | globs 패턴 조건부 규칙 | 1교시 |
-| **Hooks** | Agent 동작 감시/제어 | 1교시 |
+| **Hooks** | Agent 동작 감시/제어 (핵심!) | 1교시 |
 | **Debug Mode** | 자동 로그 삽입 | 2교시 |
 | **Visual Editor** | 브라우저 UI 편집 | 2교시 |
-| **대화형 CLI** | 대화하듯이 코드 작업 | 3교시 |
-| **Shell Mode** | 자연어 → 명령어 | 3교시 |
+| **CLI Agent Mode** | IDE 없이 터미널에서 코드 작업 | 3교시 |
 | **Worktree Multi-Agent** | 독립 환경 병렬 작업 | 4교시 |
+
+※ Rules, Shell Mode, MCP 등은 Copilot과 동일하게 지원
 
 ---
 

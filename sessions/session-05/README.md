@@ -16,8 +16,8 @@
 
 ```
 1교시: Hooks (Agent 제어)
-2교시: Debug Mode, Visual Editor, Agent Skills
-3교시: CLI Agent, Shell Mode
+2교시: Debug Mode, Visual Editor
+3교시: CLI Agent (IDE를 넘어서)
 4교시: Multi-Agent & Worktree
 ```
 

@@ -16,7 +16,7 @@
 
 ```
 Copilot vs Cursor:
-- 95% 동일 (Agent, Plan, Rules, Commands, MCP)
+- 95% 동일 (Agent, Plan, Rules, Commands, MCP, CLI/Shell)
 - 5% 차이: Hooks (Cursor만!)
 
 Hooks의 강력함:
@@ -42,7 +42,7 @@ Hooks의 강력함:
   ↓
 2교시: Debug Mode, Visual Editor (이번 시간!)
   ↓
-3교시: CLI Agent, Shell Mode
+3교시: CLI Agent Mode (IDE 없이 개발)
   ↓
 4교시: Multi-Agent, Worktree
 ```
@@ -337,7 +337,7 @@ After (Cursor):
 
 ## ⏭ 다음 교시
 
-[3교시: CLI Agent & Shell Mode - IDE를 넘어서](../session-03/README.md)
+[3교시: CLI Agent - IDE를 넘어서](../session-03/README.md)
 
 **2교시를 완료하면 Cursor의 다채로운 기능을 체험할 수 있습니다!** 🎉
 
