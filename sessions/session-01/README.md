@@ -83,6 +83,15 @@ Cursor: MCP 지원
 → 동일: 외부 도구 연동
 ```
 
+#### 6. CLI / Shell Mode
+```
+Copilot: CLI 지원, Shell 명령어 생성
+Cursor: CLI Agent, Shell Mode
+
+→ 동일: 터미널에서 AI 사용
+→ 동일: 자연어 → 명령어 변환
+```
+
 ---
 
 ## 😤 문제: AI가 말을 안 듣는다
@@ -175,6 +184,7 @@ export async function preToolExecution(context) {
 | **Instructions/Rules** | ✅ Instructions | ✅ Rules |
 | **Prompts/Commands** | ✅ Prompts | ✅ Commands |
 | **MCP** | ✅ MCP | ✅ MCP |
+| **CLI/Shell Mode** | ✅ CLI | ✅ CLI Agent |
 | **Hooks** | ❌ 없음 | ✅ 있음 (핵심!) |
 
 ### 프롬프트 vs Hooks

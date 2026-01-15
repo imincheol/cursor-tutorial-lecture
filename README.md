@@ -95,22 +95,22 @@ sessions/
 
 ---
 
-### [3교시: CLI Agent & Shell Mode - IDE를 넘어서](./sessions/session-03/README.md)
+### [3교시: CLI Agent - IDE를 넘어서](./sessions/session-03/README.md)
 **시간**: 50분 | **난이도**: 🟢 초급
 
-**스토리**: IDE 안에서만 쓰던 Agent, 이제 터미널에서도! Agentic 개발의 시작
+**스토리**: Shell Mode는 Copilot도 된다. 진짜 차이는 Agent Mode! IDE 없이 터미널에서 전체 개발
 
 **학습 내용**:
-- IDE의 한계 → CLI Agent로 해결
-- 대화형 Agent: 터미널에서 코드 작업
-- Shell Mode: 자연어 → 명령어 자동 변환
+- CLI도 공통점: Shell Mode는 둘 다 동일
+- 차이점: Cursor CLI Agent = IDE 없이 코드 작업 가능
+- Agentic 개발: 터미널에서 전체 개발
 
 **프로젝트** (3개):
-1. `01-cli-basic` - CLI 기본 사용
-2. `02-shell-file-ops` - 파일 작업 자동화
-3. `03-shell-git-ops` - Git 작업 자동화
+1. `01-cli-basic` - CLI 기본 (Shell vs Agent 차이)
+2. `02-shell-file-ops` - Shell Mode (Copilot과 동일)
+3. `03-agent-terminal-dev` - Agent Mode (Cursor만!)
 
-**효과**: 터미널 작업 80% 자동화, IDE 의존성 탈피
+**효과**: IDE 없이 Agentic 개발, SSH/CI/CD 활용 가능
 
 ---
 
