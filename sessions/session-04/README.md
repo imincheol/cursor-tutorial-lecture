@@ -1,142 +1,265 @@
-# 4교시: Multi-Agent & Worktree
+# 4교시: Multi-Agent & Worktree - 여러 Agent 동시에
 
 ## 📋 목차
 
-- [학습 목표](#학습-목표)
-- [교재 내용](#교재-내용)
+- [1-3교시 복습](#1-3교시-복습)
+- [하나로는 부족하다](#하나로는-부족하다)
+- [Multi-Agent](#multi-agent)
+- [IDE + CLI 통합](#ide--cli-통합)
 - [실습 프로젝트](#실습-프로젝트)
-- [학습 순서](#학습-순서)
 
 ---
 
-## 🎯 학습 목표
+## 📚 1-3교시 복습
 
-이 교시를 마치면 다음을 할 수 있습니다:
+### 배운 것
 
-- [ ] Worktree로 독립 환경 구성
-- [ ] 여러 Agent 동시 실행
-- [ ] 결과 비교 및 통합
-- [ ] IDE + CLI 통합 워크플로우
+```
+1교시: Hooks (Agent 제어)
+2교시: Debug Mode, Visual Editor, Agent Skills
+3교시: CLI Agent, Shell Mode (IDE를 넘어서)
+```
 
-**소요 시간**: 50분
+### 지금까지는...
+
+```
+항상 1개의 Agent만 사용
+
+IDE Agent 1개
+  또는
+CLI Agent 1개
+
+질문: "여러 Agent를 동시에 쓸 수 있나요?"
+```
 
 ---
 
-## 📚 교재 내용
+## 🤔 하나로는 부족하다
 
-### 1. Worktree 기본 (15분)
+### 시나리오 1: 여러 접근법 비교
 
-#### Worktree란?
-- Git의 기능으로 하나의 저장소에서 여러 작업 디렉토리 생성
-- 각 Worktree는 독립적인 브랜치
-- 동시에 여러 작업 가능
+**문제**:
+```
+"로그인 기능 구현해줘"
 
-#### 기본 명령어
+접근법 A: 세션 기반
+접근법 B: JWT 기반
+접근법 C: OAuth 기반
+
+1개 Agent로:
+  A 구현 → 삭제 → B 구현 → 삭제 → C 구현
+  → 비교 어려움
+  → 시간 낭비
+```
+
+### 시나리오 2: 동시에 다른 작업
+
+**문제**:
+```
+IDE에서 메인 개발 중
+  ↓
+갑자기 라이브러리 조사 필요
+  ↓
+IDE Agent에게 물어보면?
+  → 메인 작업 컨텍스트 오염
+  → 나중에 다시 설명해야 함
+```
+
+### 해결책: Multi-Agent
+
+```
+여러 Agent를 동시에!
+
+Agent 1: 메인 개발
+Agent 2: 라이브러리 조사
+Agent 3: 대안 구현
+
+→ 각각 독립적인 컨텍스트
+→ 동시 진행 가능
+→ 결과 비교 가능
+```
+
+---
+
+## 🔀 Multi-Agent
+
+### Worktree란?
+
+```
+Git의 기능: 하나의 저장소에서 여러 작업 디렉토리
+
+main/           # 메인 작업
+├─ worktree-a/  # 접근법 A
+├─ worktree-b/  # 접근법 B
+└─ worktree-c/  # 접근법 C
+```
+
+### Worktree 기본 명령어
+
 ```bash
 # Worktree 생성
-git worktree add ../feature-a main
+git worktree add ../approach-a main
 
 # 목록 확인
 git worktree list
 
 # 제거
-git worktree remove ../feature-a
+git worktree remove ../approach-a
 ```
 
-### 2. Multi-Agent (20분)
+### Multi-Agent 구조
 
-#### 개념
-- 여러 터미널에서 각각 `cursor-agent` 실행
-- 각 Agent는 독립적인 컨텍스트
-- 동시에 다른 접근법 시도
-
-#### 활용 시나리오
-
-**시나리오 1: 여러 접근법 비교**
 ```bash
-# Worktree 1: 클래스 기반
-cd ../approach-class && cursor-agent
+# Terminal 1: Worktree A
+cd ../approach-a
+cursor-agent
+# "세션 기반으로 로그인 구현해줘"
 
-# Worktree 2: 함수형
-cd ../approach-functional && cursor-agent
+# Terminal 2: Worktree B
+cd ../approach-b
+cursor-agent
+# "JWT 기반으로 로그인 구현해줘"
 
-# Worktree 3: 하이브리드
-cd ../approach-hybrid && cursor-agent
+# Terminal 3: Worktree C
+cd ../approach-c
+cursor-agent
+# "OAuth 기반으로 로그인 구현해줘"
 
+# 3개 동시 진행!
 # 결과 비교 후 최적 선택
 ```
 
-**시나리오 2: 독립적인 실험**
-```bash
-# Worktree 1: 라이브러리 A 사용
-cd ../experiment-a && cursor-agent
+### 장점
 
-# Worktree 2: 라이브러리 B 사용
-cd ../experiment-b && cursor-agent
+| 방식 | 1개 Agent | Multi-Agent |
+|------|----------|-------------|
+| **접근법** | 순차적 | 동시 |
+| **비교** | 어려움 | 쉬움 |
+| **시간** | 3배 | 1배 |
+| **컨텍스트** | 혼재 | 독립 |
 
-# 성능/호환성 비교
-```
+---
 
-### 3. IDE + CLI 통합 (15분)
+## 🔗 IDE + CLI 통합
 
-#### 통합 워크플로우
+### 최강의 조합
+
 ```
 IDE (main 브랜치)
-  └─ 메인 작업 진행
+  └─ 메인 개발 진행
+  └─ Debug Mode, Visual Editor 사용
 
 Terminal 1 (worktree-research)
+  └─ cursor-agent
   └─ 라이브러리 조사
 
 Terminal 2 (worktree-experiment)
+  └─ cursor-agent
   └─ 대안 구현 실험
 ```
 
-#### 장점
-- 메인 작업 중단 없이 조사/실험
-- 각각 독립적인 대화 컨텍스트
-- 필요한 것만 메인에 병합
+### 실전 시나리오
+
+```
+상황: 프로필 페이지 개발 중
+
+IDE:
+  "프로필 페이지 UI 만들어줘"
+  → Debug Mode로 디버깅
+  → Visual Editor로 스타일 수정
+
+Terminal 1:
+  "이미지 업로드 라이브러리 비교해줘"
+  → multer vs formidable vs busboy
+  → 장단점 정리
+
+Terminal 2:
+  "이미지 최적화 방법 찾아줘"
+  → sharp vs jimp vs imagemin
+  → 성능 테스트
+
+3개의 독립적인 대화!
+메인 컨텍스트 오염 없음!
+```
+
+### 효과
+
+```
+Before (1개 Agent):
+  메인 작업 → 중단 → 조사 → 컨텍스트 혼란 → 다시 설명
+  총 시간: 3시간
+
+After (Multi-Agent):
+  메인 작업 (IDE)
+  + 조사 (Terminal 1) ← 동시
+  + 실험 (Terminal 2) ← 동시
+  총 시간: 1시간
+```
+
+---
+
+## 🎯 학습 목표
+
+이 교시를 마치면:
+
+- [ ] Worktree로 독립 환경 구성
+- [ ] 여러 Agent 동시 실행
+- [ ] IDE + CLI 통합 워크플로우
+- [ ] 의사결정 속도 3배 향상
+
+**소요 시간**: 50분
 
 ---
 
 ## 🚀 실습 프로젝트
 
-### Project 1: worktree-basic
+### [Project 1: Worktree 기본](./projects/01-worktree-basic/README.md)
 **목표**: Worktree 기본 사용법
 
-**실습 내용**:
-1. Worktree 생성
-2. 독립적인 브랜치 작업
-3. Worktree 간 이동
-4. 결과 병합
+**배울 것**:
+- Worktree 생성
+- 브랜치 독립 작업
+- Worktree 간 이동
+
+**깨달음**: "독립적인 환경을 쉽게 만들 수 있네!"
 
 **소요 시간**: 10분
 
 ---
 
-### Project 2: multi-approach
+### [Project 2: Multi-Agent - 여러 접근법](./projects/02-multi-approach/README.md)
 **목표**: 여러 접근법 동시 비교
 
-**실습 내용**:
-1. 3개 Worktree 생성
-2. 각각 다른 방식으로 구현
-   - Approach A: 클래스 기반
-   - Approach B: 함수형
-   - Approach C: 하이브리드
-3. 각 Worktree에서 Agent 실행
-4. 결과 비교 및 최적 선택
+**시나리오**:
+- 로그인 기능 3가지 방식 구현
+- 세션 기반 / JWT / OAuth
+- 동시 진행 후 비교
+
+**배울 것**:
+- 3개 Worktree 생성
+- 각각 다른 Agent 실행
+- 결과 비교
+
+**깨달음**: "동시에 비교하니까 결정이 빨라지네!"
 
 **소요 시간**: 20분
 
 ---
 
-### Project 3: ide-cli-integration
+### [Project 3: IDE + CLI 통합](./projects/03-ide-cli-integration/README.md)
 **목표**: IDE + CLI 통합 워크플로우
 
-**실습 내용**:
-1. IDE에서 메인 작업
-2. Terminal 1: Worktree로 라이브러리 조사
-3. Terminal 2: Worktree로 대안 구현
-4. 결과 통합
+**시나리오**:
+- IDE: 메인 개발
+- Terminal 1: 라이브러리 조사
+- Terminal 2: 대안 구현
+
+**배울 것**:
+- IDE + CLI 동시 사용
+- 컨텍스트 독립 유지
+- 결과 통합
+
+**깨달음**: "메인 작업 방해 없이 조사/실험 가능하네!"
 
 **소요 시간**: 20분
 
@@ -144,60 +267,88 @@ Terminal 2 (worktree-experiment)
 
 ## 📖 학습 순서
 
-### Step 1: 교재 읽기 (15분)
-1. Worktree 개념 이해
-2. Multi-Agent 활용법
-3. IDE + CLI 통합
+### Step 1: 개념 이해 (10분)
 
-### Step 2: 기본 실습 (10분)
-1. **Project 1**: worktree-basic (10분)
+이 README를 읽으면서:
+1. Multi-Agent의 필요성 이해
+2. Worktree 개념 이해
+3. IDE + CLI 통합 이해
 
-### Step 3: 심화 실습 (40분)
-1. **Project 2**: multi-approach (20분)
-2. **Project 3**: ide-cli-integration (20분)
+### Step 2: Worktree 기본 (10분)
+
+1. **[Project 1: Worktree 기본](./projects/01-worktree-basic/README.md)** (10분)
+   - "독립 환경 만들기!"
+
+### Step 3: Multi-Agent 실습 (40분)
+
+1. **[Project 2: 여러 접근법](./projects/02-multi-approach/README.md)** (20분)
+   - "동시 비교로 빠른 결정!"
+
+2. **[Project 3: IDE + CLI](./projects/03-ide-cli-integration/README.md)** (20분)
+   - "메인 작업 방해 없이!"
 
 ### Step 4: 복습 (10분)
-- [ ] Worktree 사용법 숙지
-- [ ] Multi-Agent 활용 가능
-- [ ] IDE + CLI 통합 경험
+
+- [ ] Worktree 사용 가능?
+- [ ] Multi-Agent 운영 가능?
+- [ ] IDE + CLI 통합 가능?
 
 ---
 
-## 💡 핵심 포인트
+## 💡 핵심 깨달음
 
-### Worktree
-- ✅ 독립적인 작업 디렉토리
-- ✅ 동시에 여러 브랜치 작업
-- ✅ 메인 작업 중단 없음
+### 4교시에서 배운 것
 
-### Multi-Agent
-- ✅ 각 Agent는 독립적
-- ✅ 동시에 다른 접근법 시도
-- ✅ 결과 비교 후 선택
+```
+Multi-Agent:
+- 여러 Agent 동시 실행
+- Worktree로 환경 분리
+- IDE + CLI 통합
 
-### 주의사항
-- ❌ IDE Multi-Agent: 같은 파일 충돌
-- ✅ CLI Multi-Agent: Worktree로 격리
+효과:
+- 의사결정 3배 빠름
+- 컨텍스트 오염 없음
+- 병렬 작업 가능
+```
 
----
+### 효과
 
-## 🔗 참고 자료
+```
+Before:
+- 1개 Agent로 순차 작업
+- 컨텍스트 혼란
+- 느린 의사결정
 
-- [Git Worktree 문서](https://git-scm.com/docs/git-worktree)
-- [Cursor CLI](https://cursor.com/docs/cli/overview)
-
----
-
-## ⏭ 다음 교시
-
-[5교시: 반복 작업 자동화](../session-05/README.md)
+After:
+- Multi-Agent로 병렬 작업
+- 독립적인 컨텍스트
+- 빠른 의사결정
+```
 
 ---
 
 ## 📚 심화 학습
 
-더 깊은 오케스트레이션 개념을 배우고 싶다면:
+더 깊은 내용을 원한다면:
 
-**[Advanced: 오케스트레이션 전략](./ADVANCED_ORCHESTRATION.md)**
+**[Advanced: Role 기반 오케스트레이션](./ADVANCED_ORCHESTRATION.md)**
+- 1 Agent = 1 Role
+- Planning, Design, Markup, Frontend, QA
+- 병렬 처리로 70% 시간 절약
+
+---
+
+## ⏭ 다음 교시
+
+[5교시: 반복 작업 자동화 - 시간을 아끼자](../session-05/README.md)
 
 **4교시를 완료하면 여러 Agent를 동시에 활용할 수 있습니다!** 🎉
+
+---
+
+## 🔗 빠른 링크
+
+- [Project 1: Worktree 기본](./projects/01-worktree-basic/README.md)
+- [Project 2: Multi-Agent - 여러 접근법](./projects/02-multi-approach/README.md)
+- [Project 3: IDE + CLI 통합](./projects/03-ide-cli-integration/README.md)
+- [심화: Role 기반 오케스트레이션](./ADVANCED_ORCHESTRATION.md)

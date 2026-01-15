@@ -76,12 +76,15 @@ sessions/
 
 ---
 
-### [2교시: Debug Mode & Visual Editor](./sessions/session-02/README.md)
+### [2교시: Debug Mode, Visual Editor, Agent Skills - Cursor의 다채로운 기능](./sessions/session-02/README.md)
 **시간**: 50분 | **난이도**: 🟡 중급
 
+**스토리**: Hooks 말고도 Cursor만의 기능이 더 있다! 추측이 아닌 확인, 설명이 아닌 클릭
+
 **학습 내용**:
-- Debug Mode: 자동 로그 삽입으로 버그 추적
-- Visual Editor: 브라우저에서 UI 직접 편집
+- Debug Mode: 추측 → 확인 (자동 로그 삽입)
+- Visual Editor: 설명 → 클릭 (UI 직접 선택)
+- Agent Skills: Agent 능력 확장 (NEW!)
 
 **프로젝트** (4개):
 1. `01-debug-login-bug` - 로그인 버그 해결
@@ -89,69 +92,85 @@ sessions/
 3. `03-visual-button-style` - 버튼 스타일 수정
 4. `04-visual-card-layout` - 카드 레이아웃 조정
 
+**효과**: 버그 해결 50% 빠름, UI 수정 70% 빠름
+
 ---
 
-### [3교시: CLI & Shell Mode](./sessions/session-03/README.md)
+### [3교시: CLI Agent & Shell Mode - IDE를 넘어서](./sessions/session-03/README.md)
 **시간**: 50분 | **난이도**: 🟢 초급
 
+**스토리**: IDE 안에서만 쓰던 Agent, 이제 터미널에서도! Agentic 개발의 시작
+
 **학습 내용**:
-- CLI 설치 및 기본 사용
-- 대화형 Agent: 대화하듯이 코드 작업
-- Shell Mode: 자연어로 명령어 생성
+- IDE의 한계 → CLI Agent로 해결
+- 대화형 Agent: 터미널에서 코드 작업
+- Shell Mode: 자연어 → 명령어 자동 변환
 
 **프로젝트** (3개):
 1. `01-cli-basic` - CLI 기본 사용
 2. `02-shell-file-ops` - 파일 작업 자동화
 3. `03-shell-git-ops` - Git 작업 자동화
 
+**효과**: 터미널 작업 80% 자동화, IDE 의존성 탈피
+
 ---
 
-### [4교시: Multi-Agent & Worktree](./sessions/session-04/README.md)
+### [4교시: Multi-Agent & Worktree - 여러 Agent 동시에](./sessions/session-04/README.md)
 **시간**: 50분 | **난이도**: 🔴 고급
 
+**스토리**: 1개 Agent로는 부족하다! 여러 접근법 동시 비교, IDE + CLI 통합
+
 **학습 내용**:
+- 하나로는 부족하다 → Multi-Agent
 - Worktree: 독립 환경 구성
-- Multi-Agent: 여러 접근법 동시 비교
-- IDE + CLI 통합 워크플로우
+- IDE + CLI 통합: 메인 작업 + 조사/실험 동시
 
 **프로젝트** (3개):
 1. `01-worktree-basic` - Worktree 기본
 2. `02-multi-approach` - 여러 접근법 비교
 3. `03-ide-cli-integration` - IDE + CLI 통합
 
+**효과**: 의사결정 3배 빠름, 컨텍스트 오염 없음
+
 **심화**: [Role 기반 오케스트레이션](./sessions/session-04/ADVANCED_ORCHESTRATION.md)
-- 1 Agent = 1 Role 원칙
-- Planning, Design, Markup, Frontend, QA Role
-- 병렬 처리로 70% 시간 절약
 
 ---
 
-### [5교시: 반복 작업 자동화](./sessions/session-05/README.md)
+### [5교시: 반복 작업 자동화 - 시간을 아끼자](./sessions/session-05/README.md)
 **시간**: 50분 | **난이도**: 🔴 고급
 
+**스토리**: 매번 하는 검사 작업, 순차로 35분 → 병렬로 15분! Multi-Agent 활용
+
 **학습 내용**:
-- 병렬 검토: 여러 검사 동시 실행
-- 시간 절약: 57% (35분 → 15분)
+- 반복 작업의 고통 → 병렬 처리로 해결
+- 접근성/호환성/성능/디자인 동시 검사
+- Worktree로 검사 환경 분리
 
 **프로젝트** (3개):
 1. `01-parallel-checks` - 병렬 검사
 2. `02-responsive-validation` - 반응형 검증
 3. `03-performance-optimization` - 성능 최적화
 
+**효과**: 검사 시간 57% 단축 (35분 → 15분)
+
 ---
 
-### [6교시: 마크업 품질 자동화](./sessions/session-06/README.md)
+### [6교시: 마크업 품질 자동화 - 완벽한 마무리](./sessions/session-06/README.md)
 **시간**: 50분 | **난이도**: 🔴 고급
 
+**스토리**: 프론트엔드/마크업 개발자를 위한 마무리! HTML/CSS 품질 검증도 병렬로
+
 **학습 내용**:
-- HTML/CSS 품질 검증
-- 다중 테마 검증
-- 시간 절약: 60% (45분 → 18분)
+- HTML 품질: 시맨틱, 접근성, SEO
+- CSS 품질: 구조, 성능, 네이밍
+- 테마 & 컴포넌트 관리
 
 **프로젝트** (3개):
 1. `01-html-css-quality` - HTML/CSS 품질 검증
 2. `02-theme-validation` - 테마 검증
 3. `03-component-library` - 컴포넌트 관리
+
+**효과**: 품질 검증 60% 단축 (45분 → 18분)
 
 ---
 

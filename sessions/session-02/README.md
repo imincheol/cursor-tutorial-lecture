@@ -1,132 +1,328 @@
-# 2교시: Debug Mode & Visual Editor
+# 2교시: Debug Mode, Visual Editor, Agent Skills - Cursor의 다채로운 기능
 
 ## 📋 목차
 
-- [학습 목표](#학습-목표)
-- [교재 내용](#교재-내용)
+- [1교시 복습](#1교시-복습)
+- [Hooks 말고도 더 있다](#hooks-말고도-더-있다)
+- [Debug Mode](#debug-mode)
+- [Visual Editor](#visual-editor)
+- [Agent Skills](#agent-skills-new)
 - [실습 프로젝트](#실습-프로젝트)
-- [학습 순서](#학습-순서)
+
+---
+
+## 📚 1교시 복습
+
+### 배운 것
+
+```
+Copilot vs Cursor:
+- 95% 동일 (Agent, Plan, Rules, Commands, MCP)
+- 5% 차이: Hooks (Cursor만!)
+
+Hooks의 강력함:
+- 코드 레벨 제어
+- 100% 강제 차단
+- 리뷰 시간 70% 단축
+```
+
+### 질문
+
+**"Hooks 말고 Cursor만의 기능이 더 있나요?"**
+
+**답: 네, 훨씬 더 있습니다!**
+
+---
+
+## 🎨 Hooks 말고도 더 있다
+
+### Cursor만의 기능들
+
+```
+1교시: Hooks (Agent 제어)
+  ↓
+2교시: Debug Mode, Visual Editor, Agent Skills (이번 시간!)
+  ↓
+3교시: CLI Agent, Shell Mode
+  ↓
+4교시: Multi-Agent, Worktree
+```
+
+### 이번 시간에 배울 것
+
+| 기능 | 설명 | Copilot |
+|------|------|---------|
+| **Debug Mode** | 자동 로그 삽입 | ❌ 없음 |
+| **Visual Editor** | 브라우저에서 UI 직접 편집 | ❌ 없음 |
+| **Agent Skills** | Agent 능력 확장 (NEW!) | ❌ 없음 |
+
+---
+
+## 🐛 Debug Mode
+
+### 기존 디버깅의 문제
+
+**Copilot 방식**:
+```
+당신: "이 버그 좀 고쳐줘"
+Copilot: [코드 보고 추측해서 수정]
+
+결과:
+→ 추측이 맞으면 해결
+→ 추측이 틀리면 여전히 버그
+→ 반복 반복 반복...
+```
+
+### Debug Mode의 차이
+
+**Cursor 방식**:
+```
+당신: "이 버그 좀 고쳐줘"
+Cursor: [자동으로 로그 삽입]
+Cursor: [실제 실행]
+Cursor: [실제 값 확인]
+Cursor: [정확한 원인 파악]
+Cursor: [정확한 수정]
+
+결과:
+→ 추측 아닌 실제 데이터 기반
+→ 한 번에 해결 가능성 높음
+```
+
+### 동작 원리
+
+```javascript
+// Before: 버그 있는 코드
+function login(user, password) {
+  const result = authenticate(user, password);
+  if (result) {
+    redirect('/dashboard');
+  }
+}
+
+// Debug Mode 활성화 후:
+// Cursor가 자동으로 로그 삽입
+function login(user, password) {
+  console.log('[DEBUG] user:', user);
+  console.log('[DEBUG] password:', password);
+  const result = authenticate(user, password);
+  console.log('[DEBUG] result:', result);
+  if (result) {
+    console.log('[DEBUG] redirecting...');
+    redirect('/dashboard');
+  }
+}
+
+// 실행 결과:
+// [DEBUG] user: "john"
+// [DEBUG] password: "1234"
+// [DEBUG] result: undefined  ← 문제 발견!
+```
+
+### 추측 vs 확인
+
+| 방식 | Copilot | Cursor Debug Mode |
+|------|---------|-------------------|
+| **접근** | 코드 보고 추측 | 실행해서 확인 |
+| **정확도** | 낮음 | 높음 |
+| **반복** | 여러 번 | 한 번 |
+| **시간** | 오래 걸림 | 빠름 |
+
+---
+
+## 🎨 Visual Editor
+
+### 기존 UI 수정의 문제
+
+**Copilot 방식**:
+```
+당신: "이 버튼 색상을 파란색으로 바꿔줘"
+Copilot: [어떤 버튼인지 추측]
+Copilot: [CSS 수정 제안]
+
+당신: "아니 그 버튼 말고..."
+당신: "여기 있는 버튼..."
+당신: "클래스명이 뭐더라..."
+
+결과:
+→ 소통 비용 발생
+→ 여러 번 수정
+→ 시간 낭비
+```
+
+### Visual Editor의 차이
+
+**Cursor 방식**:
+```
+1. 브라우저에서 버튼 클릭 (직접 선택!)
+2. "이거 파란색으로 바꿔줘"
+3. 즉시 수정
+
+결과:
+→ 소통 비용 없음
+→ 한 번에 수정
+→ 시간 절약
+```
+
+### 동작 원리
+
+```
+Step 1: Visual Editor 모드 활성화
+Step 2: 브라우저에서 요소 클릭
+Step 3: 선택된 요소 정보 자동 파악
+  - HTML 위치
+  - CSS 클래스
+  - 현재 스타일
+Step 4: Agent에게 요청
+Step 5: 정확한 수정
+```
+
+### 말로 설명 vs 직접 선택
+
+| 방식 | Copilot | Cursor Visual Editor |
+|------|---------|---------------------|
+| **선택** | 말로 설명 | 클릭으로 선택 |
+| **정확도** | 추측 필요 | 정확함 |
+| **소통** | 여러 번 | 한 번 |
+| **시간** | 오래 걸림 | 빠름 |
+
+---
+
+## 🆕 Agent Skills (NEW!)
+
+### 방금 업데이트된 기능!
+
+**Agent Skills**:
+```
+Agent의 능력을 확장하는 기능
+- 새로운 도구 추가
+- 커스텀 기능 정의
+- Agent가 할 수 있는 일 확장
+```
+
+### 기본 제공 Skills
+
+```
+- Web Search: 웹 검색
+- Code Execution: 코드 실행
+- File Operations: 파일 작업
+- Terminal: 터미널 명령
+```
+
+### 커스텀 Skills
+
+```javascript
+// 예: 디자인 시스템 검증 Skill
+{
+  name: "design-system-check",
+  description: "디자인 시스템 준수 여부 검증",
+  execute: async (code) => {
+    // 색상 팔레트 검증
+    // 타이포그래피 검증
+    // 간격 시스템 검증
+    return { violations, suggestions };
+  }
+}
+```
+
+### Agent 능력 확장
+
+| 기능 | 기본 Agent | Agent + Skills |
+|------|-----------|----------------|
+| **웹 검색** | ❌ | ✅ |
+| **코드 실행** | 제한적 | ✅ |
+| **커스텀 기능** | ❌ | ✅ |
+| **확장성** | 고정 | 무한 |
 
 ---
 
 ## 🎯 학습 목표
 
-이 교시를 마치면 다음을 할 수 있습니다:
+이 교시를 마치면:
 
-- [ ] Debug Mode로 버그 추적 및 해결
-- [ ] Visual Editor로 UI 요소 직접 편집
-- [ ] IDE Multi-Agent 주의점 이해
+- [ ] Debug Mode로 버그 원인 정확히 파악
+- [ ] Visual Editor로 UI 직접 선택해서 수정
+- [ ] Agent Skills 개념 이해
+- [ ] 버그 해결 시간 50% 단축
+- [ ] UI 수정 시간 70% 단축
 
 **소요 시간**: 50분
 
 ---
 
-## 📚 교재 내용
-
-### 1. Debug Mode (15분)
-
-#### Copilot과의 차이
-- **Copilot**: 코드 보고 추측
-- **Cursor**: 자동 로그 삽입 → 실행 → 실제 값 확인
-
-#### 동작 방식
-1. Agent가 자동으로 로그 삽입
-2. 브라우저/앱 실행
-3. 실제 값 확인
-4. 버그 원인 파악
-5. 수정 제안
-
-#### 실전 활용
-- 로그인 버그
-- API 호출 실패
-- 무한 로딩
-- 상태 관리 오류
-
-### 2. Visual Editor (20분)
-
-#### 기능
-- 브라우저에서 UI 요소 직접 선택
-- 실시간 CSS 편집
-- Agent에게 수정 요청
-- 코드 자동 반영
-
-#### 활용 시나리오
-- 버튼 스타일 수정
-- 레이아웃 조정
-- 색상/간격 변경
-- 반응형 디자인
-
-### 3. IDE Multi-Agent 주의점 (15분)
-
-#### 문제점
-- 같은 파일 동시 수정 시 충돌
-- 컨텍스트 공유 안 됨
-
-#### 해결책
-- 다른 파일 작업
-- CLI Multi-Agent 사용 (4교시)
-
----
-
 ## 🚀 실습 프로젝트
 
-### Project 1: debug-login-bug
+### [Project 1: Debug Mode - 로그인 버그](./projects/01-debug-login-bug/README.md)
 **목표**: Debug Mode로 로그인 버그 해결
 
-**버그 시나리오**:
-- 로그인 버튼 클릭 시 아무 반응 없음
+**시나리오**:
+- 로그인 버튼 클릭해도 아무 반응 없음
 - 콘솔에 에러 없음
+- 뭐가 문제지?
 
-**실습 내용**:
-1. Debug Mode 활성화
-2. Agent에게 버그 찾아달라고 요청
-3. 자동 로그 삽입 확인
-4. 버그 원인 파악
-5. 수정 적용
+**배울 것**:
+- Debug Mode 활성화
+- 자동 로그 삽입
+- 실제 값 확인으로 버그 원인 파악
+
+**깨달음**: "추측 안 해도 되네! 바로 보이네!"
 
 **소요 시간**: 10분
 
 ---
 
-### Project 2: debug-api-error
-**목표**: API 호출 실패 디버깅
+### [Project 2: Debug Mode - API 에러](./projects/02-debug-api-error/README.md)
+**목표**: Debug Mode로 API 에러 디버깅
 
-**버그 시나리오**:
-- 사용자 목록이 로딩되지 않음
+**시나리오**:
+- 사용자 목록이 안 나옴
 - 네트워크 탭에서 404 에러
+- 어디서 잘못됐지?
 
-**실습 내용**:
-1. Debug Mode로 API 호출 추적
-2. 요청 URL 확인
-3. 응답 데이터 확인
-4. 에러 처리 개선
+**배울 것**:
+- API 호출 추적
+- 요청/응답 데이터 확인
+- 에러 처리 개선
+
+**깨달음**: "API 문제도 바로 찾을 수 있네!"
 
 **소요 시간**: 10분
 
 ---
 
-### Project 3: visual-button-style
+### [Project 3: Visual Editor - 버튼 스타일](./projects/03-visual-button-style/README.md)
 **목표**: Visual Editor로 버튼 스타일 수정
 
-**실습 내용**:
-1. Visual Editor 열기
-2. 버튼 요소 선택
-3. 스타일 변경 (색상, 크기, 간격)
-4. Agent에게 수정 요청
-5. 코드 반영 확인
+**시나리오**:
+- 버튼 색상 변경 요청
+- "어떤 버튼이요?" 소통 비용 발생
+- 클래스명 찾느라 시간 낭비
+
+**배울 것**:
+- Visual Editor 모드 활성화
+- 요소 클릭으로 선택
+- 정확한 수정 요청
+
+**깨달음**: "말로 설명 안 해도 되네! 그냥 클릭하면 되네!"
 
 **소요 시간**: 10분
 
 ---
 
-### Project 4: visual-card-layout
+### [Project 4: Visual Editor - 카드 레이아웃](./projects/04-visual-card-layout/README.md)
 **목표**: Visual Editor로 카드 레이아웃 조정
 
-**실습 내용**:
-1. 카드 컴포넌트 선택
-2. 레이아웃 변경 (그리드 → 플렉스)
-3. 반응형 디자인 적용
-4. 간격 및 정렬 조정
+**시나리오**:
+- 카드 레이아웃 변경 요청
+- 그리드 → 플렉스
+- 반응형 적용
+
+**배울 것**:
+- 복잡한 레이아웃 선택
+- 여러 요소 동시 수정
+- 반응형 디자인 적용
+
+**깨달음**: "복잡한 UI 작업도 쉽게 되네!"
 
 **소요 시간**: 20분
 
@@ -134,50 +330,76 @@
 
 ## 📖 학습 순서
 
-### Step 1: 교재 읽기 (15분)
-1. Debug Mode 개념 이해
-2. Visual Editor 기능 파악
-3. IDE Multi-Agent 주의점 확인
+### Step 1: 개념 이해 (10분)
+
+이 README를 읽으면서:
+1. Debug Mode의 강력함 이해
+2. Visual Editor의 편리함 이해
+3. Agent Skills의 가능성 이해
 
 ### Step 2: Debug Mode 실습 (20분)
-1. **Project 1**: debug-login-bug (10분)
-2. **Project 2**: debug-api-error (10분)
+
+1. **[Project 1: 로그인 버그](./projects/01-debug-login-bug/README.md)** (10분)
+   - "추측 안 해도 되네!"
+
+2. **[Project 2: API 에러](./projects/02-debug-api-error/README.md)** (10분)
+   - "API 문제도 바로 찾네!"
 
 ### Step 3: Visual Editor 실습 (30분)
-1. **Project 3**: visual-button-style (10분)
-2. **Project 4**: visual-card-layout (20분)
 
-### Step 4: 복습 및 정리 (10분)
-- [ ] Debug Mode 활용법 이해
-- [ ] Visual Editor 사용법 숙지
-- [ ] 실제 버그 해결 경험
+1. **[Project 3: 버튼 스타일](./projects/03-visual-button-style/README.md)** (10분)
+   - "클릭만 하면 되네!"
 
----
+2. **[Project 4: 카드 레이아웃](./projects/04-visual-card-layout/README.md)** (20분)
+   - "복잡한 것도 쉽네!"
 
-## 💡 핵심 포인트
+### Step 4: 복습 (10분)
 
-### Debug Mode
-- ✅ 자동 로그 삽입
-- ✅ 실제 값 확인
-- ✅ 추측 → 확인
-
-### Visual Editor
-- ✅ UI 직접 선택
-- ✅ 실시간 편집
-- ✅ 코드 자동 반영
+- [ ] Debug Mode 활용 가능?
+- [ ] Visual Editor 사용 가능?
+- [ ] Agent Skills 개념 이해?
 
 ---
 
-## 🔗 참고 자료
+## 💡 핵심 깨달음
 
-- [Cursor Debug Mode 문서](https://cursor.com/docs/debug-mode)
-- [Cursor Visual Editor 문서](https://cursor.com/docs/visual-editor)
-- [전체 커리큘럼](../../curriculum/02-session.md)
+### 2교시에서 배운 것
+
+```
+Cursor만의 기능들:
+- Hooks (1교시): Agent 제어
+- Debug Mode: 추측 → 확인
+- Visual Editor: 설명 → 클릭
+- Agent Skills: 능력 확장
+
+Copilot에는 없는 기능들!
+```
+
+### 효과
+
+```
+Before (Copilot):
+- 버그: 추측 → 수정 → 실패 → 반복
+- UI: 설명 → 오해 → 재설명 → 반복
+
+After (Cursor):
+- 버그: 확인 → 수정 → 완료
+- UI: 클릭 → 수정 → 완료
+```
 
 ---
 
 ## ⏭ 다음 교시
 
-[3교시: CLI & Shell Mode](../session-03/README.md)
+[3교시: CLI Agent & Shell Mode - IDE를 넘어서](../session-03/README.md)
 
-**2교시를 완료하면 버그 해결과 UI 편집이 훨씬 빨라집니다!** 🎉
+**2교시를 완료하면 Cursor의 다채로운 기능을 체험할 수 있습니다!** 🎉
+
+---
+
+## 🔗 빠른 링크
+
+- [Project 1: Debug Mode - 로그인 버그](./projects/01-debug-login-bug/README.md)
+- [Project 2: Debug Mode - API 에러](./projects/02-debug-api-error/README.md)
+- [Project 3: Visual Editor - 버튼 스타일](./projects/03-visual-button-style/README.md)
+- [Project 4: Visual Editor - 카드 레이아웃](./projects/04-visual-card-layout/README.md)
