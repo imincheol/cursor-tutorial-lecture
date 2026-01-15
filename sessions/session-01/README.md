@@ -1,150 +1,207 @@
-# 1교시: Rules & Hooks - AI를 제어하는 법
+# 1교시: 첫 번째 발견 - Hooks
+
+> **"어? Copilot이랑 똑같은데... 잠깐, 이건 뭐지?"**
 
 ## 📋 목차
 
-- [왜 Cursor로 와야 하는가?](#왜-cursor로-와야-하는가)
-- [Copilot과 Cursor의 공통점](#copilot과-cursor의-공통점)
-- [문제: AI가 말을 안 듣는다](#문제-ai가-말을-안-듣는다)
-- [차이점: Hooks](#차이점-hooks)
+- [프롤로그: Copilot에서 온 당신에게](#프롤로그-copilot에서-온-당신에게)
+- [1장: 익숙한 것들](#1장-익숙한-것들)
+- [2장: 그런데 문제가 있다](#2장-그런데-문제가-있다)
+- [3장: Hooks의 발견](#3장-hooks의-발견)
 - [실습 프로젝트](#실습-프로젝트)
 
 ---
 
-## 🤔 왜 Cursor로 와야 하는가?
+## 🎬 프롤로그: Copilot에서 온 당신에게
 
-### 현재 상황
-
-**Copilot을 사용하면서 이런 경험 없으셨나요?**
+### 당신의 이야기
 
 ```
-당신: "TypeScript로 작성해줘"
-Copilot: [JavaScript 코드 생성]
+Copilot을 잘 사용하고 있었다.
+코드 자동완성도 좋고,
+Agent 모드도 유용했다.
 
-당신: "테스트 코드도 작성해줘"
-Copilot: [테스트 없이 프로덕션 코드만]
+그런데 어느 날, 문득 이런 생각이 들었다.
 
-당신: "에러 처리 추가해줘"
-Copilot: [try-catch 없이 그냥 진행]
+"왜 AI가 내 말을 안 듣지?"
+"TypeScript로 하라고 했는데 JavaScript로 하네..."
+"rm -rf 쓰지 말라고 했는데 또 쓰네..."
+
+리뷰하고 수정하는 시간이 너무 길었다.
+더 좋은 방법이 없을까 찾다가,
+Cursor라는 이름을 듣게 됐다.
 ```
 
-**결과**: 리뷰하고 수정하는데 시간을 다 쏟게 됩니다.
+### 기대와 의문
 
-### Cursor의 차이
+```
+"Cursor가 좋다던데..."
+"뭐가 다른 거지?"
+"Copilot이랑 비슷하다던데?"
 
-현재 IDE 중에서는 **Cursor가 가장 좋습니다**.
-
-대부분의 기능은 Copilot과 비슷하지만, **한 가지 결정적 차이**가 있습니다.
+설치하고 열어봤다.
+```
 
 ---
 
-## 🔄 Copilot과 Cursor의 공통점
+## 📖 1장: 익숙한 것들
 
-### 거의 모든 기능이 동일합니다
+### 첫인상: "어? 똑같은데?"
 
-#### 1. Agent 모드
+```
+Cursor를 열었다.
+Agent 모드가 있다. Copilot에도 있었다.
+Plan 모드가 있다. Copilot에도 있었다.
+Rules가 있다. Copilot의 Instructions랑 같다.
+
+"뭐야, 다 똑같잖아?"
+```
+
+### 하나씩 확인해보자
+
+#### Agent 모드
 ```
 Copilot: Ask Agent
 Cursor: Agent (Chat)
 
-→ 동일: 대화형 AI 지원
+→ 대화하면서 코드 작업
+→ 동일하다!
 ```
 
-#### 2. Plan 모드
+#### Plan 모드
 ```
 Copilot: Plan Mode
 Cursor: Plan Mode
 
-→ 동일: 계획 수립 후 실행
+→ 계획 세우고 실행
+→ 동일하다!
 ```
 
-#### 3. Instructions / Rules
+#### Instructions / Rules
 ```
-Copilot: Instructions (.github/copilot-instructions.md)
-Cursor: Rules (.cursorrules)
+Copilot: .github/copilot-instructions.md
+Cursor: .cursorrules
 
-→ 동일: 프로젝트 규칙 설정
-→ 동일: 폴더별/파일별 적용 가능
-→ 동일: glob 패턴 지원
-```
-
-#### 4. Prompts / Commands
-```
-Copilot: Prompts (저장된 프롬프트)
-Cursor: Commands (저장된 명령어)
-
-→ 동일: 자주 쓰는 프롬프트 저장
+→ 프로젝트 규칙 설정
+→ 폴더별, 파일별 적용 가능
+→ glob 패턴 지원
+→ 동일하다!
 ```
 
-#### 5. MCP (Model Context Protocol)
+#### Prompts / Commands
+```
+Copilot: 저장된 Prompts
+Cursor: 저장된 Commands
+
+→ 자주 쓰는 프롬프트 저장
+→ 동일하다!
+```
+
+#### MCP
 ```
 Copilot: MCP 지원
 Cursor: MCP 지원
 
-→ 동일: 외부 도구 연동
+→ 외부 도구 연동
+→ 동일하다!
+```
+
+### 중간 정리
+
+```
+"거의 다 똑같네?"
+"그럼 왜 Cursor로 오라는 거지?"
+"뭔가 다른 게 있을 텐데..."
 ```
 
 ---
 
-## 😤 문제: AI가 말을 안 듣는다
+## 📖 2장: 그런데 문제가 있다
 
-### Instructions/Rules의 한계
+### Rules/Instructions의 한계
 
-**Copilot과 Cursor 모두 같은 문제**:
-
-```
-Instructions/Rules 작성:
-"항상 TypeScript를 사용하세요"
-"모든 함수에 JSDoc을 작성하세요"
-"에러 처리를 반드시 포함하세요"
-
-결과:
-→ 가끔 JavaScript로 작성
-→ JSDoc 절반만 작성
-→ 에러 처리 가끔 빠뜨림
-
-이유: Instructions/Rules도 결국 프롬프트
-```
-
-**핵심 문제**: 프롬프트는 "요청"일 뿐, "강제"가 아닙니다.
-
-### 실제 예시
+Rules를 작성해봤다.
 
 ```
-.cursorrules:
-"절대 rm -rf 명령 사용 금지"
+# .cursorrules
 
-Agent:
-→ 가끔 rm -rf 사용
-→ 위험!
-→ 리뷰 필요
+- 항상 TypeScript를 사용하세요
+- 모든 함수에 JSDoc을 작성하세요
+- rm -rf 명령은 절대 사용하지 마세요
 ```
 
-**Copilot도 Cursor도 동일한 문제를 겪습니다.**
+결과는?
+
+```
+Agent: [JavaScript 코드 생성]
+당신: "TypeScript로 하라고 했잖아..."
+
+Agent: [JSDoc 없이 작성]
+당신: "JSDoc 작성하라고 했는데..."
+
+Agent: [rm -rf 사용]
+당신: "쓰지 말라고 했는데!!!"
+```
+
+### 왜 이런 걸까?
+
+```
+Rules도, Instructions도
+결국 "프롬프트"다.
+
+프롬프트 = 요청
+요청 = 안 지킬 수 있음
+
+"이렇게 해줘" → 가끔 안 함
+"이거 하지 마" → 가끔 함
+```
+
+### Copilot도 똑같은 문제
+
+```
+이건 Cursor만의 문제가 아니다.
+Copilot의 Instructions도 마찬가지.
+
+프롬프트로는 AI를 완벽히 제어할 수 없다.
+```
+
+### 절망의 순간
+
+```
+"그럼 Cursor나 Copilot이나 똑같은 거 아냐?"
+"어차피 리뷰해야 하는 건 마찬가지네..."
+"왜 Cursor가 좋다고 하는 거지?"
+
+그때, Hooks를 발견했다.
+```
 
 ---
 
-## 🔒 차이점: Hooks (Cursor만 가능!)
+## 📖 3장: Hooks의 발견
 
-### Copilot에는 없는 기능
-
-```
-Copilot: Instructions만 (프롬프트)
-Cursor: Rules + Hooks (프롬프트 + 코드)
-```
-
-### Hooks = 코드 레벨 제어
-
-**프롬프트의 한계를 넘어서**:
+### Hooks란?
 
 ```
-프롬프트 (Instructions/Rules):
-  "이렇게 해줘" → 요청 → 안 지킬 수 있음
+Settings에서 뭔가를 발견했다.
+"Hooks"라는 메뉴가 있다.
 
-코드 (Hooks):
-  "이건 차단" → 강제 → 무조건 차단
+"이건 뭐지? Copilot에는 없었는데..."
+
+클릭해봤다.
 ```
 
-### Hooks의 동작 원리
+### Hooks의 정체
+
+```
+Hooks = Agent 동작을 감시하고 제어하는 코드
+
+Rules: 프롬프트 (요청)
+Hooks: 코드 (강제)
+
+"프롬프트가 아니라 코드로 제어한다고?"
+```
+
+### 동작 원리
 
 ```javascript
 // .cursor/hooks/security.js
@@ -164,29 +221,37 @@ export async function preToolExecution(context) {
 }
 ```
 
-**결과**: Agent가 절대 실행할 수 없습니다!
+### 깨달음
+
+```
+"잠깐, 이게 되면..."
+
+Rules: "rm -rf 쓰지 마" → 가끔 씀
+Hooks: block: true → 절대 못 씀
+
+"이거다!"
+"이게 Copilot과의 차이구나!"
+```
 
 ### Copilot vs Cursor
 
 | 특징 | Copilot | Cursor |
 |------|---------|--------|
-| **Agent 모드** | ✅ Ask Agent | ✅ Agent (Chat) |
-| **Plan 모드** | ✅ Plan Mode | ✅ Plan Mode |
-| **Instructions/Rules** | ✅ Instructions | ✅ Rules |
-| **Prompts/Commands** | ✅ Prompts | ✅ Commands |
-| **MCP** | ✅ MCP | ✅ MCP |
-| **Hooks** | ❌ 없음 | ✅ 있음 (핵심!) |
+| **Agent 모드** | ✅ | ✅ |
+| **Plan 모드** | ✅ | ✅ |
+| **Instructions/Rules** | ✅ | ✅ |
+| **Prompts/Commands** | ✅ | ✅ |
+| **MCP** | ✅ | ✅ |
+| **Hooks** | ❌ 없음 | ✅ **있음!** |
 
-### 프롬프트 vs Hooks
+### 프롬프트 vs 코드
 
-| 특징 | Instructions/Rules | Hooks |
+| 특징 | Rules/Instructions | Hooks |
 |------|-------------------|-------|
 | **성격** | 요청 (프롬프트) | 강제 (코드) |
-| **지킴** | 가끔 안 지킴 | 100% 지킴 |
-| **리뷰** | 필요 | 불필요 |
+| **준수** | 가끔 안 지킴 | 100% 지킴 |
+| **리뷰** | 필요함 | 불필요 |
 | **안전** | 위험 가능 | 안전 보장 |
-| **Copilot** | ✅ 있음 | ❌ 없음 |
-| **Cursor** | ✅ 있음 | ✅ 있음 |
 
 ---
 
@@ -195,11 +260,9 @@ export async function preToolExecution(context) {
 이 교시를 마치면:
 
 - [ ] Copilot과 Cursor의 공통점 이해
-- [ ] Instructions/Rules의 한계 인식 (둘 다 프롬프트)
-- [ ] Hooks의 필요성 깨달음 (Cursor만 가능)
-- [ ] Hooks로 Agent 동작 강제 차단
-- [ ] 리뷰 시간 70% 단축
-- [ ] 위험한 작업 100% 차단
+- [ ] Rules의 한계 인식 (프롬프트의 한계)
+- [ ] Hooks의 발견과 이해
+- [ ] Hooks로 Agent 완벽 제어
 
 **소요 시간**: 50분
 
@@ -208,56 +271,92 @@ export async function preToolExecution(context) {
 ## 🚀 실습 프로젝트
 
 ### [Project 1: Rules 기본](./projects/01-rules-basic/README.md)
-**목표**: Rules 작성 (Copilot Instructions와 동일)
+
+**스토리 위치**: 1장 - 익숙한 것들
+
+**상황**:
+```
+Cursor에 처음 왔다.
+Rules를 작성해보자.
+"Copilot의 Instructions랑 똑같겠지?"
+```
 
 **배울 것**:
 - 전역 `.cursorrules` 작성
-- 폴더별 `.cursorrules` 작성
-- Copilot Instructions와 동일한 기능
+- 폴더별 Rules 작성
+- Copilot Instructions와 비교
 
-**깨달음**: "Copilot과 똑같네... 그럼 뭐가 다르지?"
+**깨달음**: "어? Copilot이랑 정말 똑같네..."
 
 **소요 시간**: 10분
 
 ---
 
-### [Project 2: Rules Globs 패턴](./projects/02-rules-globs/README.md)
-**목표**: glob 패턴으로 조건부 규칙
+### [Project 2: Rules Globs](./projects/02-rules-globs/README.md)
+
+**스토리 위치**: 2장 - 문제 발견
+
+**상황**:
+```
+파일 타입별로 다른 규칙을 적용해봤다.
+*.test.js에는 테스트 규칙
+*.api.js에는 API 규칙
+
+"잘 지키려나?"
+```
 
 **배울 것**:
-- `*.test.js.mdc` - 테스트 파일만
-- `*.api.js.mdc` - API 파일만
-- Copilot도 가능한 기능
+- glob 패턴 활용
+- 파일별 조건부 규칙
+- Rules의 한계 체험
 
-**깨달음**: "여전히 프롬프트라서 안 지킬 수 있구나..."
+**깨달음**: "규칙 지정해도 가끔 안 지키네... 여전히 프롬프트 문제가..."
 
 **소요 시간**: 10분
 
 ---
 
 ### [Project 3: Hooks 기본](./projects/03-hooks-basic/README.md)
-**목표**: Hook으로 Agent 동작 감시
+
+**스토리 위치**: 3장 - Hooks 발견
+
+**상황**:
+```
+Hooks라는 걸 발견했다.
+"이게 뭐지? 한번 써보자."
+
+Agent가 뭘 하는지 로깅해봤다.
+```
 
 **배울 것**:
-- `preToolExecution`: 실행 전 체크
+- `preToolExecution`: 실행 전 감시
 - `postToolExecution`: 실행 후 로깅
-- Agent가 무엇을 하는지 100% 파악
+- Agent 동작 완전 파악
 
-**깨달음**: "오! 이건 Copilot에 없는 기능이네!"
+**깨달음**: "오! Agent가 뭘 하는지 다 보이네! 이건 Copilot에 없는 기능이다!"
 
 **소요 시간**: 10분
 
 ---
 
 ### [Project 4: Hooks 보안](./projects/04-hooks-security/README.md)
-**목표**: Hook으로 위험한 작업 강제 차단
+
+**스토리 위치**: 3장 - 깨달음
+
+**상황**:
+```
+Hooks로 위험한 명령을 차단해봤다.
+rm -rf? 차단!
+DROP TABLE? 차단!
+.env 파일 수정? 차단!
+```
 
 **배울 것**:
-- 위험 명령 차단 (`rm -rf`, `DROP TABLE`)
-- 폴더 보호 (`.env`, `config/`)
-- 감사 로그 (모든 파일 수정 기록)
+- 위험 명령 강제 차단
+- 보호 폴더 설정
+- 감사 로그 작성
 
-**깨달음**: "이거다! 이게 Cursor로 와야 하는 이유!"
+**깨달음**: "이거다! 이게 Cursor로 와야 하는 이유! 100% 차단이 가능하다!"
 
 **소요 시간**: 20분
 
@@ -265,116 +364,75 @@ export async function preToolExecution(context) {
 
 ## 📖 학습 순서
 
-### Step 1: 공통점 이해 (10분)
+### Step 1: 스토리 이해 (10분)
 
 이 README를 읽으면서:
-1. Copilot과 Cursor의 공통점 확인
-2. Instructions/Rules의 한계 이해
-3. Hooks의 필요성 깨달음
+1. Copilot 사용자의 고민 공감
+2. Rules의 한계 이해
+3. Hooks의 발견
 
-### Step 2: Rules 실습 (20분)
+### Step 2: 익숙한 것 확인 (20분)
 
 1. **[Project 1: Rules 기본](./projects/01-rules-basic/README.md)** (10분)
-   - "Copilot과 똑같네..."
+   - "Copilot이랑 똑같네..."
 
 2. **[Project 2: Rules Globs](./projects/02-rules-globs/README.md)** (10분)
    - "여전히 프롬프트 문제가..."
 
-### Step 3: Hooks 실습 (30분)
+### Step 3: 새로운 것 발견 (30분)
 
 1. **[Project 3: Hooks 기본](./projects/03-hooks-basic/README.md)** (10분)
-   - "오! 이건 새로운 기능!"
+   - "오! 이건 새롭다!"
 
 2. **[Project 4: Hooks 보안](./projects/04-hooks-security/README.md)** (20분)
-   - "완벽하다! 이제 안전해!"
-
-### Step 4: 복습 (10분)
-
-- [ ] Copilot과 Cursor의 공통점 설명 가능?
-- [ ] Hooks가 왜 필요한지 이해?
-- [ ] Hooks의 강력함 체감?
+   - "이거다! 이게 차이!"
 
 ---
 
-## 💡 핵심 깨달음
+## 💡 에필로그: 첫 번째 발견을 마치며
 
-### Copilot과 Cursor의 관계
-
-```
-공통점 (95%):
-- Agent 모드
-- Plan 모드
-- Instructions/Rules
-- Prompts/Commands
-- MCP
-
-차이점 (5%):
-- Hooks (Cursor만!)
-```
-
-### 학습 흐름
+### 1교시에서 배운 것
 
 ```
-Step 1: Rules 실습
-  "어? Copilot과 똑같은데?"
+Copilot → Cursor 전환
+
+처음: "똑같은 거 아냐?"
   ↓
-Step 2: Rules의 한계
-  "여전히 프롬프트라서 안 지켜지네..."
+Rules 체험: "여전히 프롬프트 문제..."
   ↓
-Step 3: Hooks 발견
-  "오! 이건 Copilot에 없는 기능!"
+Hooks 발견: "오! 이건 다르다!"
   ↓
-Step 4: Hooks 체험
-  "이거다! 이게 Cursor로 와야 하는 이유!"
+Hooks 체험: "이게 Cursor의 핵심이구나!"
 ```
 
----
+### 효과
 
-## 🎓 실전 효과
-
-### 리뷰 시간 단축
-
-**Before (Copilot/Cursor Rules만)**:
 ```
-AI 코드 생성: 5분
-리뷰 및 수정: 15분
-총 20분
-```
+Before (Copilot/Rules만):
+- AI 코드 생성: 5분
+- 리뷰 및 수정: 15분
+- 총 20분
 
-**After (Cursor Hooks 사용)**:
-```
-AI 코드 생성: 5분
-리뷰 및 수정: 3분 (70% 감소!)
-총 8분
+After (Hooks 사용):
+- AI 코드 생성: 5분
+- 리뷰 및 수정: 3분 (70% 감소!)
+- 총 8분
 ```
 
-### 안전성 향상
+### 다음 질문
 
-**Before (Instructions/Rules만)**:
 ```
-위험한 명령 실행 가능
-  ↓
-사고 발생 가능
-  ↓
-😱 불안
-```
+"Hooks가 Cursor의 핵심이구나!"
+"그런데... Hooks 말고 또 뭐가 있지?"
 
-**After (Hooks 사용)**:
-```
-위험한 명령 100% 차단
-  ↓
-사고 불가능
-  ↓
-😌 안심
+2교시에서 계속...
 ```
 
 ---
 
 ## ⏭ 다음 교시
 
-[2교시: Debug Mode & Visual Editor](../session-02/README.md)
-
-**1교시를 완료하면 Cursor만의 강력함을 체감할 수 있습니다!** 🎉
+[2교시: 두 번째 발견 - 다채로운 기능](../session-02/README.md)
 
 ---
 
