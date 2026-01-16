@@ -17,6 +17,7 @@
 Copilot 사용자들이 자주 겪는 문제가 있습니다. AI가 지시를 따르지 않거나, 위험한 명령을 실행하는 경우입니다. 이번 교시에서는 Cursor만의 핵심 기능인 Hooks를 통해 이 문제를 해결하는 방법을 배웁니다.
 
 **학습 목표**:
+
 - Copilot과 Cursor의 공통점 이해
 - Rules(프롬프트)의 한계 인식
 - Hooks를 통한 Agent 제어 방법 습득
@@ -30,6 +31,7 @@ Copilot 사용자들이 자주 겪는 문제가 있습니다. AI가 지시를 �
 ### 주요 공통 기능
 
 #### Agent 모드
+
 ```
 Copilot: Ask Agent
 Cursor: Agent (Chat)
@@ -39,6 +41,7 @@ Cursor: Agent (Chat)
 ```
 
 #### Plan 모드
+
 ```
 Copilot: Plan Mode
 Cursor: Plan Mode
@@ -48,6 +51,7 @@ Cursor: Plan Mode
 ```
 
 #### Instructions / Rules
+
 ```
 Copilot: .github/copilot-instructions.md
 Cursor: .cursorrules
@@ -59,6 +63,7 @@ Cursor: .cursorrules
 ```
 
 #### Prompts / Commands
+
 ```
 Copilot: 저장된 Prompts
 Cursor: 저장된 Commands
@@ -68,6 +73,7 @@ Cursor: 저장된 Commands
 ```
 
 #### MCP
+
 ```
 Copilot: MCP 지원
 Cursor: MCP 지원
@@ -122,6 +128,7 @@ Rules와 Instructions는 본질적으로 **프롬프트**입니다.
 Hooks는 Agent의 동작을 **코드로 감시하고 제어**하는 기능입니다.
 
 **핵심 차이점**:
+
 - Rules: 프롬프트 (요청) → 선택적 준수
 - Hooks: 코드 (강제) → 100% 강제
 
@@ -132,15 +139,15 @@ Hooks는 Agent의 동작을 **코드로 감시하고 제어**하는 기능입니
 
 export async function preToolExecution(context) {
   const { tool, args } = context;
-  
+
   // Agent가 rm -rf 실행하려고 할 때
-  if (args.command?.includes('rm -rf')) {
+  if (args.command?.includes("rm -rf")) {
     return {
-      block: true,  // 강제 차단!
-      reason: '위험한 명령어입니다'
+      block: true, // 강제 차단!
+      reason: "위험한 명령어입니다",
     };
   }
-  
+
   return { block: false };
 }
 ```
@@ -148,6 +155,7 @@ export async function preToolExecution(context) {
 ### 효과
 
 Hooks를 사용하면:
+
 - Rules: "rm -rf 쓰지 마" → 가끔 무시됨
 - Hooks: `block: true` → **100% 차단**
 
@@ -155,23 +163,23 @@ Hooks를 사용하면:
 
 ### Copilot vs Cursor
 
-| 특징 | Copilot | Cursor |
-|------|---------|--------|
-| **Agent 모드** | ✅ | ✅ |
-| **Plan 모드** | ✅ | ✅ |
-| **Instructions/Rules** | ✅ | ✅ |
-| **Prompts/Commands** | ✅ | ✅ |
-| **MCP** | ✅ | ✅ |
-| **Hooks** | ❌ 없음 | ✅ **있음!** |
+| 특징                   | Copilot | Cursor       |
+| ---------------------- | ------- | ------------ |
+| **Agent 모드**         | ✅      | ✅           |
+| **Plan 모드**          | ✅      | ✅           |
+| **Instructions/Rules** | ✅      | ✅           |
+| **Prompts/Commands**   | ✅      | ✅           |
+| **MCP**                | ✅      | ✅           |
+| **Hooks**              | ❌ 없음 | ✅ **있음!** |
 
 ### 프롬프트 vs 코드
 
-| 특징 | Rules/Instructions | Hooks |
-|------|-------------------|-------|
-| **성격** | 요청 (프롬프트) | 강제 (코드) |
-| **준수** | 가끔 안 지킴 | 100% 지킴 |
-| **리뷰** | 필요함 | 불필요 |
-| **안전** | 위험 가능 | 안전 보장 |
+| 특징     | Rules/Instructions | Hooks       |
+| -------- | ------------------ | ----------- |
+| **성격** | 요청 (프롬프트)    | 강제 (코드) |
+| **준수** | 가끔 안 지킴       | 100% 지킴   |
+| **리뷰** | 필요함             | 불필요      |
+| **안전** | 위험 가능          | 안전 보장   |
 
 ---
 
@@ -195,6 +203,7 @@ Hooks를 사용하면:
 **스토리 위치**: 1장 - 익숙한 것들
 
 **상황**:
+
 ```
 Cursor에 처음 왔다.
 Rules를 작성해보자.
@@ -202,6 +211,7 @@ Rules를 작성해보자.
 ```
 
 **배울 것**:
+
 - 전역 `.cursorrules` 작성
 - 폴더별 Rules 작성
 - Copilot Instructions와 비교
@@ -217,6 +227,7 @@ Rules를 작성해보자.
 **스토리 위치**: 2장 - 문제 발견
 
 **상황**:
+
 ```
 파일 타입별로 다른 규칙을 적용해봤다.
 *.test.js에는 테스트 규칙
@@ -226,6 +237,7 @@ Rules를 작성해보자.
 ```
 
 **배울 것**:
+
 - glob 패턴 활용
 - 파일별 조건부 규칙
 - Rules의 한계 체험
@@ -241,6 +253,7 @@ Rules를 작성해보자.
 **스토리 위치**: 3장 - Hooks 발견
 
 **상황**:
+
 ```
 Hooks라는 걸 발견했다.
 "이게 뭐지? 한번 써보자."
@@ -249,6 +262,7 @@ Agent가 뭘 하는지 로깅해봤다.
 ```
 
 **배울 것**:
+
 - `preToolExecution`: 실행 전 감시
 - `postToolExecution`: 실행 후 로깅
 - Agent 동작 완전 파악
@@ -264,6 +278,7 @@ Agent가 뭘 하는지 로깅해봤다.
 **스토리 위치**: 3장 - 깨달음
 
 **상황**:
+
 ```
 Hooks로 위험한 명령을 차단해봤다.
 rm -rf? 차단!
@@ -272,6 +287,7 @@ DROP TABLE? 차단!
 ```
 
 **배울 것**:
+
 - 위험 명령 강제 차단
 - 보호 폴더 설정
 - 감사 로그 작성
@@ -287,6 +303,7 @@ DROP TABLE? 차단!
 ### Step 1: 스토리 이해 (10분)
 
 이 README를 읽으면서:
+
 1. Copilot 사용자의 고민 공감
 2. Rules의 한계 이해
 3. Hooks의 발견
@@ -294,6 +311,7 @@ DROP TABLE? 차단!
 ### Step 2: 익숙한 것 확인 (20분)
 
 1. **[Project 1: Rules 기본](./projects/01-rules-basic/README.md)** (10분)
+
    - "Copilot이랑 똑같네..."
 
 2. **[Project 2: Rules Globs](./projects/02-rules-globs/README.md)** (10분)
@@ -302,6 +320,7 @@ DROP TABLE? 차단!
 ### Step 3: 새로운 것 발견 (30분)
 
 1. **[Project 3: Hooks 기본](./projects/03-hooks-basic/README.md)** (10분)
+
    - "오! 이건 새롭다!"
 
 2. **[Project 4: Hooks 보안](./projects/04-hooks-security/README.md)** (20분)
@@ -314,6 +333,7 @@ DROP TABLE? 차단!
 1교시에서는 Hooks를 통한 Agent 제어 방법을 배웠습니다.
 
 2교시에서는 Cursor의 추가 기능들을 살펴보겠습니다:
+
 - Debug Mode: 버그 원인 정확히 파악
 - Visual Editor: UI 직접 선택해서 수정
 

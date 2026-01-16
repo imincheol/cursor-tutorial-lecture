@@ -16,6 +16,7 @@
 1교시에서 Hooks를 통한 Agent 제어를 배웠습니다. 이번 교시에서는 Cursor의 추가 기능인 Debug Mode와 Visual Editor를 살펴봅니다.
 
 **학습 목표**:
+
 - Debug Mode로 버그 원인 정확히 파악하기
 - Visual Editor로 UI 직접 선택해서 수정하기
 
@@ -26,6 +27,7 @@
 ### 기존 방식의 문제점
 
 일반적으로 버그를 수정할 때:
+
 1. AI에게 버그 수정 요청
 2. AI가 코드를 보고 **추측**해서 수정
 3. 추측이 틀리면 반복
@@ -45,19 +47,19 @@ Debug Mode는 **추측 대신 실제 실행**으로 버그를 찾습니다.
 function login(user, password) {
   const result = authenticate(user, password);
   if (result) {
-    redirect('/dashboard');
+    redirect("/dashboard");
   }
 }
 
 // Debug Mode 활성화 후
 function login(user, password) {
-  console.log('[DEBUG] user:', user);
-  console.log('[DEBUG] password:', password);
+  console.log("[DEBUG] user:", user);
+  console.log("[DEBUG] password:", password);
   const result = authenticate(user, password);
-  console.log('[DEBUG] result:', result);
+  console.log("[DEBUG] result:", result);
   if (result) {
-    console.log('[DEBUG] redirecting...');
-    redirect('/dashboard');
+    console.log("[DEBUG] redirecting...");
+    redirect("/dashboard");
   }
 }
 ```
@@ -79,12 +81,12 @@ function login(user, password) {
 
 실행 결과를 직접 확인하므로 정확도가 높고 빠릅니다.
 
-| 방식 | Copilot | Cursor Debug Mode |
-|------|---------|-------------------|
-| **접근** | 코드 보고 추측 | 실행해서 확인 |
-| **정확도** | 낮음 | 높음 |
-| **반복** | 여러 번 | 한 번 |
-| **시간** | 오래 걸림 | 빠름 |
+| 방식       | Copilot        | Cursor Debug Mode |
+| ---------- | -------------- | ----------------- |
+| **접근**   | 코드 보고 추측 | 실행해서 확인     |
+| **정확도** | 낮음           | 높음              |
+| **반복**   | 여러 번        | 한 번             |
+| **시간**   | 오래 걸림      | 빠름              |
 
 ---
 
@@ -93,6 +95,7 @@ function login(user, password) {
 ### 기존 방식의 문제점
 
 UI를 수정할 때:
+
 1. 말로 요소 설명 ("왼쪽 위 파란 버튼")
 2. AI가 추측해서 수정
 3. 틀리면 다시 설명 반복
@@ -121,12 +124,12 @@ Step 4: 즉시 수정!
 
 말로 설명할 필요 없이 직접 선택하므로 빠르고 정확합니다.
 
-| 방식 | Copilot | Cursor Visual Editor |
-|------|---------|---------------------|
-| **선택** | 말로 설명 | 클릭으로 선택 |
-| **정확도** | 추측 필요 | 정확함 |
-| **소통** | 여러 번 | 한 번 |
-| **시간** | 오래 걸림 | 빠름 |
+| 방식       | Copilot   | Cursor Visual Editor |
+| ---------- | --------- | -------------------- |
+| **선택**   | 말로 설명 | 클릭으로 선택        |
+| **정확도** | 추측 필요 | 정확함               |
+| **소통**   | 여러 번   | 한 번                |
+| **시간**   | 오래 걸림 | 빠름                 |
 
 ---
 
@@ -149,6 +152,7 @@ Step 4: 즉시 수정!
 **스토리 위치**: 2장 - Debug Mode 발견
 
 **상황**:
+
 ```
 로그인 버튼을 클릭해도 아무 반응이 없다.
 콘솔에 에러도 없다.
@@ -158,6 +162,7 @@ Debug Mode를 켜봤다.
 ```
 
 **배울 것**:
+
 - Debug Mode 활성화
 - 자동 로그 삽입
 - 실제 값 확인
@@ -173,6 +178,7 @@ Debug Mode를 켜봤다.
 **스토리 위치**: 2장 - Debug Mode 활용
 
 **상황**:
+
 ```
 사용자 목록이 안 나온다.
 네트워크 탭에서 404 에러.
@@ -182,6 +188,7 @@ Debug Mode로 추적해봤다.
 ```
 
 **배울 것**:
+
 - API 호출 추적
 - 요청/응답 데이터 확인
 - 에러 원인 파악
@@ -197,6 +204,7 @@ Debug Mode로 추적해봤다.
 **스토리 위치**: 3장 - Visual Editor 발견
 
 **상황**:
+
 ```
 "이 버튼 색상 바꿔주세요"
 "어떤 버튼이요?"
@@ -207,6 +215,7 @@ Visual Editor를 켜봤다.
 ```
 
 **배울 것**:
+
 - Visual Editor 모드 활성화
 - 요소 클릭으로 선택
 - 정확한 수정 요청
@@ -222,6 +231,7 @@ Visual Editor를 켜봤다.
 **스토리 위치**: 3장 - Visual Editor 활용
 
 **상황**:
+
 ```
 카드 레이아웃을 바꿔야 한다.
 그리드에서 플렉스로.
@@ -232,6 +242,7 @@ Visual Editor로 해봤다.
 ```
 
 **배울 것**:
+
 - 복잡한 레이아웃 선택
 - 여러 요소 동시 수정
 - 반응형 디자인 적용
@@ -247,6 +258,7 @@ Visual Editor로 해봤다.
 ### Step 1: 스토리 이해 (10분)
 
 이 README를 읽으면서:
+
 1. 1교시 복습 (Hooks)
 2. Debug Mode의 가치 이해
 3. Visual Editor의 가치 이해
@@ -254,6 +266,7 @@ Visual Editor로 해봤다.
 ### Step 2: Debug Mode 실습 (20분)
 
 1. **[Project 1: 로그인 버그](./projects/01-debug-login-bug/README.md)** (10분)
+
    - "추측 안 해도 되네!"
 
 2. **[Project 2: API 에러](./projects/02-debug-api-error/README.md)** (10분)
@@ -262,6 +275,7 @@ Visual Editor로 해봤다.
 ### Step 3: Visual Editor 실습 (30분)
 
 1. **[Project 3: 버튼 스타일](./projects/03-visual-button-style/README.md)** (10분)
+
    - "클릭만 하면 되네!"
 
 2. **[Project 4: 카드 레이아웃](./projects/04-visual-card-layout/README.md)** (20분)
@@ -274,6 +288,7 @@ Visual Editor로 해봤다.
 2교시에서는 Debug Mode와 Visual Editor를 배웠습니다.
 
 3교시에서는 IDE를 벗어나 터미널에서 개발하는 방법을 살펴보겠습니다:
+
 - CLI Agent로 터미널에서 Agent 사용하기
 - SSH, CI/CD 환경에서 활용하기
 
