@@ -1,4 +1,4 @@
-# 2교시: Debug Mode & Visual Editor
+# 2장: Debug Mode & Visual Editor
 
 > **버그 해결과 UI 수정을 더 빠르고 정확하게**
 
@@ -13,7 +13,7 @@
 
 ## 📝 강의 개요
 
-1교시에서 Hooks를 통한 Agent 제어를 배웠습니다. 이번 교시에서는 Cursor의 추가 기능인 Debug Mode와 Visual Editor를 살펴봅니다.
+안녕하세요. 1장에서 Hooks를 통한 Agent 제어를 배웠습니다. 이번 장에서는 Cursor의 추가 기능인 Debug Mode와 Visual Editor를 살펴보겠습니다.
 
 **학습 목표**:
 

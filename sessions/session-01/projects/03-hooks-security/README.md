@@ -1,4 +1,4 @@
-# Project 4: Hooks 보안
+# Project 3: Hooks 보안
 
 ## 🎯 학습 목표
 

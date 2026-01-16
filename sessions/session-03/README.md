@@ -1,4 +1,4 @@
-# 3교시: CLI Agent - 터미널에서 개발하기
+# 3장: CLI Agent - 터미널에서 개발하기
 
 > **IDE 없이 터미널에서도 Agent를 사용하는 방법**
 
@@ -13,7 +13,7 @@
 
 ## 📝 강의 개요
 
-지금까지 배운 기능들(Hooks, Debug Mode, Visual Editor)은 모두 IDE 안에서 사용하는 기능입니다. 이번 교시에서는 터미널에서도 Agent를 사용할 수 있는 CLI Agent를 소개합니다.
+안녕하세요. 지금까지 배운 기능들(Hooks, Debug Mode, Visual Editor)은 모두 IDE 안에서 사용하는 기능입니다. 이번 장에서는 터미널에서도 Agent를 사용할 수 있는 CLI Agent를 소개하겠습니다.
 
 **학습 목표**:
 

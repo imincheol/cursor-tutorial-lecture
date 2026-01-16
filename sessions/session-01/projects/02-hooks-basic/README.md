@@ -1,4 +1,4 @@
-# Project 3: Hooks 기본
+# Project 2: Hooks 기본
 
 ## 🎯 학습 목표
 
