@@ -1,4 +1,5 @@
 # API 파일 규칙 (*.api.js 파일에만 적용)
+# 파일명: glob-api-js.mdc (원래: *.api.js.mdc)
 
 - axios를 사용하세요
 - 모든 API 호출에 에러 처리를 추가하세요
