@@ -9,6 +9,7 @@
 1장에서 Rules의 한계를 경험했습니다. Rules는 프롬프트이기 때문에 AI가 가끔 무시합니다. Hooks는 **코드**로 Agent를 제어하므로 100% 강제할 수 있습니다.
 
 **학습 목표**:
+
 - preToolExecution으로 사전 차단
 - postToolExecution으로 사후 점검
 - 위험 명령 100% 차단
@@ -34,14 +35,14 @@
 // .cursor/hooks/security.js
 export async function preToolExecution(context) {
   const { args } = context;
-  
+
   if (args.command?.includes('rm -rf')) {
     return {
       block: true,  // 강제 차단!
       reason: '위험한 명령어입니다'
     };
   }
-  
+
   return { block: false };
 }
 
@@ -61,6 +62,7 @@ rm -rf tests/ patches/ plan/ ~/
 끝의 `~/`가 홈 디렉터리 전체를 가리켜서 Desktop, Documents 등이 모두 삭제되었습니다.
 
 **Hooks로 방지**:
+
 - preToolExecution에서 `~/` 패턴 감지
 - 100% 차단
 - 사고 예방
@@ -70,6 +72,7 @@ rm -rf tests/ patches/ plan/ ~/
 ## 🚀 실습 프로젝트
 
 ### Project 1: Hooks 기본 (예정)
+
 ### Project 2: 보안 Hooks (예정)
 
 ※ 프로젝트는 추후 추가 예정입니다.
