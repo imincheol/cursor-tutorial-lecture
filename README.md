@@ -2,12 +2,12 @@
 
 > **Copilot 사용자를 위한 Cursor 전환 가이드**
 
-**학습 시간**: 6-8시간 (실습 중심, 유연한 시간 구성)  
+**학습 시간**: 4시간 (실습 중심, 유연한 시간 구성)  
 **학습 시기**: 2월 중  
 **강사**: 이민철(인터랙티브개발팀)  
 **방식**: 강의 + 실습 병행  
 **환경**: Cursor IDE  
-**난이도**: 입문 ~ 고급 (1-7장: 기본, 8-10장: 심화)
+**난이도**: 입문 ~ 초급 (1-7장: 기본 4시간, 8-10장: 보충 자료)
 
 ---
 
@@ -24,22 +24,20 @@
 
 ## 🎯 교육 대상
 
-**기본 과정 (1-7장)**:
 - GitHub Copilot을 사용 중인 개발자
 - Cursor로 전환을 고려하는 마크업/프론트엔드 개발자
 - Cursor의 핵심 기능들을 체계적으로 배우고 싶은 분
+- Debug Mode, Hooks, Visual Editor 등 실전 기능을 익히고 싶은 분
 
-**심화 과정 (8-10장)**:
-- Multi-Agent 패턴과 오케스트레이션을 학습하고 싶은 분
-- 복잡한 프로젝트에서 Agent를 효율적으로 활용하고 싶은 분
-- 향후 도입될 Agent Skills와 Sub-Agent에 대비하고 싶은 분
+※ 8-10장은 보충 자료로, 시간 여유가 있을 때 학습하시면 됩니다.
 
 ---
 
 ## 📝 강의 개요
 
-**기본 과정 (1-7장)**:
-- 1장: GitHub Copilot과 Cursor의 공통점 이해 (Rules, MCP 등)
+**기본 강의 (1-7장, 4시간)**:
+
+- 1장: GitHub Copilot과 Cursor의 공통점 이해 (Rules 등)
 - 2장: Debug Mode - 실행 기반 버그 해결
 - 3장: Hooks - Agent 동작 감시 및 제어 (핵심!)
 - 4장: Visual Editor - 클릭 기반 UI 수정
@@ -47,7 +45,8 @@
 - 6장: Git Worktree - 독립 환경 구성
 - 7장: Multi-Agent - 병렬 작업
 
-**심화 과정 (8-10장)**:
+**보충 자료 (8-10장, 선택)**:
+
 - 8장: Agent Skills & Sub-Agent (향후 도입 예정 기능)
 - 9장: Orchestration - 복잡한 작업 자동화
 - 10장: 실전 프로젝트 - 종합 실습
@@ -57,17 +56,21 @@
 ## 🔑 과정에 언급되는 Cursor 키워드
 
 **공통 기능 (Copilot과 동일)**:
+
 - Rules / Instructions
-- MCP (Model Context Protocol)
 - Agent / Plan Mode
 
-**Cursor 전용 기능**:
+**Cursor 전용 기능 (기본 강의)**:
+
 - **Debug Mode** - 실행 기반 디버깅
 - **Hooks** - Agent 제어 (preToolExecution, postToolExecution)
 - **Visual Editor** - 브라우저 UI 편집
 - **CLI Agent** - 터미널 Agent
 - **Git Worktree** - 독립 환경
 - **Multi-Agent** - 병렬 작업
+
+**보충 자료**:
+
 - **Agent Skills** (예정) - 재사용 가능한 스킬
 - **Sub-Agent** (예정) - 하위 Agent 위임
 - **Orchestration** - 복잡한 워크플로우
@@ -76,14 +79,14 @@
 
 ## 📖 학습 여정
 
-안녕하세요. 이번 튜토리얼에서는 Copilot을 사용하시던 분들이 Cursor로 전환할 때 알아야 할 모든 내용을 다룹니다.
+안녕하세요. 이번 튜토리얼에서는 Copilot을 사용하시던 분들이 Cursor로 전환할 때 알아야 할 핵심 내용을 4시간 안에 다룹니다.
 
 ```
 Copilot과 Cursor, 무엇이 같고 무엇이 다를까요?
 
-[기본 과정: Copilot과의 공통점과 차이점]
+[4시간 기본 강의: Copilot과의 공통점과 차이점]
 
-1장: Copilot과의 공통점 → Rules, MCP 등 동일한 기능들
+1장: Copilot과의 공통점 → Rules 등 동일한 기능들
   ↓
 2장: Debug Mode → 추측이 아닌 실행으로 버그 해결
   ↓
@@ -97,13 +100,11 @@ Copilot과 Cursor, 무엇이 같고 무엇이 다를까요?
   ↓
 7장: Multi-Agent → 병렬 작업
 
-[심화 과정: 고급 활용법]
+[보충 자료: 시간 여유가 있을 때]
 
-8장: Agent Skills & Sub-Agent → 향후 도입 예정 기능 미리보기
-  ↓
-9장: Orchestration → 복잡한 작업 자동화
-  ↓
-10장: 실전 프로젝트 → 종합 실습
+8장: Agent Skills & Sub-Agent (향후 도입 예정)
+9장: Orchestration (복잡한 작업 자동화)
+10장: 실전 프로젝트 (종합 실습)
 ```
 
 각 장마다 실습 프로젝트가 준비되어 있으니, 직접 따라하시면서 체득하시기 바랍니다.
@@ -122,16 +123,15 @@ Copilot과 Cursor, 무엇이 같고 무엇이 다를까요?
 
 Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금한 것이 "뭐가 다르지?"입니다. 하지만 먼저 공통점부터 확인하겠습니다.
 
-**Ask, Agent, Plan 모드**는 동일합니다. **Rules**(Copilot의 Instructions)도 동일하고, **MCP**(Model Context Protocol)도 동일합니다. 즉, Copilot에서 사용하던 대부분의 기능을 Cursor에서도 그대로 사용할 수 있습니다.
+**Ask, Agent, Plan 모드**는 동일합니다. **Rules**(Copilot의 Instructions)도 동일합니다. 즉, Copilot에서 사용하던 대부분의 기능을 Cursor에서도 그대로 사용할 수 있습니다.
 
-이번 장에서는 Rules를 작성하고, glob 패턴으로 파일별 규칙을 적용하며, MCP로 외부 도구를 연동하는 방법을 실습합니다. Copilot 사용자라면 매우 익숙한 내용일 것입니다.
+이번 장에서는 Rules를 작성하고, glob 패턴으로 파일별 규칙을 적용하는 방법을 실습합니다. Copilot 사용자라면 매우 익숙한 내용일 것입니다. 하지만 곧 Rules의 한계도 경험하게 됩니다.
 
-**실습 프로젝트** (2개):
+**실습 프로젝트** (1개):
 
 1. `01-rules-basic` - Rules 기본 사용법 (Globs 패턴 포함)
-2. `02-mcp-basic` - MCP로 외부 도구 연동
 
-**학습 효과**: Copilot 경험을 Cursor에서 그대로 활용
+**학습 효과**: Copilot 경험을 Cursor에서 그대로 활용, Rules의 한계 인식
 
 ---
 
@@ -255,6 +255,7 @@ Copilot에도 CLI가 있지만 명령어 생성만 가능하고, 실제 코드 �
 지금까지 배운 모든 기능을 종합합니다. IDE에서는 메인 기능을 개발하고, 터미널에서는 동시에 다른 작업을 진행하는 **Multi-Agent 패턴**을 실습합니다.
 
 예를 들어:
+
 - IDE Agent: 메인 기능 개발
 - CLI Agent 1: 테스트 작성
 - CLI Agent 2: 문서 작성
@@ -337,11 +338,13 @@ Cursor에 향후 도입될 예정인 **Agent Skills**와 **Sub-Agent** 기능을
 지금까지 배운 모든 내용을 종합하는 실전 프로젝트를 진행합니다.
 
 **프로젝트 시나리오**:
+
 - 요구사항: 간단한 TODO 앱 개발 (프론트엔드 + 백엔드)
 - 제약사항: 4시간 내 완성
 - 활용 기능: Debug Mode, Hooks, Visual Editor, CLI Agent, Multi-Agent, Orchestration
 
 **진행 방식**:
+
 1. 요구사항 분석 Agent
 2. 설계 Agent
 3. 프론트엔드 개발 Agent (IDE + Visual Editor)
@@ -382,24 +385,24 @@ cat README.md
 
 ### 3. 학습 경로
 
-**기본 과정 (4-5시간)**:
+**기본 강의 (4시간)**:
 
 ```
-1장: Copilot 공통점 → Rules, MCP
-2장: Debug Mode → 실행 기반 디버깅
-3장: Hooks → AI Agent 제어 (핵심!)
-4장: Visual Editor → 클릭 기반 UI 수정
-5장: CLI Agent → 터미널 개발
-6장: Git Worktree → 독립 환경
-7장: Multi-Agent → 병렬 작업
+1장: Copilot 공통점 → Rules (30분)
+2장: Debug Mode → 실행 기반 디버깅 (30분)
+3장: Hooks → AI Agent 제어 (핵심!) (40분)
+4장: Visual Editor → 클릭 기반 UI 수정 (30분)
+5장: CLI Agent → 터미널 개발 (30분)
+6장: Git Worktree → 독립 환경 (30분)
+7장: Multi-Agent → 병렬 작업 (30분)
 ```
 
-**심화 과정 (2-3시간, 선택)**:
+**보충 자료 (선택)**:
 
 ```
-8장: Agent Skills & Sub-Agent → 향후 기능 대비
-9장: Orchestration → 복잡한 작업 자동화
-10장: 실전 프로젝트 → 종합 실습
+8장: Agent Skills & Sub-Agent (향후 도입 예정)
+9장: Orchestration (복잡한 작업 자동화)
+10장: 실전 프로젝트 (종합 실습)
 ```
 
 ※ 각 장의 시간은 실습 진행 속도에 따라 유연하게 조정됩니다.
@@ -408,16 +411,18 @@ cat README.md
 
 ## 📊 학습 성과
 
-**기본 과정**:
-- Copilot 경험을 Cursor에서 그대로 활용 (Rules, MCP)
+**4시간 기본 강의 완료 후**:
+
+- Copilot 경험을 Cursor에서 그대로 활용 (Rules)
 - Debug Mode로 버그 원인 정확히 파악 (50% 빠름)
-- Hooks로 Agent 동작 제어 및 위험 작업 100% 차단
+- Hooks로 Agent 동작 제어 및 위험 작업 100% 차단 (핵심!)
 - Visual Editor로 UI 직접 선택해서 수정 (70% 빠름)
 - CLI Agent로 터미널에서 개발 (SSH/CI/CD 활용)
 - Git Worktree로 독립 환경 구성 (컨텍스트 오염 없음)
 - Multi-Agent로 병렬 작업 (의사결정 3배 빠름)
 
-**심화 과정**:
+**보충 자료 학습 시**:
+
 - Agent Skills & Sub-Agent 패턴 구현 (향후 기능 대비)
 - Orchestration으로 복잡한 작업 자동화
 - 실전 프로젝트로 모든 기능 종합 활용
@@ -426,19 +431,21 @@ cat README.md
 
 ## 🎓 Cursor 기능 맵
 
-| 기능                     | 설명                         | 학습 장 | 난이도 |
-| ------------------------ | ---------------------------- | ------- | ------ |
-| **Rules / MCP**          | Copilot과 동일               | 1장     | 🟢     |
-| **Debug Mode**           | 실행 기반 디버깅             | 2장     | 🟢     |
-| **Hooks**                | Agent 제어 (핵심!)           | 3장     | 🟢     |
-| **Visual Editor**        | 클릭 기반 UI 수정            | 4장     | 🟢     |
-| **CLI Agent**            | 터미널 Agent                 | 5장     | 🟢     |
-| **Git Worktree**         | 독립 환경                    | 6장     | 🟢     |
-| **Multi-Agent**          | 병렬 작업                    | 7장     | 🟢     |
-| **Agent Skills**         | 재사용 스킬 (예정)           | 8장     | 🟡     |
-| **Sub-Agent**            | 하위 Agent (예정)            | 8장     | 🟡     |
-| **Orchestration**        | 복잡한 작업 자동화           | 9장     | 🟡     |
-| **실전 프로젝트**        | 종합 실습                    | 10장    | 🔴     |
+| 기능              | 설명               | 학습 장       | 시간  |
+| ----------------- | ------------------ | ------------- | ----- |
+| **Rules**         | Copilot과 동일     | 1장 (기본)    | 30분  |
+| **Debug Mode**    | 실행 기반 디버깅   | 2장 (기본)    | 30분  |
+| **Hooks**         | Agent 제어 (핵심!) | 3장 (기본)    | 40분  |
+| **Visual Editor** | 클릭 기반 UI 수정  | 4장 (기본)    | 30분  |
+| **CLI Agent**     | 터미널 Agent       | 5장 (기본)    | 30분  |
+| **Git Worktree**  | 독립 환경          | 6장 (기본)    | 30분  |
+| **Multi-Agent**   | 병렬 작업          | 7장 (기본)    | 30분  |
+| **Agent Skills**  | 재사용 스킬 (예정) | 8장 (보충)    | 선택  |
+| **Sub-Agent**     | 하위 Agent (예정)  | 8장 (보충)    | 선택  |
+| **Orchestration** | 복잡한 작업 자동화 | 9장 (보충)    | 선택  |
+| **실전 프로젝트** | 종합 실습          | 10장 (보충)   | 선택  |
+
+※ 기본 강의 총 4시간, 보충 자료는 시간 여유가 있을 때 학습
 
 ---
 
@@ -448,19 +455,19 @@ cat README.md
 cursor-tutorial/
 ├── README.md              # 이 파일
 └── sessions/              # 장별 실습
-    ├── session-01/        # 1장: Copilot 공통점 (2개 프로젝트)
+    ├── session-01/        # 1장: Copilot 공통점 (1개 프로젝트)
     ├── session-02/        # 2장: Debug Mode (2개 프로젝트)
     ├── session-03/        # 3장: Hooks (2개 프로젝트)
     ├── session-04/        # 4장: Visual Editor (2개 프로젝트)
     ├── session-05/        # 5장: CLI Agent (2개 프로젝트)
     ├── session-06/        # 6장: Git Worktree (2개 프로젝트)
     ├── session-07/        # 7장: Multi-Agent (2개 프로젝트)
-    ├── session-08/        # 8장: Agent Skills & Sub-Agent (2개 프로젝트)
-    ├── session-09/        # 9장: Orchestration (2개 프로젝트)
-    └── session-10/        # 10장: 실전 프로젝트 (1개 프로젝트)
+    ├── session-08/        # 8장: Agent Skills & Sub-Agent (보충)
+    ├── session-09/        # 9장: Orchestration (보충)
+    └── session-10/        # 10장: 실전 프로젝트 (보충)
 ```
 
-**총 19개 실습 프로젝트** (기본 14개 + 심화 5개)
+**총 13개 실습 프로젝트** (기본 강의 4시간)
 
 ---
 
