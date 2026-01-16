@@ -2,32 +2,55 @@
 
 > **Copilot 사용자를 위한 Cursor 전환 가이드**
 
+**학습 시간**: 4시간 (50분 × 4교시)  
+**학습 시기**: 2월 중  
+**강사**: 이민철(인터랙티브개발팀)  
+**방식**: 실습 중심 + 설명 병행  
+**환경**: Cursor IDE  
+**난이도**: 입문 ~ 초급
+
+---
+
 ## 📋 목차
 
-- [강의 소개](#-강의-소개)
+- [교육 대상](#-교육-대상)
+- [강의 개요](#-강의-개요)
 - [전체 스토리](#-전체-스토리)
 - [기본 강의 (1-4교시)](#-기본-강의-1-4교시)
 - [시작하기](#-시작하기)
 
 ---
 
-## 🎯 강의 소개
+## 🎯 교육 대상
 
-### 대상
+- GitHub Copilot을 사용 중인 개발자
+- Cursor로 전환을 고려하는 마크업/프론트엔드 개발자
+- Hooks로 AI Agent를 제어하는 방식이 궁금한 분
+- Debug Mode와 Visual Editor로 버그/UI 수정을 빠르게 하고 싶은 분
+- CLI Agent로 터미널에서 개발하는 방법을 알고 싶은 분
+- Multi-Agent로 병렬 작업 및 독립 환경 구성을 배우고 싶은 분
 
-- GitHub Copilot 경험자
-- 프론트엔드/마크업 개발자
-- Cursor로 전환을 고려하는 개발자
+---
 
-### 시간
+## 📝 강의 개요
 
-- **4시간** (50분 × 4교시)
+- GitHub Copilot과 Cursor 비교 및 공통점 이해
+- Hooks로 Agent 동작 감시 및 제어 (Cursor만의 핵심 기능)
+- Debug Mode와 Visual Editor로 버그 및 UI 수정
+- CLI Agent로 터미널에서 개발
+- Multi-Agent로 병렬 작업
 
-### 특징
+---
 
-- 이론 최소화, 실습 중심
-- 하나의 스토리로 연결된 학습
-- 즉시 사용 가능한 코드 제공
+## 🔑 과정에 언급되는 Cursor 키워드
+
+- **Hooks** (preToolExecution, postToolExecution)
+- **Debug Mode**
+- **Visual Editor**
+- **CLI Agent Mode**
+- **Worktree Multi-Agent**
+- Rules / MCP
+- Agent / Plan Mode
 
 ---
 
@@ -254,7 +277,6 @@ cat README.md
 ```
 cursor-tutorial/
 ├── README.md              # 이 파일
-├── COURSE_INTRO.md        # 강의 소개 문서
 └── sessions/              # 교시별 실습
     ├── session-01/        # 1교시 (4개 프로젝트)
     ├── session-02/        # 2교시 (4개 프로젝트)
