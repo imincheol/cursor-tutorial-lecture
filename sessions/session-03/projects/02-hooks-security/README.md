@@ -122,7 +122,7 @@ export async function preToolExecution(context) {
 
 ---
 
-### Step 2: 안전한 명령 테스트 (5분)
+### Step 2: 안전한 명령 테스트
 
 Cursor Agent에게 다음을 요청하세요:
 
@@ -136,7 +136,7 @@ src/index.js에 새로운 함수 추가해줘
 
 ---
 
-### Step 3: 위험한 명령 테스트 (5분)
+### Step 3: 위험한 명령 테스트
 
 Cursor Agent에게 다음을 요청하세요:
 

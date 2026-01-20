@@ -302,15 +302,15 @@ Rules는 본질적으로 **프롬프트**입니다.
 **실습 방식**:
 
 버그가 있는 간단한 계산기를 **3개의 파일**로 제공합니다:
-1. `1-0-calculator-original.js` - 원본 (참고용)
-2. `1-1-calculator-agent.js` - Agent 모드 실습용
-3. `1-2-calculator-debug.js` - Debug 모드 실습용
+1. `2-0-calculator-original.js` - 원본 (참고용)
+2. `2-1-calculator-agent.js` - Agent 모드 실습용
+3. `2-2-calculator-debug.js` - Debug 모드 실습용
 
-파일명의 숫자는 실습 순서를 나타냅니다. 먼저 `1-1-calculator-agent.js`로 **Agent 모드**에서 수정을 시도하고, 그 다음 `1-2-calculator-debug.js`로 **Debug 모드**에서 수정해봅니다. 두 파일을 비교하면서 두 모드의 차이를 직접 체험합니다.
+파일명의 `2-`는 두 번째 실습을 의미합니다. 먼저 `2-1-calculator-agent.js`로 **Agent 모드**에서 수정을 시도하고, 그 다음 `2-2-calculator-debug.js`로 **Debug 모드**에서 수정해봅니다. 두 파일을 비교하면서 두 모드의 차이를 직접 체험합니다.
 
 **실습 예시**:
-- Agent 모드 (`1-1-calculator-agent.js`): "아마도 이 부분이 문제일 것 같습니다..." (추측)
-- Debug 모드 (`1-2-calculator-debug.js`): 자동 로그 삽입 → 실행 → "b가 0일 때 Infinity가 반환됩니다" (확인)
+- Agent 모드 (`2-1-calculator-agent.js`): "아마도 이 부분이 문제일 것 같습니다..." (추측)
+- Debug 모드 (`2-2-calculator-debug.js`): 자동 로그 삽입 → 실행 → "b가 0일 때 Infinity가 반환됩니다" (확인)
 
 ---
 

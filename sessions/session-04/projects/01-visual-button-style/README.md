@@ -43,14 +43,14 @@
 
 ## 🚀 실습 단계
 
-### Step 1: 페이지 열기 (2분)
+### Step 1: 페이지 열기
 
 1. `index.html` 파일을 브라우저에서 열기
 2. 여러 개의 버튼이 보이는지 확인
 
 ---
 
-### Step 2: 일반 모드로 시도 (5분)
+### Step 2: 일반 모드로 시도
 
 Cursor Agent에게 다음과 같이 요청하세요:
 
@@ -65,7 +65,7 @@ Cursor Agent에게 다음과 같이 요청하세요:
 
 ---
 
-### Step 3: Visual Editor 활성화 (5분)
+### Step 3: Visual Editor 활성화
 
 1. Cursor Agent 창에서 **Visual Editor** 버튼 클릭
 2. 브라우저가 자동으로 열림 (또는 URL 입력)
@@ -83,7 +83,7 @@ Cursor Agent에게 다음과 같이 요청하세요:
 
 ---
 
-### Step 4: 다양한 스타일 수정 (3분)
+### Step 4: 다양한 스타일 수정
 
 Visual Editor로 다음 작업들을 시도하세요:
 

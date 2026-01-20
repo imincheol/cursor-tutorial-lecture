@@ -33,7 +33,7 @@ worktree-bugfix/   # bugfix 브랜치
 
 ## 🚀 실습 단계
 
-### Step 1: 현재 상태 확인 (2분)
+### Step 1: 현재 상태 확인
 
 ```bash
 # 현재 브랜치 확인
@@ -45,7 +45,7 @@ pwd
 
 ---
 
-### Step 2: 첫 번째 Worktree 생성 (5분)
+### Step 2: 첫 번째 Worktree 생성
 
 ```bash
 # feature 브랜치용 Worktree 생성
@@ -63,7 +63,7 @@ git worktree list
 
 ---
 
-### Step 3: Worktree에서 작업하기 (5분)
+### Step 3: Worktree에서 작업하기
 
 ```bash
 # Worktree로 이동
@@ -88,7 +88,7 @@ ls
 
 ---
 
-### Step 4: 두 번째 Worktree 생성 (3분)
+### Step 4: 두 번째 Worktree 생성
 
 ```bash
 # bugfix 브랜치용 Worktree 생성

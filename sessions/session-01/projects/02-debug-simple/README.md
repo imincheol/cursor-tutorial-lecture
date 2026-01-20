@@ -14,11 +14,11 @@
 
 이 폴더에는 3개의 파일이 준비되어 있습니다:
 
-1. **`1-0-calculator-original.js`** - 원본 파일 (참고용, 수정하지 마세요)
-2. **`1-1-calculator-agent.js`** - Agent 모드 실습용
-3. **`1-2-calculator-debug.js`** - Debug 모드 실습용
+1. **`2-0-calculator-original.js`** - 원본 파일 (참고용, 수정하지 마세요)
+2. **`2-1-calculator-agent.js`** - Agent 모드 실습용
+3. **`2-2-calculator-debug.js`** - Debug 모드 실습용
 
-파일명의 숫자는 실습 순서를 나타냅니다.
+파일명의 `2-`는 두 번째 실습을 의미하고, 뒤의 숫자는 실습 순서를 나타냅니다.
 
 ### 버그가 있는 계산기 코드
 
@@ -57,10 +57,10 @@ console.log(calculate(10, 5, 'modulo'));   // undefined ❌ (버그!)
 
 ### Step 1: Agent 모드로 버그 수정 시도
 
-**Agent 모드**를 열고 `1-1-calculator-agent.js` 파일을 선택한 후 다음을 요청하세요:
+**Agent 모드**를 열고 `2-1-calculator-agent.js` 파일을 선택한 후 다음을 요청하세요:
 
 ```
-1-1-calculator-agent.js의 버그를 찾아서 수정해줘
+2-1-calculator-agent.js의 버그를 찾아서 수정해줘
 ```
 
 **예상 동작**:
@@ -88,10 +88,10 @@ console.log(calculate(10, 5, 'modulo'));   // undefined ❌ (버그!)
 
 #### Debug 모드에서 요청
 
-`1-2-calculator-debug.js` 파일을 선택한 후 다음을 요청하세요:
+`2-2-calculator-debug.js` 파일을 선택한 후 다음을 요청하세요:
 
 ```
-1-2-calculator-debug.js를 실행해서 어떤 입력에서 문제가 발생하는지 확인하고 수정해줘
+2-2-calculator-debug.js를 실행해서 어떤 입력에서 문제가 발생하는지 확인하고 수정해줘
 ```
 
 **예상 동작**:
@@ -138,7 +138,7 @@ function calculate(a, b, operation) {
 
 두 파일을 비교해보세요:
 
-| 비교 항목 | Agent 모드 (`1-1-calculator-agent.js`) | Debug 모드 (`1-2-calculator-debug.js`) |
+| 비교 항목 | Agent 모드 (`2-1-calculator-agent.js`) | Debug 모드 (`2-2-calculator-debug.js`) |
 |---------|-----------------------------------|-----------------------------------|
 | 방식 | 코드를 보고 추측 | 코드를 실제로 실행 |
 | 로그 삽입 | 수동 (직접 작성) | 자동 (AI가 삽입) |
@@ -155,11 +155,11 @@ function calculate(a, b, operation) {
 
 ## ✅ 완료 체크리스트
 
-- [ ] `1-1-calculator-agent.js`로 Agent 모드 실습
-- [ ] `1-2-calculator-debug.js`로 Debug 모드 실습
+- [ ] `2-1-calculator-agent.js`로 Agent 모드 실습
+- [ ] `2-2-calculator-debug.js`로 Debug 모드 실습
 - [ ] 두 모드의 차이 체험
 - [ ] Debug 모드의 장점 이해
-- [ ] 원본 파일(`1-0-calculator-original.js`)은 그대로 유지
+- [ ] 원본 파일(`2-0-calculator-original.js`)은 그대로 유지
 
 ---
 

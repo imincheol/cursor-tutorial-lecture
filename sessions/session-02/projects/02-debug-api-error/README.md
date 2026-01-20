@@ -40,7 +40,7 @@ async function fetchUsers() {
 
 ## 🚀 실습 단계
 
-### Step 1: 일반 모드로 시도 (5분)
+### Step 1: 일반 모드로 시도
 
 Cursor Agent에게 다음과 같이 요청하세요:
 
@@ -55,7 +55,7 @@ Cursor Agent에게 다음과 같이 요청하세요:
 
 ---
 
-### Step 2: Debug Mode 활성화 (5분)
+### Step 2: Debug Mode 활성화
 
 1. Cursor Agent 창에서 **Debug Mode** 버튼 클릭
 2. 다시 요청:
@@ -72,7 +72,7 @@ Cursor Agent에게 다음과 같이 요청하세요:
 
 ---
 
-### Step 3: 로그 확인 (5분)
+### Step 3: 로그 확인
 
 Debug Mode가 삽입한 로그를 확인하세요:
 
