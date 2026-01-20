@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사용자 목록 - Debug Mode 실습</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    #loading {
+      color: #666;
+      font-style: italic;
+    }
+    #error {
+      color: red;
+      padding: 10px;
+      background-color: #fee;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+    #users {
+      list-style: none;
+      padding: 0;
+    }
+    #users li {
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      border-left: 4px solid #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>사용자 목록</h1>
+  <button onclick="loadUsers()">사용자 불러오기</button>
+  <div id="loading" style="display: none;">로딩 중...</div>
+  <div id="error" style="display: none;"></div>
+  <ul id="users"></ul>
+
+  <script src="api.js"></script>
+  <script>
+    async function loadUsers() {
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const usersList = document.getElementById('users');
+      
+      loading.style.display = 'block';
+      error.style.display = 'none';
+      usersList.innerHTML = '';
+      
+      try {
+        const users = await fetchUsers();
+        
+        loading.style.display = 'none';
+        
+        users.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `${user.name} (${user.email})`;
+          usersList.appendChild(li);
+        });
+      } catch (err) {
+        loading.style.display = 'none';
+        error.style.display = 'block';
+        error.textContent = `오류: ${err.message}`;
+      }
+    }
+  </script>
+</body>
+</html>
