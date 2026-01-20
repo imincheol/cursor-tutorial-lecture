@@ -131,13 +131,14 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 
 **지침/규칙**도 비교합니다. Copilot의 Instructions와 Cursor의 Rules는 기능이 동일하지만, 파일 위치가 다릅니다. Copilot은 `.github/copilot-instructions.md`를 사용하고, Cursor는 `.cursorrules`를 사용합니다. 두 환경 모두 glob 패턴으로 파일별 규칙 적용이 가능합니다.
 
-이번 장에서는 Rules를 작성하고, glob 패턴으로 파일별 규칙을 적용하는 방법을 실습합니다. Copilot 사용자라면 매우 익숙한 내용일 것입니다. 하지만 곧 Rules의 한계도 경험하게 됩니다.
+이번 장에서는 **간단한 실습**으로 Rules와 Debug 모드를 체험합니다. 프로젝트 파일을 만들지 않고 질의응답으로 바로 확인하는 방식이라 빠르고 쉽습니다.
 
-**실습 프로젝트** (1개):
+**실습 프로젝트** (2개):
 
-1. `01-rules-basic` - Rules 기본 사용법 (Globs 패턴 포함)
+1. `01-rules-simple` - Rules 간단 실습 (질의응답으로 바로 확인, 10분)
+2. `02-debug-simple` - Debug 모드 간단 체험 (일반 모드 vs Debug 모드 비교, 10분)
 
-**학습 효과**: 모드 비교 및 이해, Plan 모드 활용, Debug 모드 개념 이해, 지침/규칙 동작 방식 파악, Rules의 한계 인식
+**학습 효과**: 모드 비교 및 이해, Plan 모드 활용, Debug 모드 직접 체험, 지침/규칙 동작 방식 파악, Rules의 한계 인식
 
 ---
 
