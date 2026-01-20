@@ -15,8 +15,6 @@
 - Shell Mode로 명령어 빠르게 실행
 - SSH/CI/CD 환경 활용
 
-**예상 소요 시간**: 30분
-
 ---
 
 ## 🎯 Copilot CLI vs Cursor CLI

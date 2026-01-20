@@ -14,8 +14,6 @@
 - postToolExecution으로 사후 점검
 - 위험 명령 100% 차단
 
-**예상 소요 시간**: 40분
-
 ---
 
 ## 🎯 Rules vs Hooks

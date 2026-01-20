@@ -6,7 +6,6 @@
 - Hooks의 `postToolExecution` 이해
 - Agent 동작 감시 및 로깅
 
-**예상 소요 시간**: 20분
 
 ---
 
