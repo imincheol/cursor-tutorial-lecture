@@ -134,7 +134,7 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 **실습 프로젝트** (2개):
 
 1. `01-rules-simple` - Rules 간단 실습 (질의응답으로 바로 확인)
-2. `02-debug-simple` - Debug 모드 간단 체험 (Agent 모드 vs Debug 모드, 3개 파일로 비교)
+2. `02-debug-simple` - Debug 모드 간단 체험 (Agent 모드 vs Debug 모드, 순서가 보장된 3개 파일)
 
 **학습 효과**: 모드 비교 및 이해, Plan 모드 활용, Debug 모드 직접 체험, 지침/규칙 동작 방식 파악, Rules의 한계 인식
 

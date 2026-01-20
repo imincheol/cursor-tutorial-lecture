@@ -14,9 +14,11 @@
 
 이 폴더에는 3개의 파일이 준비되어 있습니다:
 
-1. **`calculator-original.js`** - 원본 파일 (참고용, 수정하지 마세요)
-2. **`calculator-agent.js`** - Agent 모드 실습용
-3. **`calculator-debug.js`** - Debug 모드 실습용
+1. **`1-0-calculator-original.js`** - 원본 파일 (참고용, 수정하지 마세요)
+2. **`1-1-calculator-agent.js`** - Agent 모드 실습용
+3. **`1-2-calculator-debug.js`** - Debug 모드 실습용
+
+파일명의 숫자는 실습 순서를 나타냅니다.
 
 ### 버그가 있는 계산기 코드
 
@@ -55,10 +57,10 @@ console.log(calculate(10, 5, 'modulo'));   // undefined ❌ (버그!)
 
 ### Step 1: Agent 모드로 버그 수정 시도
 
-**Agent 모드**를 열고 `calculator-agent.js` 파일을 선택한 후 다음을 요청하세요:
+**Agent 모드**를 열고 `1-1-calculator-agent.js` 파일을 선택한 후 다음을 요청하세요:
 
 ```
-calculator-agent.js의 버그를 찾아서 수정해줘
+1-1-calculator-agent.js의 버그를 찾아서 수정해줘
 ```
 
 **예상 동작**:
@@ -86,10 +88,10 @@ calculator-agent.js의 버그를 찾아서 수정해줘
 
 #### Debug 모드에서 요청
 
-`calculator-debug.js` 파일을 선택한 후 다음을 요청하세요:
+`1-2-calculator-debug.js` 파일을 선택한 후 다음을 요청하세요:
 
 ```
-calculator-debug.js를 실행해서 어떤 입력에서 문제가 발생하는지 확인하고 수정해줘
+1-2-calculator-debug.js를 실행해서 어떤 입력에서 문제가 발생하는지 확인하고 수정해줘
 ```
 
 **예상 동작**:
@@ -136,7 +138,7 @@ function calculate(a, b, operation) {
 
 두 파일을 비교해보세요:
 
-| 비교 항목 | Agent 모드 (`calculator-agent.js`) | Debug 모드 (`calculator-debug.js`) |
+| 비교 항목 | Agent 모드 (`1-1-calculator-agent.js`) | Debug 모드 (`1-2-calculator-debug.js`) |
 |---------|-----------------------------------|-----------------------------------|
 | 방식 | 코드를 보고 추측 | 코드를 실제로 실행 |
 | 로그 삽입 | 수동 (직접 작성) | 자동 (AI가 삽입) |
@@ -146,18 +148,18 @@ function calculate(a, b, operation) {
 
 **체험 포인트**:
 - ✅ Debug 모드는 추측이 아닌 **확인**입니다
-- ✅ 자동 로그 삽입으로 시간 절약
+- ✅ 자동 로그 삽입으로 효율적
 - ✅ 실행 결과로 정확한 원인 파악
 
 ---
 
 ## ✅ 완료 체크리스트
 
-- [ ] `calculator-agent.js`로 Agent 모드 실습
-- [ ] `calculator-debug.js`로 Debug 모드 실습
+- [ ] `1-1-calculator-agent.js`로 Agent 모드 실습
+- [ ] `1-2-calculator-debug.js`로 Debug 모드 실습
 - [ ] 두 모드의 차이 체험
 - [ ] Debug 모드의 장점 이해
-- [ ] 원본 파일(`calculator-original.js`)은 그대로 유지
+- [ ] 원본 파일(`1-0-calculator-original.js`)은 그대로 유지
 
 ---
 
@@ -184,7 +186,7 @@ Debug 모드는 다음 위치에 자동으로 로그를 삽입합니다:
 ### 3. Debug 모드의 장점
 
 - ✅ **정확도 향상**: 추측이 아닌 실행 결과
-- ✅ **시간 절약**: 자동 로그 삽입
+- ✅ **효율성**: 자동 로그 삽입
 - ✅ **복잡한 버그 해결**: 실행 흐름 추적
 - ✅ **학습 효과**: 코드 동작 이해
 
