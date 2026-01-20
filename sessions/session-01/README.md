@@ -270,18 +270,24 @@ Rules는 본질적으로 **프롬프트**입니다.
 
 **학습 내용**:
 
-- `.cursorrules` 파일로 AI 응답 언어 변경
+- `.cursorrules` 파일로 AI 응답 제어
 - Rules가 AI의 답변에 어떻게 영향을 주는지 확인
 - Rules의 한계 경험
 
 **실습 방식**:
 
-프로젝트 파일을 만들지 않고, **질의응답으로 바로 확인**합니다. `.cursorrules` 파일만 만들고, Agent에게 질문하면서 Rules가 어떻게 동작하는지 체험합니다.
+간단한 테스트 파일(`test.js`)과 **3개의 샘플 Rules**를 제공합니다. 샘플 Rules를 복사해서 `.cursorrules` 파일에 붙여넣고, 같은 요청을 반복하면서 Rules가 어떻게 동작하는지 체험합니다.
+
+**제공 파일**:
+- `test.js` - 테스트용 간단한 JavaScript 파일
+- `sample-rules-1-korean.md` - 한국어 응답 규칙
+- `sample-rules-2-style.md` - 코드 스타일 규칙
+- `sample-rules-3-strict.md` - 엄격한 규칙 (한계 테스트용)
 
 **실습 예시**:
-- "모든 답변은 한국어로" → 주석과 설명이 한국어로 변경
-- "변수명은 snake_case로" → 코드 스타일이 변경
-- "절대 console.log 사용하지 마세요" → 하지만 가끔 무시됨 (한계!)
+- 샘플 Rule 1 적용 → 주석과 설명이 한국어로 변경
+- 샘플 Rule 2 적용 → JSDoc, 화살표 함수, 세미콜론 사용
+- 샘플 Rule 3 적용 → "절대 console.log 사용하지 마세요" → 하지만 무시됨 (한계!)
 
 ---
 

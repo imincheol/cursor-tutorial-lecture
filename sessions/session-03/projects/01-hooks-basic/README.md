@@ -83,7 +83,7 @@ export async function postToolExecution(context) {
 
 ---
 
-### Step 2: Agent에게 작업 요청 (10분)
+### Step 2: Agent에게 작업 요청
 
 Cursor Agent를 열고 다음과 같이 요청하세요:
 

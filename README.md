@@ -133,7 +133,7 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 
 **실습 프로젝트** (2개):
 
-1. `01-rules-simple` - Rules 간단 실습 (질의응답으로 바로 확인)
+1. `01-rules-simple` - Rules 간단 실습 (테스트 파일 + 3개 샘플 Rules 제공)
 2. `02-debug-simple` - Debug 모드 간단 체험 (Agent 모드 vs Debug 모드, 순서가 보장된 3개 파일)
 
 **학습 효과**: 모드 비교 및 이해, Plan 모드 활용, Debug 모드 직접 체험, 지침/규칙 동작 방식 파악, Rules의 한계 인식
@@ -347,7 +347,6 @@ Cursor에 향후 도입될 예정인 **Agent Skills**와 **Sub-Agent** 기능을
 **프로젝트 시나리오**:
 
 - 요구사항: 간단한 TODO 앱 개발 (프론트엔드 + 백엔드)
-- 제약사항: 4시간 내 완성
 - 활용 기능: Debug Mode, Hooks, Visual Editor, CLI Agent, Multi-Agent, Orchestration
 
 **진행 방식**:

@@ -67,7 +67,7 @@ if (명령.includes('rm -rf')) {
 
 ## 🚀 실습 단계
 
-### Step 1: 보안 Hook 생성 (10분)
+### Step 1: 보안 Hook 생성
 
 `.cursor/hooks/security.js` 파일을 만들고 다음 내용을 작성하세요:
 
