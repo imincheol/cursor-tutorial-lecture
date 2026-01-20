@@ -115,7 +115,7 @@ Copilot과 Cursor, 무엇이 같고 무엇이 다를까요?
 
 > **Copilot과의 공통점을 확인하고, Cursor만의 차별화된 기능들을 학습합니다**
 
-### [1장: Copilot과의 공통점](./sessions/session-01/README.md)
+### [1장: Copilot과 Cursor의 비슷한 기능들](./sessions/session-01/README.md)
 
 **난이도**: 🟢 입문
 
@@ -123,7 +123,13 @@ Copilot과 Cursor, 무엇이 같고 무엇이 다를까요?
 
 Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금한 것이 "뭐가 다르지?"입니다. 하지만 먼저 공통점부터 확인하겠습니다.
 
-**Ask, Agent, Plan 모드**는 동일합니다. **Rules**(Copilot의 Instructions)도 동일합니다. 즉, Copilot에서 사용하던 대부분의 기능을 Cursor에서도 그대로 사용할 수 있습니다.
+**모드 비교**부터 시작합니다. Copilot은 Ask, Edit, Agent, Plan 모드가 있고, Cursor는 Ask, Agent, Plan, Debug 모드가 있습니다. 대부분 동일하지만 Edit와 Debug에서 차이가 있습니다.
+
+각 모드의 특징을 살펴보고, 특히 **Plan 모드**의 중요성을 강조합니다. Agent 모드만 사용하고 있다면 Plan 모드를 한번 사용해보는 것을 권장합니다. 사전에 계획을 세우고 검토한 후 실행하는 방식은 복잡한 작업에서 매우 유용합니다.
+
+**Debug 모드**는 Cursor만의 차별화된 기능입니다. 코드를 보고 추측하는 것이 아니라 실제로 실행하고 로그를 자동 삽입하여 버그 원인을 정확히 파악합니다.
+
+**지침/규칙**도 비교합니다. Copilot의 Instructions와 Cursor의 Rules는 기능이 동일하지만, 파일 위치가 다릅니다. Copilot은 `.github/copilot-instructions.md`를 사용하고, Cursor는 `.cursorrules`를 사용합니다. 두 환경 모두 glob 패턴으로 파일별 규칙 적용이 가능합니다.
 
 이번 장에서는 Rules를 작성하고, glob 패턴으로 파일별 규칙을 적용하는 방법을 실습합니다. Copilot 사용자라면 매우 익숙한 내용일 것입니다. 하지만 곧 Rules의 한계도 경험하게 됩니다.
 
@@ -131,7 +137,7 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 
 1. `01-rules-basic` - Rules 기본 사용법 (Globs 패턴 포함)
 
-**학습 효과**: Copilot 경험을 Cursor에서 그대로 활용, Rules의 한계 인식
+**학습 효과**: 모드 비교 및 이해, Plan 모드 활용, Debug 모드 개념 이해, 지침/규칙 동작 방식 파악, Rules의 한계 인식
 
 ---
 

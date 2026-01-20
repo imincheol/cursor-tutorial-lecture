@@ -1,12 +1,13 @@
-# 1장: Copilot과의 공통점
+# 1장: Copilot과 Cursor의 비슷한 기능들
 
 > **Copilot에서 사용하던 기능들을 Cursor에서도 그대로 사용할 수 있습니다**
 
 ## 📋 목차
 
 - [강의 개요](#-강의-개요)
-- [공통 기능 소개](#-공통-기능-소개)
-- [Rules의 한계](#-rules의-한계)
+- [1부: 모드 비교](#1부-모드-비교)
+- [2부: 지침/규칙 비교](#2부-지침규칙-비교)
+- [3부: Rules의 한계](#3부-rules의-한계)
 - [실습 프로젝트](#-실습-프로젝트)
 
 ---
@@ -19,61 +20,227 @@
 
 **학습 목표**:
 
-- Copilot과 Cursor의 공통 기능 이해
-- Rules 작성 및 glob 패턴 활용
-- Rules의 한계 인식 (다음 장들의 필요성)
-
-**예상 소요 시간**: 30분
+- Copilot과 Cursor의 모드 비교 및 이해
+- 각 모드의 특징과 사용 시나리오 파악
+- Plan 모드의 중요성 인식
+- Debug 모드의 차별화된 가치 이해
+- 지침(Instructions)과 규칙(Rules)의 동작 방식 이해
+- Rules의 한계 인식
 
 ---
 
-## 🔄 공통 기능 소개
+## 1부: 모드 비교
 
-### 1. Ask, Agent, Plan 모드
-
-```
-Copilot: Ask, Agent, Plan
-Cursor: Ask, Agent, Plan
-
-→ 완전히 동일합니다!
-```
-
-- **Ask**: 질문하고 답변 받기
-- **Agent**: 대화하면서 코드 작업
-- **Plan**: 계획 세우고 실행
-
-### 2. Rules / Instructions
+### Copilot vs Cursor 모드
 
 ```
-Copilot: .github/copilot-instructions.md
-Cursor: .cursorrules
+Copilot 모드: Ask, Edit, Agent, Plan
+Cursor 모드:  Ask,       Agent, Plan, Debug
 
-→ 파일 위치만 다르고, 기능은 동일합니다!
+→ 대부분 동일하지만, Edit와 Debug에서 차이가 있습니다.
 ```
 
-**공통점**:
+### 각 모드 설명
 
-- 프로젝트 규칙 설정
-- 폴더별 규칙 적용
-- glob 패턴 지원
+#### 1. Ask 모드
+
+- **기능**: 질문하고 답변 받기
+- **사용 시나리오**: 코드 설명, 개념 이해, 빠른 질의응답
+- **특징**: 코드를 직접 수정하지 않고, 정보만 제공
+
+```
+예시:
+Q: "이 함수는 어떻게 동작하나요?"
+A: "이 함수는 사용자 인증을 처리합니다..."
+```
+
+#### 2. Edit 모드 (Copilot만 제공)
+
+- **기능**: 선택한 코드 영역을 수정
+- **특징**: Agent 모드의 하위 버전
+- **사용 빈도**: 거의 사용하지 않음 (Agent 모드가 더 강력)
+
+```
+Cursor에는 Edit 모드가 없지만, Agent 모드로 동일한 작업을 더 효과적으로 수행할 수 있습니다.
+```
+
+#### 3. Agent 모드
+
+- **기능**: 대화하면서 코드 작업 수행
+- **사용 시나리오**: 기능 구현, 버그 수정, 리팩토링
+- **특징**: 다중 파일 수정, 대화형 작업
+
+```
+예시:
+"로그인 기능 추가해줘"
+→ Agent가 auth.js, login.jsx, routes.js 등 여러 파일을 수정
+```
+
+**대부분의 개발자가 Agent 모드를 주로 사용합니다.**
+
+#### 4. Plan 모드 ⭐ (권장!)
+
+- **기능**: 작업 계획을 먼저 세우고, 검토 후 실행
+- **사용 시나리오**: 복잡한 기능 구현, 대규모 리팩토링
+- **특징**: 사전 계획 → 검토 → 실행의 3단계
+
+```
+예시:
+"결제 시스템 추가해줘"
+
+Plan 모드 동작:
+1. [계획 단계] 
+   - PaymentService.js 생성
+   - CheckoutPage.jsx 수정
+   - API routes 추가
+   - 테스트 코드 작성
+
+2. [검토 단계] 
+   개발자가 계획을 확인하고 수정 가능
+
+3. [실행 단계] 
+   승인된 계획대로 코드 작성
+```
+
+**💡 Plan 모드를 사용하는 이유**:
+
+만약 Agent 모드만 사용하고 있다면, **Plan 모드를 한번 사용해보는 것을 권장**합니다.
+
+Plan 모드를 통해 미리 무엇을 작업하고 어떤 것을 수정할지에 대한 것들을 사전에 점검함으로써, 그 후에 진행할 작업들이 올바른 방향으로 가기 전에 한번 계획을 세워볼 수 있다는 것이 장점입니다.
+
+특히 다음과 같은 상황에서 유용합니다:
+- 복잡한 기능을 구현할 때
+- 여러 파일을 동시에 수정해야 할 때
+- 작업 범위가 명확하지 않을 때
+- 예상치 못한 부작용을 방지하고 싶을 때
+
+#### 5. Debug 모드 (Cursor만 제공) 🎯
+
+**Copilot과 Cursor의 가장 큰 차이점 중 하나입니다.**
+
+- **기능**: 코드를 실제로 실행하고 로그를 자동 삽입하여 버그 원인 파악
+- **사용 시나리오**: 버그 수정, 오류 추적, 동작 검증
+- **특징**: 추측이 아닌 실행 기반 디버깅
+
+**일반 모드 vs Debug 모드**:
+
+```javascript
+// 일반 모드 (추측 기반)
+function login(user, password) {
+  const result = authenticate(user, password);
+  if (result) {
+    redirect("/dashboard");
+  }
+}
+// AI: "아마 여기가 문제일 것 같은데..."
+```
+
+```javascript
+// Debug 모드 (실행 기반)
+function login(user, password) {
+  console.log("[DEBUG] user:", user);           // 자동 삽입
+  console.log("[DEBUG] password:", password);   // 자동 삽입
+  const result = authenticate(user, password);
+  console.log("[DEBUG] result:", result);       // 자동 삽입
+  if (result) {
+    console.log("[DEBUG] redirecting...");      // 자동 삽입
+    redirect("/dashboard");
+  }
+}
+// AI: "실행 결과를 보니 result가 undefined입니다!"
+```
+
+**Debug 모드의 장점**:
+
+| 비교 항목 | 일반 모드 | Debug 모드 |
+|---------|---------|-----------|
+| 방식 | 코드를 보고 추측 | 코드를 실제로 실행 |
+| 정확도 | 낮음 (추측) | 높음 (실행 결과) |
+| 로그 삽입 | 수동 | 자동 |
+| 버그 원인 파악 | 어려움 | 쉬움 |
+
+Debug 모드는 2장에서 실습을 통해 더 자세히 다룹니다.
+
+---
+
+## 2부: 지침/규칙 비교
+
+### Copilot의 Instructions vs Cursor의 Rules
+
+Copilot에서는 **지침(Instructions)**이라고 부르고, Cursor에서는 **규칙(Rules)**이라고 통용됩니다.
+
+하지만 기능은 거의 동일합니다.
+
+### IDE에서 추가하는 방법
+
+**Copilot**:
+- Settings → GitHub Copilot → Instructions
+- 전역 설정 또는 워크스페이스별 설정
+
+**Cursor**:
+- Settings → Cursor Settings → Rules
+- 전역 설정 또는 프로젝트별 `.cursorrules` 파일
+
+### 코드 상에서 추가하는 방법
+
+**Copilot**:
+```
+프로젝트 루트:
+  .github/
+    copilot-instructions.md
+
+폴더별 규칙:
+  src/
+    .github/
+      copilot-instructions.md
+```
+
+**Cursor**:
+```
+프로젝트 루트:
+  .cursorrules
+
+폴더별 규칙:
+  src/
+    .cursorrules
+```
 
 **차이점**:
+- Copilot: `.github` 폴더 안에 `copilot-instructions.md`
+- Cursor: `.cursorrules` 파일 (폴더 없이 바로 생성)
 
-- Copilot: `.github/copilot-instructions.md`
-- Cursor: `.cursorrules`
+### glob 패턴 지원
 
-### 3. 저장된 Prompts / Commands
+**두 환경 모두 glob 패턴으로 파일 타입별 규칙 적용이 가능합니다.**
 
+```markdown
+# .cursorrules 예시
+
+# 모든 TypeScript 파일에 적용
+**/*.ts:
+- 항상 strict 모드 사용
+- interface보다 type 사용
+
+# 테스트 파일에만 적용
+**/*.test.js:
+- describe, it, expect 사용
+- 각 테스트는 독립적으로 실행 가능해야 함
+
+# API 관련 파일에만 적용
+**/api/**/*.js:
+- 항상 에러 핸들링 포함
+- 응답은 { success, data, error } 형식
 ```
-Copilot: 저장된 Prompts
-Cursor: 저장된 Commands
 
-→ 자주 쓰는 프롬프트를 저장하는 기능, 동일합니다!
-```
+**glob 패턴 예시**:
+- `**/*.ts` - 모든 TypeScript 파일
+- `**/*.test.js` - 모든 테스트 파일
+- `**/api/**/*.js` - api 폴더 내 모든 JS 파일
+- `src/components/**/*.jsx` - components 폴더 내 모든 JSX 파일
 
 ---
 
-## ⚠️ Rules의 한계
+## 3부: Rules의 한계
 
 Rules는 본질적으로 **프롬프트**입니다.
 
@@ -120,20 +287,24 @@ Rules의 기본 사용법을 익히고, Copilot과의 유사성을 확인합니�
 
 ### 진행 방법
 
-1. **강의 내용 읽기** (10분)
+1. **강의 내용 읽기** (15분)
 
-   - 이 README를 읽으면서 Copilot과 Cursor의 공통점을 확인합니다
-   - Rules의 한계를 이해합니다
+   - 이 README를 읽으면서 Copilot과 Cursor의 모드를 비교합니다
+   - Plan 모드의 중요성을 이해합니다
+   - Debug 모드의 차별화된 가치를 파악합니다
+   - 지침/규칙의 동작 방식을 이해합니다
 
-2. **실습 프로젝트 진행** (20분)
+2. **실습 프로젝트 진행** (15분)
    - Project 1: Rules 기본 사용법 실습
+   - glob 패턴으로 파일별 규칙 적용
    - Rules의 한계를 직접 경험합니다
 
 ### 학습 팁
 
 - Copilot을 사용해보신 분이라면 매우 익숙한 내용입니다
-- Rules의 한계를 경험하는 것이 중요합니다
-- 3장에서 Hooks로 이 문제를 해결합니다
+- **Plan 모드를 한 번 사용해보세요** - 작업 효율이 크게 향상됩니다
+- Debug 모드는 2장에서 실습으로 자세히 다룹니다
+- Rules의 한계를 경험하는 것이 중요합니다 (3장 Hooks로 해결)
 
 ---
 
@@ -141,13 +312,17 @@ Rules의 기본 사용법을 익히고, Copilot과의 유사성을 확인합니�
 
 이번 장에서 다룬 내용:
 
-- ✅ Copilot과 Cursor의 공통 기능 확인 (Ask, Agent, Plan, Rules)
-- ✅ Rules 작성 및 glob 패턴 활용
+- ✅ Copilot과 Cursor의 모드 비교 (Ask, Edit, Agent, Plan, Debug)
+- ✅ 각 모드의 특징과 사용 시나리오
+- ✅ Plan 모드의 중요성 (사전 계획 → 검토 → 실행)
+- ✅ Debug 모드의 차별화된 가치 (추측 → 실행 기반)
+- ✅ 지침(Instructions)과 규칙(Rules)의 동작 방식
+- ✅ glob 패턴으로 파일별 규칙 적용
 - ✅ Rules의 한계 인식 (프롬프트는 강제가 아님)
 
 **다음 장 예고**:
 
-2장에서는 Cursor만의 차별화된 기능인 **Debug Mode**를 배웁니다. 추측이 아닌 실행으로 버그를 해결하는 방법을 익힙니다.
+2장에서는 Cursor만의 차별화된 기능인 **Debug Mode**를 실습을 통해 자세히 배웁니다. 추측이 아닌 실행으로 버그를 해결하는 방법을 익힙니다.
 
 ---
 
