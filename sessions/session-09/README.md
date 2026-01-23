@@ -29,8 +29,11 @@
 
 **공식 문서**:
 - [Cloud Agent](https://cursor.com/docs/cloud-agent)
-- [체인지로그 - Cloud Handoff (2026.01.16)](https://cursor.com/changelog)
+- [API 엔드포인트](https://cursor.com/docs/cloud-agent/api/endpoints)
+- [Webhooks](https://cursor.com/docs/cloud-agent/api/webhooks)
 - [웹 & 모바일](https://cursor.com/docs/cloud-agent/web-and-mobile)
+- [Egress IP 범위](https://cursor.com/docs/cloud-agent/egress-ip-ranges)
+- [체인지로그 - Cloud Handoff (2026.01.16)](https://cursor.com/changelog)
 
 ---
 
@@ -264,6 +267,121 @@ You: & 프로젝트 성능을 최적화해줘:
 
 Agent: 클라우드로 전송되었습니다.
 ```
+
+### Cloud Agent API
+
+Cloud Agent는 **REST API**를 제공하여 프로그래밍 방식으로 제어할 수 있습니다.
+
+**API 엔드포인트**:
+
+```bash
+# Agent 생성
+POST https://api.cursor.com/v1/agents
+{
+  "task": "전체 프로젝트 린트 수정",
+  "repository": "github.com/user/repo",
+  "branch": "main"
+}
+
+# Agent 상태 조회
+GET https://api.cursor.com/v1/agents/{agent_id}
+
+# Agent 중지
+POST https://api.cursor.com/v1/agents/{agent_id}/stop
+
+# Agent 로그 조회
+GET https://api.cursor.com/v1/agents/{agent_id}/logs
+```
+
+**인증**:
+
+```bash
+# API 키 생성
+cursor.com/settings/api-keys
+
+# 요청 헤더
+Authorization: Bearer YOUR_API_KEY
+```
+
+**참고 문서**: [API 엔드포인트](https://cursor.com/docs/cloud-agent/api/endpoints)
+
+### Webhooks
+
+Cloud Agent 작업이 완료되면 **Webhook**으로 알림을 받을 수 있습니다.
+
+**Webhook 설정**:
+
+```bash
+# Webhook URL 등록
+cursor.com/settings/webhooks
+
+# Webhook 이벤트
+- agent.started: Agent 시작
+- agent.completed: Agent 완료
+- agent.failed: Agent 실패
+- agent.progress: 진행 상황 (10% 단위)
+```
+
+**Webhook 페이로드**:
+
+```json
+{
+  "event": "agent.completed",
+  "agent_id": "agent_abc123",
+  "task": "전체 프로젝트 린트 수정",
+  "status": "completed",
+  "duration": 3600,
+  "result": {
+    "files_modified": 42,
+    "commits": 1,
+    "pr_url": "https://github.com/user/repo/pull/123"
+  },
+  "timestamp": "2026-01-23T10:30:00Z"
+}
+```
+
+**Slack 통합 예시**:
+
+```javascript
+// Webhook 핸들러 (Node.js + Express)
+app.post('/webhook/cursor', async (req, res) => {
+  const { event, task, status, result } = req.body;
+
+  if (event === 'agent.completed') {
+    // Slack 알림 전송
+    await slack.chat.postMessage({
+      channel: '#dev',
+      text: `✅ Cloud Agent 작업 완료!\n\n` +
+            `작업: ${task}\n` +
+            `수정된 파일: ${result.files_modified}개\n` +
+            `PR: ${result.pr_url}`
+    });
+  }
+
+  res.sendStatus(200);
+});
+```
+
+**참고 문서**: [Webhooks](https://cursor.com/docs/cloud-agent/api/webhooks)
+
+### Egress IP 범위
+
+Cloud Agent가 외부 API를 호출할 때 사용하는 IP 주소 범위입니다.
+
+**사용 시나리오**:
+- 방화벽 화이트리스트 설정
+- IP 기반 접근 제어
+- 보안 정책 설정
+
+**IP 범위**:
+```
+52.89.214.238
+34.212.75.30
+54.218.53.128
+52.32.178.7
+```
+
+**참고 문서**: [Egress IP 범위](https://cursor.com/docs/cloud-agent/egress-ip-ranges)
 
 ---
 

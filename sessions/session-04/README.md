@@ -29,9 +29,14 @@
 
 **공식 문서**:
 - [CLI 개요](https://cursor.com/docs/cli/overview)
+- [CLI 설치](https://cursor.com/docs/cli/installation)
 - [CLI 사용법](https://cursor.com/docs/cli/using)
 - [Shell Mode](https://cursor.com/docs/cli/shell-mode)
+- [Headless 모드](https://cursor.com/docs/cli/headless)
+- [슬래시 명령어](https://cursor.com/docs/cli/reference/slash-commands)
+- [CLI 파라미터](https://cursor.com/docs/cli/reference/parameters)
 - [Cloud Agent](https://cursor.com/docs/cloud-agent)
+- [GitHub Actions 통합](https://cursor.com/docs/cli/github-actions)
 - [체인지로그 - CLI Agent Modes (2026.01.16)](https://cursor.com/changelog)
 
 ---
@@ -153,6 +158,76 @@ Agent: [설명만 제공, 코드 변경 없음]
 | **Agent** | ✅ | 즉시 실행 | `cursor` |
 | **Plan** | ✅ | 복잡한 작업 | `cursor /plan` |
 | **Ask** | ❌ | 코드 탐색 | `cursor /ask` |
+
+### 슬래시 명령어
+
+CLI에서 사용할 수 있는 슬래시 명령어들:
+
+```bash
+cursor
+
+# 대화 중 슬래시 명령어 사용
+You: /plan          # Plan 모드로 전환
+You: /ask           # Ask 모드로 전환
+You: /agent         # Agent 모드로 전환
+You: /clear         # 대화 기록 초기화
+You: /help          # 도움말 표시
+You: /exit          # CLI 종료
+```
+
+**참고 문서**: [슬래시 명령어 전체 목록](https://cursor.com/docs/cli/reference/slash-commands)
+
+### Headless 모드
+
+UI 없이 백그라운드에서 Cursor CLI를 실행할 수 있습니다:
+
+```bash
+# Headless 모드로 실행
+cursor --headless "로그인 기능 추가해줘"
+
+# 또는 파이프로 입력
+echo "테스트 코드 작성해줘" | cursor --headless
+
+# CI/CD에서 사용
+cursor --headless --mode=plan "전체 프로젝트 린트 수정"
+```
+
+**사용 시나리오**:
+- CI/CD 파이프라인에서 자동화
+- 스크립트에서 Cursor 호출
+- 배치 작업 처리
+- GitHub Actions 통합
+
+**참고 문서**: 
+- [Headless 모드](https://cursor.com/docs/cli/headless)
+- [GitHub Actions 통합](https://cursor.com/docs/cli/github-actions)
+
+### CLI 설치 방법
+
+**Mac/Linux**:
+```bash
+# Cursor IDE에서 설치 (권장)
+# Cmd+Shift+P → "Shell Command: Install 'cursor' command in PATH"
+
+# 또는 수동 설치
+curl -fsSL https://cursor.com/install.sh | sh
+```
+
+**Windows**:
+```bash
+# Cursor IDE에서 설치 (권장)
+# Ctrl+Shift+P → "Shell Command: Install 'cursor' command in PATH"
+
+# 또는 PowerShell에서
+iwr -useb https://cursor.com/install.ps1 | iex
+```
+
+**설치 확인**:
+```bash
+cursor --version
+```
+
+**참고 문서**: [CLI 설치](https://cursor.com/docs/cli/installation)
 
 ---
 

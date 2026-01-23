@@ -217,7 +217,7 @@ Copilot에서는 **지침(Instructions)**이라고 부르고, Cursor에서는 **
 
 **Cursor**:
 - Settings → Cursor Settings → Rules
-- 전역 설정 또는 프로젝트별 `.cursorrules` 파일
+- 전역 설정 (User Rules) 또는 프로젝트별 설정 (Project Rules)
 
 ### 코드 상에서 추가하는 방법
 
@@ -233,10 +233,24 @@ Copilot에서는 **지침(Instructions)**이라고 부르고, Cursor에서는 **
       copilot-instructions.md
 ```
 
-**Cursor**:
+**Cursor (최신 구조 - 권장)**:
 ```
 프로젝트 루트:
-  .cursorrules
+  .cursor/
+    rules/
+      react-patterns.mdc       # Rule with frontmatter
+      api-guidelines.md        # Simple markdown rule
+      frontend/                # 폴더로 구조화 가능
+        components.md
+
+또는 간단한 프로젝트:
+  AGENTS.md                    # 간단한 마크다운 형식
+```
+
+**Cursor (레거시 방식 - 여전히 지원)**:
+```
+프로젝트 루트:
+  .cursorrules                 # 레거시 방식 (deprecated 예정)
 
 폴더별 규칙:
   src/
@@ -245,29 +259,133 @@ Copilot에서는 **지침(Instructions)**이라고 부르고, Cursor에서는 **
 
 **차이점**:
 - Copilot: `.github` 폴더 안에 `copilot-instructions.md`
-- Cursor: `.cursorrules` 파일 (폴더 없이 바로 생성)
+- Cursor (최신): `.cursor/rules/` 폴더 구조로 여러 규칙 파일 관리
+- Cursor (레거시): `.cursorrules` 단일 파일 (deprecated 예정)
+
+### Cursor Rules의 새로운 기능들
+
+#### 1. Rule 타입 (4가지)
+
+Cursor는 규칙을 적용하는 방식을 세밀하게 제어할 수 있습니다:
+
+| Rule 타입 | 설명 | 사용 시나리오 |
+|----------|------|--------------|
+| **Always Apply** | 모든 채팅 세션에 자동 적용 | 프로젝트 전체 코딩 스타일 |
+| **Apply Intelligently** | AI가 description 기반으로 판단하여 적용 | 특정 상황에만 필요한 규칙 |
+| **Apply to Specific Files** | glob 패턴에 매칭되는 파일에만 적용 | 파일 타입별 규칙 |
+| **Apply Manually** | @-mention으로 수동 적용 (예: `@my-rule`) | 필요할 때만 사용하는 규칙 |
+
+#### 2. Frontmatter 메타데이터
+
+`.mdc` 파일을 사용하면 frontmatter로 규칙을 제어할 수 있습니다:
+
+```markdown
+---
+description: "React 컴포넌트 작성 시 Tailwind와 Framer Motion 사용"
+globs: ["**/*.tsx", "**/*.jsx"]
+alwaysApply: false
+---
+
+# React 컴포넌트 규칙
+
+- 모든 컴포넌트에 Tailwind CSS 사용
+- 애니메이션은 Framer Motion 사용
+- 함수형 컴포넌트 우선
+```
+
+**주요 속성**:
+- `description`: AI가 규칙 적용 여부를 판단하는 기준
+- `globs`: 적용할 파일 패턴 (배열)
+- `alwaysApply`: true면 항상 적용, false면 AI가 판단
+
+#### 3. AGENTS.md - 간단한 대안
+
+복잡한 구조가 필요 없다면 프로젝트 루트에 `AGENTS.md` 파일을 만들 수 있습니다:
+
+```markdown
+# Project Instructions
+
+## Code Style
+
+- Use TypeScript for all new files
+- Prefer functional components in React
+- Use snake_case for database columns
+
+## Architecture
+
+- Follow the repository pattern
+- Keep business logic in service layers
+```
+
+**AGENTS.md의 장점**:
+- 간단한 마크다운 형식
+- 메타데이터 불필요
+- 하위 디렉토리에도 배치 가능 (Nested AGENTS.md)
+
+```
+project/
+  AGENTS.md              # 전역 규칙
+  frontend/
+    AGENTS.md            # 프론트엔드 규칙
+  backend/
+    AGENTS.md            # 백엔드 규칙
+```
+
+#### 4. Team Rules (팀 플랜 기능)
+
+팀 플랜 사용자는 [Cursor 대시보드](https://cursor.com/dashboard?tab=team-content)에서 팀 전체 규칙을 관리할 수 있습니다:
+
+- 팀 전체에 자동 적용
+- 강제 적용 가능 (사용자가 끌 수 없음)
+- 조직 표준 코딩 규칙 통일
+
+#### 5. Remote Rules (GitHub)
+
+GitHub 저장소에서 규칙을 가져와 자동 동기화할 수 있습니다:
+
+1. Cursor Settings → Rules, Commands
+2. `+ Add Rule` → Remote Rule (Github)
+3. GitHub 저장소 URL 입력
+4. 자동 동기화
 
 ### glob 패턴 지원
 
 **두 환경 모두 glob 패턴으로 파일 타입별 규칙 적용이 가능합니다.**
 
 ```markdown
-# .cursorrules 예시
+# .cursor/rules/typescript.mdc 예시
+---
+description: "TypeScript 파일 작성 규칙"
+globs: ["**/*.ts", "**/*.tsx"]
+---
 
-# 모든 TypeScript 파일에 적용
-**/*.ts:
 - 항상 strict 모드 사용
 - interface보다 type 사용
+- 명시적 반환 타입 작성
+```
 
-# 테스트 파일에만 적용
-**/*.test.js:
+```markdown
+# .cursor/rules/testing.mdc 예시
+---
+description: "테스트 파일 작성 규칙"
+globs: ["**/*.test.js", "**/*.spec.js"]
+---
+
 - describe, it, expect 사용
 - 각 테스트는 독립적으로 실행 가능해야 함
+- 테스트 이름은 한국어로 작성
+```
 
-# API 관련 파일에만 적용
-**/api/**/*.js:
+```markdown
+# .cursor/rules/api.mdc 예시
+---
+description: "API 엔드포인트 작성 규칙"
+globs: ["**/api/**/*.js"]
+---
+
 - 항상 에러 핸들링 포함
 - 응답은 { success, data, error } 형식
+- 모든 엔드포인트에 rate limiting 적용
 ```
 
 **glob 패턴 예시**:
@@ -275,6 +393,22 @@ Copilot에서는 **지침(Instructions)**이라고 부르고, Cursor에서는 **
 - `**/*.test.js` - 모든 테스트 파일
 - `**/api/**/*.js` - api 폴더 내 모든 JS 파일
 - `src/components/**/*.jsx` - components 폴더 내 모든 JSX 파일
+
+### 권장 사항
+
+**간단한 프로젝트**:
+- `AGENTS.md` 사용 (가장 간단)
+
+**중간 규모 프로젝트**:
+- `.cursor/rules/` 폴더에 여러 규칙 파일 분리
+- 파일 타입별로 규칙 구분
+
+**대규모 프로젝트/팀**:
+- `.cursor/rules/` 폴더 구조화
+- Team Rules로 조직 표준 통일
+- Remote Rules로 규칙 공유
+
+**참고 문서**: [Cursor Rules 공식 문서](https://cursor.com/docs/context/rules)
 
 ---
 

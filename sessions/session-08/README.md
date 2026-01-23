@@ -30,6 +30,8 @@ Cursor Agent는 이제 **이미지도 생성**할 수 있습니다!
 
 **공식 문서**:
 - [체인지로그 - Image Generation (2026.01.22)](https://cursor.com/changelog)
+- [프로토타이핑](https://cursor.com/for/prototyping) - 빠른 프로토타이핑 가이드
+- [Mermaid 다이어그램](https://cursor.com/docs/cookbook/mermaid-diagrams) - 다이어그램 생성
 - [Agent 개요](https://cursor.com/docs/agent/overview)
 
 ---
@@ -251,6 +253,72 @@ You: 블로그 시스템 ER 다이어그램 만들어줘.
 
 Agent: [ER 다이어그램 생성]
 ```
+
+### Mermaid 다이어그램
+
+Cursor는 **Mermaid 문법**을 사용하여 다이어그램을 생성할 수도 있습니다.
+
+**Mermaid란?**
+- 텍스트 기반 다이어그램 도구
+- 마크다운에 직접 삽입 가능
+- 버전 관리 가능
+- 자동 렌더링
+
+**Mermaid 다이어그램 예시**:
+
+```
+You: Mermaid로 시퀀스 다이어그램 만들어줘.
+     
+     로그인 프로세스:
+     1. 사용자 → 프론트엔드: 로그인 요청
+     2. 프론트엔드 → API: 인증 요청
+     3. API → DB: 사용자 조회
+     4. DB → API: 사용자 정보
+     5. API → 프론트엔드: JWT 토큰
+     6. 프론트엔드 → 사용자: 로그인 성공
+
+Agent: [Mermaid 코드 생성]
+```
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant API
+    participant DB
+    
+    User->>Frontend: 로그인 요청
+    Frontend->>API: 인증 요청
+    API->>DB: 사용자 조회
+    DB-->>API: 사용자 정보
+    API-->>Frontend: JWT 토큰
+    Frontend-->>User: 로그인 성공
+```
+
+**지원하는 Mermaid 다이어그램 타입**:
+- Flowchart (플로우차트)
+- Sequence Diagram (시퀀스 다이어그램)
+- Class Diagram (클래스 다이어그램)
+- State Diagram (상태 다이어그램)
+- Entity Relationship Diagram (ER 다이어그램)
+- Gantt Chart (간트 차트)
+- Pie Chart (파이 차트)
+- Git Graph (Git 그래프)
+
+**Mermaid 사용 예시**:
+
+```
+You: Mermaid로 플로우차트 만들어줘.
+     
+     주문 처리 플로우:
+     시작 → 재고 확인 → (재고 있음?) 
+     → Yes: 결제 처리 → 배송 준비 → 완료
+     → No: 재입고 알림 → 완료
+
+Agent: [Mermaid 플로우차트 생성]
+```
+
+**참고 문서**: [Mermaid 다이어그램 가이드](https://cursor.com/docs/cookbook/mermaid-diagrams)
 
 ---
 

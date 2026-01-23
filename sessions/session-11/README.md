@@ -29,6 +29,11 @@ Cursor Blame, Shared Transcripts, Layout Customization 등 팀 협업에 유용�
 **공식 문서**:
 - [Cursor Blame](https://cursor.com/docs/integrations/cursor-blame)
 - [Shared Transcripts](https://cursor.com/docs/shared-transcripts)
+- [팀 설정](https://cursor.com/docs/account/teams/setup)
+- [팀 대시보드](https://cursor.com/docs/account/teams/dashboard)
+- [팀 분석](https://cursor.com/docs/account/teams/analytics)
+- [AI 코드 트래킹 API](https://cursor.com/docs/account/teams/ai-code-tracking-api)
+- [팀 생산성](https://cursor.com/learn/team-productivity)
 - [체인지로그 (2025.12.18, 2025.12.22, 2026.01.22)](https://cursor.com/changelog)
 
 ---
@@ -237,6 +242,146 @@ Cmd + Option + Shift + Tab: 이전 레이아웃
 - 중간: 50%
 - 낮음: 30%
 ```
+
+### 팀 대시보드 & 분석
+
+Enterprise 플랜에서는 **팀 대시보드**를 통해 팀 전체의 사용 현황을 확인할 수 있습니다.
+
+**대시보드 기능**:
+
+```
+cursor.com/dashboard?tab=team
+
+팀 통계:
+- 총 사용자 수
+- 활성 사용자 수
+- 월간 요청 수
+- 모델별 사용량
+
+사용 현황:
+- 일별/주별/월별 그래프
+- 팀원별 사용량
+- 프로젝트별 사용량
+- 모델별 비용
+
+AI 코드 기여도:
+- AI가 생성한 코드 비율
+- 수락된 제안 비율
+- 팀별 AI 활용도
+```
+
+**참고 문서**: 
+- [팀 대시보드](https://cursor.com/docs/account/teams/dashboard)
+- [팀 분석](https://cursor.com/docs/account/teams/analytics)
+
+### AI 코드 트래킹 API
+
+프로그래밍 방식으로 AI 코드 기여도를 추적할 수 있습니다.
+
+**API 예시**:
+
+```bash
+# AI 코드 통계 조회
+GET https://api.cursor.com/v1/teams/{team_id}/ai-code-stats
+Authorization: Bearer YOUR_API_KEY
+
+# 응답
+{
+  "period": "2026-01",
+  "total_lines": 50000,
+  "ai_generated_lines": 15000,
+  "ai_percentage": 30,
+  "by_member": [
+    {
+      "user_id": "user_123",
+      "name": "이민철",
+      "ai_lines": 5000,
+      "total_lines": 10000,
+      "ai_percentage": 50
+    }
+  ],
+  "by_model": {
+    "claude-sonnet-4.5": 12000,
+    "gpt-4": 3000
+  }
+}
+```
+
+**Webhook 통합**:
+
+```javascript
+// AI 코드 생성 이벤트
+{
+  "event": "ai_code_generated",
+  "user": "이민철",
+  "file": "src/auth.js",
+  "lines": 50,
+  "model": "claude-sonnet-4.5",
+  "timestamp": "2026-01-23T10:30:00Z"
+}
+```
+
+**참고 문서**: [AI 코드 트래킹 API](https://cursor.com/docs/account/teams/ai-code-tracking-api)
+
+### 팀 설정 & 관리
+
+**팀 생성**:
+
+```
+cursor.com/dashboard → Create Team
+→ 팀 이름 입력
+→ 플랜 선택 (Team / Enterprise)
+→ 결제 정보 입력
+```
+
+**팀원 관리**:
+
+```
+팀원 초대:
+- 이메일로 초대
+- 역할 설정 (Admin / Member)
+- 권한 관리
+
+팀원 제거:
+- 즉시 접근 차단
+- 데이터는 유지
+```
+
+**Team Rules (팀 규칙)**:
+
+```
+팀 전체에 적용되는 규칙:
+- 코딩 스타일
+- 보안 정책
+- 프로젝트 컨벤션
+
+강제 적용 가능:
+- 사용자가 끌 수 없음
+- 조직 표준 통일
+```
+
+**참고 문서**: 
+- [팀 설정](https://cursor.com/docs/account/teams/setup)
+- [팀 생산성](https://cursor.com/learn/team-productivity)
+
+### SSO & SCIM
+
+Enterprise 플랜에서는 **SSO**와 **SCIM**을 지원합니다.
+
+**SSO (Single Sign-On)**:
+- Google Workspace
+- Microsoft Azure AD
+- Okta
+- OneLogin
+
+**SCIM (System for Cross-domain Identity Management)**:
+- 자동 사용자 프로비저닝
+- 사용자 정보 동기화
+- 자동 접근 권한 관리
+
+**참고 문서**:
+- [SSO 설정](https://cursor.com/docs/account/teams/sso)
+- [SCIM 설정](https://cursor.com/docs/account/teams/scim)
 
 ---
 

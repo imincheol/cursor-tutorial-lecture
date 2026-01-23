@@ -26,6 +26,10 @@
 - Multi-Agent 패턴으로 병렬 작업
 - Subagents와의 차이점 이해
 
+**공식 문서**:
+- [Worktrees](https://cursor.com/docs/configuration/worktrees) - Worktree 설정 가이드
+- [Agent 워크플로우](https://cursor.com/docs/cookbook/agent-workflows) - Agent 활용 패턴
+
 ---
 
 ## 1부: 실무 시나리오 - 왜 필요한가?

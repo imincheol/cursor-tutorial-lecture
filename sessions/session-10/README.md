@@ -27,8 +27,12 @@
 - 실전 활용 패턴
 
 **공식 문서**:
-- [MCP](https://cursor.com/docs/context/mcp)
-- [MCP 디렉토리](https://cursor.com/docs/context/mcp/directory)
+- [MCP](https://cursor.com/docs/context/mcp) - MCP 개요
+- [MCP 디렉토리](https://cursor.com/docs/context/mcp/directory) - 사용 가능한 MCP 목록
+- [MCP 설치 링크](https://cursor.com/docs/context/mcp/install-links) - 원클릭 설치
+- [MCP Extension API](https://cursor.com/docs/context/mcp-extension-api) - 확장 API
+- [MCP 서버 구축](https://cursor.com/docs/cookbook/building-mcp-server) - 커스텀 MCP 만들기
+- [CLI MCP 통합](https://cursor.com/docs/cli/mcp) - CLI에서 MCP 사용
 - [체인지로그 - MCP (2026.01.08, 01.16)](https://cursor.com/changelog)
 
 ---
@@ -148,6 +152,131 @@ You: /mcp disable slack
 
 Agent: Slack MCP를 비활성화했습니다.
 ```
+
+### MCP 설치 링크 (원클릭 설치)
+
+Cursor는 **원클릭 설치 링크**를 제공하여 MCP를 쉽게 설치할 수 있습니다.
+
+```
+cursor://install-mcp?url=https://github.com/user/mcp-server
+```
+
+**사용 방법**:
+1. 링크 클릭
+2. Cursor가 자동으로 열림
+3. 설치 확인
+4. 즉시 사용 가능
+
+**참고 문서**: [MCP 설치 링크](https://cursor.com/docs/context/mcp/install-links)
+
+### 커스텀 MCP 서버 구축
+
+자신만의 MCP 서버를 만들 수 있습니다.
+
+**MCP 서버 구조**:
+
+```typescript
+// mcp-server.ts
+import { MCPServer } from '@cursor/mcp-sdk';
+
+const server = new MCPServer({
+  name: 'my-custom-mcp',
+  version: '1.0.0',
+  description: '커스텀 MCP 서버'
+});
+
+// 도구 등록
+server.registerTool({
+  name: 'fetch_data',
+  description: '외부 API에서 데이터 가져오기',
+  parameters: {
+    endpoint: { type: 'string', required: true }
+  },
+  handler: async (params) => {
+    const response = await fetch(params.endpoint);
+    return await response.json();
+  }
+});
+
+// 리소스 등록
+server.registerResource({
+  name: 'database',
+  description: '데이터베이스 접근',
+  handler: async (query) => {
+    // 데이터베이스 쿼리 실행
+    return await db.query(query);
+  }
+});
+
+server.start();
+```
+
+**MCP 서버 배포**:
+
+```bash
+# npm에 배포
+npm publish @your-name/mcp-server
+
+# 사용자가 설치
+cursor://install-mcp?url=https://github.com/your-name/mcp-server
+```
+
+**참고 문서**: [MCP 서버 구축 가이드](https://cursor.com/docs/cookbook/building-mcp-server)
+
+### CLI에서 MCP 사용
+
+CLI Agent에서도 MCP를 사용할 수 있습니다.
+
+```bash
+# CLI에서 MCP 활성화
+cursor --mcp=github,browser
+
+# 또는 설정 파일에서
+# ~/.cursor/cli-config.json
+{
+  "mcp": {
+    "enabled": ["github", "browser"]
+  }
+}
+```
+
+**CLI에서 MCP 사용 예시**:
+
+```bash
+$ cursor
+
+You: GitHub 이슈 목록 가져와줘
+
+Agent: [GitHub MCP 사용]
+       이슈 목록: ...
+```
+
+**참고 문서**: [CLI MCP 통합](https://cursor.com/docs/cli/mcp)
+
+### MCP 디렉토리
+
+Cursor는 **MCP 디렉토리**를 제공하여 커뮤니티 MCP를 쉽게 찾을 수 있습니다.
+
+**인기 있는 MCP**:
+- **GitHub** - GitHub API 연동
+- **Browser** - 브라우저 제어
+- **Slack** - Slack 메시지 전송
+- **Linear** - 이슈 트래킹
+- **Notion** - Notion 데이터베이스
+- **Airtable** - Airtable 연동
+- **Supabase** - Supabase 데이터베이스
+- **Stripe** - 결제 처리
+
+**MCP 검색**:
+
+```
+cursor.com/mcp/directory
+→ 카테고리별 검색
+→ 원클릭 설치
+→ 평점 및 리뷰 확인
+```
+
+**참고 문서**: [MCP 디렉토리](https://cursor.com/docs/context/mcp/directory)
 
 ---
 

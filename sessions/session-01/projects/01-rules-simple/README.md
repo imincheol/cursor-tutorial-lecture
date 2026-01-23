@@ -45,6 +45,8 @@ test.js의 greet 함수에 주석을 추가하고, numbers 배열을 map으로 2
 
 #### 2-1. Rules 파일 생성
 
+**방법 1: 레거시 방식 (간단)**
+
 프로젝트 루트에 `.cursorrules` 파일을 만들고, **`sample-rules-1-korean.md`** 파일의 내용을 복사해서 붙여넣으세요:
 
 ```
@@ -56,6 +58,30 @@ test.js의 greet 함수에 주석을 추가하고, numbers 배열을 map으로 2
 ```
 
 **파일 위치**: 프로젝트 루트 (예: `/Users/user/_/workspace/nts/study/cursor-tutorial/.cursorrules`)
+
+**방법 2: 최신 방식 (권장)**
+
+또는 `.cursor/rules/` 폴더를 만들고 규칙 파일을 생성할 수 있습니다:
+
+```
+.cursor/
+  rules/
+    korean.md
+```
+
+**방법 3: AGENTS.md (가장 간단)**
+
+프로젝트 루트에 `AGENTS.md` 파일을 만들어도 됩니다:
+
+```markdown
+# Project Instructions
+
+- 모든 답변은 한국어로 작성하세요
+- 주석도 모두 한국어로 작성하세요
+- 설명할 때 이모지를 사용하세요
+```
+
+💡 **이번 실습에서는 간단하게 `.cursorrules` 방식을 사용합니다.**
 
 #### 2-2. 변경된 응답 확인
 
@@ -175,11 +201,20 @@ Rules는 **프롬프트**일 뿐입니다. AI가 사용자의 명시적인 요�
 
 ### 4. Copilot과의 비교
 
-| 항목 | Copilot | Cursor |
-|-----|---------|--------|
-| 파일명 | `.github/copilot-instructions.md` | `.cursorrules` |
-| 위치 | `.github/` 폴더 안 | 프로젝트 루트 |
-| 기능 | 동일 | 동일 |
+| 항목 | Copilot | Cursor (레거시) | Cursor (최신) |
+|-----|---------|----------------|--------------|
+| 파일명 | `.github/copilot-instructions.md` | `.cursorrules` | `.cursor/rules/*.md` 또는 `AGENTS.md` |
+| 위치 | `.github/` 폴더 안 | 프로젝트 루트 | `.cursor/rules/` 폴더 또는 루트 |
+| 구조 | 단일 파일 | 단일 파일 | 여러 파일로 분리 가능 |
+| 메타데이터 | 없음 | 없음 | Frontmatter 지원 (.mdc) |
+| Rule 타입 | 없음 | 없음 | 4가지 타입 지원 |
+
+**Cursor의 새로운 기능**:
+- Rule 타입: Always Apply, Apply Intelligently, Apply to Specific Files, Apply Manually
+- Frontmatter 메타데이터: description, globs, alwaysApply
+- AGENTS.md: 간단한 마크다운 대안
+- Team Rules: 팀 전체 규칙 관리
+- Remote Rules: GitHub에서 규칙 가져오기
 
 ---
 

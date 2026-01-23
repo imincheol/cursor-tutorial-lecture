@@ -33,6 +33,7 @@ Agent Skills는 재사용 가능한 스킬로, Agent의 능력을 확장할 수 
 **공식 문서**:
 - [Agent Skills](https://cursor.com/docs/context/skills)
 - [Subagents](https://cursor.com/docs/context/subagents)
+- [Commands](https://cursor.com/docs/context/commands)
 - [체인지로그 - Clarification Questions (2026.01.22)](https://cursor.com/changelog)
 
 ---
@@ -184,6 +185,55 @@ async function getUser(id) {
 프로젝트 Skills:
 .cursor/skills/
 ```
+
+### Commands - 커스텀 명령어
+
+Commands는 Skills와 유사하지만, **빠른 실행**에 최적화된 기능입니다.
+
+**Skills vs Commands**:
+
+| 비교 항목 | Skills | Commands |
+|----------|--------|----------|
+| 목적 | 복잡한 워크플로우 | 빠른 실행 |
+| 파일 형식 | SKILL.md | JSON 설정 |
+| 실행 방식 | Agent가 해석 | 직접 실행 |
+| 사용 시나리오 | 다단계 작업 | 단순 명령 |
+
+**Commands 예시**:
+
+```json
+// .cursor/commands.json
+{
+  "commands": [
+    {
+      "name": "run-tests",
+      "description": "Run all tests",
+      "command": "npm test"
+    },
+    {
+      "name": "lint-fix",
+      "description": "Fix linting errors",
+      "command": "npm run lint:fix"
+    },
+    {
+      "name": "build-prod",
+      "description": "Build for production",
+      "command": "npm run build"
+    }
+  ]
+}
+```
+
+**사용 방법**:
+
+```bash
+# Cursor에서
+Cmd/Ctrl + Shift + P → "Run Command"
+→ "run-tests" 선택
+→ 즉시 실행
+```
+
+**참고 문서**: [Commands](https://cursor.com/docs/context/commands)
 
 ---
 
