@@ -57,11 +57,49 @@ function login(user, password) {
 
 ## 🚀 실습 프로젝트
 
-### Project 1: 로그인 버그 (예정)
+### [Project 1: Debug Mode로 로그인 버그 해결](./projects/01-debug-login-bug/README.md)
 
-### Project 2: API 오류 (예정)
+**학습 내용**:
 
-※ 프로젝트는 추후 추가 예정입니다.
+- Debug Mode 활성화 방법 익히기
+- 자동 로그 삽입으로 버그 원인 파악
+- 추측이 아닌 실행으로 버그 해결
+
+**실습 방식**:
+
+로그인 버튼을 클릭해도 대시보드로 이동하지 않는 버그가 있습니다. 먼저 일반 Agent 모드로 시도한 후, Debug 모드로 전환하여 실제 실행 결과를 확인하면서 정확한 원인을 파악합니다.
+
+**제공 파일**:
+- `index.html` - 로그인 페이지
+- `login.js` - 로그인 로직 (버그 있음)
+- `auth.js` - 인증 함수 (버그 있음)
+
+**실습 예시**:
+- 일반 모드: "아마 authenticate 함수가 문제일 것 같습니다" (추측)
+- Debug 모드: 실행 → `authenticate`가 객체를 반환 → `if (result)`는 항상 true → 원인 파악!
+
+---
+
+### [Project 2: Debug Mode로 API 오류 추적](./projects/02-debug-api-error/README.md)
+
+**학습 내용**:
+
+- API 호출 오류를 Debug Mode로 추적
+- 네트워크 요청/응답 디버깅
+- 404 오류 원인 정확히 파악
+
+**실습 방식**:
+
+사용자 목록을 불러오려고 하면 404 오류가 발생합니다. Debug 모드로 API 경로, 요청 파라미터, 응답 상태 등을 실시간으로 확인하면서 문제를 해결합니다.
+
+**제공 파일**:
+- `index.html` - 사용자 목록 페이지
+- `api.js` - API 호출 로직 (버그 있음)
+- `server.js` - 간단한 테스트 서버 (선택)
+
+**실습 예시**:
+- 일반 모드: "API 경로를 확인해보세요" (일반적인 조언)
+- Debug 모드: 실행 → `/api/user` 호출 → 404 → 올바른 경로는 `/api/users` → 정확한 수정!
 
 ---
 

@@ -296,11 +296,55 @@ const [name]userName = "John[ Doe]"
 
 ## 🚀 실습 프로젝트
 
-### Project 1: CLI Agent 기본 (예정)
+### [Project 1: CLI Agent 기본 사용법 및 Shell Mode](./projects/01-cli-basic/README.md)
 
-### Project 2: 터미널 개발 (예정)
+**학습 내용**:
 
-※ 프로젝트는 추후 추가 예정입니다.
+- Cursor CLI 설치 및 실행
+- CLI Agent 모드 (Agent, Plan, Ask) 이해 및 사용
+- Shell Mode (`!` 명령) 사용법 익히기
+- 각 모드의 차이점 체험
+
+**실습 방식**:
+
+터미널에서 Cursor CLI를 실행하고, 세 가지 모드(Agent, Plan, Ask)를 각각 사용해봅니다. Shell Mode로 대화 중 명령어를 빠르게 실행하는 방법도 익힙니다.
+
+**제공 파일**:
+- `src/hello.js` - 테스트용 파일
+
+**실습 예시**:
+- Agent 모드: `cursor` → 즉시 코드 작성
+- Plan 모드: `cursor /plan` → 계획 수립 후 실행
+- Ask 모드: `cursor /ask` → 코드 변경 없이 탐색
+- Shell Mode: `!npm test` → 대화 중 명령어 실행
+
+---
+
+### [Project 2: 터미널에서 전체 개발 프로세스](./projects/02-terminal-dev/README.md)
+
+**학습 내용**:
+
+- IDE 없이 CLI만으로 전체 개발 프로세스 경험
+- Shell Mode를 활용한 효율적인 워크플로우
+- Cloud Handoff로 장시간 작업 위임
+- SSH/CI/CD 환경에서의 활용 가능성 이해
+
+**실습 방식**:
+
+TODO API를 터미널에서만 개발합니다. 요구사항 분석부터 코드 작성, 테스트, 디버깅, Git 커밋까지 모든 작업을 CLI Agent와 함께 진행합니다.
+
+**실습 시나리오**:
+1. 프로젝트 초기화 (package.json, 의존성)
+2. TODO API 구현 (CRUD)
+3. 테스트 작성 및 실행
+4. 디버깅 (Shell Mode 활용)
+5. Git 커밋 및 푸시
+
+**실습 예시**:
+- `cursor` → "TODO API 만들어줘"
+- `!npm test` → 테스트 실행 결과 확인
+- "테스트 실패한 부분 수정해줘" → 즉시 수정
+- `!git status` → 변경사항 확인
 
 ---
 

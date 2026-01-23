@@ -5,10 +5,10 @@
 ## 📋 목차
 
 - [강의 개요](#-강의-개요)
-- [1부: 모드 비교](#1부-모드-비교)
+- [1부: 모드 비교 - 기본 모드](#1부-모드-비교---기본-모드)
 - [2부: 지침/규칙 비교](#2부-지침규칙-비교)
 - [3부: Rules의 한계](#3부-rules의-한계)
-- [실습 프로젝트](#-실습-프로젝트)
+- [4부: Debug 모드 - Cursor의 차별점](#4부-debug-모드---cursor의-차별점)
 
 ---
 
@@ -29,7 +29,7 @@
 
 ---
 
-## 1부: 모드 비교
+## 1부: 모드 비교 - 기본 모드
 
 ### Copilot vs Cursor 모드
 
@@ -40,7 +40,7 @@ Cursor 모드:  Ask,       Agent, Plan, Debug
 → 대부분 동일하지만, Edit와 Debug에서 차이가 있습니다.
 ```
 
-### 각 모드 설명
+### 기본 모드 설명
 
 #### 1. Ask 모드
 
@@ -113,53 +113,6 @@ Plan 모드를 통해 미리 무엇을 작업하고 어떤 것을 수정할지�
 - 여러 파일을 동시에 수정해야 할 때
 - 작업 범위가 명확하지 않을 때
 - 예상치 못한 부작용을 방지하고 싶을 때
-
-#### 5. Debug 모드 (Cursor만 제공) 🎯
-
-**Copilot과 Cursor의 가장 큰 차이점 중 하나입니다.**
-
-- **기능**: 코드를 실제로 실행하고 로그를 자동 삽입하여 버그 원인 파악
-- **사용 시나리오**: 버그 수정, 오류 추적, 동작 검증
-- **특징**: 추측이 아닌 실행 기반 디버깅
-
-**일반 모드 vs Debug 모드**:
-
-```javascript
-// 일반 모드 (추측 기반)
-function login(user, password) {
-  const result = authenticate(user, password);
-  if (result) {
-    redirect("/dashboard");
-  }
-}
-// AI: "아마 여기가 문제일 것 같은데..."
-```
-
-```javascript
-// Debug 모드 (실행 기반)
-function login(user, password) {
-  console.log("[DEBUG] user:", user);           // 자동 삽입
-  console.log("[DEBUG] password:", password);   // 자동 삽입
-  const result = authenticate(user, password);
-  console.log("[DEBUG] result:", result);       // 자동 삽입
-  if (result) {
-    console.log("[DEBUG] redirecting...");      // 자동 삽입
-    redirect("/dashboard");
-  }
-}
-// AI: "실행 결과를 보니 result가 undefined입니다!"
-```
-
-**Debug 모드의 장점**:
-
-| 비교 항목 | 일반 모드 | Debug 모드 |
-|---------|---------|-----------|
-| 방식 | 코드를 보고 추측 | 코드를 실제로 실행 |
-| 정확도 | 낮음 (추측) | 높음 (실행 결과) |
-| 로그 삽입 | 수동 | 자동 |
-| 버그 원인 파악 | 어려움 | 쉬움 |
-
-Debug 모드는 2장에서 실습을 통해 더 자세히 다룹니다.
 
 ---
 
@@ -240,31 +193,9 @@ Copilot에서는 **지침(Instructions)**이라고 부르고, Cursor에서는 **
 
 ---
 
-## 3부: Rules의 한계
+## 🚀 실습: Project 1 - Rules 간단 실습
 
-Rules는 본질적으로 **프롬프트**입니다.
-
-```
-.cursorrules에 이렇게 작성해도:
-
-- 항상 TypeScript를 사용하세요
-- rm -rf 명령은 절대 사용하지 마세요
-```
-
-**문제**:
-
-- AI가 가끔 무시합니다
-- "요청"일 뿐, "강제"가 아닙니다
-- 위험한 명령도 실행될 수 있습니다
-
-**해결책**:
-
-- 3장에서 배울 **Hooks**를 사용하면 100% 강제할 수 있습니다
-- Hooks는 프롬프트가 아닌 **코드**로 제어합니다
-
----
-
-## 🚀 실습 프로젝트
+이제 배운 내용을 바로 실습해봅시다!
 
 ### [Project 1: Rules 간단 실습](./projects/01-rules-simple/README.md)
 
@@ -289,7 +220,92 @@ Rules는 본질적으로 **프롬프트**입니다.
 - 샘플 Rule 2 적용 → JSDoc, 화살표 함수, 세미콜론 사용
 - 샘플 Rule 3 적용 → "절대 console.log 사용하지 마세요" → 하지만 무시됨 (한계!)
 
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-rules-simple/README.md)
+
 ---
+
+## 3부: Rules의 한계
+
+Rules는 본질적으로 **프롬프트**입니다.
+
+```
+.cursorrules에 이렇게 작성해도:
+
+- 항상 TypeScript를 사용하세요
+- rm -rf 명령은 절대 사용하지 마세요
+```
+
+**문제**:
+
+- AI가 가끔 무시합니다
+- "요청"일 뿐, "강제"가 아닙니다
+- 위험한 명령도 실행될 수 있습니다
+
+**해결책**:
+
+- 5장에서 배울 **Hooks**를 사용하면 100% 강제할 수 있습니다
+- Hooks는 프롬프트가 아닌 **코드**로 제어합니다
+
+---
+
+## 4부: Debug 모드 - Cursor의 차별점
+
+### Debug 모드란? 🎯
+
+**Copilot과 Cursor의 가장 큰 차이점 중 하나입니다.**
+
+Debug 모드는 코드를 **실제로 실행**하고 로그를 자동으로 삽입하여 버그의 정확한 원인을 파악합니다.
+
+- **기능**: 코드를 실제로 실행하고 로그를 자동 삽입하여 버그 원인 파악
+- **사용 시나리오**: 버그 수정, 오류 추적, 동작 검증
+- **특징**: 추측이 아닌 실행 기반 디버깅
+
+### 일반 모드 vs Debug 모드
+
+**일반 모드 (추측 기반)**:
+
+```javascript
+// 일반 모드 (추측 기반)
+function login(user, password) {
+  const result = authenticate(user, password);
+  if (result) {
+    redirect("/dashboard");
+  }
+}
+// AI: "아마 여기가 문제일 것 같은데..."
+```
+
+**Debug 모드 (실행 기반)**:
+
+```javascript
+// Debug 모드 (실행 기반)
+function login(user, password) {
+  console.log("[DEBUG] user:", user);           // 자동 삽입
+  console.log("[DEBUG] password:", password);   // 자동 삽입
+  const result = authenticate(user, password);
+  console.log("[DEBUG] result:", result);       // 자동 삽입
+  if (result) {
+    console.log("[DEBUG] redirecting...");      // 자동 삽입
+    redirect("/dashboard");
+  }
+}
+// AI: "실행 결과를 보니 result가 undefined입니다!"
+```
+
+### Debug 모드의 장점
+
+| 비교 항목 | 일반 모드 | Debug 모드 |
+|---------|---------|-----------|
+| 방식 | 코드를 보고 추측 | 코드를 실제로 실행 |
+| 정확도 | 낮음 (추측) | 높음 (실행 결과) |
+| 로그 삽입 | 수동 | 자동 |
+| 버그 원인 파악 | 어려움 | 쉬움 |
+
+---
+
+## 🚀 실습: Project 2 - Debug 모드 간단 체험
+
+이제 Debug 모드를 직접 체험해봅시다!
 
 ### [Project 2: Debug 모드 간단 체험](./projects/02-debug-simple/README.md)
 
@@ -312,29 +328,38 @@ Rules는 본질적으로 **프롬프트**입니다.
 - Agent 모드 (`2-1-calculator-agent.js`): "아마도 이 부분이 문제일 것 같습니다..." (추측)
 - Debug 모드 (`2-2-calculator-debug.js`): 자동 로그 삽입 → 실행 → "b가 0일 때 Infinity가 반환됩니다" (확인)
 
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-debug-simple/README.md)
+
+Debug 모드는 2장에서 더 복잡한 실전 시나리오(로그인 버그, API 오류)로 심화 학습합니다.
+
 ---
 
 ## 💡 학습 가이드
 
 ### 진행 방법
 
-1. **강의 내용 읽기**
+1. **1부: 기본 모드 학습**
+   - Copilot과 Cursor의 모드 비교
+   - Ask, Edit, Agent, Plan 모드 이해
 
-   - 이 README를 읽으면서 Copilot과 Cursor의 모드를 비교합니다
-   - Plan 모드의 중요성을 이해합니다
-   - Debug 모드의 차별화된 가치를 파악합니다
-   - 지침/규칙의 동작 방식을 이해합니다
+2. **2부: Rules 학습 + 실습**
+   - 지침/규칙의 동작 방식 이해
+   - 👉 **바로 실습**: Project 1 - Rules 간단 실습
 
-2. **실습 프로젝트 진행**
-   - Project 1: Rules 간단 실습 - 질의응답으로 바로 확인
-   - Project 2: Debug 모드 간단 체험 - 일반 모드 vs Debug 모드 비교
+3. **3부: Rules의 한계 인식**
+   - Rules가 프롬프트라는 한계 이해
+
+4. **4부: Debug 모드 학습 + 실습**
+   - Debug 모드의 차별화된 가치 파악
+   - 👉 **바로 실습**: Project 2 - Debug 모드 간단 체험
 
 ### 학습 팁
 
 - Copilot을 사용해보신 분이라면 매우 익숙한 내용입니다
 - **Plan 모드를 한 번 사용해보세요** - 작업 효율이 크게 향상됩니다
+- **각 내용을 배운 직후 바로 실습하세요** - 학습 효과가 극대화됩니다
 - **Debug 모드를 직접 체험해보세요** - 추측이 아닌 실행의 차이를 느낄 수 있습니다
-- Rules의 한계를 경험하는 것이 중요합니다 (3장 Hooks로 해결)
+- Rules의 한계를 경험하는 것이 중요합니다 (5장 Hooks로 해결)
 - 실습은 가볍고 빠르게 진행됩니다
 
 ---
@@ -343,14 +368,24 @@ Rules는 본질적으로 **프롬프트**입니다.
 
 이번 장에서 다룬 내용:
 
-- ✅ Copilot과 Cursor의 모드 비교 (Ask, Edit, Agent, Plan, Debug)
+**1부: 기본 모드**
+- ✅ Copilot과 Cursor의 모드 비교 (Ask, Edit, Agent, Plan)
 - ✅ 각 모드의 특징과 사용 시나리오
 - ✅ Plan 모드의 중요성 (사전 계획 → 검토 → 실행)
-- ✅ Debug 모드의 차별화된 가치 (추측 → 실행 기반)
+
+**2부: Rules + 실습**
 - ✅ 지침(Instructions)과 규칙(Rules)의 동작 방식
-- ✅ Rules 간단 실습 (질의응답으로 바로 확인)
-- ✅ Debug 모드 간단 체험 (Agent 모드 vs Debug 모드, 3개 파일로 비교)
+- ✅ glob 패턴으로 파일별 규칙 적용
+- ✅ **실습 완료**: Rules 간단 실습 (질의응답으로 바로 확인)
+
+**3부: Rules의 한계**
 - ✅ Rules의 한계 인식 (프롬프트는 강제가 아님)
+- ✅ Hooks로 해결 가능 (5장 예고)
+
+**4부: Debug 모드 + 실습**
+- ✅ Debug 모드의 차별화된 가치 (추측 → 실행 기반)
+- ✅ 일반 모드 vs Debug 모드 비교
+- ✅ **실습 완료**: Debug 모드 간단 체험 (3개 파일로 비교)
 
 **다음 장 예고**:
 
@@ -364,7 +399,7 @@ Rules는 본질적으로 **프롬프트**입니다.
 
 ---
 
-## 🔗 빠른 링크
+## 🔗 실습 프로젝트 바로가기
 
-- [Project 1: Rules 간단 실습](./projects/01-rules-simple/README.md)
-- [Project 2: Debug 모드 간단 체험](./projects/02-debug-simple/README.md)
+- [Project 1: Rules 간단 실습](./projects/01-rules-simple/README.md) - 2부 학습 후 진행
+- [Project 2: Debug 모드 간단 체험](./projects/02-debug-simple/README.md) - 4부 학습 후 진행

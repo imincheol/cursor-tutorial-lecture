@@ -148,6 +148,32 @@ git worktree list
 
 ---
 
+## 🚀 실습: Project 1 - Worktree 기본 사용
+
+이제 배운 내용을 바로 실습해봅시다!
+
+### [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md)
+
+**학습 내용**:
+
+- Git Worktree 생성 및 관리
+- 독립 환경에서 작업
+- 컨텍스트 오염 방지
+
+**실습 방식**:
+
+Worktree를 생성하고, 각 환경에서 독립적으로 작업하는 방법을 배웁니다. 메인 브랜치는 유지하면서 핫픽스 브랜치를 별도로 작업합니다.
+
+**실습 예시**:
+- 메인 작업: `feature/dashboard` 개발 중
+- 핫픽스 발생: `git worktree add ../hotfix hotfix/bug`
+- 독립 환경에서 버그 수정
+- 메인 작업으로 돌아가면 컨텍스트 유지됨!
+
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-worktree-basic/README.md)
+
+---
+
 ## 3부: Multi-Agent 패턴
 
 ### 패턴: 독립 환경 + 독립 Agent
@@ -290,21 +316,9 @@ Multi-Agent 동작:
 
 ---
 
-## 🚀 실습 프로젝트
+## 🚀 실습: Project 2 - Multi-Agent 실전 워크플로우
 
-### [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md)
-
-**학습 내용**:
-
-- Git Worktree 생성 및 관리
-- 독립 환경에서 작업
-- 컨텍스트 오염 방지
-
-**실습 방식**:
-
-Worktree를 생성하고, 각 환경에서 독립적으로 작업하는 방법을 배웁니다. 메인 브랜치는 유지하면서 핫픽스 브랜치를 별도로 작업합니다.
-
----
+이제 Multi-Agent 패턴을 실전에서 체험해봅시다!
 
 ### [Project 2: Multi-Agent 실전 워크플로우](./projects/02-worktree-management/README.md)
 
@@ -318,22 +332,43 @@ Worktree를 생성하고, 각 환경에서 독립적으로 작업하는 방법�
 
 실제 실무 시나리오를 재현합니다. 신규 기능 개발 중 핫픽스 요청이 오고, 추가로 다른 페이지 수정 요청이 오는 상황을 Worktree와 Multi-Agent로 처리합니다.
 
+**실습 시나리오**:
+1. IDE에서 대시보드 개발 중
+2. 핫픽스 요청 → Worktree 생성 → CLI Agent로 처리
+3. 랜딩 페이지 수정 요청 → 또 다른 Worktree → 또 다른 CLI Agent
+4. 모든 작업이 독립적으로 진행
+5. 컨텍스트 유지되어 효율적!
+
+**실습 예시**:
+- 환경 1 (IDE): `feature/dashboard` 계속 개발
+- 환경 2 (Terminal 1): `hotfix/bug` 수정 완료 → push
+- 환경 3 (Terminal 2): `feature/landing` 수정 완료 → push
+- IDE로 돌아가면 대시보드 작업 그대로 유지!
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-worktree-management/README.md)
+
 ---
 
 ## 💡 학습 가이드
 
 ### 진행 방법
 
-1. **강의 내용 읽기**
-
+1. **1부: 실무 시나리오**
    - 실무에서 여러 업무가 동시에 발생하는 상황 이해
-   - Git Worktree의 필요성 파악
-   - Multi-Agent 패턴 학습
-   - Subagents와의 차이점 명확히 이해
+   - 단일 환경의 한계 파악
 
-2. **실습 프로젝트 진행**
-   - Project 1: Worktree 기본 사용
-   - Project 2: Multi-Agent 실전 워크플로우
+2. **2부: Git Worktree + 실습**
+   - Git Worktree의 필요성 및 사용법 학습
+   - 👉 **바로 실습**: Project 1 - Worktree 기본 사용
+
+3. **3부: Multi-Agent 패턴 + 실습**
+   - Multi-Agent 패턴 학습
+   - 독립 환경 + 독립 Agent 활용
+   - 👉 **바로 실습**: Project 2 - Multi-Agent 실전 워크플로우
+
+4. **4부: Subagents vs Multi-Agent**
+   - 두 패턴의 차이점 명확히 이해
+   - 상황별 선택 기준
 
 ### 학습 팁
 
@@ -350,12 +385,21 @@ Worktree를 생성하고, 각 환경에서 독립적으로 작업하는 방법�
 
 이번 장에서 다룬 내용:
 
+**1부: 실무 시나리오**
 - ✅ 실무에서 여러 업무가 동시에 발생하는 상황 이해
+- ✅ 단일 환경의 한계 (Git Stash의 문제점)
+
+**2부: Git Worktree + 실습**
 - ✅ Git Worktree로 독립 환경 구성
+- ✅ **실습 완료**: Worktree 기본 사용
+
+**3부: Multi-Agent 패턴 + 실습**
 - ✅ Multi-Agent 패턴으로 병렬 작업
-- ✅ Subagents vs Multi-Agent 차이점 명확히 이해
-- ✅ Worktree 기본 사용 실습
-- ✅ Multi-Agent 실전 워크플로우 실습
+- ✅ **실습 완료**: Multi-Agent 실전 워크플로우
+
+**4부: Subagents vs Multi-Agent**
+- ✅ 두 패턴의 차이점 명확히 이해
+- ✅ 상황별 선택 기준
 
 **핵심 포인트**:
 
@@ -379,7 +423,7 @@ Multi-Agent: 여러 업무를 동시에 처리
 
 ---
 
-## 🔗 빠른 링크
+## 🔗 실습 프로젝트 바로가기
 
-- [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md)
-- [Project 2: Multi-Agent 실전 워크플로우](./projects/02-worktree-management/README.md)
+- [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md) - 2부 학습 후 진행
+- [Project 2: Multi-Agent 실전 워크플로우](./projects/02-worktree-management/README.md) - 3부 학습 후 진행

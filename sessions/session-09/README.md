@@ -118,6 +118,33 @@ Agent: 클라우드로 전송되었습니다.
 
 ---
 
+## 🚀 실습: Project 1 - Cloud Agent 기본 사용
+
+이제 배운 내용을 바로 실습해봅시다!
+
+### [Project 1: Cloud Agent 기본 사용](./projects/01-cloud-basic/README.md)
+
+**학습 내용**:
+
+- Cloud Agent 기본 사용법
+- Handoff로 작업 전송
+- 웹에서 진행 상황 확인
+- 결과 확인 및 적용
+
+**실습 방식**:
+
+간단한 작업을 Cloud로 전송하고, 웹에서 확인하는 과정을 체험합니다.
+
+**실습 예시**:
+- `cursor` → "& 린트 에러 수정해줘"
+- 터미널 종료
+- `cursor.com/agents` 접속 → 진행 상황 확인
+- 완료 후 결과 확인
+
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-cloud-basic/README.md)
+
+---
+
 ## 3부: 웹/모바일에서 확인
 
 ### 웹에서 확인
@@ -240,6 +267,39 @@ Agent: 클라우드로 전송되었습니다.
 
 ---
 
+## 🚀 실습: Project 2 - 장시간 작업 위임 패턴
+
+이제 실전에서 활용할 수 있는 장시간 작업 패턴을 익혀봅시다!
+
+### [Project 2: 장시간 작업 위임 패턴](./projects/02-handoff-workflow/README.md)
+
+**학습 내용**:
+
+- 대규모 작업 위임
+- 조건부 실행 패턴
+- 알림 설정
+- 실전 시나리오 실습
+
+**실습 방식**:
+
+실제 프로젝트에서 사용할 수 있는 장시간 작업 패턴을 익힙니다.
+
+**실습 시나리오**:
+1. 퇴근 시간 작업 (린트, 포맷팅, PR 생성)
+2. 대규모 마이그레이션 (React 17 → 18)
+3. 문서 자동 생성 (API, 컴포넌트, README)
+4. 성능 최적화 (번들 분석, 이미지 최적화)
+
+**실습 예시**:
+- `& 전체 코드 린트 수정 + PR 생성`
+- 퇴근
+- 집에서 모바일로 확인
+- 다음날 출근하면 PR 완성!
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-handoff-workflow/README.md)
+
+---
+
 ## 💡 Cloud Agent vs 로컬 Agent
 
 ### 비교표
@@ -269,51 +329,28 @@ Agent: 클라우드로 전송되었습니다.
 
 ---
 
-## 🚀 실습 프로젝트
-
-### [Project 1: Cloud Agent 기본 사용](./projects/01-cloud-basic/README.md)
-
-**학습 내용**:
-
-- Cloud Agent 기본 사용법
-- Handoff로 작업 전송
-- 웹에서 진행 상황 확인
-- 결과 확인 및 적용
-
-**실습 방식**:
-
-간단한 작업을 Cloud로 전송하고, 웹에서 확인하는 과정을 체험합니다.
-
----
-
-### [Project 2: 장시간 작업 위임 패턴](./projects/02-handoff-workflow/README.md)
-
-**학습 내용**:
-
-- 대규모 작업 위임
-- 조건부 실행 패턴
-- 알림 설정
-- 실전 시나리오 실습
-
-**실습 방식**:
-
-실제 프로젝트에서 사용할 수 있는 장시간 작업 패턴을 익힙니다.
-
----
-
 ## 💡 학습 가이드
 
 ### 진행 방법
 
-1. **강의 내용 읽기**
+1. **1부: Cloud Agent 개념**
+   - Cloud Agent란 무엇인가
+   - 왜 필요한가
 
-   - Cloud Agent 개념 이해
-   - Handoff 사용법 학습
-   - 실전 활용 패턴 파악
+2. **2부: Handoff 사용법 + 실습**
+   - `&` 기호로 작업 전송
+   - 👉 **바로 실습**: Project 1 - Cloud Agent 기본 사용
 
-2. **실습 프로젝트 진행**
-   - Project 1: Cloud Agent 기본 사용
-   - Project 2: 장시간 작업 위임 패턴
+3. **3부: 웹/모바일에서 확인**
+   - cursor.com/agents 접속
+   - 진행 상황 모니터링
+
+4. **4부: 실전 활용 패턴 + 실습**
+   - 퇴근 시간 작업, 대규모 마이그레이션 등
+   - 👉 **바로 실습**: Project 2 - 장시간 작업 위임 패턴
+
+5. **Cloud vs 로컬 선택 기준**
+   - 언제 Cloud를 사용하는가
 
 ### 학습 팁
 
@@ -328,10 +365,23 @@ Agent: 클라우드로 전송되었습니다.
 
 이번 장에서 다룬 내용:
 
+**1부: Cloud Agent 개념**
 - ✅ Cloud Agent 기본 개념
+- ✅ 왜 필요한가 (장시간 작업, 로컬 리소스 부족)
+
+**2부: Handoff 사용법 + 실습**
 - ✅ Handoff 사용법 (`&` prefix)
-- ✅ 웹/모바일에서 확인
-- ✅ 실전 활용 패턴
+- ✅ **실습 완료**: Cloud Agent 기본 사용
+
+**3부: 웹/모바일에서 확인**
+- ✅ cursor.com/agents에서 진행 상황 확인
+- ✅ 모바일 앱 활용
+
+**4부: 실전 활용 패턴 + 실습**
+- ✅ 실전 활용 패턴 (퇴근 시간, 마이그레이션 등)
+- ✅ **실습 완료**: 장시간 작업 위임 패턴
+
+**Cloud vs 로컬 선택**
 - ✅ 로컬 vs Cloud 선택 기준
 
 **핵심 포인트**:
@@ -363,7 +413,7 @@ Agent: 클라우드로 전송되었습니다.
 
 ---
 
-## 🔗 빠른 링크
+## 🔗 실습 프로젝트 바로가기
 
-- [Project 1: Cloud Agent 기본 사용](./projects/01-cloud-basic/README.md)
-- [Project 2: 장시간 작업 위임 패턴](./projects/02-handoff-workflow/README.md)
+- [Project 1: Cloud Agent 기본 사용](./projects/01-cloud-basic/README.md) - 2부 학습 후 진행
+- [Project 2: 장시간 작업 위임 패턴](./projects/02-handoff-workflow/README.md) - 4부 학습 후 진행
