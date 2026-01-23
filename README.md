@@ -162,7 +162,15 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 
 **Debug 모드**는 Cursor만의 차별화된 기능입니다. 코드를 보고 추측하는 것이 아니라 실제로 실행하고 로그를 자동 삽입하여 버그 원인을 정확히 파악합니다.
 
-**지침/규칙**도 비교합니다. Copilot의 Instructions와 Cursor의 Rules는 기능이 동일하지만, 파일 위치가 다릅니다. Copilot은 `.github/copilot-instructions.md`를 사용하고, Cursor는 `.cursorrules`를 사용합니다. 두 환경 모두 glob 패턴으로 파일별 규칙 적용이 가능합니다.
+**Cursor Rules의 최신 기능**을 상세히 다룹니다:
+- `.cursorrules` (레거시) → `.cursor/rules/` 폴더 구조 (최신)
+- Rule 타입 4가지: Always Apply, Apply Intelligently, Apply to Specific Files, Apply Manually
+- Frontmatter 메타데이터 (description, globs, alwaysApply)
+- AGENTS.md 간단한 대안
+- Team Rules (팀 플랜 기능)
+- Remote Rules (GitHub에서 가져오기)
+
+Copilot의 Instructions와 Cursor의 Rules는 기능이 유사하지만, Cursor는 더 강력한 구조화 기능을 제공합니다. 두 환경 모두 glob 패턴으로 파일별 규칙 적용이 가능합니다.
 
 이번 장에서는 **간단한 실습**으로 Rules와 Debug 모드를 체험합니다. 프로젝트 파일을 만들지 않고 질의응답으로 바로 확인하는 방식이라 빠르고 쉽습니다.
 
@@ -187,6 +195,17 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 
 코드를 **실제로 실행**하고 로그를 자동으로 삽입해서 정확한 원인을 파악합니다. 추측이 아닌 확인이죠. 이는 Copilot의 Edit 모드와는 완전히 다른 접근 방식입니다.
 
+**Debug Mode의 핵심 기능**:
+- 자동 로그 삽입 (console.log 자동 추가)
+- 실시간 실행 (브라우저/Node.js)
+- 상태 추적 (변수 값, 함수 반환값)
+- 정확한 오류 위치 파악
+
+**사용 시나리오별 비교**:
+- 로그인 실패 → 일반: "인증 로직 확인" / Debug: `result`가 `undefined` 확인
+- API 404 오류 → 일반: "경로 확인" / Debug: `/api/user` 호출 확인 → `/api/users`로 수정
+- 조건문 버그 → 일반: "조건 확인" / Debug: `password.length > 8`이 항상 false 확인
+
 이번 장에서는 Debug Mode로 로그인 버그와 API 오류를 해결하는 방법을 실습합니다.
 
 **실습 프로젝트** (2개):
@@ -207,6 +226,19 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 UI를 수정할 때 "왼쪽 위 파란 버튼"처럼 말로 설명하는 것은 번거롭습니다. AI가 잘못 이해할 수도 있죠.
 
 **Visual Editor**를 사용하면 브라우저에서 직접 클릭해서 요소를 선택할 수 있습니다. AI가 정확히 그 요소를 수정합니다. 말로 설명할 필요가 없습니다.
+
+**브라우저 통합 작동 원리**:
+- 브라우저 확장 프로그램으로 Cursor가 브라우저 제어
+- 클릭한 요소의 CSS 선택자 자동 추출
+- 선택된 요소 정보를 Agent에게 전달
+- Agent가 정확히 해당 요소만 수정
+
+**지원 브라우저**: Chrome, Edge, Brave 등 Chromium 기반 브라우저
+
+**베스트 프랙티스**:
+- 여러 비슷한 요소 중 하나를 선택할 때 유용
+- 복잡한 레이아웃에서 특정 요소 찾기 쉬움
+- CSS 선택자를 정확히 모를 때 활용
 
 이번 장에서는 Visual Editor로 버튼 스타일과 복잡한 레이아웃을 빠르게 수정하는 방법을 실습합니다.
 
@@ -231,7 +263,16 @@ UI를 수정할 때 "왼쪽 위 파란 버튼"처럼 말로 설명하는 것은 
 
 Copilot에도 CLI가 있지만 명령어 제안만 가능하고, 실제 코드 작업은 IDE로 돌아가야 합니다. 하지만 Cursor CLI는 터미널에서 파일 생성, 수정, 테스트 실행까지 모두 가능합니다.
 
-특히 **Shell Mode**(`!` 명령)를 사용하면 Agent와 대화하는 중에도 빠르게 명령어를 실행하고 결과를 확인할 수 있습니다.
+**CLI Agent의 주요 기능**:
+- **3가지 모드**: Agent (기본), Plan (`/plan`), Ask (`/ask`)
+- **Shell Mode** (`!` 명령): 대화 중 명령어 빠르게 실행
+- **Headless 모드**: UI 없이 백그라운드 실행, CI/CD 통합
+- **슬래시 명령어**: `/clear`, `/help`, `/exit` 등
+- **GitHub Actions 통합**: 자동화 워크플로우
+
+**CLI 설치 방법**:
+- Mac/Linux: Cursor IDE에서 "Shell Command: Install 'cursor' command in PATH"
+- Windows: PowerShell에서 설치 스크립트 실행
 
 이번 장에서는 Cursor CLI로 IDE 없이 개발하는 방법을 익힙니다.
 
@@ -256,6 +297,21 @@ Rules는 프롬프트입니다. "이렇게 해주세요"라고 요청하는 것�
 
 Hooks는 **코드**입니다. Agent가 실행하는 모든 작업을 **사전에 차단**하거나 **사후에 점검**할 수 있습니다. 실제로 Claude CLI가 홈 디렉터리를 삭제해버린 사고가 있었는데, Hooks를 사용하면 100% 차단할 수 있습니다.
 
+**Hooks API 명세**:
+- **preToolExecution**: Agent가 도구 실행 전 호출, 차단 가능
+- **postToolExecution**: Agent가 도구 실행 후 호출, 결과 검증
+- **Context 객체**: tool, args, metadata, result 정보 제공
+
+**서드파티 Hooks**:
+- 커뮤니티 제공 Hooks를 npm으로 설치 가능
+- Security Hooks, Linter Hooks, Git Hooks, Notification Hooks 등
+- 커스텀 Hook을 npm에 배포하여 공유 가능
+
+**보안 설정**:
+- Agent 권한 제한 (shell, write, delete, network)
+- 민감한 파일 보호 (.env, secrets.json 등)
+- 보호된 경로 차단 (~/, /etc/, /usr/)
+
 이번 장에서는 `preToolExecution`과 `postToolExecution`으로 Agent를 완벽히 제어하는 방법을 배웁니다.
 
 **실습 프로젝트** (2개):
@@ -277,7 +333,23 @@ Hooks는 **코드**입니다. Agent가 실행하는 모든 작업을 **사전에
 
 Agent Skills는 재사용 가능한 스킬로, Agent의 능력을 확장할 수 있습니다. 예를 들어 "API 검증 스킬", "테스트 생성 스킬" 같은 것을 만들어두면 다른 프로젝트에서도 재사용할 수 있습니다.
 
+**기본 제공 Skills**:
+- create-rule: Cursor Rules 생성
+- create-skill: 새로운 Skill 작성
+- update-cursor-settings: Cursor 설정 수정
+
+**커스텀 Skill 작성**:
+- SKILL.md 파일 형식 (설명, 사용 시점, 단계, 예시)
+- 전역 Skills (~/.cursor/skills/) 또는 프로젝트 Skills (.cursor/skills/)
+
+**Commands 기능** (새로 추가):
+- Skills와 유사하지만 빠른 실행에 최적화
+- JSON 설정으로 단순 명령 정의
+- 예: run-tests, lint-fix, build-prod
+
 Subagents는 메인 Agent가 여러 하위 Agent를 자동으로 생성하여 작업을 분산하는 기능입니다. 복잡한 기능 개발 시 자동으로 오케스트레이션됩니다.
+
+**Clarification Questions**: Agent가 불명확한 부분을 질문하는 기능 (2026.01.22 추가)
 
 이번 장에서는 기본 제공 Skills 사용, 커스텀 Skill 작성, Subagent로 병렬 작업하는 방법을 배웁니다.
 
@@ -331,6 +403,18 @@ Subagents는 메인 Agent가 여러 하위 Agent를 자동으로 생성하여 �
 
 텍스트 설명만으로 이미지를 생성할 수 있습니다. UI 목업, 아이콘, 로고, 다이어그램 등을 빠르게 만들 수 있습니다.
 
+**Image Generation 기능**:
+- Google Nano Banana Pro 모델 사용
+- 빠른 생성 속도, 높은 품질
+- 텍스트 및 참조 이미지 지원
+- assets/ 폴더에 자동 저장
+
+**Mermaid 다이어그램** (중요 추가):
+- 텍스트 기반 다이어그램 도구
+- 마크다운에 직접 삽입 가능, 버전 관리 가능
+- 지원 타입: Flowchart, Sequence Diagram, Class Diagram, State Diagram, ER Diagram, Gantt Chart, Pie Chart, Git Graph
+- Agent가 Mermaid 코드 자동 생성
+
 **실습 프로젝트** (2개):
 
 1. `01-image-basic` - 간단한 이미지 생성 (아이콘, 로고)
@@ -347,6 +431,25 @@ Subagents는 메인 Agent가 여러 하위 Agent를 자동으로 생성하여 �
 **강의 내용**:
 
 로컬 작업을 클라우드로 넘겨서 계속 실행할 수 있습니다. 퇴근 시간에 큰 작업을 시작하고, 집에서 모바일로 확인할 수 있습니다.
+
+**Cloud Agent 핵심 기능**:
+- 클라우드 서버에서 Agent 실행
+- 터미널 종료해도 계속 실행
+- `&` 기호로 Handoff (예: `& 전체 프로젝트 린트 수정`)
+
+**API & Webhooks**:
+- REST API로 프로그래밍 방식 제어
+- Agent 생성, 상태 조회, 중지, 로그 조회
+- Webhook으로 완료 알림 (agent.started, agent.completed, agent.failed)
+- Slack 통합 예시 제공
+
+**Egress IP 범위**:
+- Cloud Agent가 외부 API 호출 시 사용하는 IP
+- 방화벽 화이트리스트 설정 가능
+
+**웹/모바일 접근**:
+- cursor.com/agents에서 진행 상황 확인
+- 모바일에서도 작업 모니터링 가능
 
 **실습 프로젝트** (2개):
 
@@ -365,6 +468,24 @@ Subagents는 메인 Agent가 여러 하위 Agent를 자동으로 생성하여 �
 
 MCP (Model Context Protocol)로 외부 도구(GitHub, Browser 등)와 데이터를 연결합니다.
 
+**MCP 프로토콜**:
+- Agent가 외부 도구와 데이터에 접근하는 표준 프로토콜
+- 기본 제공: GitHub MCP, Browser MCP
+- 커뮤니티 MCP: Slack, Linear, Notion, Airtable, Supabase, Stripe 등
+
+**MCP 서버 구축**:
+- TypeScript/JavaScript로 커스텀 MCP 서버 작성
+- 도구 등록 (registerTool), 리소스 등록 (registerResource)
+- npm에 배포하여 공유 가능
+
+**원클릭 설치**:
+- `cursor://install-mcp?url=...` 링크로 간편 설치
+- MCP 디렉토리에서 검색 및 설치
+
+**CLI MCP 통합**:
+- CLI Agent에서도 MCP 사용 가능
+- `cursor --mcp=github,browser` 또는 설정 파일에서 활성화
+
 **실습 프로젝트** (2개):
 
 1. `01-mcp-basic` - MCP 기본 사용 (GitHub 연동)
@@ -381,6 +502,30 @@ MCP (Model Context Protocol)로 외부 도구(GitHub, Browser 등)와 데이터�
 **강의 내용**:
 
 Cursor Blame, Shared Transcripts, Layout Customization 등 팀 협업에 유용한 기능들을 알아봅니다.
+
+**Cursor Blame**:
+- git blame 확장: AI 기여도 추적
+- 누가, 언제, AI가 생성했는지, 어떤 대화에서 생성되었는지 확인
+- 코드 리뷰 및 온보딩 시 유용
+
+**Shared Transcripts**:
+- Agent 대화 내용을 팀과 공유
+- 읽기 전용 링크 생성 (cursor.com/transcript/...)
+- 팀 학습 및 베스트 프랙티스 공유
+
+**팀 대시보드 & 분석**:
+- 팀 전체 사용 현황 확인
+- 총 사용자 수, 활성 사용자, 월간 요청 수
+- 일별/주별/월별 그래프, 팀원별/프로젝트별 사용량
+
+**AI 코드 트래킹 API**:
+- 프로그래밍 방식으로 AI 코드 기여도 추적
+- REST API로 통계 조회
+- Webhook으로 AI 코드 생성 이벤트 수신
+
+**SSO & SCIM** (Enterprise):
+- Single Sign-On: Google Workspace, Azure AD, Okta, OneLogin
+- SCIM: 자동 사용자 프로비저닝 및 동기화
 
 **실습 프로젝트** (2개):
 
