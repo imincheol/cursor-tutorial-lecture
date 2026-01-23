@@ -1,4 +1,4 @@
-# Project 2: Debug 모드 간단 체험
+# Project 1: Debug 모드 간단 체험
 
 > **추측이 아닌 실행으로 버그를 찾는 Debug 모드 경험하기**
 
@@ -12,215 +12,196 @@
 
 ## 📁 프로젝트 파일
 
-이 폴더에는 3개의 파일이 준비되어 있습니다:
+이 폴더에는 2개의 파일이 준비되어 있습니다:
 
-1. **`2-0-calculator-original.js`** - 원본 파일 (참고용, 수정하지 마세요)
-2. **`2-1-calculator-agent.js`** - Agent 모드 실습용
-3. **`2-2-calculator-debug.js`** - Debug 모드 실습용
+1. **`index.html`** - 로그인 폼 (브라우저에서 열기)
+2. **`login.js`** - 로그인 로직 (버그 포함)
 
-파일명의 `2-`는 두 번째 실습을 의미하고, 뒤의 숫자는 실습 순서를 나타냅니다.
+---
 
-### 버그가 있는 계산기 코드
+## 🐛 버그 상황
+
+로그인 폼에서 비밀번호를 정확히 8자로 입력해도 "비밀번호가 너무 짧습니다"라는 오류가 발생합니다.
 
 ```javascript
-function calculate(a, b, operation) {
-  let result;
+// login.js
+function handleLogin(event) {
+  event.preventDefault();
   
-  if (operation === 'add') {
-    result = a + b;
-  } else if (operation === 'subtract') {
-    result = a - b;
-  } else if (operation === 'multiply') {
-    result = a * b;
-  } else if (operation === 'divide') {
-    result = a / b;
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  
+  if (username && password) {
+    // 버그: 비밀번호 길이 체크 로직 오류
+    if (password.length > 8) {  // >= 8이어야 함
+      showMessage('로그인 성공!', 'success');
+    } else {
+      showMessage('비밀번호가 너무 짧습니다...', 'error');
+    }
   }
-  
-  return result;
 }
-
-// 테스트
-console.log(calculate(10, 5, 'add'));      // 15 ✅
-console.log(calculate(10, 5, 'subtract')); // 5 ✅
-console.log(calculate(10, 5, 'multiply')); // 50 ✅
-console.log(calculate(10, 0, 'divide'));   // Infinity ❌ (버그!)
-console.log(calculate(10, 5, 'modulo'));   // undefined ❌ (버그!)
 ```
 
-**버그 2개**:
-1. 0으로 나누면 `Infinity` 반환 (에러 처리 필요)
-2. `modulo` 연산이 구현되지 않아 `undefined` 반환
+**문제**: 8자를 입력해도 오류가 나는 이유가 무엇일까요?
 
 ---
 
 ## 🚀 실습 단계
 
-### Step 1: Agent 모드로 버그 수정 시도
+### Step 1: 브라우저에서 열기
 
-**Agent 모드**를 열고 `2-1-calculator-agent.js` 파일을 선택한 후 다음을 요청하세요:
-
-```
-2-1-calculator-agent.js의 버그를 찾아서 수정해줘
-```
-
-**예상 동작**:
-- AI가 코드를 **읽고 추측**해서 수정합니다
-- "아마도 이 부분이 문제일 것 같습니다..."
-- 0으로 나누는 경우를 처리할 수도, 못할 수도 있습니다
-- modulo 연산을 추가할 수도, 못할 수도 있습니다
-
-**결과 확인**:
-- ❓ 두 버그를 모두 찾았나요?
-- ❓ 정확한 수정이었나요?
-- ❓ 추측으로 인한 불확실성이 느껴지나요?
+1. `index.html` 파일을 브라우저에서 열기
+2. 로그인 폼이 보이는지 확인
+3. 테스트해보기:
+   - 사용자명: `admin`
+   - 비밀번호: `12345678` (정확히 8자)
+   - 결과: "비밀번호가 너무 짧습니다" 오류 발생! 🐛
 
 ---
 
-### Step 2: Debug 모드로 버그 수정
+### Step 2: Agent 모드로 시도
 
-이제 **Debug 모드**를 사용해봅시다.
-
-#### Debug 모드 활성화
-
-1. Cursor에서 `Cmd+Shift+P` (Mac) 또는 `Ctrl+Shift+P` (Windows)
-2. "Debug Mode" 검색
-3. Debug 모드 활성화
-
-#### Debug 모드에서 요청
-
-`2-2-calculator-debug.js` 파일을 선택한 후 다음을 요청하세요:
+Cursor Agent에게 다음과 같이 요청하세요:
 
 ```
-2-2-calculator-debug.js를 실행해서 어떤 입력에서 문제가 발생하는지 확인하고 수정해줘
+login.js 파일을 봐줘. 
+비밀번호를 8자로 입력해도 "비밀번호가 너무 짧습니다"라고 나와. 
+버그를 찾아서 수정해줘.
 ```
 
-**예상 동작**:
-- AI가 코드를 **실제로 실행**합니다
-- 자동으로 로그를 삽입합니다:
+**예상 결과**:
+- Agent가 코드를 보고 추측: "아마 `password.length > 8`이 문제일 것 같습니다"
+- 정확한 원인을 찾았지만, **추측**에 의존함
 
+---
+
+### Step 3: Debug 모드로 시도
+
+이제 **Debug 모드**로 전환하세요:
+
+1. Cursor에서 Debug 모드 활성화
+2. 같은 요청을 다시 해보세요:
+
+```
+login.js 파일의 버그를 Debug 모드로 찾아줘.
+비밀번호를 8자로 입력해도 오류가 나.
+```
+
+**Debug 모드의 동작**:
+
+1. **자동 로그 삽입**:
 ```javascript
-function calculate(a, b, operation) {
-  console.log('[DEBUG] a:', a);           // 자동 삽입
-  console.log('[DEBUG] b:', b);           // 자동 삽입
-  console.log('[DEBUG] operation:', operation); // 자동 삽입
+function handleLogin(event) {
+  event.preventDefault();
   
-  let result;
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
   
-  if (operation === 'add') {
-    result = a + b;
-  } else if (operation === 'subtract') {
-    result = a - b;
-  } else if (operation === 'multiply') {
-    result = a * b;
-  } else if (operation === 'divide') {
-    console.log('[DEBUG] divide operation'); // 자동 삽입
-    result = a / b;
-    console.log('[DEBUG] result:', result);  // 자동 삽입
+  console.log('[DEBUG] username:', username);        // 자동 삽입
+  console.log('[DEBUG] password:', password);        // 자동 삽입
+  console.log('[DEBUG] password.length:', password.length);  // 자동 삽입
+  
+  if (username && password) {
+    console.log('[DEBUG] 조건 통과');  // 자동 삽입
+    
+    if (password.length > 8) {
+      console.log('[DEBUG] 비밀번호 길이 체크 통과');  // 자동 삽입
+      showMessage('로그인 성공!', 'success');
+    } else {
+      console.log('[DEBUG] 비밀번호 길이 체크 실패');  // 자동 삽입
+      console.log('[DEBUG] password.length:', password.length);  // 자동 삽입
+      showMessage('비밀번호가 너무 짧습니다...', 'error');
+    }
   }
-  
-  console.log('[DEBUG] final result:', result); // 자동 삽입
-  return result;
 }
 ```
 
-- 실행 결과를 보고 **정확히** 문제를 파악합니다:
-  - "b가 0일 때 Infinity가 반환됩니다"
-  - "modulo 연산이 구현되지 않아 undefined가 반환됩니다"
+2. **브라우저에서 실행**:
+   - Debug 모드가 브라우저를 열고 실제로 테스트
+   - 콘솔에 로그 출력:
+     ```
+     [DEBUG] username: admin
+     [DEBUG] password: 12345678
+     [DEBUG] password.length: 8
+     [DEBUG] 조건 통과
+     [DEBUG] 비밀번호 길이 체크 실패
+     [DEBUG] password.length: 8
+     ```
 
-**결과 확인**:
-- ✅ 두 버그를 정확히 찾았나요?
-- ✅ 자동 로그 삽입으로 실행 흐름을 추적했나요?
-- ✅ 추측이 아닌 확인으로 수정했나요?
-
----
-
-### Step 3: 결과 비교
-
-두 파일을 비교해보세요:
-
-| 비교 항목 | Agent 모드 (`2-1-calculator-agent.js`) | Debug 모드 (`2-2-calculator-debug.js`) |
-|---------|-----------------------------------|-----------------------------------|
-| 방식 | 코드를 보고 추측 | 코드를 실제로 실행 |
-| 로그 삽입 | 수동 (직접 작성) | 자동 (AI가 삽입) |
-| 정확도 | 낮음 (추측) | 높음 (실행 결과) |
-| 버그 원인 파악 | 어려움 | 쉬움 |
-| 속도 | 느림 | 빠름 |
-
-**체험 포인트**:
-- ✅ Debug 모드는 추측이 아닌 **확인**입니다
-- ✅ 자동 로그 삽입으로 효율적
-- ✅ 실행 결과로 정확한 원인 파악
+3. **정확한 원인 파악**:
+   - AI: "실행 결과를 보니 `password.length`가 8인데 `> 8` 조건을 통과하지 못합니다!"
+   - AI: "`> 8`을 `>= 8`로 수정해야 합니다."
 
 ---
 
-## ✅ 완료 체크리스트
+## 💡 두 모드의 차이
 
-- [ ] `2-1-calculator-agent.js`로 Agent 모드 실습
-- [ ] `2-2-calculator-debug.js`로 Debug 모드 실습
-- [ ] 두 모드의 차이 체험
-- [ ] Debug 모드의 장점 이해
-- [ ] 원본 파일(`2-0-calculator-original.js`)은 그대로 유지
-
----
-
-## 💡 핵심 개념
-
-### 1. Debug 모드의 동작 원리
+### Agent 모드 (추측 기반)
 
 ```
-Agent 모드 (일반):
-코드 읽기 → 추측 → 수정
+1. 코드를 읽음
+2. 논리적으로 추측: "아마 > 8이 문제일 것 같다"
+3. 수정 제안
 
-Debug 모드:
-코드 읽기 → 실행 → 로그 분석 → 정확한 수정
+장점: 빠름
+단점: 추측이므로 틀릴 수 있음
 ```
 
-### 2. 자동 로그 삽입
+### Debug 모드 (실행 기반)
 
-Debug 모드는 다음 위치에 자동으로 로그를 삽입합니다:
-- 함수 입력 시 (파라미터 값)
-- 조건문 분기 시 (어느 분기로 진입했는지)
-- 변수 할당 시 (할당된 값)
-- 함수 반환 시 (반환 값)
+```
+1. 코드를 읽음
+2. 자동으로 로그 삽입
+3. 브라우저에서 실제로 실행
+4. 콘솔 로그 확인
+5. 정확한 원인 파악: "password.length가 8인데 > 8 조건을 통과 못함"
+6. 정확한 수정
 
-### 3. Debug 모드의 장점
+장점: 정확함 (실행 결과 기반)
+단점: 약간 느림 (실행 시간 필요)
+```
 
-- ✅ **정확도 향상**: 추측이 아닌 실행 결과
-- ✅ **효율성**: 자동 로그 삽입
-- ✅ **복잡한 버그 해결**: 실행 흐름 추적
-- ✅ **학습 효과**: 코드 동작 이해
+---
 
-### 4. 언제 Debug 모드를 사용할까?
+## ✅ 정답
 
-**Debug 모드 권장**:
-- ❓ 버그 원인을 모르겠을 때
-- ❓ 복잡한 로직에서 문제가 발생할 때
-- ❓ 특정 입력에서만 문제가 발생할 때
-- ❓ 실행 흐름을 추적하고 싶을 때
+**버그 1**: `password.length > 8` → `password.length >= 8`로 수정
 
-**Agent 모드로 충분**:
-- ✅ 간단한 문법 오류
-- ✅ 명확한 버그 (오타 등)
-- ✅ 새로운 기능 추가
+**버그 2**: `if (username && password)` → 공백 문자열 체크 추가
+```javascript
+if (username.trim() && password.trim()) {
+  // ...
+}
+```
 
 ---
 
 ## 🎓 학습 정리
 
-이번 실습에서 배운 내용:
+이번 실습에서 배운 것:
 
-1. **Agent 모드**: 코드를 보고 추측해서 수정
-2. **Debug 모드**: 코드를 실행하고 로그를 분석해서 정확히 수정
-3. **차이점**: 추측 vs 확인, 수동 vs 자동, 느림 vs 빠름
-4. **3개 파일 구조**: 원본 + Agent 실습용 + Debug 실습용
+1. **Agent 모드**: 코드를 보고 추측 → 빠르지만 정확도 낮음
+2. **Debug 모드**: 실제로 실행하고 로그 확인 → 느리지만 정확도 높음
+3. **실전 활용**: 복잡한 버그일수록 Debug 모드가 유리
 
-**다음 장 예고**:
+**다음 단계**:
 
-2장에서는 Debug 모드를 더 복잡한 시나리오(로그인 버그, API 오류)에서 실습합니다. 실전에서 어떻게 활용하는지 자세히 배웁니다.
+2장에서는 Debug 모드를 더 복잡한 실전 시나리오(로그인 버그, API 오류)에서 실습합니다!
 
 ---
 
-## 🔗 관련 링크
+## 💡 추가 실습
 
-- [2장: Debug Mode - 실행 기반 디버깅](../../session-02/README.md)
-- [Cursor Debug Mode 공식 문서](https://cursor.com/docs/debug-mode)
+시간이 있다면 다음도 시도해보세요:
+
+1. **다른 버그 추가하기**:
+   - 사용자명이 "admin"이 아니면 로그인 실패하도록
+   - 비밀번호에 특수문자가 없으면 오류 표시
+
+2. **Debug 모드로 추적하기**:
+   - 각 조건문에서 어떤 값이 나오는지 확인
+   - 어디서 로직이 실패하는지 정확히 파악
+
+3. **성능 측정**:
+   - `console.time()`과 `console.timeEnd()`로 실행 시간 측정
+   - Debug 모드가 자동으로 성능 로그도 추가하는지 확인
