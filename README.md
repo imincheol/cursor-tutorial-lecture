@@ -5,7 +5,7 @@
 **강사**: 이민철(인터랙티브개발팀)  
 **방식**: 강의 + 실습 병행  
 **환경**: Cursor IDE  
-**난이도**: 입문 ~ 초급 (1-7장: 기본, 8-10장: 보충 자료)
+**난이도**: 입문 ~ 초급 (1-7장: 기본, 8-11장: 확장)
 
 ---
 
@@ -13,9 +13,10 @@
 
 - [교육 대상](#-교육-대상)
 - [강의 개요](#-강의-개요)
+- [4시간 강의 가이드](#-4시간-강의-가이드)
 - [학습 여정](#-학습-여정)
 - [기본 과정 (1-7장)](#-기본-과정-1-7장)
-- [심화 과정 (8-10장)](#-심화-과정-8-10장)
+- [확장 과정 (8-11장)](#-확장-과정-8-11장)
 - [시작하기](#-시작하기)
 
 ---
@@ -27,27 +28,28 @@
 - Cursor의 핵심 기능들을 체계적으로 배우고 싶은 분
 - Debug Mode, Hooks, Visual Editor 등 실전 기능을 익히고 싶은 분
 
-※ 8-10장은 보충 자료로, 필요에 따라 학습하시면 됩니다.
+※ 8-11장은 확장 과정으로, 최신 기능(2026)을 다룹니다. 시간 여유 시 또는 자율 학습하시면 됩니다.
 
 ---
 
 ## 📝 강의 개요
 
-**기본 강의 (1-7장)**:
+**기본 과정 (1-7장) - Cursor 핵심 기능**:
 
-- 1장: GitHub Copilot과 Cursor의 공통점 이해 (Rules 등)
-- 2장: Debug Mode - 실행 기반 버그 해결
-- 3장: Hooks - Agent 동작 감시 및 제어 (핵심!)
-- 4장: Visual Editor - 클릭 기반 UI 수정
-- 5장: CLI Agent - 터미널에서 개발
-- 6장: Git Worktree - 독립 환경 구성
-- 7장: Multi-Agent - 병렬 작업
+- 1장: Copilot과 Cursor 비교 (Rules, Debug 소개)
+- 2장: Debug Mode - 실행 기반 디버깅
+- 3장: Visual Editor - 클릭 기반 UI 수정
+- 4장: CLI Agent - 터미널에서 개발 (Plan/Ask 모드, Cloud Handoff)
+- 5장: Hooks - AI Agent 제어 (핵심!)
+- 6장: Agent Skills & Subagents - Agent 능력 확장 (Clarification Questions)
+- 7장: Multi-Agent - 여러 업무 동시 처리 (Worktree 포함)
 
-**보충 자료 (8-10장, 선택)**:
+**확장 과정 (8-11장) - 최신 기능 (2026)**:
 
-- 8장: Agent Skills & Sub-Agent (향후 도입 예정 기능)
-- 9장: Orchestration - 복잡한 작업 자동화
-- 10장: 실전 프로젝트 - 종합 실습
+- 8장: Image Generation - AI로 이미지 생성
+- 9장: Cloud Agent & Handoff - 장시간 작업 위임
+- 10장: MCP Integration - 외부 도구 연결
+- 11장: Enterprise Features - 팀 협업 기능
 
 ---
 
@@ -58,20 +60,49 @@
 - Rules / Instructions
 - Agent / Plan Mode
 
-**Cursor 전용 기능 (기본 강의)**:
+**Cursor 핵심 기능 (기본 과정)**:
 
 - **Debug Mode** - 실행 기반 디버깅
-- **Hooks** - Agent 제어 (preToolExecution, postToolExecution)
 - **Visual Editor** - 브라우저 UI 편집
 - **CLI Agent** - 터미널 Agent
-- **Git Worktree** - 독립 환경
-- **Multi-Agent** - 병렬 작업
+- **CLI Plan/Ask Mode** - 터미널에서 Plan/Ask 모드
+- **Hooks** - Agent 제어 (preToolExecution, postToolExecution)
+- **Agent Skills** - 재사용 가능한 스킬
+- **Subagents** - 자동 오케스트레이션
+- **Clarification Questions** - Agent가 질문하기
+- **Multi-Agent** - 여러 업무 동시 처리
+- **Git Worktree** - 독립 환경 구성
 
-**보충 자료**:
+**최신 기능 2026 (확장 과정)**:
 
-- **Agent Skills** (예정) - 재사용 가능한 스킬
-- **Sub-Agent** (예정) - 하위 Agent 위임
-- **Orchestration** - 복잡한 워크플로우
+- **Image Generation** - AI로 이미지 생성
+- **Cloud Agent** - 클라우드 Agent
+- **Cloud Handoff** - 장시간 작업 위임
+- **MCP** - 외부 도구 연결 (GitHub, Browser)
+- **Cursor Blame** - AI 기여도 추적
+- **Shared Transcripts** - 대화 공유
+- **Layout Customization** - 레이아웃 커스터마이징
+
+---
+
+## 💡 4시간 강의 가이드
+
+4시간은 대략적인 가이드이며, 실제 강의에서는 유연하게 조정합니다.
+
+**기본 과정 (Session 1-7) - Cursor 핵심 기능**:
+- 각 세션은 설명 + 실습 2개 반복 형식
+- 쉬운 것부터 어려운 순서로 학습
+- 4-5시간 소요
+
+**확장 과정 (Session 8-11) - 최신 기능 (2026)**:
+- 시간 여유 시 또는 자율 학습
+- 체인지로그 기반 최신 기능 소개
+- 2-3시간 소요
+
+**참고**:
+- 시간 부족 시 Session 8-11은 자율 학습
+- 중요한 내용은 간략하게라도 개요 설명
+- 총 11개 세션, 22개 실습 프로젝트
 
 ---
 
@@ -82,36 +113,40 @@
 ```
 Copilot과 Cursor, 무엇이 같고 무엇이 다를까요?
 
-[기본 강의: Copilot과의 공통점과 차이점]
+[기본 과정: Cursor 핵심 기능]
 
-1장: Copilot과의 공통점 → Rules 등 동일한 기능들
+1장: Copilot 비교 → Rules, Debug 소개
   ↓
-2장: Debug Mode → 추측이 아닌 실행으로 버그 해결
+2장: Debug Mode → 실행 기반 디버깅
   ↓
-3장: Hooks → AI Agent를 코드로 제어 (핵심!)
+3장: Visual Editor → 클릭으로 UI 수정
   ↓
-4장: Visual Editor → 클릭으로 UI 수정
+4장: CLI Agent → 터미널 개발 (Plan/Ask, Handoff)
   ↓
-5장: CLI Agent → 터미널에서 개발
+5장: Hooks → AI Agent 제어 (핵심!)
   ↓
-6장: Git Worktree → 독립 환경 구성
+6장: Skills & Subagents → Agent 능력 확장 (Clarification Questions)
   ↓
-7장: Multi-Agent → 병렬 작업
+7장: Multi-Agent → 여러 업무 동시 처리 (Worktree 포함)
 
-[보충 자료: 필요에 따라]
+[확장 과정: 최신 기능 2026]
 
-8장: Agent Skills & Sub-Agent (향후 도입 예정)
-9장: Orchestration (복잡한 작업 자동화)
-10장: 실전 프로젝트 (종합 실습)
+8장: Image Generation → AI로 이미지 생성
+  ↓
+9장: Cloud Agent & Handoff → 장시간 작업 위임
+  ↓
+10장: MCP Integration → 외부 도구 연결
+  ↓
+11장: Enterprise Features → 팀 협업 기능
 ```
 
-각 장마다 실습 프로젝트가 준비되어 있으니, 직접 따라하시면서 체득하시기 바랍니다.
+각 장마다 실습 프로젝트 2개가 준비되어 있으니, 직접 따라하시면서 체득하시기 바랍니다.
 
 ---
 
 ## 📚 기본 과정 (1-7장)
 
-> **Copilot과의 공통점을 확인하고, Cursor만의 차별화된 기능들을 학습합니다**
+> **Cursor 핵심 기능을 학습합니다**
 
 ### [1장: Copilot과 Cursor의 비슷한 기능들](./sessions/session-01/README.md)
 
@@ -163,32 +198,9 @@ Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금
 
 ---
 
-### [3장: Hooks - AI Agent 제어의 핵심](./sessions/session-03/README.md)
+### [3장: Visual Editor - 클릭 기반 UI 수정](./sessions/session-03/README.md)
 
-**난이도**: 🟢 초급
-
-**강의 내용**:
-
-Cursor의 가장 핵심적인 차별화 기능인 **Hooks**를 소개합니다.
-
-Rules는 프롬프트입니다. "이렇게 해주세요"라고 요청하는 것이죠. 하지만 AI가 가끔 무시합니다. "rm -rf 쓰지 마세요"라고 해도 쓸 때가 있습니다.
-
-Hooks는 **코드**입니다. Agent가 실행하는 모든 작업을 **사전에 차단**하거나 **사후에 점검**할 수 있습니다. 실제로 Claude CLI가 홈 디렉터리를 삭제해버린 사고가 있었는데, Hooks를 사용하면 100% 차단할 수 있습니다.
-
-이번 장에서는 `preToolExecution`과 `postToolExecution`으로 Agent를 완벽히 제어하는 방법을 배웁니다.
-
-**실습 프로젝트** (2개):
-
-1. `01-hooks-basic` - Hooks 기본 사용법
-2. `02-hooks-security` - 위험 명령 차단 실습
-
-**학습 효과**: AI 작업 제어 강화, 위험 작업 100% 차단
-
----
-
-### [4장: Visual Editor - 클릭 기반 UI 수정](./sessions/session-04/README.md)
-
-**난이도**: 🟢 초급
+**난이도**: 🟢 입문
 
 **강의 내용**:
 
@@ -207,9 +219,9 @@ UI를 수정할 때 "왼쪽 위 파란 버튼"처럼 말로 설명하는 것은 
 
 ---
 
-### [5장: CLI Agent - 터미널에서 개발](./sessions/session-05/README.md)
+### [4장: CLI Agent - 터미널에서 개발](./sessions/session-04/README.md)
 
-**난이도**: 🟢 초급
+**난이도**: 🟢 입문
 
 **강의 내용**:
 
@@ -232,140 +244,150 @@ Copilot에도 CLI가 있지만 명령어 제안만 가능하고, 실제 코드 �
 
 ---
 
-### [6장: Git Worktree - 독립 환경 구성](./sessions/session-06/README.md)
+### [5장: Hooks - AI Agent 제어의 핵심](./sessions/session-05/README.md)
 
 **난이도**: 🟢 초급
 
 **강의 내용**:
 
-여러 가지 접근 방법을 동시에 시도하고 싶을 때가 있습니다. A 방법과 B 방법 중 어떤 게 나을까? 하지만 한 환경에서 여러 시도를 하면 컨텍스트가 오염됩니다.
+Cursor의 가장 핵심적인 차별화 기능인 **Hooks**를 소개합니다.
 
-**Git Worktree**를 사용하면 하나의 저장소에서 독립적인 작업 환경을 여러 개 만들 수 있습니다. 각 환경은 완전히 독립적이므로 서로 간섭하지 않습니다.
+Rules는 프롬프트입니다. "이렇게 해주세요"라고 요청하는 것이죠. 하지만 AI가 가끔 무시합니다. "rm -rf 쓰지 마세요"라고 해도 쓸 때가 있습니다.
 
-이번 장에서는 Worktree로 독립 환경을 구성하고, 각 환경에서 다른 접근 방법을 실험하는 방법을 배웁니다.
+Hooks는 **코드**입니다. Agent가 실행하는 모든 작업을 **사전에 차단**하거나 **사후에 점검**할 수 있습니다. 실제로 Claude CLI가 홈 디렉터리를 삭제해버린 사고가 있었는데, Hooks를 사용하면 100% 차단할 수 있습니다.
+
+이번 장에서는 `preToolExecution`과 `postToolExecution`으로 Agent를 완벽히 제어하는 방법을 배웁니다.
+
+**실습 프로젝트** (2개):
+
+1. `01-hooks-basic` - Hooks 기본 사용법
+2. `02-hooks-security` - 위험 명령 차단 실습
+
+**학습 효과**: AI 작업 제어 강화, 위험 작업 100% 차단
+
+---
+
+### [6장: Agent Skills & Subagents](./sessions/session-06/README.md)
+
+**난이도**: 🟢 초급
+
+**강의 내용**:
+
+**Agent Skills**와 **Subagents** 기능을 배웁니다.
+
+Agent Skills는 재사용 가능한 스킬로, Agent의 능력을 확장할 수 있습니다. 예를 들어 "API 검증 스킬", "테스트 생성 스킬" 같은 것을 만들어두면 다른 프로젝트에서도 재사용할 수 있습니다.
+
+Subagents는 메인 Agent가 여러 하위 Agent를 자동으로 생성하여 작업을 분산하는 기능입니다. 복잡한 기능 개발 시 자동으로 오케스트레이션됩니다.
+
+이번 장에서는 기본 제공 Skills 사용, 커스텀 Skill 작성, Subagent로 병렬 작업하는 방법을 배웁니다.
+
+**실습 프로젝트** (2개):
+
+1. `01-skills-basic` - Skills 기본 사용 및 커스텀 Skill 작성
+2. `02-subagents-parallel` - Subagent로 병렬 작업
+
+**학습 효과**: Agent 능력 확장, 자동 오케스트레이션
+
+---
+
+### [7장: Multi-Agent - 여러 업무 동시 처리](./sessions/session-07/README.md)
+
+**난이도**: 🟡 중급
+
+**강의 내용**:
+
+**난이도**: 🟡 중급
+
+**강의 내용**:
+
+실무에서는 하나의 작업만 하는 경우가 드뭅니다. 신규 기능을 개발하다가 갑자기 핫픽스 요청이 오고, 다른 페이지 작업 요청이 동시에 들어옵니다.
+
+이럴 때 **Git Worktree**로 독립 환경을 만들고, **Multi-Agent**로 여러 작업을 동시에 처리할 수 있습니다.
+
+**Git Worktree**는 하나의 저장소에서 여러 작업 디렉터리를 만드는 Git 기능입니다. 각 디렉터리는 독립적인 브랜치를 가지므로 서로 간섭하지 않습니다.
+
+**Multi-Agent**는 각 Worktree 환경에서 독립적인 Agent를 실행하는 패턴입니다. IDE에서는 메인 작업을 계속하고, 터미널에서는 핫픽스나 다른 작업을 동시에 처리합니다.
+
+이번 장에서는 Worktree 사용법과 Multi-Agent 패턴을 함께 배웁니다.
 
 **실습 프로젝트** (2개):
 
 1. `01-worktree-basic` - Worktree 기본 사용법
-2. `02-multi-approach` - 여러 접근 방법 동시 실험
+2. `02-worktree-management` - Multi-Agent 실전 워크플로우
 
-**학습 효과**: 컨텍스트 오염 없음, 안전한 실험 환경
+**학습 효과**: 여러 업무 동시 처리, 컨텍스트 유지, 생산성 향상
 
 ---
 
-### [7장: Multi-Agent - 병렬 작업](./sessions/session-07/README.md)
+## 🌟 확장 과정 (8-11장)
+
+> **최신 기능 (2026)을 학습합니다**
+
+### [8장: Image Generation - AI로 이미지 생성](./sessions/session-08/README.md)
 
 **난이도**: 🟢 초급
 
 **강의 내용**:
 
-지금까지 배운 모든 기능을 종합합니다. IDE에서는 메인 기능을 개발하고, 터미널에서는 동시에 다른 작업을 진행하는 **Multi-Agent 패턴**을 실습합니다.
-
-예를 들어:
-
-- IDE Agent: 메인 기능 개발
-- CLI Agent 1: 테스트 작성
-- CLI Agent 2: 문서 작성
-
-각 Agent는 독립적인 Worktree 환경에서 실행되므로 서로 간섭하지 않습니다. 의사결정도 빨라지고, 생산성도 향상됩니다.
-
-이번 장에서는 Multi-Agent를 활용한 병렬 개발 방법을 실습합니다.
+텍스트 설명만으로 이미지를 생성할 수 있습니다. UI 목업, 아이콘, 로고, 다이어그램 등을 빠르게 만들 수 있습니다.
 
 **실습 프로젝트** (2개):
 
-1. `01-multi-agent-basic` - Multi-Agent 기본 패턴
-2. `02-ide-cli-integration` - IDE + CLI 통합 워크플로우
+1. `01-image-basic` - 간단한 이미지 생성 (아이콘, 로고)
+2. `02-image-mockup` - UI 목업 및 다이어그램 생성
 
-**학습 효과**: 의사결정 3배 빠름, 생산성 향상
+**학습 효과**: 빠른 프로토타이핑, 문서화 시각화
 
 ---
 
-## 🎓 심화 과정 (8-10장)
+### [9장: Cloud Agent & Handoff - 장시간 작업 위임](./sessions/session-09/README.md)
 
-> **고급 활용법과 향후 도입 예정 기능을 학습합니다**
-
-### [8장: Agent Skills & Sub-Agent (향후 도입 예정)](./sessions/session-08/README.md)
-
-**난이도**: 🟡 중급
+**난이도**: 🟢 초급
 
 **강의 내용**:
 
-Cursor에 향후 도입될 예정인 **Agent Skills**와 **Sub-Agent** 기능을 미리 살펴봅니다.
-
-**Agent Skills**는 재사용 가능한 스킬입니다. 예를 들어 "테스트 작성 스킬", "API 문서 생성 스킬" 같은 것을 만들어두면, 다른 프로젝트에서도 재사용할 수 있습니다.
-
-**Sub-Agent**는 메인 Agent가 하위 Agent에게 작업을 위임하는 기능입니다. 예를 들어 메인 Agent가 "테스트를 작성해줘"라고 하면, 테스트 전문 Sub-Agent가 작업을 수행합니다.
-
-이번 장에서는 현재 Hooks와 Multi-Agent로 유사한 패턴을 구현하고, 향후 기능을 대비하는 방법을 배웁니다.
+로컬 작업을 클라우드로 넘겨서 계속 실행할 수 있습니다. 퇴근 시간에 큰 작업을 시작하고, 집에서 모바일로 확인할 수 있습니다.
 
 **실습 프로젝트** (2개):
 
-1. `01-skill-pattern` - Hooks로 스킬 패턴 구현
-2. `02-sub-agent-pattern` - Multi-Agent로 Sub-Agent 패턴 구현
+1. `01-cloud-basic` - Cloud Agent 기본 사용
+2. `02-handoff-workflow` - 장시간 작업 위임 패턴
 
-**학습 효과**: 향후 기능 대비, 재사용 가능한 패턴 구축
+**학습 효과**: 장시간 작업 관리, 웹/모바일 확인
 
 ---
 
-### [9장: Orchestration - 복잡한 작업 자동화](./sessions/session-09/README.md)
+### [10장: MCP Integration - 외부 도구 연결](./sessions/session-10/README.md)
 
-**난이도**: 🟡 중급
+**난이도**: 🟢 초급
 
 **강의 내용**:
 
-복잡한 프로젝트에서는 여러 Agent를 조율(Orchestration)해야 합니다. 예를 들어:
-
-1. Agent A: 요구사항 분석
-2. Agent B: 설계 문서 작성
-3. Agent C: 코드 구현
-4. Agent D: 테스트 작성
-5. Agent E: 문서 작성
-
-이런 복잡한 워크플로우를 자동화하는 방법을 배웁니다. Role 기반 오케스트레이션, 의존성 관리, 결과 검증 등을 다룹니다.
-
-이번 장에서는 실전 프로젝트를 통해 오케스트레이션을 실습합니다.
+MCP (Model Context Protocol)로 외부 도구(GitHub, Browser 등)와 데이터를 연결합니다.
 
 **실습 프로젝트** (2개):
 
-1. `01-role-based-orchestration` - Role 기반 오케스트레이션
-2. `02-workflow-automation` - 워크플로우 자동화
+1. `01-mcp-basic` - MCP 기본 사용 (GitHub 연동)
+2. `02-mcp-browser` - Browser MCP로 웹 테스트
 
-**학습 효과**: 복잡한 작업 자동화, 팀 협업 패턴 구축
-
-**참고 자료**: [ADVANCED_ORCHESTRATION.md](./sessions/session-09/ADVANCED_ORCHESTRATION.md)
+**학습 효과**: 외부 도구 연동, 자동화 확장
 
 ---
 
-### [10장: 실전 프로젝트 - 종합 실습](./sessions/session-10/README.md)
+### [11장: Enterprise Features - 팀 협업 기능](./sessions/session-11/README.md)
 
-**난이도**: 🔴 고급
+**난이도**: 🟢 초급
 
 **강의 내용**:
 
-지금까지 배운 모든 내용을 종합하는 실전 프로젝트를 진행합니다.
+Cursor Blame, Shared Transcripts, Layout Customization 등 팀 협업에 유용한 기능들을 알아봅니다.
 
-**프로젝트 시나리오**:
+**실습 프로젝트** (2개):
 
-- 요구사항: 간단한 TODO 앱 개발 (프론트엔드 + 백엔드)
-- 활용 기능: Debug Mode, Hooks, Visual Editor, CLI Agent, Multi-Agent, Orchestration
+1. `01-blame-transcripts` - Blame & Transcripts 체험
+2. `02-layout-insights` - Layout & Insights 활용
 
-**진행 방식**:
-
-1. 요구사항 분석 Agent
-2. 설계 Agent
-3. 프론트엔드 개발 Agent (IDE + Visual Editor)
-4. 백엔드 개발 Agent (CLI Agent)
-5. 테스트 Agent
-6. 문서 Agent
-7. 통합 및 배포
-
-이번 장에서는 실전 프로젝트를 통해 Cursor의 모든 기능을 활용하는 방법을 체득합니다.
-
-**실습 프로젝트** (1개):
-
-1. `01-todo-app-project` - 종합 실전 프로젝트
-
-**학습 효과**: 실전 프로젝트 경험, 모든 기능 종합 활용
+**학습 효과**: AI 기여도 추적, 팀 협업 강화
 
 ---
 
@@ -391,63 +413,75 @@ cat README.md
 
 ### 3. 학습 경로
 
-**기본 강의**:
+**기본 과정 (Cursor 핵심 기능)**:
 
 ```
-1장: Copilot 공통점 → Rules
+1장: Copilot 비교 → Rules, Debug 소개
 2장: Debug Mode → 실행 기반 디버깅
-3장: Hooks → AI Agent 제어 (핵심!)
-4장: Visual Editor → 클릭 기반 UI 수정
-5장: CLI Agent → 터미널 개발
-6장: Git Worktree → 독립 환경
-7장: Multi-Agent → 병렬 작업
+3장: Visual Editor → 클릭 기반 UI 수정
+4장: CLI Agent → 터미널 개발 (Plan/Ask, Handoff)
+5장: Hooks → AI Agent 제어 (핵심!)
+6장: Skills & Subagents → Agent 능력 확장 (Clarification Questions)
+7장: Multi-Agent → 여러 업무 동시 처리 (Worktree 포함)
 ```
 
-**보충 자료 (선택)**:
+**확장 과정 (최신 기능 2026)**:
 
 ```
-8장: Agent Skills & Sub-Agent (향후 도입 예정)
-9장: Orchestration (복잡한 작업 자동화)
-10장: 실전 프로젝트 (종합 실습)
+8장: Image Generation → AI로 이미지 생성
+9장: Cloud Agent & Handoff → 장시간 작업 위임
+10장: MCP Integration → 외부 도구 연결
+11장: Enterprise Features → 팀 협업 기능
 ```
 
 ---
 
 ## 📊 학습 성과
 
-**기본 강의 완료 후**:
+**기본 과정 완료 후 (1-7장)**:
 
 - Copilot 경험을 Cursor에서 그대로 활용 (Rules)
 - Debug Mode로 버그 원인 정확히 파악 (50% 빠름)
-- Hooks로 Agent 동작 제어 및 위험 작업 100% 차단 (핵심!)
 - Visual Editor로 UI 직접 선택해서 수정 (70% 빠름)
-- CLI Agent로 터미널에서 개발 (SSH/CI/CD 활용)
-- Git Worktree로 독립 환경 구성 (컨텍스트 오염 없음)
-- Multi-Agent로 병렬 작업 (의사결정 3배 빠름)
+- CLI Agent로 터미널에서 개발 (Plan/Ask 모드, SSH/CI/CD 활용)
+- Hooks로 Agent 동작 제어 및 위험 작업 100% 차단 (핵심!)
+- Agent Skills로 재사용 가능한 스킬 작성
+- Subagents로 자동 오케스트레이션 활용
+- Clarification Questions로 Agent와 대화
+- Git Worktree로 독립 환경 구성
+- Multi-Agent로 여러 업무 동시 처리
 
-**보충 자료 학습 시**:
+**확장 과정 완료 후 (8-11장)**:
 
-- Agent Skills & Sub-Agent 패턴 구현 (향후 기능 대비)
-- Orchestration으로 복잡한 작업 자동화
-- 실전 프로젝트로 모든 기능 종합 활용
+- Image Generation으로 빠른 프로토타이핑
+- Cloud Agent로 장시간 작업 위임
+- MCP로 외부 도구 연결 (GitHub, Browser)
+- Enterprise 기능으로 팀 협업 강화
 
 ---
 
 ## 🎓 Cursor 기능 맵
 
-| 기능              | 설명               | 학습 장     |
-| ----------------- | ------------------ | ----------- |
-| **Rules**         | Copilot과 동일     | 1장 (기본)  |
-| **Debug Mode**    | 실행 기반 디버깅   | 2장 (기본)  |
-| **Hooks**         | Agent 제어 (핵심!) | 3장 (기본)  |
-| **Visual Editor** | 클릭 기반 UI 수정  | 4장 (기본)  |
-| **CLI Agent**     | 터미널 Agent       | 5장 (기본)  |
-| **Git Worktree**  | 독립 환경          | 6장 (기본)  |
-| **Multi-Agent**   | 병렬 작업          | 7장 (기본)  |
-| **Agent Skills**  | 재사용 스킬 (예정) | 8장 (보충)  |
-| **Sub-Agent**     | 하위 Agent (예정)  | 8장 (보충)  |
-| **Orchestration** | 복잡한 작업 자동화 | 9장 (보충)  |
-| **실전 프로젝트** | 종합 실습          | 10장 (보충) |
+| 기능                        | 설명                  | 학습 장     |
+| --------------------------- | --------------------- | ----------- |
+| **Rules**                   | Copilot과 동일        | 1장 (기본)  |
+| **Debug Mode**              | 실행 기반 디버깅      | 2장 (기본)  |
+| **Visual Editor**           | 클릭 기반 UI 수정     | 3장 (기본)  |
+| **CLI Agent**               | 터미널 Agent          | 4장 (기본)  |
+| **CLI Plan/Ask Mode**       | 터미널 Plan/Ask       | 4장 (기본)  |
+| **Hooks**                   | Agent 제어 (핵심!)    | 5장 (기본)  |
+| **Agent Skills**            | 재사용 가능한 스킬    | 6장 (기본)  |
+| **Subagents**               | 자동 오케스트레이션   | 6장 (기본)  |
+| **Clarification Questions** | Agent가 질문하기      | 6장 (기본)  |
+| **Git Worktree**            | 독립 환경             | 7장 (기본)  |
+| **Multi-Agent**             | 여러 업무 동시 처리   | 7장 (기본)  |
+| **Image Generation**        | 이미지 생성           | 8장 (확장)  |
+| **Cloud Agent**             | 클라우드 Agent        | 9장 (확장)  |
+| **Cloud Handoff**           | 작업 위임             | 9장 (확장)  |
+| **MCP**                     | 외부 도구 연결        | 10장 (확장) |
+| **Cursor Blame**            | AI 기여도 추적        | 11장 (확장) |
+| **Shared Transcripts**      | 대화 공유             | 11장 (확장) |
+| **Layout Customization**    | 레이아웃 커스터마이징 | 11장 (확장) |
 
 ---
 
@@ -457,19 +491,20 @@ cat README.md
 cursor-tutorial/
 ├── README.md              # 이 파일
 └── sessions/              # 장별 실습
-    ├── session-01/        # 1장: Copilot 공통점 (1개 프로젝트)
+    ├── session-01/        # 1장: Copilot 비교 (2개 프로젝트)
     ├── session-02/        # 2장: Debug Mode (2개 프로젝트)
-    ├── session-03/        # 3장: Hooks (2개 프로젝트)
-    ├── session-04/        # 4장: Visual Editor (2개 프로젝트)
-    ├── session-05/        # 5장: CLI Agent (2개 프로젝트)
-    ├── session-06/        # 6장: Git Worktree (2개 프로젝트)
+    ├── session-03/        # 3장: Visual Editor (2개 프로젝트)
+    ├── session-04/        # 4장: CLI Agent (2개 프로젝트)
+    ├── session-05/        # 5장: Hooks (2개 프로젝트)
+    ├── session-06/        # 6장: Skills & Subagents (2개 프로젝트)
     ├── session-07/        # 7장: Multi-Agent (2개 프로젝트)
-    ├── session-08/        # 8장: Agent Skills & Sub-Agent (보충)
-    ├── session-09/        # 9장: Orchestration (보충)
-    └── session-10/        # 10장: 실전 프로젝트 (보충)
+    ├── session-08/        # 8장: Image Generation (2개 프로젝트)
+    ├── session-09/        # 9장: Cloud Agent & Handoff (2개 프로젝트)
+    ├── session-10/        # 10장: MCP Integration (2개 프로젝트)
+    └── session-11/        # 11장: Enterprise Features (2개 프로젝트)
 ```
 
-**총 13개 실습 프로젝트**
+**총 22개 실습 프로젝트 (11개 세션 × 2개)**
 
 ---
 
@@ -479,6 +514,8 @@ cursor-tutorial/
 - [Agent](https://cursor.com/docs/agent/overview)
 - [CLI](https://cursor.com/docs/cli/overview)
 - [Hooks](https://cursor.com/docs/agent/hooks)
+- [Skills](https://cursor.com/docs/context/skills)
+- [Subagents](https://cursor.com/docs/context/subagents)
 
 ---
 

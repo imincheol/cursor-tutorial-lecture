@@ -67,4 +67,4 @@ function login(user, password) {
 
 ## ⏭ 다음 장
 
-[3장: Hooks - AI Agent 제어의 핵심](../session-03/README.md)
+[3장: Visual Editor - 클릭 기반 UI 수정](../session-03/README.md)

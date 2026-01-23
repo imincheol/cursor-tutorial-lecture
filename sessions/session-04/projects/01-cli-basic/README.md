@@ -3,8 +3,15 @@
 ## 🎯 학습 목표
 
 - Cursor CLI 설치 및 실행
-- CLI Agent와 대화하며 코드 작업
+- CLI Agent 모드 (Agent, Plan, Ask) 이해 및 사용
 - Shell Mode (`!` 명령) 사용법 익히기
+- 각 모드의 차이점 체험
+
+**공식 문서**:
+- [CLI 개요](https://cursor.com/docs/cli/overview)
+- [CLI 사용법](https://cursor.com/docs/cli/using)
+- [Shell Mode](https://cursor.com/docs/cli/shell-mode)
+- [체인지로그 - CLI Agent Modes (2026.01.16)](https://cursor.com/changelog)
 
 
 ---
@@ -50,7 +57,16 @@ cursor
 
 ---
 
-### Step 3: Agent와 대화하며 코드 작업
+### Step 3: Agent 모드 사용하기
+
+**Agent 모드 (기본)**:
+
+```bash
+cursor
+
+# 또는
+cursor --mode=agent
+```
 
 CLI Agent에게 다음을 요청하세요:
 
@@ -74,7 +90,76 @@ Agent: [테스트 파일 생성]
 
 ---
 
-### Step 4: Shell Mode 사용하기
+### Step 4: Plan 모드 사용하기
+
+**Plan 모드**:
+
+```bash
+cursor /plan
+
+# 또는
+cursor --mode=plan
+```
+
+Plan 모드에서 다음을 요청하세요:
+
+```
+You: 간단한 사용자 인증 시스템 만들어줘
+
+Agent: [계획 수립]
+       다음 단계로 진행할까요?
+       1. 사용자 모델 정의
+       2. 로그인 함수 작성
+       3. 토큰 생성 로직
+       4. 테스트 코드
+
+You: 네, 진행해주세요
+
+Agent: [실행]
+```
+
+**Plan 모드의 장점**:
+- 복잡한 작업을 사전에 계획
+- 단계별로 검토 가능
+- 명확한 질문으로 요구사항 확인
+
+**공식 문서**: [CLI Plan Mode (2026.01.16)](https://cursor.com/changelog)
+
+---
+
+### Step 5: Ask 모드 사용하기
+
+**Ask 모드**:
+
+```bash
+cursor /ask
+
+# 또는
+cursor --mode=ask
+```
+
+Ask 모드에서 다음을 요청하세요:
+
+```
+You: src/hello.js 파일의 코드는 어떻게 동작하나요?
+
+Agent: [설명만 제공, 코드 변경 없음]
+
+You: 이 패턴의 장단점은 뭔가요?
+
+Agent: [분석 및 설명]
+```
+
+**Ask 모드의 장점**:
+- 코드를 변경하지 않고 탐색
+- 안전한 학습 환경
+- 코드 이해에 집중
+
+**공식 문서**: [CLI Ask Mode (2026.01.16)](https://cursor.com/changelog)
+
+---
+
+### Step 6: Shell Mode 사용하기
 
 CLI Agent 대화 중에 `!` 명령으로 빠르게 명령 실행:
 
@@ -192,13 +277,34 @@ You: 완벽해! 고마워
 
 ---
 
+## 💡 모드 비교
+
+### Agent vs Plan vs Ask
+
+| 모드 | 코드 변경 | 사용 시점 | 명령어 |
+|------|----------|----------|--------|
+| **Agent** | ✅ | 즉시 실행 | `cursor` |
+| **Plan** | ✅ | 복잡한 작업 | `cursor /plan` |
+| **Ask** | ❌ | 코드 탐색 | `cursor /ask` |
+
+### 실전 선택 가이드
+
+```
+빠른 수정 필요 → Agent 모드
+복잡한 기능 개발 → Plan 모드
+코드 이해하기 → Ask 모드
+```
+
+---
+
 ## ✅ 완료 체크리스트
 
 - [ ] Cursor CLI 설치 확인
-- [ ] `cursor` 명령으로 Agent 실행
-- [ ] Agent와 대화하며 파일 생성
+- [ ] Agent 모드로 파일 생성
+- [ ] Plan 모드로 복잡한 작업 계획
+- [ ] Ask 모드로 코드 탐색
 - [ ] Shell Mode (`!`) 사용해보기
-- [ ] 코드 작성 → 실행 → 수정 사이클 경험
+- [ ] 각 모드의 차이점 이해
 
 ---
 
