@@ -6,7 +6,7 @@
 
 이 실습에서는:
 1. 기본 제공 Skills 사용 (create-rule, create-skill, update-cursor-settings)
-2. 커스텀 Skill 작성 (API 검증 Skill)
+2. 커스텀 Skill 작성 (Cursor Hook 생성 Skill)
 3. Skill 활용 패턴 익히기
 
 ---
@@ -57,26 +57,32 @@ update-cursor-settings 스킬을 사용해서 다음 설정을 변경해줘:
 
 ### 2단계: 커스텀 Skill 작성
 
-#### 2-1. API 검증 Skill 작성
+#### 2-1. Cursor Hook 생성 Skill 작성
 
-**목표**: API 응답 형식을 표준화하는 Skill 작성
+**목표**: Cursor Hook을 자동으로 생성하는 Skill 작성
+
+**배경**: 4장에서 배운 Cursor Hooks (`.cursor/hooks/`)는 Agent 실행 전후에 자동으로 실행되는 스크립트입니다. 이 Skill은 Hook 파일을 자동으로 생성해줍니다.
 
 **Agent에게 요청**:
 ```
-create-skill 스킬을 사용해서 "API Response Validation Skill"을 만들어줘.
+create-skill 스킬을 사용해서 "Cursor Hook Generator Skill"을 만들어줘.
 
 이 스킬은 다음을 수행해야 해:
-1. API 함수를 찾는다
-2. 응답 형식을 확인한다
-3. 표준 형식으로 변환한다: { success: boolean, data: any, error?: string }
-4. 에러 핸들링을 추가한다
-5. 테스트 코드를 작성한다
+1. Hook 이름과 용도를 입력받는다
+2. .cursor/hooks/ 폴더에 Hook 파일을 생성한다
+3. 다음 구조를 따른다:
+   - preToolExecution 함수 (실행 전 Hook)
+   - postToolExecution 함수 (실행 후 Hook)
+   - JSDoc 주석으로 설명 추가
+   - 에러 핸들링 포함
+   - 사용 예시 주석 포함
+4. 일반적인 Hook 패턴 제공 (logger, security, validator)
 
 예시도 포함해줘.
 ```
 
 **확인 사항**:
-- `.cursor/skills/api-validation.md` 파일이 생성되었는가?
+- `.cursor/skills/cursor-hook-generator/SKILL.md` 파일이 생성되었는가?
 - SKILL.md 구조가 올바른가?
   - 설명
   - 사용 시점
@@ -85,81 +91,55 @@ create-skill 스킬을 사용해서 "API Response Validation Skill"을 만들어
 
 #### 2-2. 작성한 Skill 사용
 
-**테스트 파일 생성**: `api.js`
-
-```javascript
-// 표준화되지 않은 API 함수
-async function getUser(id) {
-  const response = await fetch(`/api/users/${id}`);
-  return await response.json();
-}
-
-async function createUser(data) {
-  const response = await fetch('/api/users', {
-    method: 'POST',
-    body: JSON.stringify(data)
-  });
-  return await response.json();
-}
-
-async function deleteUser(id) {
-  const response = await fetch(`/api/users/${id}`, {
-    method: 'DELETE'
-  });
-  return await response.json();
-}
-```
-
 **Agent에게 요청**:
 ```
-"API Response Validation Skill"을 사용해서 api.js 파일의 모든 함수를 표준화해줘.
-```
+"Cursor Hook Generator Skill"을 사용해서 다음 Hook들을 만들어줘:
 
-**기대 결과**:
-```javascript
-// 표준화된 API 함수
-async function getUser(id) {
-  try {
-    const response = await fetch(`/api/users/${id}`);
-    const data = await response.json();
-    return { success: true, data };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-}
-
-async function createUser(userData) {
-  try {
-    const response = await fetch('/api/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData)
-    });
-    const data = await response.json();
-    return { success: true, data };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-}
-
-async function deleteUser(id) {
-  try {
-    const response = await fetch(`/api/users/${id}`, {
-      method: 'DELETE'
-    });
-    const data = await response.json();
-    return { success: true, data };
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-}
+1. logger.js - Agent의 모든 도구 실행을 로깅하는 Hook
+2. security.js - 위험한 명령어를 차단하는 Hook
+3. validator.js - 파일 쓰기 전에 검증하는 Hook
 ```
 
 ---
 
 ### 3단계: 다른 커스텀 Skill 작성 (선택)
 
-#### 3-1. 테스트 생성 Skill
+#### 3-1. React Hook 생성 Skill
+
+**Agent에게 요청**:
+```
+"React Hook Generator Skill"을 만들어줘.
+
+이 스킬은:
+1. Hook 이름과 용도를 입력받는다
+2. src/hooks/ 폴더에 Hook 파일을 생성한다
+3. TypeScript로 작성
+4. JSDoc 주석 추가
+5. 에러 핸들링 포함
+```
+
+**사용 예시**:
+```typescript
+// useLocalStorage.ts
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  // localStorage를 React state처럼 사용
+}
+```
+
+#### 3-2. API 검증 Skill
+
+**Agent에게 요청**:
+```
+"API Response Validation Skill"을 만들어줘.
+
+이 스킬은:
+1. API 함수를 찾는다
+2. 응답 형식을 확인한다
+3. 표준 형식으로 변환한다: { success: boolean, data: any, error?: string }
+4. 에러 핸들링을 추가한다
+```
+
+#### 3-3. 테스트 생성 Skill
 
 **Agent에게 요청**:
 ```
@@ -172,17 +152,18 @@ async function deleteUser(id) {
 4. Edge case를 포함한다
 ```
 
-#### 3-2. 문서 생성 Skill
+#### 3-4. 컴포넌트 생성 Skill
 
 **Agent에게 요청**:
 ```
-"Documentation Generation Skill"을 만들어줘.
+"React Component Generator Skill"을 만들어줘.
 
 이 스킬은:
-1. 함수/클래스를 분석한다
-2. JSDoc 주석을 추가한다
-3. README.md를 생성한다
-4. 사용 예시를 포함한다
+1. 컴포넌트 이름과 props를 입력받는다
+2. TypeScript로 컴포넌트 파일 생성
+3. Props interface 정의
+4. Storybook 스토리 생성
+5. 테스트 파일 생성
 ```
 
 ---
@@ -195,17 +176,19 @@ async function deleteUser(id) {
 - [ ] 기본 Skills의 동작 방식 이해
 
 ### 커스텀 Skill 작성
-- [ ] API 검증 Skill 작성 (SKILL.md)
+- [ ] Cursor Hook 생성 Skill 작성 (SKILL.md)
 - [ ] SKILL.md 구조 이해
   - [ ] 설명 섹션
   - [ ] 사용 시점 섹션
   - [ ] 단계 섹션
   - [ ] 예시 섹션
-- [ ] 작성한 Skill 사용하여 코드 변환
+- [ ] 작성한 Skill로 Hook 생성 (logger.js, security.js, validator.js)
 
 ### 심화 (선택)
+- [ ] React Hook 생성 Skill 작성
+- [ ] API 검증 Skill 작성
 - [ ] 테스트 생성 Skill 작성
-- [ ] 문서 생성 Skill 작성
+- [ ] 컴포넌트 생성 Skill 작성
 - [ ] 실제 프로젝트에 적용
 
 ---
