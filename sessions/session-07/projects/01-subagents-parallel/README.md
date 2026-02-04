@@ -342,5 +342,4 @@ Subagents (6장):
 - [Cursor Subagents 공식 문서](https://cursor.com/docs/context/subagents)
 - [6장 메인 문서](../../README.md)
 - [Project 1: Skills 기본 사용](../01-skills-basic/README.md)
-- [7장: Git Worktree](../../../session-07/README.md)
 - [8장: Multi-Agent](../../../session-08/README.md)

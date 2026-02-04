@@ -355,4 +355,4 @@ Agent: 클라우드로 전송되었습니다.
 
 ## 🎓 다음 장
 
-[6장: Git Worktree - 독립 환경 구성](../../session-06/README.md)
+[6장: Agent Skills - 재사용 가능한 능력](../../session-06/README.md)

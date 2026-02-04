@@ -1,442 +1,355 @@
-# 8장: Image Generation - AI로 이미지 생성
+# 8장: Multi-Agent - 여러 업무 동시 처리
 
-> **텍스트 설명만으로 이미지를 생성할 수 있습니다**
+> **Git Worktree로 독립 환경을 구성하고, 여러 Agent로 동시에 작업합니다**
 
 ## 📋 목차
 
 - [강의 개요](#-강의-개요)
-- [1부: Image Generation이란?](#1부-image-generation이란)
-- [2부: 기본 사용법](#2부-기본-사용법)
-- [3부: UI 목업 생성](#3부-ui-목업-생성)
-- [4부: 다이어그램 생성](#4부-다이어그램-생성)
-- [5부: 이미지 관리](#5부-이미지-관리)
+- [1부: 실무 시나리오 - 왜 필요한가?](#1부-실무-시나리오---왜-필요한가)
+- [2부: Git Worktree - 독립 환경 구성](#2부-git-worktree---독립-환경-구성)
+- [3부: Multi-Agent 패턴](#3부-multi-agent-패턴)
+- [4부: Subagents vs Multi-Agent](#4부-subagents-vs-multi-agent)
 - [실습 프로젝트](#-실습-프로젝트)
 
 ---
 
 ## 📝 강의 개요
 
-Cursor Agent는 이제 **이미지도 생성**할 수 있습니다!
+실무에서는 하나의 작업만 하는 경우가 드뭅니다. 신규 기능을 개발하다가 갑자기 핫픽스 요청이 오고, 다른 페이지 작업 요청이 동시에 들어옵니다.
 
-텍스트 설명만으로 UI 목업, 아이콘, 로고, 다이어그램 등을 만들 수 있습니다. 디자이너 없이도 빠르게 프로토타입을 만들거나, 아키텍처를 시각화할 수 있습니다.
+이럴 때 **Git Worktree**로 독립 환경을 만들고, **Multi-Agent**로 여러 작업을 동시에 처리할 수 있습니다.
 
 **학습 목표**:
 
-- Image Generation 기본 사용법
-- UI 목업 생성 (버튼, 아이콘, 로고)
-- 다이어그램 생성 (아키텍처, 플로우차트)
-- 이미지 저장 및 관리
-- 실전 활용 패턴
+- 실무에서 여러 업무가 동시에 발생하는 상황 이해
+- Git Worktree로 독립 환경 구성
+- Multi-Agent 패턴으로 병렬 작업
+- Subagents와의 차이점 이해
 
 **공식 문서**:
-- [체인지로그 - Image Generation (2026.01.22)](https://cursor.com/changelog)
-- [프로토타이핑](https://cursor.com/for/prototyping) - 빠른 프로토타이핑 가이드
-- [Mermaid 다이어그램](https://cursor.com/docs/cookbook/mermaid-diagrams) - 다이어그램 생성
-- [Agent 개요](https://cursor.com/docs/agent/overview)
+- [Worktrees](https://cursor.com/docs/configuration/worktrees) - Worktree 설정 가이드
+- [Agent 워크플로우](https://cursor.com/docs/cookbook/agent-workflows) - Agent 활용 패턴
 
 ---
 
-## 1부: Image Generation이란?
+## 1부: 실무 시나리오 - 왜 필요한가?
 
-### 개념
-
-Cursor Agent에게 텍스트로 설명하면 **이미지를 생성**해주는 기능입니다.
+### 시나리오: 동시다발적 업무
 
 ```
-You: 파란색 로그인 버튼 이미지 만들어줘
+당신은 신규 기능을 개발 중입니다...
 
-Agent: [이미지 생성]
-       → assets/ 폴더에 저장됨
-       → 인라인 미리보기 표시
+[09:00] 당신: 신규 대시보드 개발 시작
+              브랜치: feature/dashboard
+              
+[10:30] 팀장: 긴급! 프로덕션 버그 수정 필요
+              → 핫픽스 브랜치 필요
+              → 하지만 현재 작업 중...
+              
+[11:00] 디자이너: 랜딩 페이지 수정 요청
+                → 또 다른 브랜치 필요
+                → 대시보드 작업은 계속...
 ```
 
-### 사용 모델
+### 문제: 단일 환경의 한계
 
-**Google Nano Banana Pro** 모델을 사용합니다.
+**방법 1: Git Stash (전통적)**
+```bash
+# 현재 작업 임시 저장
+git stash
 
-- 빠른 생성 속도
-- 높은 품질
-- 텍스트 및 참조 이미지 지원
+# 핫픽스 브랜치로 전환
+git checkout -b hotfix/critical-bug
 
-### 기존 방식 vs Image Generation
+# 수정 완료 후
+git checkout feature/dashboard
+git stash pop
 
-**기존 방식**:
-```
-1. 디자이너에게 요청
-2. 디자인 도구 사용 (Figma, Sketch)
-3. 이미지 에셋 준비
-4. 개발에 적용
-
-→ 시간 소요: 수 시간 ~ 수 일
-```
-
-**Image Generation**:
-```
-1. Agent에게 설명
-2. 이미지 생성
-3. 바로 사용
-
-→ 시간 소요: 수 초 ~ 수 분
+# 문제:
+# - 컨텍스트 전환 비용
+# - stash 관리 복잡
+# - Agent 컨텍스트 오염
 ```
 
----
+**방법 2: Git Worktree (현대적)**
+```bash
+# 독립 환경 생성
+git worktree add ../hotfix-env hotfix/critical-bug
 
-## 2부: 기본 사용법
+# 각 환경에서 독립적으로 작업
+# - feature/dashboard: 계속 개발
+# - hotfix/critical-bug: 핫픽스 처리
+# - feature/landing: 랜딩 페이지 수정
 
-### 텍스트 설명으로 생성
-
-```
-You: 간단한 로고 만들어줘.
-     파란색 원 안에 흰색 "C" 글자가 있는 로고
-
-Agent: [이미지 생성]
-       
-       생성된 이미지:
-       [미리보기 표시]
-       
-       저장 위치: assets/logo.png
-```
-
-### 참조 이미지 사용
-
-```
-You: @existing-logo.png 이 로고를 참고해서
-     색상만 빨간색으로 바꿔줘
-
-Agent: [참조 이미지 분석]
-       [새 이미지 생성]
-       
-       저장 위치: assets/logo-red.png
-```
-
-### 상세한 설명
-
-더 상세하게 설명할수록 원하는 결과를 얻을 수 있습니다.
-
-```
-You: 로그인 버튼 이미지 만들어줘.
-     
-     요구사항:
-     - 크기: 200x50px
-     - 배경: 파란색 그라데이션 (#4A90E2 → #2E5C8A)
-     - 텍스트: "로그인" (흰색, 16px, 중앙 정렬)
-     - 모서리: 둥글게 (8px border-radius)
-     - 그림자: 약간의 drop shadow
-
-Agent: [상세한 이미지 생성]
+# 장점:
+# - 컨텍스트 유지
+# - 독립적인 Agent
+# - 동시 작업 가능
 ```
 
 ---
 
-## 3부: UI 목업 생성
+## 2부: Git Worktree - 독립 환경 구성
 
-### 버튼 디자인
+### Worktree란?
 
-```
-You: 다음 버튼들을 만들어줘:
-     1. Primary 버튼 (파란색)
-     2. Secondary 버튼 (회색)
-     3. Danger 버튼 (빨간색)
-     
-     각 버튼은 hover 상태도 포함해줘
-
-Agent: [3개 버튼 × 2개 상태 = 6개 이미지 생성]
-       
-       assets/button-primary.png
-       assets/button-primary-hover.png
-       assets/button-secondary.png
-       assets/button-secondary-hover.png
-       assets/button-danger.png
-       assets/button-danger-hover.png
-```
-
-### 아이콘 세트
-
-```
-You: 간단한 아이콘 세트 만들어줘:
-     - 홈 아이콘
-     - 검색 아이콘
-     - 설정 아이콘
-     - 프로필 아이콘
-     
-     스타일: 미니멀, 선 두께 2px, 24x24px
-
-Agent: [4개 아이콘 생성]
-```
-
-### 로고 디자인
-
-```
-You: 스타트업 로고 만들어줘.
-     
-     회사명: TechFlow
-     컨셉: 기술과 흐름
-     색상: 청록색 계열
-     스타일: 모던, 미니멀
-
-Agent: [로고 생성]
-       [여러 버전 제안 가능]
-```
-
----
-
-## 🚀 실습: Project 1 - 간단한 이미지 생성
-
-이제 배운 내용을 바로 실습해봅시다!
-
-### [Project 1: 간단한 이미지 생성](./projects/01-image-basic/README.md)
-
-**학습 내용**:
-
-- 기본 이미지 생성 (아이콘, 로고)
-- 텍스트 설명 작성 방법
-- 이미지 수정 및 최적화
-
-**실습 방식**:
-
-Agent에게 다양한 이미지를 요청하고, 결과를 확인합니다. 설명을 구체적으로 작성하는 방법을 익힙니다.
-
-**실습 예시**:
-- "파란색 로그인 버튼 만들어줘" → 간단한 버튼 생성
-- "200x50px, 그라데이션, 둥근 모서리..." → 상세한 버튼 생성
-- "이 로고를 빨간색으로 바꿔줘" → 참조 이미지 활용
-
-💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-image-basic/README.md)
-
----
-
-## 4부: 다이어그램 생성
-
-### 아키텍처 다이어그램
-
-```
-You: 마이크로서비스 아키텍처 다이어그램 만들어줘.
-     
-     구성:
-     - API Gateway
-     - Auth Service
-     - User Service
-     - Order Service
-     - Database (각 서비스별)
-     - Message Queue (RabbitMQ)
-     
-     화살표로 연결 관계 표시해줘
-
-Agent: [아키텍처 다이어그램 생성]
-```
-
-### 플로우차트
-
-```
-You: 로그인 플로우차트 만들어줘.
-     
-     1. 사용자 입력
-     2. 유효성 검사
-     3. 인증 확인
-     4. 성공 → 메인 페이지
-     5. 실패 → 에러 메시지
-
-Agent: [플로우차트 생성]
-```
-
-### ER 다이어그램
-
-```
-You: 블로그 시스템 ER 다이어그램 만들어줘.
-     
-     테이블:
-     - Users (id, name, email)
-     - Posts (id, title, content, user_id)
-     - Comments (id, content, post_id, user_id)
-     
-     관계도 표시해줘
-
-Agent: [ER 다이어그램 생성]
-```
-
-### Mermaid 다이어그램
-
-Cursor는 **Mermaid 문법**을 사용하여 다이어그램을 생성할 수도 있습니다.
-
-**Mermaid란?**
-- 텍스트 기반 다이어그램 도구
-- 마크다운에 직접 삽입 가능
-- 버전 관리 가능
-- 자동 렌더링
-
-**Mermaid 다이어그램 예시**:
-
-```
-You: Mermaid로 시퀀스 다이어그램 만들어줘.
-     
-     로그인 프로세스:
-     1. 사용자 → 프론트엔드: 로그인 요청
-     2. 프론트엔드 → API: 인증 요청
-     3. API → DB: 사용자 조회
-     4. DB → API: 사용자 정보
-     5. API → 프론트엔드: JWT 토큰
-     6. 프론트엔드 → 사용자: 로그인 성공
-
-Agent: [Mermaid 코드 생성]
-```
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Frontend
-    participant API
-    participant DB
-    
-    User->>Frontend: 로그인 요청
-    Frontend->>API: 인증 요청
-    API->>DB: 사용자 조회
-    DB-->>API: 사용자 정보
-    API-->>Frontend: JWT 토큰
-    Frontend-->>User: 로그인 성공
-```
-
-**지원하는 Mermaid 다이어그램 타입**:
-- Flowchart (플로우차트)
-- Sequence Diagram (시퀀스 다이어그램)
-- Class Diagram (클래스 다이어그램)
-- State Diagram (상태 다이어그램)
-- Entity Relationship Diagram (ER 다이어그램)
-- Gantt Chart (간트 차트)
-- Pie Chart (파이 차트)
-- Git Graph (Git 그래프)
-
-**Mermaid 사용 예시**:
-
-```
-You: Mermaid로 플로우차트 만들어줘.
-     
-     주문 처리 플로우:
-     시작 → 재고 확인 → (재고 있음?) 
-     → Yes: 결제 처리 → 배송 준비 → 완료
-     → No: 재입고 알림 → 완료
-
-Agent: [Mermaid 플로우차트 생성]
-```
-
-**참고 문서**: [Mermaid 다이어그램 가이드](https://cursor.com/docs/cookbook/mermaid-diagrams)
-
----
-
-## 5부: 이미지 관리
-
-### 저장 위치
-
-생성된 이미지는 기본적으로 `assets/` 폴더에 저장됩니다.
+하나의 Git 저장소에서 **여러 작업 디렉터리**를 만드는 기능입니다.
 
 ```
 project/
-├── assets/
-│   ├── logo.png
-│   ├── button-primary.png
-│   ├── icon-home.png
-│   └── architecture-diagram.png
-└── ...
+├── main-workspace/          # 메인 작업 공간
+│   └── feature/dashboard    # 대시보드 개발 중
+│
+├── hotfix-workspace/        # 핫픽스 작업 공간
+│   └── hotfix/critical-bug  # 버그 수정
+│
+└── landing-workspace/       # 랜딩 페이지 작업 공간
+    └── feature/landing      # 랜딩 페이지 수정
+
+→ 모두 같은 Git 저장소
+→ 각각 독립적인 브랜치
+→ 서로 간섭 없음
 ```
 
-### 저장 위치 변경
+### Worktree 기본 명령어
 
-```
-You: 이미지를 public/images/ 폴더에 저장해줘
+```bash
+# 1. Worktree 생성
+git worktree add <경로> <브랜치>
 
-Agent: [설정 변경]
-       이제 public/images/에 저장됩니다
-```
+# 예시
+git worktree add ../hotfix-env hotfix/critical-bug
 
-### 이미지 수정
+# 2. Worktree 목록 확인
+git worktree list
 
-```
-You: assets/logo.png 이미지를 수정해줘.
-     색상을 빨간색으로 바꿔줘
+# 3. Worktree 제거
+git worktree remove <경로>
 
-Agent: [기존 이미지 분석]
-       [수정된 이미지 생성]
-       
-       assets/logo-red.png로 저장했습니다
+# 4. Worktree 정리 (삭제된 것 제거)
+git worktree prune
 ```
 
-### 이미지 최적화
+### 실전 예시
 
-```
-You: assets/ 폴더의 모든 이미지를 최적화해줘.
-     WebP 형식으로 변환하고 크기도 줄여줘
+```bash
+# 현재: feature/dashboard 작업 중
+pwd
+# /Users/user/project
 
-Agent: [이미지 최적화]
-       
-       logo.png → logo.webp (50% 크기 감소)
-       button.png → button.webp (45% 크기 감소)
+# 핫픽스를 위한 독립 환경 생성
+git worktree add ../project-hotfix hotfix/critical-bug
+
+# 랜딩 페이지를 위한 독립 환경 생성
+git worktree add ../project-landing feature/landing
+
+# 확인
+git worktree list
+# /Users/user/project              abc1234 [feature/dashboard]
+# /Users/user/project-hotfix       def5678 [hotfix/critical-bug]
+# /Users/user/project-landing      ghi9012 [feature/landing]
 ```
 
 ---
 
-## 🚀 실습: Project 2 - UI 목업 및 다이어그램 생성
+## 🚀 실습: Project 1 - Worktree 기본 사용
 
-이제 실전에서 활용할 수 있는 이미지를 생성해봅시다!
+이제 배운 내용을 바로 실습해봅시다!
 
-### [Project 2: UI 목업 및 다이어그램 생성](./projects/02-image-mockup/README.md)
+### [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md)
 
 **학습 내용**:
 
-- UI 목업 생성 (버튼, 카드, 폼)
-- 아키텍처 다이어그램 생성
-- 플로우차트 생성
-- 실전 프로젝트 적용
+- Git Worktree 생성 및 관리
+- 독립 환경에서 작업
+- 컨텍스트 오염 방지
 
 **실습 방식**:
 
-실제 프로젝트에 필요한 UI 목업과 다이어그램을 생성합니다. 문서화에 활용하는 방법을 배웁니다.
+Worktree를 생성하고, 각 환경에서 독립적으로 작업하는 방법을 배웁니다. 메인 브랜치는 유지하면서 핫픽스 브랜치를 별도로 작업합니다.
 
 **실습 예시**:
-- 버튼 세트 생성 (Primary, Secondary, Danger)
-- 아키텍처 다이어그램 (마이크로서비스 구조)
-- 플로우차트 (로그인 플로우)
-- README에 이미지 삽입
+- 메인 작업: `feature/dashboard` 개발 중
+- 핫픽스 발생: `git worktree add ../hotfix hotfix/bug`
+- 독립 환경에서 버그 수정
+- 메인 작업으로 돌아가면 컨텍스트 유지됨!
 
-💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-image-mockup/README.md)
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-worktree-basic/README.md)
 
 ---
 
-## 💡 실전 활용 패턴
+## 3부: Multi-Agent 패턴
 
-### 1. 빠른 프로토타이핑
-
-```
-You: 랜딩 페이지 목업 만들어줘.
-     
-     섹션:
-     - 히어로 섹션 (큰 제목 + CTA 버튼)
-     - 기능 소개 (3개 카드)
-     - 가격 정보 (3개 플랜)
-     - Footer
-
-Agent: [각 섹션 이미지 생성]
-       [HTML/CSS도 함께 생성 가능]
-```
-
-### 2. 문서화
+### 패턴: 독립 환경 + 독립 Agent
 
 ```
-You: README에 사용할 아키텍처 다이어그램 만들어줘
+환경 1: project/ (IDE)
+├── 브랜치: feature/dashboard
+└── Agent: IDE Agent
+    → 신규 대시보드 개발 계속
 
-Agent: [다이어그램 생성]
-       README.md에 이미지 링크 추가했습니다
+환경 2: project-hotfix/ (Terminal 1)
+├── 브랜치: hotfix/critical-bug
+└── Agent: CLI Agent 1
+    → 핫픽스 처리
+
+환경 3: project-landing/ (Terminal 2)
+├── 브랜치: feature/landing
+└── Agent: CLI Agent 2
+    → 랜딩 페이지 수정
 ```
 
-### 3. 디자인 시스템
+### 실전 워크플로우
+
+**1. 메인 작업 (IDE)**
+```
+IDE에서 feature/dashboard 개발 중...
+
+Agent: 대시보드 컴포넌트 작성 중
+```
+
+**2. 핫픽스 발생 (Terminal 1)**
+```bash
+# 새 터미널 열기
+cd ../project-hotfix
+
+# Cursor CLI Agent 실행
+cursor
+
+# Agent에게 요청
+"버그 수정해줘: 로그인 시 세션 만료 문제"
+
+# 수정 완료 후
+git add .
+git commit -m "fix: 세션 만료 문제 수정"
+git push
+```
+
+**3. 랜딩 페이지 요청 (Terminal 2)**
+```bash
+# 또 다른 터미널 열기
+cd ../project-landing
+
+# Cursor CLI Agent 실행
+cursor
+
+# Agent에게 요청
+"랜딩 페이지 히어로 섹션 수정해줘"
+
+# 수정 완료 후
+git add .
+git commit -m "feat: 히어로 섹션 업데이트"
+git push
+```
+
+**4. 메인 작업 계속 (IDE)**
+```
+IDE로 돌아가서 대시보드 개발 계속...
+
+→ 컨텍스트 유지됨
+→ 작업 흐름 끊기지 않음
+```
+
+---
+
+## 4부: Subagents vs Multi-Agent
+
+### 언제 무엇을 사용하는가?
+
+**Subagents (7장) - 하나의 목적**:
+```
+상황: 명확한 단일 작업
+예시: "로그인 기능 추가해줘"
+
+Subagents 동작:
+→ 자동으로 UI, API, 테스트 분산
+→ 하나의 브랜치에서 작업
+→ 자동 통합
+
+적합:
+✅ 명확한 요구사항
+✅ 단일 목표
+✅ 빠른 개발
+```
+
+**Multi-Agent (8장) - 여러 업무**:
+```
+상황: 동시다발적 업무
+예시: 
+- 신규 기능 개발 중
+- 핫픽스 요청
+- 다른 페이지 수정 요청
+
+Multi-Agent 동작:
+→ 각 업무마다 독립 환경 (Worktree)
+→ 각 환경마다 독립 Agent
+→ 수동 관리
+
+적합:
+✅ 여러 브랜치 필요
+✅ 독립적인 업무
+✅ 컨텍스트 유지 필요
+```
+
+### 비교표
+
+| 항목 | Subagents | Multi-Agent |
+|-----|-----------|-------------|
+| **목적** | 하나의 작업을 더 잘 해결 | 여러 업무 동시 처리 |
+| **브랜치** | 단일 브랜치 | 다중 브랜치 |
+| **환경** | 단일 환경 | 독립 환경 (Worktree) |
+| **Agent** | 자동 생성 | 수동 생성 |
+| **통합** | 자동 | 수동 (각 브랜치별) |
+| **사용 사례** | "기능 추가", "리팩토링" | "핫픽스", "병렬 개발" |
+
+### 실전 선택 가이드
 
 ```
-You: 디자인 시스템 컴포넌트 이미지 만들어줘:
-     - 버튼 (5가지 변형)
-     - 입력 필드 (3가지 상태)
-     - 카드 (2가지 스타일)
+질문 1: 브랜치를 나눠야 하나?
+→ YES: Multi-Agent
+→ NO: Subagents
 
-Agent: [컴포넌트 이미지 생성]
-       design-system/ 폴더에 저장했습니다
+질문 2: 여러 업무가 동시에 발생했나?
+→ YES: Multi-Agent
+→ NO: Subagents
+
+질문 3: 컨텍스트를 유지하면서 다른 작업을 해야 하나?
+→ YES: Multi-Agent
+→ NO: Subagents
 ```
+
+---
+
+## 🚀 실습: Project 2 - Multi-Agent 실전 워크플로우
+
+이제 Multi-Agent 패턴을 실전에서 체험해봅시다!
+
+### [Project 2: Multi-Agent 실전 워크플로우](./projects/02-worktree-management/README.md)
+
+**학습 내용**:
+
+- IDE + CLI Agent 통합
+- 여러 업무 동시 처리
+- 실무 시나리오 실습
+
+**실습 방식**:
+
+실제 실무 시나리오를 재현합니다. 신규 기능 개발 중 핫픽스 요청이 오고, 추가로 다른 페이지 수정 요청이 오는 상황을 Worktree와 Multi-Agent로 처리합니다.
+
+**실습 시나리오**:
+1. IDE에서 대시보드 개발 중
+2. 핫픽스 요청 → Worktree 생성 → CLI Agent로 처리
+3. 랜딩 페이지 수정 요청 → 또 다른 Worktree → 또 다른 CLI Agent
+4. 모든 작업이 독립적으로 진행
+5. 컨텍스트 유지되어 효율적!
+
+**실습 예시**:
+- 환경 1 (IDE): `feature/dashboard` 계속 개발
+- 환경 2 (Terminal 1): `hotfix/bug` 수정 완료 → push
+- 환경 3 (Terminal 2): `feature/landing` 수정 완료 → push
+- IDE로 돌아가면 대시보드 작업 그대로 유지!
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-worktree-management/README.md)
 
 ---
 
@@ -444,28 +357,31 @@ Agent: [컴포넌트 이미지 생성]
 
 ### 진행 방법
 
-1. **1부-2부: Image Generation 기본**
-   - Image Generation 개념 이해
-   - 기본 사용법 학습 (텍스트 설명, 참조 이미지)
+1. **1부: 실무 시나리오**
+   - 실무에서 여러 업무가 동시에 발생하는 상황 이해
+   - 단일 환경의 한계 파악
 
-2. **3부: UI 목업 생성 + 실습**
-   - 버튼, 아이콘, 로고 생성 방법
-   - 👉 **바로 실습**: Project 1 - 간단한 이미지 생성
+2. **2부: Git Worktree + 실습**
+   - Git Worktree의 필요성 및 사용법 학습
+   - 👉 **바로 실습**: Project 1 - Worktree 기본 사용
 
-3. **4부: 다이어그램 생성 + 실습**
-   - 아키텍처, 플로우차트, ER 다이어그램
-   - 👉 **바로 실습**: Project 2 - UI 목업 및 다이어그램 생성
+3. **3부: Multi-Agent 패턴 + 실습**
+   - Multi-Agent 패턴 학습
+   - 독립 환경 + 독립 Agent 활용
+   - 👉 **바로 실습**: Project 2 - Multi-Agent 실전 워크플로우
 
-4. **5부: 이미지 관리 및 실전 활용**
-   - 저장, 수정, 최적화
-   - 다양한 활용 패턴
+4. **4부: Subagents vs Multi-Agent**
+   - 두 패턴의 차이점 명확히 이해
+   - 상황별 선택 기준
 
 ### 학습 팁
 
-- 설명은 구체적으로 작성하세요
-- 참조 이미지를 활용하면 더 정확합니다
-- 여러 버전을 생성해서 비교하세요
-- 실제 프로젝트에 바로 적용해보세요
+- Worktree는 Git의 기능입니다 (Cursor 전용 아님)
+- Multi-Agent는 활용 패턴입니다 (새로운 개념 아님)
+- Subagents와 Multi-Agent는 **대체 관계가 아닌 보완 관계**
+- 실무에서는 두 가지를 상황에 맞게 선택적으로 사용
+- 브랜치를 나눠야 하는 상황 = Multi-Agent
+- 단일 브랜치에서 작업 = Subagents
 
 ---
 
@@ -473,51 +389,51 @@ Agent: [컴포넌트 이미지 생성]
 
 이번 장에서 다룬 내용:
 
-**1부-2부: Image Generation 기본**
-- ✅ Image Generation 기본 개념
-- ✅ 텍스트 설명으로 이미지 생성
-- ✅ 참조 이미지 활용
+**1부: 실무 시나리오**
+- ✅ 실무에서 여러 업무가 동시에 발생하는 상황 이해
+- ✅ 단일 환경의 한계 (Git Stash의 문제점)
 
-**3부: UI 목업 생성 + 실습**
-- ✅ UI 목업 생성 (버튼, 아이콘, 로고)
-- ✅ **실습 완료**: 간단한 이미지 생성
+**2부: Git Worktree + 실습**
+- ✅ Git Worktree로 독립 환경 구성
+- ✅ **실습 완료**: Worktree 기본 사용
 
-**4부: 다이어그램 생성 + 실습**
-- ✅ 다이어그램 생성 (아키텍처, 플로우차트)
-- ✅ **실습 완료**: UI 목업 및 다이어그램 생성
+**3부: Multi-Agent 패턴 + 실습**
+- ✅ Multi-Agent 패턴으로 병렬 작업
+- ✅ **실습 완료**: Multi-Agent 실전 워크플로우
 
-**5부: 이미지 관리 및 실전 활용**
-- ✅ 이미지 저장, 수정, 최적화
-- ✅ 실전 활용 패턴
+**4부: Subagents vs Multi-Agent**
+- ✅ 두 패턴의 차이점 명확히 이해
+- ✅ 상황별 선택 기준
 
 **핵심 포인트**:
 
 ```
-빠른 프로토타이핑 → Image Generation
-디자이너 없이 목업 → Image Generation
-문서화 시각화 → Image Generation
+Subagents: 하나의 목적을 더 잘 해결
+Multi-Agent: 여러 업무를 동시에 처리
+
+선택 기준: 브랜치를 나눠야 하는가?
 ```
 
 **다음 장 예고**:
 
-9장에서는 Cloud Agent와 Handoff를 배웁니다. 장시간 작업을 클라우드로 위임하고, 웹/모바일에서 확인하는 방법을 익힙니다.
-
----
-
-## 🔗 공식 문서
-
-- [체인지로그 - Image Generation (2026.01.22)](https://cursor.com/changelog)
-- [Agent 개요](https://cursor.com/docs/agent/overview)
+9장에서는 **Image Generation**을 배웁니다. AI로 이미지, 다이어그램, UI 목업을 생성하는 방법을 익힙니다.
 
 ---
 
 ## ⏭ 다음 장
 
-[9장: Cloud Agent & Handoff - 장시간 작업 위임](../session-09/README.md)
+[9장: Image Generation - AI로 이미지 생성](../session-09/README.md)
+
+---
+
+## 🔗 관련 자료
+
+- [Git Worktree 공식 문서](https://git-scm.com/docs/git-worktree)
+- [7장: Subagents - 자동 오케스트레이션](../session-07/README.md)
 
 ---
 
 ## 🔗 실습 프로젝트 바로가기
 
-- [Project 1: 간단한 이미지 생성](./projects/01-image-basic/README.md) - 3부 학습 후 진행
-- [Project 2: UI 목업 및 다이어그램 생성](./projects/02-image-mockup/README.md) - 4부 학습 후 진행
+- [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md) - 2부 학습 후 진행
+- [Project 2: Multi-Agent 실전 워크플로우](./projects/02-worktree-management/README.md) - 3부 학습 후 진행

@@ -1,361 +1,153 @@
-# 4장: CLI Agent - 터미널에서 개발
+# 4장: Visual Editor - 클릭 기반 UI 수정
 
-> **IDE 없이 터미널에서도 Agent를 사용할 수 있습니다**
-
-## 📋 목차
-
-- [강의 개요](#-강의-개요)
-- [1부: Copilot CLI vs Cursor CLI](#1부-copilot-cli-vs-cursor-cli)
-- [2부: CLI Agent 모드](#2부-cli-agent-모드)
-- [3부: Shell Mode](#3부-shell-mode)
-- [실습 프로젝트](#-실습-프로젝트)
-
----
+> **말로 설명하지 않고 클릭으로 UI를 수정합니다**
 
 ## 📝 강의 개요
 
-안녕하세요. 이번 장에서는 **Cursor CLI**를 배웁니다.
+안녕하세요. 이번 장에서는 **Visual Editor**를 배웁니다.
 
-지금까지 배운 기능들은 모두 IDE 안에서 동작했습니다. 하지만 SSH 접속, CI/CD 파이프라인 등 IDE를 사용할 수 없는 상황이 자주 있습니다.
+UI를 수정할 때 "왼쪽 위 파란 버튼"처럼 말로 설명하는 것은 번거롭습니다. Visual Editor를 사용하면 브라우저에서 직접 클릭해서 요소를 선택할 수 있습니다.
 
 **학습 목표**:
 
-- Cursor CLI 설치 및 실행
-- CLI Agent 모드 (Agent, Plan, Ask) 이해
-- Shell Mode로 명령어 빠르게 실행
-- SSH/CI/CD 환경 활용
+- Visual Editor 모드 활성화
+- 클릭으로 요소 선택
+- UI 빠르게 수정
+- 브라우저 통합 기능 활용
 
-**공식 문서**:
-- [CLI 개요](https://cursor.com/docs/cli/overview)
-- [CLI 설치](https://cursor.com/docs/cli/installation)
-- [CLI 사용법](https://cursor.com/docs/cli/using)
-- [Shell Mode](https://cursor.com/docs/cli/shell-mode)
-- [Headless 모드](https://cursor.com/docs/cli/headless)
-- [슬래시 명령어](https://cursor.com/docs/cli/reference/slash-commands)
-- [CLI 파라미터](https://cursor.com/docs/cli/reference/parameters)
-- [GitHub Actions 통합](https://cursor.com/docs/cli/github-actions)
-- [체인지로그 - CLI Agent Modes (2026.01.16)](https://cursor.com/changelog)
+**참고 문서**:
+- [브라우저 통합](https://cursor.com/docs/agent/browser) - 브라우저 연동 방식
+- [웹 개발 가이드](https://cursor.com/docs/cookbook/web-development) - 웹 개발 워크플로우
 
 ---
 
-## 1부: Copilot CLI vs Cursor CLI
+## 🎯 말로 설명 vs 클릭
 
-### Copilot CLI
+### 말로 설명
 
-```bash
-# 명령어 제안만 가능
-gh copilot suggest "파일 목록 보기"
-→ ls -la
+```
+"왼쪽 위에 있는 파란색 버튼의 색상을 빨간색으로 바꿔주세요"
 
-# 설명 요청
-gh copilot explain "git rebase -i"
-→ 설명만 제공
-
-# 코드 작업은 IDE로 돌아가야 함
+문제:
+- AI가 잘못 이해할 수 있음
+- 여러 번 설명해야 할 수 있음
 ```
 
-### Cursor CLI
+### 클릭으로 선택
 
-```bash
-# 1. Agent 모드: 대화하며 코드 작업
-cursor
+```
+Visual Editor 활성화 → 버튼 클릭 → "빨간색으로 바꿔주세요"
 
-You: user.js에 validate 함수 추가해줘
-Agent: [파일 생성/수정]
-Agent: [테스트 실행]
-
-# 2. Shell Mode: 대화 중 명령어 실행
-You: !npm test
-→ 테스트 실행 결과 표시
-
-You: !git status
-→ Git 상태 표시
+장점:
+- 정확함
+- 빠름
+- 오해 없음
 ```
 
-**차이점**:
+## 🔧 Visual Editor 작동 원리
 
-| 기능            | Copilot CLI | Cursor CLI |
-| --------------- | ----------- | ---------- |
-| **명령어 제안** | ✅          | ✅         |
-| **코드 작업**   | ❌ IDE 필요 | ✅ CLI에서 |
-| **대화형 세션** | ❌          | ✅         |
-| **Shell Mode**  | ❌          | ✅ `!` 명령|
+### 브라우저 통합
 
----
+Cursor의 Visual Editor는 브라우저와 직접 통합되어 작동합니다:
 
-## 2부: CLI Agent 모드
+1. **브라우저 확장 프로그램**: Cursor가 브라우저를 제어
+2. **요소 선택**: 클릭한 요소의 CSS 선택자 자동 추출
+3. **컨텍스트 전달**: 선택된 요소 정보를 Agent에게 전달
+4. **정확한 수정**: Agent가 정확히 해당 요소만 수정
 
-Cursor CLI는 IDE와 동일하게 **3가지 모드**를 제공합니다.
+### 지원 브라우저
 
-### Agent 모드 (기본)
+- Chrome
+- Edge
+- Brave
+- 기타 Chromium 기반 브라우저
 
-```bash
-# Agent 모드로 시작
-cursor
+### Visual Editor 활성화 방법
 
-# 또는
-cursor --mode=agent
+1. **HTML 파일 열기**: 프로젝트의 HTML 파일 열기
+2. **Agent 모드 시작**: Cmd/Ctrl + L
+3. **브라우저에서 미리보기**: 브라우저에서 페이지 열기
+4. **요소 선택 모드**: Agent에게 "이 페이지를 수정하고 싶어요" 요청
+5. **클릭으로 선택**: 브라우저에서 수정할 요소 클릭
+6. **수정 요청**: "이 버튼을 빨간색으로 바꿔주세요"
 
-You: 로그인 기능 추가해줘
-Agent: [코드 작성 및 수정]
-```
+### Visual Editor vs 말로 설명
 
-**특징**:
-- 즉시 실행하여 코드 작성/수정
-- 파일 생성, 수정, 삭제 가능
-- 터미널 명령어 실행 가능
+| 비교 항목 | 말로 설명 | Visual Editor |
+|----------|----------|--------------|
+| 정확도 | 낮음 (오해 가능) | 높음 (정확한 선택자) |
+| 속도 | 느림 (여러 번 설명) | 빠름 (한 번에 선택) |
+| 복잡한 레이아웃 | 어려움 | 쉬움 |
+| 학습 곡선 | 낮음 | 낮음 |
 
-### Plan 모드
+### 사용 시나리오
 
-```bash
-# Plan 모드로 시작
-cursor /plan
+✅ **Visual Editor가 유용한 경우**:
+- 여러 개의 비슷한 요소 중 하나를 선택해야 할 때
+- 복잡한 레이아웃에서 특정 요소를 찾기 어려울 때
+- CSS 선택자를 정확히 모를 때
+- 빠르게 UI를 프로토타이핑할 때
 
-# 또는
-cursor --mode=plan
+❌ **Visual Editor가 불필요한 경우**:
+- 전체 페이지 스타일을 변경할 때 (일반 Agent 모드가 더 빠름)
+- 단순한 텍스트 수정
+- 백엔드 로직 수정
 
-You: 결제 시스템 추가해줘
-Agent: [계획 수립]
-Agent: 다음 단계로 진행할까요?
-You: 네
-Agent: [실행]
-```
+### 베스트 프랙티스
 
-**특징**:
-- 사전에 계획을 세우고 검토
-- 복잡한 작업에 적합
-- 명확한 질문으로 요구사항 확인
-
-**공식 문서**: [CLI Plan Mode](https://cursor.com/changelog) (2026.01.16 업데이트)
-
-### Ask 모드
-
-```bash
-# Ask 모드로 시작
-cursor /ask
-
-# 또는
-cursor --mode=ask
-
-You: 이 코드는 어떻게 동작하나요?
-Agent: [설명만 제공, 코드 변경 없음]
-```
-
-**특징**:
-- 코드를 변경하지 않고 탐색
-- 코드 이해, 분석, 설명
-- 안전한 학습 환경
-
-**공식 문서**: [CLI Ask Mode](https://cursor.com/changelog) (2026.01.16 업데이트)
-
-### 모드 비교
-
-| 모드 | 코드 변경 | 사용 시점 | 명령어 |
-|------|----------|----------|--------|
-| **Agent** | ✅ | 즉시 실행 | `cursor` |
-| **Plan** | ✅ | 복잡한 작업 | `cursor /plan` |
-| **Ask** | ❌ | 코드 탐색 | `cursor /ask` |
-
-### 슬래시 명령어
-
-CLI에서 사용할 수 있는 슬래시 명령어들:
-
-```bash
-cursor
-
-# 대화 중 슬래시 명령어 사용
-You: /plan          # Plan 모드로 전환
-You: /ask           # Ask 모드로 전환
-You: /agent         # Agent 모드로 전환
-You: /clear         # 대화 기록 초기화
-You: /help          # 도움말 표시
-You: /exit          # CLI 종료
-```
-
-**참고 문서**: [슬래시 명령어 전체 목록](https://cursor.com/docs/cli/reference/slash-commands)
-
-### Headless 모드
-
-UI 없이 백그라운드에서 Cursor CLI를 실행할 수 있습니다:
-
-```bash
-# Headless 모드로 실행
-cursor --headless "로그인 기능 추가해줘"
-
-# 또는 파이프로 입력
-echo "테스트 코드 작성해줘" | cursor --headless
-
-# CI/CD에서 사용
-cursor --headless --mode=plan "전체 프로젝트 린트 수정"
-```
-
-**사용 시나리오**:
-- CI/CD 파이프라인에서 자동화
-- 스크립트에서 Cursor 호출
-- 배치 작업 처리
-- GitHub Actions 통합
-
-**참고 문서**: 
-- [Headless 모드](https://cursor.com/docs/cli/headless)
-- [GitHub Actions 통합](https://cursor.com/docs/cli/github-actions)
-
-### CLI 설치 방법
-
-**Mac/Linux**:
-```bash
-# Cursor IDE에서 설치 (권장)
-# Cmd+Shift+P → "Shell Command: Install 'cursor' command in PATH"
-
-# 또는 수동 설치
-curl -fsSL https://cursor.com/install.sh | sh
-```
-
-**Windows**:
-```bash
-# Cursor IDE에서 설치 (권장)
-# Ctrl+Shift+P → "Shell Command: Install 'cursor' command in PATH"
-
-# 또는 PowerShell에서
-iwr -useb https://cursor.com/install.ps1 | iex
-```
-
-**설치 확인**:
-```bash
-cursor --version
-```
-
-**참고 문서**: [CLI 설치](https://cursor.com/docs/cli/installation)
-
----
-
-## 3부: Shell Mode
-
-### Shell Mode란?
-
-CLI Agent와 대화하는 중에 `!`로 시작하는 명령어를 실행하여 빠르게 작업할 수 있는 기능입니다.
-
-```bash
-cursor
-
-You: 로그인 기능 추가해줘
-Agent: [코드 작성 중...]
-
-You: !npm test        # Shell Mode로 테스트 실행
-→ 테스트 결과 표시
-
-You: 테스트 실패한 부분 수정해줘
-Agent: [수정 중...]
-
-You: !git diff        # Shell Mode로 변경사항 확인
-→ diff 결과 표시
-```
-
-### Shell Mode 특징
-
-- **빠른 실행**: 대화 중단 없이 명령어 실행
-- **컨텍스트 유지**: 명령어 결과가 대화에 포함됨
-- **안전 장치**: 위험한 명령은 실행 전 확인
-- **제한사항**: 30초 타임아웃, 대화형 명령 불가
-
-### 사용 예시
-
-```bash
-# 파일 확인
-You: !ls -la
-
-# 테스트 실행
-You: !npm test
-
-# Git 상태
-You: !git status
-
-# 빌드
-You: !npm run build
-
-# 환경 확인
-You: !node --version
-```
-
-### 제한사항
-
-```bash
-# ❌ 안 되는 것들
-!npm start           # 서버 실행 (계속 실행됨)
-!vim file.js         # 대화형 에디터
-!read input          # 입력 대기
-
-# ✅ 되는 것들
-!npm test            # 짧은 명령
-!git status          # 상태 확인
-!cat file.js         # 파일 읽기
-```
-
-**공식 문서**: [Shell Mode](https://cursor.com/docs/cli/shell-mode)
-
----
-
-## 💡 다음 단계: Cloud Handoff
-
-CLI Agent를 사용하다 보면 장시간 작업이 필요할 때가 있습니다. 이런 경우 **Cloud Handoff** 기능으로 로컬 작업을 클라우드로 넘겨서 계속 실행할 수 있습니다.
-
-Cloud Handoff에 대한 자세한 내용은 **9장: Cloud Agent & Handoff**에서 다룹니다.
+1. **먼저 브라우저에서 페이지 확인**: 어떤 요소를 수정할지 미리 파악
+2. **정확하게 클릭**: 원하는 요소를 정확히 클릭
+3. **구체적으로 요청**: "이 버튼을 빨간색으로, 크기를 더 크게"
+4. **여러 요소 수정**: 한 번에 여러 요소를 선택하여 일괄 수정 가능
 
 ---
 
 ## 🚀 실습 프로젝트
 
-### [Project 1: CLI Agent 기본 사용법 및 Shell Mode](./projects/01-cli-basic/README.md)
+### [Project 1: Visual Editor로 버튼 스타일 수정](./projects/01-visual-button-style/README.md)
 
 **학습 내용**:
 
-- Cursor CLI 설치 및 실행
-- CLI Agent 모드 (Agent, Plan, Ask) 이해 및 사용
-- Shell Mode (`!` 명령) 사용법 익히기
-- 각 모드의 차이점 체험
+- Visual Editor 활성화 방법 익히기
+- 클릭으로 UI 요소 선택하기
+- 말로 설명 없이 정확하게 스타일 수정
 
 **실습 방식**:
 
-터미널에서 Cursor CLI를 실행하고, 세 가지 모드(Agent, Plan, Ask)를 각각 사용해봅니다. Shell Mode로 대화 중 명령어를 빠르게 실행하는 방법도 익힙니다.
+페이지에 여러 개의 버튼이 있습니다. 특정 버튼의 스타일을 수정해야 하는데, 말로 설명하면 어떤 버튼인지 헷갈립니다. Visual Editor로 직접 클릭하여 정확하게 선택하고 수정합니다.
 
 **제공 파일**:
-- `src/hello.js` - 테스트용 파일
+- `index.html` - 버튼이 있는 페이지
+- `styles.css` - 스타일시트
 
 **실습 예시**:
-- Agent 모드: `cursor` → 즉시 코드 작성
-- Plan 모드: `cursor /plan` → 계획 수립 후 실행
-- Ask 모드: `cursor /ask` → 코드 변경 없이 탐색
-- Shell Mode: `!npm test` → 대화 중 명령어 실행
+- 기존 방식: "왼쪽 위에 있는 파란색 버튼을..." (설명 복잡)
+- Visual Editor: 버튼 클릭 → "이 버튼을 빨간색으로" (정확!)
 
 ---
 
-### [Project 2: 터미널에서 전체 개발 프로세스](./projects/02-terminal-dev/README.md)
+### [Project 2: Visual Editor로 카드 레이아웃 수정](./projects/02-visual-card-layout/README.md)
 
 **학습 내용**:
 
-- IDE 없이 CLI만으로 전체 개발 프로세스 경험
-- Shell Mode를 활용한 효율적인 워크플로우
-- Cloud Handoff로 장시간 작업 위임
-- SSH/CI/CD 환경에서의 활용 가능성 이해
+- 복잡한 레이아웃을 Visual Editor로 수정
+- 그리드/플렉스 레이아웃 조정
+- 여러 요소를 동시에 선택하여 수정
 
 **실습 방식**:
 
-TODO API를 터미널에서만 개발합니다. 요구사항 분석부터 코드 작성, 테스트, 디버깅, Git 커밋까지 모든 작업을 CLI Agent와 함께 진행합니다.
+여러 개의 카드가 그리드 레이아웃으로 배치되어 있습니다. 특정 카드의 레이아웃을 수정하는데, 위치를 말로 설명하기 어렵습니다. Visual Editor로 직접 선택하여 수정합니다.
 
-**실습 시나리오**:
-1. 프로젝트 초기화 (package.json, 의존성)
-2. TODO API 구현 (CRUD)
-3. 테스트 작성 및 실행
-4. 디버깅 (Shell Mode 활용)
-5. Git 커밋 및 푸시
+**제공 파일**:
+- `index.html` - 카드 레이아웃 페이지
+- `styles.css` - 스타일시트
 
 **실습 예시**:
-- `cursor` → "TODO API 만들어줘"
-- `!npm test` → 테스트 실행 결과 확인
-- "테스트 실패한 부분 수정해줘" → 즉시 수정
-- `!git status` → 변경사항 확인
+- 기존 방식: "두 번째 줄 왼쪽에 있는 카드의..." (복잡한 설명)
+- Visual Editor: 카드 클릭 → "이 카드의 이미지를 더 크게" (간단!)
 
 ---
 
 ## ⏭ 다음 장
 
-[5장: Hooks - AI Agent 제어의 핵심](../session-05/README.md)
+[5장: CLI Agent - 터미널에서 개발](../session-05/README.md)

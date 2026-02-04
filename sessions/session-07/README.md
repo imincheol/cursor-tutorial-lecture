@@ -1,355 +1,231 @@
-# 7장: Multi-Agent - 여러 업무 동시 처리
+# 7장: Subagents - 자동 오케스트레이션
 
-> **Git Worktree로 독립 환경을 구성하고, 여러 Agent로 동시에 작업합니다**
+> **Agent가 복잡한 작업을 자동으로 분배합니다**
 
 ## 📋 목차
 
 - [강의 개요](#-강의-개요)
-- [1부: 실무 시나리오 - 왜 필요한가?](#1부-실무-시나리오---왜-필요한가)
-- [2부: Git Worktree - 독립 환경 구성](#2부-git-worktree---독립-환경-구성)
-- [3부: Multi-Agent 패턴](#3부-multi-agent-패턴)
-- [4부: Subagents vs Multi-Agent](#4부-subagents-vs-multi-agent)
-- [실습 프로젝트](#-실습-프로젝트)
+- [1부: Subagents란?](#1부-subagents란)
+- [2부: Clarification Questions](#2부-clarification-questions)
+- [3부: 실전 활용](#3부-실전-활용)
 
 ---
 
 ## 📝 강의 개요
 
-실무에서는 하나의 작업만 하는 경우가 드뭅니다. 신규 기능을 개발하다가 갑자기 핫픽스 요청이 오고, 다른 페이지 작업 요청이 동시에 들어옵니다.
+안녕하세요. 이번 장에서는 **Subagents**를 배웁니다.
 
-이럴 때 **Git Worktree**로 독립 환경을 만들고, **Multi-Agent**로 여러 작업을 동시에 처리할 수 있습니다.
+복잡한 작업을 요청하면 Agent가 자동으로 여러 하위 에이전트(Subagent)를 생성하여 병렬로 처리합니다. 또한 **Clarification Questions**를 통해 Agent가 불명확한 부분을 질문합니다.
 
 **학습 목표**:
 
-- 실무에서 여러 업무가 동시에 발생하는 상황 이해
-- Git Worktree로 독립 환경 구성
-- Multi-Agent 패턴으로 병렬 작업
-- Subagents와의 차이점 이해
+- Subagents의 개념과 동작 방식 이해
+- 자동 오케스트레이션 원리
+- Clarification Questions 활용
+- 복잡한 작업의 효율적 처리
 
 **공식 문서**:
-- [Worktrees](https://cursor.com/docs/configuration/worktrees) - Worktree 설정 가이드
-- [Agent 워크플로우](https://cursor.com/docs/cookbook/agent-workflows) - Agent 활용 패턴
+- [Subagents](https://cursor.com/docs/context/subagents) - Subagents 개요
+- [Clarification Questions](https://cursor.com/docs/agent/clarification) - 질문 기능
 
 ---
 
-## 1부: 실무 시나리오 - 왜 필요한가?
+## 1부: Subagents란?
 
-### 시나리오: 동시다발적 업무
+### Subagents의 개념
+
+Subagents는 메인 Agent가 **복잡한 작업을 분해**하여 여러 하위 에이전트에게 분배하는 기능입니다.
 
 ```
-당신은 신규 기능을 개발 중입니다...
+사용자: "이 프로젝트에 인증 시스템을 추가해줘"
 
-[09:00] 당신: 신규 대시보드 개발 시작
-              브랜치: feature/dashboard
-              
-[10:30] 팀장: 긴급! 프로덕션 버그 수정 필요
-              → 핫픽스 브랜치 필요
-              → 하지만 현재 작업 중...
-              
-[11:00] 디자이너: 랜딩 페이지 수정 요청
-                → 또 다른 브랜치 필요
-                → 대시보드 작업은 계속...
+메인 Agent:
+  └─ Subagent 1: 사용자 모델 설계
+  └─ Subagent 2: 로그인/회원가입 API 구현
+  └─ Subagent 3: JWT 토큰 처리
+  └─ Subagent 4: 프론트엔드 폼 구현
+  └─ Subagent 5: 테스트 코드 작성
 ```
 
-### 문제: 단일 환경의 한계
+### 자동 오케스트레이션
 
-**방법 1: Git Stash (전통적)**
+사용자가 명시적으로 분배하지 않아도, Agent가 **자동으로 판단**하여 작업을 분할합니다.
+
+**동작 방식**:
+1. 사용자 요청 분석
+2. 작업 분해 (Task Decomposition)
+3. Subagent 생성 및 할당
+4. 병렬 실행
+5. 결과 통합
+
+### Subagents vs 일반 Agent
+
+| 항목 | 일반 Agent | Subagents |
+|------|-----------|-----------|
+| 처리 방식 | 순차적 | 병렬 |
+| 복잡한 작업 | 시간 오래 걸림 | 빠름 |
+| 컨텍스트 | 하나의 컨텍스트 | 분산된 컨텍스트 |
+| 적합한 작업 | 단순 작업 | 복잡한 다단계 작업 |
+
+### Subagents 활성화
+
+Subagents는 **기본적으로 활성화**되어 있습니다. 복잡한 작업을 요청하면 자동으로 동작합니다.
+
 ```bash
-# 현재 작업 임시 저장
-git stash
-
-# 핫픽스 브랜치로 전환
-git checkout -b hotfix/critical-bug
-
-# 수정 완료 후
-git checkout feature/dashboard
-git stash pop
-
-# 문제:
-# - 컨텍스트 전환 비용
-# - stash 관리 복잡
-# - Agent 컨텍스트 오염
-```
-
-**방법 2: Git Worktree (현대적)**
-```bash
-# 독립 환경 생성
-git worktree add ../hotfix-env hotfix/critical-bug
-
-# 각 환경에서 독립적으로 작업
-# - feature/dashboard: 계속 개발
-# - hotfix/critical-bug: 핫픽스 처리
-# - feature/landing: 랜딩 페이지 수정
-
-# 장점:
-# - 컨텍스트 유지
-# - 독립적인 Agent
-# - 동시 작업 가능
+# 복잡한 작업 요청 시 자동으로 Subagents 사용
+"전체 인증 시스템을 구현해줘"
+"이 프로젝트를 TypeScript로 마이그레이션해줘"
+"테스트 커버리지를 80%까지 올려줘"
 ```
 
 ---
 
-## 2부: Git Worktree - 독립 환경 구성
+## 2부: Clarification Questions
 
-### Worktree란?
+### Clarification Questions란?
 
-하나의 Git 저장소에서 **여러 작업 디렉터리**를 만드는 기능입니다.
+Agent가 요청이 **불명확할 때 질문**을 던져서 정확한 요구사항을 파악합니다.
 
 ```
-project/
-├── main-workspace/          # 메인 작업 공간
-│   └── feature/dashboard    # 대시보드 개발 중
-│
-├── hotfix-workspace/        # 핫픽스 작업 공간
-│   └── hotfix/critical-bug  # 버그 수정
-│
-└── landing-workspace/       # 랜딩 페이지 작업 공간
-    └── feature/landing      # 랜딩 페이지 수정
+사용자: "로그인 기능 추가해줘"
 
-→ 모두 같은 Git 저장소
-→ 각각 독립적인 브랜치
-→ 서로 간섭 없음
+Agent: 몇 가지 확인이 필요합니다:
+  1. 소셜 로그인(Google, GitHub)도 포함할까요?
+  2. 이메일 인증이 필요한가요?
+  3. 세션 기반 vs JWT 중 어느 것을 선호하나요?
+
+사용자: "JWT로 해주고, 소셜 로그인은 Google만"
+
+Agent: [구현 시작]
 ```
 
-### Worktree 기본 명령어
+### Clarification Questions의 장점
+
+1. **정확한 요구사항 파악**: 추측 대신 확인
+2. **재작업 감소**: 처음부터 올바른 방향으로 구현
+3. **숨겨진 요구사항 발견**: 사용자가 생각하지 못한 부분 확인
+4. **의사소통 향상**: 명확한 대화로 협업 품질 향상
+
+### Clarification Questions 동작
+
+**자동 동작**: Agent가 불명확한 부분을 감지하면 자동으로 질문합니다.
+
+**수동 요청**: `/clarify` 명령으로 명시적으로 질문을 요청할 수 있습니다.
 
 ```bash
-# 1. Worktree 생성
-git worktree add <경로> <브랜치>
-
-# 예시
-git worktree add ../hotfix-env hotfix/critical-bug
-
-# 2. Worktree 목록 확인
-git worktree list
-
-# 3. Worktree 제거
-git worktree remove <경로>
-
-# 4. Worktree 정리 (삭제된 것 제거)
-git worktree prune
+# 수동으로 명확화 요청
+You: /clarify 이 기능의 요구사항을 정리해줘
+Agent: [질문 목록 제시]
 ```
 
-### 실전 예시
+### 효과적인 답변 방법
 
 ```bash
-# 현재: feature/dashboard 작업 중
-pwd
-# /Users/user/project
+# ❌ 모호한 답변
+Agent: JWT vs 세션 중 어느 것을 선호하나요?
+You: 아무거나
 
-# 핫픽스를 위한 독립 환경 생성
-git worktree add ../project-hotfix hotfix/critical-bug
-
-# 랜딩 페이지를 위한 독립 환경 생성
-git worktree add ../project-landing feature/landing
-
-# 확인
-git worktree list
-# /Users/user/project              abc1234 [feature/dashboard]
-# /Users/user/project-hotfix       def5678 [hotfix/critical-bug]
-# /Users/user/project-landing      ghi9012 [feature/landing]
+# ✅ 명확한 답변
+Agent: JWT vs 세션 중 어느 것을 선호하나요?
+You: JWT로 해주세요. 리프레시 토큰도 포함해주세요.
 ```
 
 ---
 
-## 🚀 실습: Project 1 - Worktree 기본 사용
+## 3부: 실전 활용
 
-이제 배운 내용을 바로 실습해봅시다!
+### Subagents 활용 시나리오
 
-### [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md)
+#### 1. 대규모 리팩토링
+
+```
+"이 프로젝트를 함수형 컴포넌트로 전환해줘"
+
+Subagent 분배:
+  - Subagent 1: components/ 폴더 리팩토링
+  - Subagent 2: pages/ 폴더 리팩토링
+  - Subagent 3: hooks 추출
+  - Subagent 4: 테스트 업데이트
+```
+
+#### 2. 새 기능 구현
+
+```
+"결제 시스템 추가해줘"
+
+Subagent 분배:
+  - Subagent 1: 결제 모델/스키마
+  - Subagent 2: Stripe API 연동
+  - Subagent 3: 결제 UI 컴포넌트
+  - Subagent 4: 웹훅 처리
+  - Subagent 5: 테스트
+```
+
+#### 3. 마이그레이션
+
+```
+"JavaScript를 TypeScript로 마이그레이션해줘"
+
+Subagent 분배:
+  - Subagent 1: tsconfig 설정
+  - Subagent 2: 타입 정의 파일
+  - Subagent 3: 소스 코드 변환
+  - Subagent 4: 테스트 코드 변환
+```
+
+### 효과적인 사용법
+
+✅ **Subagents가 효과적인 경우**:
+- 여러 파일/모듈에 걸친 작업
+- 독립적으로 분리 가능한 작업
+- 대규모 코드 수정
+
+❌ **Subagents가 불필요한 경우**:
+- 단일 파일 수정
+- 간단한 버그 수정
+- 순차적으로 해야 하는 작업
+
+### 베스트 프랙티스
+
+1. **명확한 요청**: 큰 그림을 설명하면 Agent가 더 잘 분배함
+2. **Clarification 활용**: 질문에 구체적으로 답변
+3. **점진적 진행**: 너무 큰 작업은 단계별로 나누기
+4. **결과 검토**: Subagents 완료 후 통합 결과 확인
+
+---
+
+## 🚀 실습 프로젝트
+
+### [Project 1: Subagents로 복잡한 기능 구현](./projects/01-subagents-parallel/README.md)
 
 **학습 내용**:
 
-- Git Worktree 생성 및 관리
-- 독립 환경에서 작업
-- 컨텍스트 오염 방지
+- Subagents의 자동 분배 확인
+- Clarification Questions 체험
+- 병렬 처리의 효율성 체험
 
 **실습 방식**:
 
-Worktree를 생성하고, 각 환경에서 독립적으로 작업하는 방법을 배웁니다. 메인 브랜치는 유지하면서 핫픽스 브랜치를 별도로 작업합니다.
+복잡한 기능(예: 인증 시스템)을 요청하고, Agent가 어떻게 작업을 분배하는지 관찰합니다. Clarification Questions에 답변하면서 요구사항을 구체화합니다.
 
 **실습 예시**:
-- 메인 작업: `feature/dashboard` 개발 중
-- 핫픽스 발생: `git worktree add ../hotfix hotfix/bug`
-- 독립 환경에서 버그 수정
-- 메인 작업으로 돌아가면 컨텍스트 유지됨!
-
-💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-worktree-basic/README.md)
-
----
-
-## 3부: Multi-Agent 패턴
-
-### 패턴: 독립 환경 + 독립 Agent
-
 ```
-환경 1: project/ (IDE)
-├── 브랜치: feature/dashboard
-└── Agent: IDE Agent
-    → 신규 대시보드 개발 계속
+You: "사용자 인증 시스템 추가해줘"
 
-환경 2: project-hotfix/ (Terminal 1)
-├── 브랜치: hotfix/critical-bug
-└── Agent: CLI Agent 1
-    → 핫픽스 처리
+Agent: 몇 가지 확인이 필요합니다:
+  1. 인증 방식? (세션 / JWT)
+  2. 소셜 로그인 포함?
+  3. 이메일 인증 필요?
 
-환경 3: project-landing/ (Terminal 2)
-├── 브랜치: feature/landing
-└── Agent: CLI Agent 2
-    → 랜딩 페이지 수정
+You: "JWT, Google 소셜 로그인 포함, 이메일 인증 필요"
+
+Agent: [Subagents 분배하여 병렬 구현]
+  - Subagent 1: User 모델 및 스키마
+  - Subagent 2: JWT 토큰 처리
+  - Subagent 3: Google OAuth 연동
+  - Subagent 4: 이메일 인증 서비스
+  - Subagent 5: 로그인/회원가입 API
 ```
-
-### 실전 워크플로우
-
-**1. 메인 작업 (IDE)**
-```
-IDE에서 feature/dashboard 개발 중...
-
-Agent: 대시보드 컴포넌트 작성 중
-```
-
-**2. 핫픽스 발생 (Terminal 1)**
-```bash
-# 새 터미널 열기
-cd ../project-hotfix
-
-# Cursor CLI Agent 실행
-cursor
-
-# Agent에게 요청
-"버그 수정해줘: 로그인 시 세션 만료 문제"
-
-# 수정 완료 후
-git add .
-git commit -m "fix: 세션 만료 문제 수정"
-git push
-```
-
-**3. 랜딩 페이지 요청 (Terminal 2)**
-```bash
-# 또 다른 터미널 열기
-cd ../project-landing
-
-# Cursor CLI Agent 실행
-cursor
-
-# Agent에게 요청
-"랜딩 페이지 히어로 섹션 수정해줘"
-
-# 수정 완료 후
-git add .
-git commit -m "feat: 히어로 섹션 업데이트"
-git push
-```
-
-**4. 메인 작업 계속 (IDE)**
-```
-IDE로 돌아가서 대시보드 개발 계속...
-
-→ 컨텍스트 유지됨
-→ 작업 흐름 끊기지 않음
-```
-
----
-
-## 4부: Subagents vs Multi-Agent
-
-### 언제 무엇을 사용하는가?
-
-**Subagents (Session 6) - 하나의 목적**:
-```
-상황: 명확한 단일 작업
-예시: "로그인 기능 추가해줘"
-
-Subagents 동작:
-→ 자동으로 UI, API, 테스트 분산
-→ 하나의 브랜치에서 작업
-→ 자동 통합
-
-적합:
-✅ 명확한 요구사항
-✅ 단일 목표
-✅ 빠른 개발
-```
-
-**Multi-Agent (Session 7) - 여러 업무**:
-```
-상황: 동시다발적 업무
-예시: 
-- 신규 기능 개발 중
-- 핫픽스 요청
-- 다른 페이지 수정 요청
-
-Multi-Agent 동작:
-→ 각 업무마다 독립 환경 (Worktree)
-→ 각 환경마다 독립 Agent
-→ 수동 관리
-
-적합:
-✅ 여러 브랜치 필요
-✅ 독립적인 업무
-✅ 컨텍스트 유지 필요
-```
-
-### 비교표
-
-| 항목 | Subagents | Multi-Agent |
-|-----|-----------|-------------|
-| **목적** | 하나의 작업을 더 잘 해결 | 여러 업무 동시 처리 |
-| **브랜치** | 단일 브랜치 | 다중 브랜치 |
-| **환경** | 단일 환경 | 독립 환경 (Worktree) |
-| **Agent** | 자동 생성 | 수동 생성 |
-| **통합** | 자동 | 수동 (각 브랜치별) |
-| **사용 사례** | "기능 추가", "리팩토링" | "핫픽스", "병렬 개발" |
-
-### 실전 선택 가이드
-
-```
-질문 1: 브랜치를 나눠야 하나?
-→ YES: Multi-Agent
-→ NO: Subagents
-
-질문 2: 여러 업무가 동시에 발생했나?
-→ YES: Multi-Agent
-→ NO: Subagents
-
-질문 3: 컨텍스트를 유지하면서 다른 작업을 해야 하나?
-→ YES: Multi-Agent
-→ NO: Subagents
-```
-
----
-
-## 🚀 실습: Project 2 - Multi-Agent 실전 워크플로우
-
-이제 Multi-Agent 패턴을 실전에서 체험해봅시다!
-
-### [Project 2: Multi-Agent 실전 워크플로우](./projects/02-worktree-management/README.md)
-
-**학습 내용**:
-
-- IDE + CLI Agent 통합
-- 여러 업무 동시 처리
-- 실무 시나리오 실습
-
-**실습 방식**:
-
-실제 실무 시나리오를 재현합니다. 신규 기능 개발 중 핫픽스 요청이 오고, 추가로 다른 페이지 수정 요청이 오는 상황을 Worktree와 Multi-Agent로 처리합니다.
-
-**실습 시나리오**:
-1. IDE에서 대시보드 개발 중
-2. 핫픽스 요청 → Worktree 생성 → CLI Agent로 처리
-3. 랜딩 페이지 수정 요청 → 또 다른 Worktree → 또 다른 CLI Agent
-4. 모든 작업이 독립적으로 진행
-5. 컨텍스트 유지되어 효율적!
-
-**실습 예시**:
-- 환경 1 (IDE): `feature/dashboard` 계속 개발
-- 환경 2 (Terminal 1): `hotfix/bug` 수정 완료 → push
-- 환경 3 (Terminal 2): `feature/landing` 수정 완료 → push
-- IDE로 돌아가면 대시보드 작업 그대로 유지!
-
-💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-worktree-management/README.md)
 
 ---
 
@@ -357,77 +233,45 @@ Multi-Agent 동작:
 
 ### 진행 방법
 
-1. **1부: 실무 시나리오**
-   - 실무에서 여러 업무가 동시에 발생하는 상황 이해
-   - 단일 환경의 한계 파악
-
-2. **2부: Git Worktree + 실습**
-   - Git Worktree의 필요성 및 사용법 학습
-   - 👉 **바로 실습**: Project 1 - Worktree 기본 사용
-
-3. **3부: Multi-Agent 패턴 + 실습**
-   - Multi-Agent 패턴 학습
-   - 독립 환경 + 독립 Agent 활용
-   - 👉 **바로 실습**: Project 2 - Multi-Agent 실전 워크플로우
-
-4. **4부: Subagents vs Multi-Agent**
-   - 두 패턴의 차이점 명확히 이해
-   - 상황별 선택 기준
+1. **1부: Subagents 개념** - 자동 오케스트레이션 이해
+2. **2부: Clarification Questions** - 질문 기능 활용
+3. **3부: 실전 활용** - 시나리오별 사용법
+4. **👉 실습: Project 1** - 복잡한 기능 구현 체험
 
 ### 학습 팁
 
-- Worktree는 Git의 기능입니다 (Cursor 전용 아님)
-- Multi-Agent는 활용 패턴입니다 (새로운 개념 아님)
-- Subagents와 Multi-Agent는 **대체 관계가 아닌 보완 관계**
-- 실무에서는 두 가지를 상황에 맞게 선택적으로 사용
-- 브랜치를 나눠야 하는 상황 = Multi-Agent
-- 단일 브랜치에서 작업 = Subagents
+- Clarification Questions에 구체적으로 답변하세요
+- 너무 큰 작업은 단계별로 나눠서 요청하세요
+- Subagents 결과를 꼭 검토하세요
 
 ---
 
 ## 📊 학습 정리
 
-이번 장에서 다룬 내용:
+**1부: Subagents란?**
+- ✅ 복잡한 작업의 자동 분배
+- ✅ 병렬 처리로 효율성 향상
 
-**1부: 실무 시나리오**
-- ✅ 실무에서 여러 업무가 동시에 발생하는 상황 이해
-- ✅ 단일 환경의 한계 (Git Stash의 문제점)
+**2부: Clarification Questions**
+- ✅ 불명확한 요청에 대한 질문
+- ✅ 정확한 요구사항 파악
 
-**2부: Git Worktree + 실습**
-- ✅ Git Worktree로 독립 환경 구성
-- ✅ **실습 완료**: Worktree 기본 사용
+**3부: 실전 활용**
+- ✅ 대규모 리팩토링, 새 기능 구현, 마이그레이션
+- ✅ 베스트 프랙티스
 
-**3부: Multi-Agent 패턴 + 실습**
-- ✅ Multi-Agent 패턴으로 병렬 작업
-- ✅ **실습 완료**: Multi-Agent 실전 워크플로우
+**다음 장 예고**:
 
-**4부: Subagents vs Multi-Agent**
-- ✅ 두 패턴의 차이점 명확히 이해
-- ✅ 상황별 선택 기준
-
-**핵심 포인트**:
-
-```
-Subagents: 하나의 목적을 더 잘 해결
-Multi-Agent: 여러 업무를 동시에 처리
-
-선택 기준: 브랜치를 나눠야 하는가?
-```
-
-**축하합니다!**
-
-7장까지 완료하셨습니다! Cursor의 모든 핵심 기능을 학습하셨습니다.
+8장에서는 **Multi-Agent**를 배웁니다. Subagents가 자동 분배라면, Multi-Agent는 개발자가 직접 여러 Agent를 병렬로 실행하는 수동 방식입니다. Git Worktree와 함께 사용하면 강력한 병렬 개발이 가능합니다.
 
 ---
 
-## 🔗 관련 자료
+## ⏭ 다음 장
 
-- [Git Worktree 공식 문서](https://git-scm.com/docs/git-worktree)
-- [6장: Agent Skills & Subagents](../session-06/README.md)
+[8장: Multi-Agent - 병렬 개발](../session-08/README.md)
 
 ---
 
 ## 🔗 실습 프로젝트 바로가기
 
-- [Project 1: Worktree 기본 사용](./projects/01-worktree-basic/README.md) - 2부 학습 후 진행
-- [Project 2: Multi-Agent 실전 워크플로우](./projects/02-worktree-management/README.md) - 3부 학습 후 진행
+- [Project 1: Subagents로 복잡한 기능 구현](./projects/01-subagents-parallel/README.md) - 3부 학습 후 진행

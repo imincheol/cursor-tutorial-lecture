@@ -386,6 +386,6 @@ Agent: [컴포넌트 목업 생성]
 
 ## 🔗 관련 자료
 
-- [8장 메인 문서](../../README.md)
+- [9장 메인 문서](../../README.md)
 - [Project 1: 간단한 이미지 생성](../01-image-basic/README.md)
-- [9장: Cloud Agent & Handoff](../../../session-09/README.md)
+- [10장: Enterprise Features](../../../session-10/README.md)

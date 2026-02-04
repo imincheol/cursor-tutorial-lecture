@@ -1,48 +1,41 @@
-# 1장: Copilot과 Cursor의 비슷한 기능들
+# 1장: Cursor 모드 이해하기
 
-> **Copilot에서 사용하던 기능들을 Cursor에서도 그대로 사용할 수 있습니다**
+> **AI와 대화하는 방법 - Ask, Agent, Plan, Debug**
 
 ## 📋 목차
 
 - [강의 개요](#-강의-개요)
-- [1부: 모드 비교 - 기본 모드](#1부-모드-비교---기본-모드)
-- [2부: Debug 모드 - Cursor의 차별점](#2부-debug-모드---cursor의-차별점)
-- [3부: 지침/규칙 비교](#3부-지침규칙-비교)
-- [4부: Rules의 한계](#4부-rules의-한계)
+- [1부: 기본 모드 (Ask, Agent, Plan)](#1부-기본-모드-ask-agent-plan)
+- [2부: Debug 모드 - 실행 기반 디버깅](#2부-debug-모드---실행-기반-디버깅)
+- [3부: Debug 모드 실전 활용](#3부-debug-모드-실전-활용)
 
 ---
 
 ## 📝 강의 개요
 
-안녕하세요. Copilot을 사용하시던 분들이 Cursor로 넘어오면 가장 먼저 궁금한 것이 "뭐가 다르지?"입니다.
-
-하지만 먼저 **공통점**부터 확인하겠습니다. 대부분의 기능이 동일하기 때문에, Copilot 경험을 Cursor에서 그대로 활용할 수 있습니다.
+Cursor에서 AI와 대화하는 4가지 모드를 학습합니다. 특히 **Debug 모드**는 Cursor만의 차별화된 기능으로, 추측이 아닌 **실행 기반**으로 버그를 해결합니다.
 
 **학습 목표**:
 
-- Copilot과 Cursor의 모드 비교 및 이해
-- 각 모드의 특징과 사용 시나리오 파악
+- Cursor의 4가지 모드 이해 (Ask, Agent, Plan, Debug)
 - Plan 모드의 중요성 인식
-- Debug 모드의 차별화된 가치 이해
-- 지침(Instructions)과 규칙(Rules)의 동작 방식 이해
-- Rules의 한계 인식
+- Debug 모드로 실행 기반 디버깅 체험
+- Debug 모드 실전 활용 (로그인 버그, API 오류)
 
 ---
 
-## 1부: 모드 비교 - 기본 모드
+## 1부: 기본 모드 (Ask, Agent, Plan)
 
-### Copilot vs Cursor 모드
+### Copilot vs Cursor 모드 비교
 
 ```
-Copilot 모드: Ask, Edit, Agent, Plan
-Cursor 모드:  Ask,       Agent, Plan, Debug
+Copilot: Ask, Edit, Agent, Plan
+Cursor:  Ask,       Agent, Plan, Debug
 
-→ 대부분 동일하지만, Edit와 Debug에서 차이가 있습니다.
+→ 대부분 동일. Edit와 Debug에서 차이가 있습니다.
 ```
 
-### 기본 모드 설명
-
-#### 1. Ask 모드
+### Ask 모드
 
 - **기능**: 질문하고 답변 받기
 - **사용 시나리오**: 코드 설명, 개념 이해, 빠른 질의응답
@@ -54,17 +47,7 @@ Q: "이 함수는 어떻게 동작하나요?"
 A: "이 함수는 사용자 인증을 처리합니다..."
 ```
 
-#### 2. Edit 모드 (Copilot만 제공)
-
-- **기능**: 선택한 코드 영역을 수정
-- **특징**: Agent 모드의 하위 버전
-- **사용 빈도**: 거의 사용하지 않음 (Agent 모드가 더 강력)
-
-```
-Cursor에는 Edit 모드가 없지만, Agent 모드로 동일한 작업을 더 효과적으로 수행할 수 있습니다.
-```
-
-#### 3. Agent 모드
+### Agent 모드
 
 - **기능**: 대화하면서 코드 작업 수행
 - **사용 시나리오**: 기능 구현, 버그 수정, 리팩토링
@@ -78,7 +61,7 @@ Cursor에는 Edit 모드가 없지만, Agent 모드로 동일한 작업을 더 �
 
 **대부분의 개발자가 Agent 모드를 주로 사용합니다.**
 
-#### 4. Plan 모드 ⭐ (권장!)
+### Plan 모드 ⭐ (권장!)
 
 - **기능**: 작업 계획을 먼저 세우고, 검토 후 실행
 - **사용 시나리오**: 복잡한 기능 구현, 대규모 리팩토링
@@ -104,11 +87,9 @@ Plan 모드 동작:
 
 **💡 Plan 모드를 사용하는 이유**:
 
-만약 Agent 모드만 사용하고 있다면, **Plan 모드를 한번 사용해보는 것을 권장**합니다.
+Agent 모드만 사용하고 있다면 **Plan 모드를 한번 사용해보세요**. 미리 작업 계획을 검토함으로써 올바른 방향으로 작업을 진행할 수 있습니다.
 
-Plan 모드를 통해 미리 무엇을 작업하고 어떤 것을 수정할지에 대한 것들을 사전에 점검함으로써, 그 후에 진행할 작업들이 올바른 방향으로 가기 전에 한번 계획을 세워볼 수 있다는 것이 장점입니다.
-
-특히 다음과 같은 상황에서 유용합니다:
+특히 다음 상황에서 유용합니다:
 - 복잡한 기능을 구현할 때
 - 여러 파일을 동시에 수정해야 할 때
 - 작업 범위가 명확하지 않을 때
@@ -116,24 +97,19 @@ Plan 모드를 통해 미리 무엇을 작업하고 어떤 것을 수정할지�
 
 ---
 
-## 2부: Debug 모드 - Cursor의 차별점
+## 2부: Debug 모드 - 실행 기반 디버깅
 
 ### Debug 모드란? 🎯
 
-**Copilot과 Cursor의 가장 큰 차이점 중 하나입니다.**
+**Cursor만의 차별화된 기능입니다.**
 
 Debug 모드는 코드를 **실제로 실행**하고 로그를 자동으로 삽입하여 버그의 정확한 원인을 파악합니다.
-
-- **기능**: 코드를 실제로 실행하고 로그를 자동 삽입하여 버그 원인 파악
-- **사용 시나리오**: 버그 수정, 오류 추적, 동작 검증
-- **특징**: 추측이 아닌 실행 기반 디버깅
 
 ### 일반 모드 vs Debug 모드
 
 **일반 모드 (추측 기반)**:
 
 ```javascript
-// 일반 모드 (추측 기반)
 function login(user, password) {
   const result = authenticate(user, password);
   if (result) {
@@ -146,7 +122,6 @@ function login(user, password) {
 **Debug 모드 (실행 기반)**:
 
 ```javascript
-// Debug 모드 (실행 기반)
 function login(user, password) {
   console.log("[DEBUG] user:", user);           // 자동 삽입
   console.log("[DEBUG] password:", password);   // 자동 삽입
@@ -169,13 +144,27 @@ function login(user, password) {
 | 로그 삽입 | 수동 | 자동 |
 | 버그 원인 파악 | 어려움 | 쉬움 |
 
+### Debug 모드 활성화 방법
+
+1. **Cursor Agent 열기**: Cmd/Ctrl + L
+2. **모드 선택**: 상단의 모드 드롭다운에서 "Debug" 선택
+3. **버그 설명**: "로그인이 작동하지 않습니다"
+4. **자동 실행**: Agent가 코드를 실행하고 로그를 삽입하여 분석
+
+### Debug 모드의 핵심 기능
+
+1. **자동 로그 삽입**: 코드의 주요 지점에 console.log 자동 추가
+2. **실시간 실행**: 브라우저나 Node.js 환경에서 실제 실행
+3. **상태 추적**: 변수 값, 함수 반환값, 조건문 결과 확인
+4. **오류 위치 파악**: 정확히 어느 라인에서 문제가 발생하는지 확인
+
 ---
 
-## 🚀 실습: Project 2 - Debug 모드 간단 체험
+## 🚀 실습: Project 1 - Debug 모드 간단 체험
 
 이제 Debug 모드를 직접 체험해봅시다!
 
-### [Project 2: Debug 모드 간단 체험](./projects/02-debug-simple/README.md)
+### [Project 1: Debug 모드 간단 체험](./projects/01-debug-simple/README.md)
 
 **학습 내용**:
 
@@ -195,275 +184,67 @@ function login(user, password) {
 - Agent 모드: "아마도 이 부분이 문제일 것 같습니다..." (추측)
 - Debug 모드: 브라우저에서 실행 → 자동 로그 확인 → "password.length > 8이 문제입니다!" (확인)
 
-💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-debug-simple/README.md)
-
-Debug 모드는 2장에서 더 복잡한 실전 시나리오(로그인 버그, API 오류)로 심화 학습합니다.
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-debug-simple/README.md)
 
 ---
 
-## 3부: 지침/규칙 비교
+## 3부: Debug 모드 실전 활용
 
-### Copilot의 Instructions vs Cursor의 Rules
+### Debug 모드 사용 시나리오
 
-Copilot에서는 **지침(Instructions)**이라고 부르고, Cursor에서는 **규칙(Rules)**이라고 통용됩니다.
+| 상황 | 일반 모드 | Debug 모드 |
+|------|----------|-----------|
+| 로그인 실패 | "인증 로직을 확인해보세요" | 실행 → `result`가 `undefined` 확인 |
+| API 404 오류 | "경로를 확인해보세요" | 실행 → `/api/user` 호출 확인 → `/api/users`로 수정 |
+| 조건문 버그 | "조건이 잘못된 것 같습니다" | 실행 → `password.length > 8`이 항상 false 확인 |
+| 비동기 오류 | "Promise를 확인해보세요" | 실행 → await 누락 확인 |
 
-하지만 기능은 거의 동일합니다.
+### 베스트 프랙티스
 
-### IDE에서 추가하는 방법
+✅ **Debug Mode를 사용하면 좋은 경우**:
+- 버그의 원인을 정확히 모르는 경우
+- 조건문이나 반환값이 예상과 다른 경우
+- API 호출이 실패하는 경우
+- 비동기 코드에서 문제가 발생하는 경우
 
-**Copilot**:
-- Settings → GitHub Copilot → Instructions
-- 전역 설정 또는 워크스페이스별 설정
+❌ **Debug Mode가 불필요한 경우**:
+- 문법 오류 (Linter가 더 빠름)
+- 간단한 타이포 수정
+- 코드 리팩토링 (일반 Agent 모드 사용)
 
-**Cursor**:
-- Settings → Cursor Settings → Rules
-- 전역 설정 (User Rules) 또는 프로젝트별 설정 (Project Rules)
-
-### 코드 상에서 추가하는 방법
-
-**Copilot**:
-```
-프로젝트 루트:
-  .github/
-    copilot-instructions.md
-
-폴더별 규칙:
-  src/
-    .github/
-      copilot-instructions.md
-```
-
-**Cursor (최신 구조 - 권장)**:
-```
-프로젝트 루트:
-  .cursor/
-    rules/
-      react-patterns.mdc       # Rule with frontmatter
-      api-guidelines.md        # Simple markdown rule
-      frontend/                # 폴더로 구조화 가능
-        components.md
-
-또는 간단한 프로젝트:
-  AGENTS.md                    # 간단한 마크다운 형식
-```
-
-**Cursor (레거시 방식 - 여전히 지원)**:
-```
-프로젝트 루트:
-  .cursorrules                 # 레거시 방식 (deprecated 예정)
-
-폴더별 규칙:
-  src/
-    .cursorrules
-```
-
-**차이점**:
-- Copilot: `.github` 폴더 안에 `copilot-instructions.md`
-- Cursor (최신): `.cursor/rules/` 폴더 구조로 여러 규칙 파일 관리
-- Cursor (레거시): `.cursorrules` 단일 파일 (deprecated 예정)
-
-### Cursor Rules의 새로운 기능들
-
-#### 1. Rule 타입 (4가지)
-
-Cursor는 규칙을 적용하는 방식을 세밀하게 제어할 수 있습니다:
-
-| Rule 타입 | 설명 | 사용 시나리오 |
-|----------|------|--------------|
-| **Always Apply** | 모든 채팅 세션에 자동 적용 | 프로젝트 전체 코딩 스타일 |
-| **Apply Intelligently** | AI가 description 기반으로 판단하여 적용 | 특정 상황에만 필요한 규칙 |
-| **Apply to Specific Files** | glob 패턴에 매칭되는 파일에만 적용 | 파일 타입별 규칙 |
-| **Apply Manually** | @-mention으로 수동 적용 (예: `@my-rule`) | 필요할 때만 사용하는 규칙 |
-
-#### 2. Frontmatter 메타데이터
-
-`.mdc` 파일을 사용하면 frontmatter로 규칙을 제어할 수 있습니다:
-
-```markdown
----
-description: "React 컴포넌트 작성 시 Tailwind와 Framer Motion 사용"
-globs: ["**/*.tsx", "**/*.jsx"]
-alwaysApply: false
----
-
-# React 컴포넌트 규칙
-
-- 모든 컴포넌트에 Tailwind CSS 사용
-- 애니메이션은 Framer Motion 사용
-- 함수형 컴포넌트 우선
-```
-
-**주요 속성**:
-- `description`: AI가 규칙 적용 여부를 판단하는 기준
-- `globs`: 적용할 파일 패턴 (배열)
-- `alwaysApply`: true면 항상 적용, false면 AI가 판단
-
-#### 3. AGENTS.md - 간단한 대안
-
-복잡한 구조가 필요 없다면 프로젝트 루트에 `AGENTS.md` 파일을 만들 수 있습니다:
-
-```markdown
-# Project Instructions
-
-## Code Style
-
-- Use TypeScript for all new files
-- Prefer functional components in React
-- Use snake_case for database columns
-
-## Architecture
-
-- Follow the repository pattern
-- Keep business logic in service layers
-```
-
-**AGENTS.md의 장점**:
-- 간단한 마크다운 형식
-- 메타데이터 불필요
-- 하위 디렉토리에도 배치 가능 (Nested AGENTS.md)
-
-```
-project/
-  AGENTS.md              # 전역 규칙
-  frontend/
-    AGENTS.md            # 프론트엔드 규칙
-  backend/
-    AGENTS.md            # 백엔드 규칙
-```
-
-#### 4. Team Rules (팀 플랜 기능)
-
-팀 플랜 사용자는 [Cursor 대시보드](https://cursor.com/dashboard?tab=team-content)에서 팀 전체 규칙을 관리할 수 있습니다:
-
-- 팀 전체에 자동 적용
-- 강제 적용 가능 (사용자가 끌 수 없음)
-- 조직 표준 코딩 규칙 통일
-
-#### 5. Remote Rules (GitHub)
-
-GitHub 저장소에서 규칙을 가져와 자동 동기화할 수 있습니다:
-
-1. Cursor Settings → Rules, Commands
-2. `+ Add Rule` → Remote Rule (Github)
-3. GitHub 저장소 URL 입력
-4. 자동 동기화
-
-### glob 패턴 지원
-
-**두 환경 모두 glob 패턴으로 파일 타입별 규칙 적용이 가능합니다.**
-
-```markdown
-# .cursor/rules/typescript.mdc 예시
----
-description: "TypeScript 파일 작성 규칙"
-globs: ["**/*.ts", "**/*.tsx"]
----
-
-- 항상 strict 모드 사용
-- interface보다 type 사용
-- 명시적 반환 타입 작성
-```
-
-```markdown
-# .cursor/rules/testing.mdc 예시
----
-description: "테스트 파일 작성 규칙"
-globs: ["**/*.test.js", "**/*.spec.js"]
----
-
-- describe, it, expect 사용
-- 각 테스트는 독립적으로 실행 가능해야 함
-- 테스트 이름은 한국어로 작성
-```
-
-```markdown
-# .cursor/rules/api.mdc 예시
----
-description: "API 엔드포인트 작성 규칙"
-globs: ["**/api/**/*.js"]
----
-
-- 항상 에러 핸들링 포함
-- 응답은 { success, data, error } 형식
-- 모든 엔드포인트에 rate limiting 적용
-```
-
-**glob 패턴 예시**:
-- `**/*.ts` - 모든 TypeScript 파일
-- `**/*.test.js` - 모든 테스트 파일
-- `**/api/**/*.js` - api 폴더 내 모든 JS 파일
-- `src/components/**/*.jsx` - components 폴더 내 모든 JSX 파일
-
-### 권장 사항
-
-**간단한 프로젝트**:
-- `AGENTS.md` 사용 (가장 간단)
-
-**중간 규모 프로젝트**:
-- `.cursor/rules/` 폴더에 여러 규칙 파일 분리
-- 파일 타입별로 규칙 구분
-
-**대규모 프로젝트/팀**:
-- `.cursor/rules/` 폴더 구조화
-- Team Rules로 조직 표준 통일
-- Remote Rules로 규칙 공유
-
-**참고 문서**: [Cursor Rules 공식 문서](https://cursor.com/docs/context/rules)
+**참고 문서**: 
+- [Agent 모드 공식 문서](https://cursor.com/docs/agent/modes) - Debug 모드 상세 설명
+- [디버깅 가이드](https://cursor.com/for/debugging) - 디버깅 베스트 프랙티스
 
 ---
 
-## 🚀 실습: Project 1 - Rules 간단 실습
+## 🚀 추가 실습 프로젝트
 
-이제 배운 내용을 바로 실습해봅시다!
-
-### [Project 1: Rules 간단 실습](./projects/01-rules-simple/README.md)
+### [Project 2: Debug Mode로 로그인 버그 해결](./projects/02-debug-login-bug/README.md)
 
 **학습 내용**:
-
-- `.cursorrules` 파일로 AI 응답 제어
-- Rules가 AI의 답변에 어떻게 영향을 주는지 확인
-- Rules의 한계 경험
-
-**실습 방식**:
-
-간단한 테스트 파일(`test.js`)과 **3개의 샘플 Rules**를 제공합니다. 샘플 Rules를 복사해서 `.cursorrules` 파일에 붙여넣고, 같은 요청을 반복하면서 Rules가 어떻게 동작하는지 체험합니다.
+- Debug Mode 활성화 방법 익히기
+- 자동 로그 삽입으로 버그 원인 파악
+- 추측이 아닌 실행으로 버그 해결
 
 **제공 파일**:
-- `test.js` - 테스트용 간단한 JavaScript 파일
-- `sample-rules-1-korean.md` - 한국어 응답 규칙
-- `sample-rules-2-style.md` - 코드 스타일 규칙
-- `sample-rules-3-strict.md` - 엄격한 규칙 (한계 테스트용)
-
-**실습 예시**:
-- 샘플 Rule 1 적용 → 주석과 설명이 한국어로 변경
-- 샘플 Rule 2 적용 → JSDoc, 화살표 함수, 세미콜론 사용
-- 샘플 Rule 3 적용 → "절대 console.log 사용하지 마세요" → 하지만 무시됨 (한계!)
-
-💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-rules-simple/README.md)
+- `index.html` - 로그인 페이지
+- `login.js` - 로그인 로직 (버그 있음)
+- `auth.js` - 인증 함수 (버그 있음)
 
 ---
 
-## 4부: Rules의 한계
+### [Project 3: Debug Mode로 API 오류 추적](./projects/03-debug-api-error/README.md)
 
-Rules는 본질적으로 **프롬프트**입니다.
+**학습 내용**:
+- API 호출 오류를 Debug Mode로 추적
+- 네트워크 요청/응답 디버깅
+- 404 오류 원인 정확히 파악
 
-```
-.cursorrules에 이렇게 작성해도:
-
-- 항상 TypeScript를 사용하세요
-- rm -rf 명령은 절대 사용하지 마세요
-```
-
-**문제**:
-
-- AI가 가끔 무시합니다
-- "요청"일 뿐, "강제"가 아닙니다
-- 위험한 명령도 실행될 수 있습니다
-
-**해결책**:
-
-- 5장에서 배울 **Hooks**를 사용하면 100% 강제할 수 있습니다
-- Hooks는 프롬프트가 아닌 **코드**로 제어합니다
+**제공 파일**:
+- `index.html` - 사용자 목록 페이지
+- `api.js` - API 호출 로직 (버그 있음)
+- `server.js` - 간단한 테스트 서버 (선택)
 
 ---
 
@@ -471,68 +252,50 @@ Rules는 본질적으로 **프롬프트**입니다.
 
 ### 진행 방법
 
-1. **1부: 기본 모드 학습**
-   - Copilot과 Cursor의 모드 비교
-   - Ask, Edit, Agent, Plan 모드 이해
-
-2. **2부: Debug 모드 학습 + 실습**
-   - Debug 모드의 차별화된 가치 파악
-   - 👉 **바로 실습**: Project 2 - Debug 모드 간단 체험
-
-3. **3부: Rules 학습 + 실습**
-   - 지침/규칙의 동작 방식 이해
-   - 👉 **바로 실습**: Project 1 - Rules 간단 실습
-
-4. **4부: Rules의 한계 인식**
-   - Rules가 프롬프트라는 한계 이해
+1. **1부: 기본 모드 학습** - Ask, Agent, Plan 이해
+2. **2부: Debug 모드 학습** - 개념과 차별점 파악
+3. **👉 실습: Project 1** - Debug 모드 간단 체험
+4. **3부: 실전 활용** - 베스트 프랙티스 학습
+5. **👉 추가 실습: Project 2, 3** - 복잡한 시나리오 체험
 
 ### 학습 팁
 
-- Copilot을 사용해보신 분이라면 매우 익숙한 내용입니다
 - **Plan 모드를 한 번 사용해보세요** - 작업 효율이 크게 향상됩니다
-- **각 내용을 배운 직후 바로 실습하세요** - 학습 효과가 극대화됩니다
 - **Debug 모드를 직접 체험해보세요** - 추측이 아닌 실행의 차이를 느낄 수 있습니다
-- Rules의 한계를 경험하는 것이 중요합니다 (5장 Hooks로 해결)
 - 실습은 가볍고 빠르게 진행됩니다
 
 ---
 
 ## 📊 학습 정리
 
-이번 장에서 다룬 내용:
-
 **1부: 기본 모드**
-- ✅ Copilot과 Cursor의 모드 비교 (Ask, Edit, Agent, Plan)
-- ✅ 각 모드의 특징과 사용 시나리오
+- ✅ Ask, Agent, Plan 모드 이해
 - ✅ Plan 모드의 중요성 (사전 계획 → 검토 → 실행)
 
-**2부: Debug 모드 + 실습**
+**2부: Debug 모드**
 - ✅ Debug 모드의 차별화된 가치 (추측 → 실행 기반)
 - ✅ 일반 모드 vs Debug 모드 비교
-- ✅ **실습 완료**: Debug 모드 간단 체험 (HTML 기반 로그인 폼)
+- ✅ **실습**: Debug 모드 간단 체험
 
-**3부: Rules + 실습**
-- ✅ 지침(Instructions)과 규칙(Rules)의 동작 방식
-- ✅ glob 패턴으로 파일별 규칙 적용
-- ✅ **실습 완료**: Rules 간단 실습 (질의응답으로 바로 확인)
-
-**4부: Rules의 한계**
-- ✅ Rules의 한계 인식 (프롬프트는 강제가 아님)
-- ✅ Hooks로 해결 가능 (5장 예고)
+**3부: 실전 활용**
+- ✅ Debug 모드 사용 시나리오
+- ✅ 베스트 프랙티스
+- ✅ **추가 실습**: 로그인 버그, API 오류 추적
 
 **다음 장 예고**:
 
-2장에서는 Debug Mode를 더 복잡한 실전 시나리오(로그인 버그, API 오류)에서 실습합니다. 실무에서 어떻게 활용하는지 자세히 배웁니다.
+2장에서는 AI에게 지침을 주는 **Rules**를 배웁니다. 하지만 Rules는 프롬프트이기 때문에 한계가 있습니다. 이 한계를 어떻게 해결하는지도 함께 알아봅니다.
 
 ---
 
 ## ⏭ 다음 장
 
-[2장: Debug Mode - 실행 기반 디버깅](../session-02/README.md)
+[2장: Rules - AI에게 지침 주기](../session-02/README.md)
 
 ---
 
 ## 🔗 실습 프로젝트 바로가기
 
-- [Project 1: Rules 간단 실습](./projects/01-rules-simple/README.md) - 3부 학습 후 진행
-- [Project 2: Debug 모드 간단 체험](./projects/02-debug-simple/README.md) - 2부 학습 후 진행
+- [Project 1: Debug 모드 간단 체험](./projects/01-debug-simple/README.md) - 2부 학습 후 진행
+- [Project 2: Debug Mode로 로그인 버그 해결](./projects/02-debug-login-bug/README.md) - 3부 심화
+- [Project 3: Debug Mode로 API 오류 추적](./projects/03-debug-api-error/README.md) - 3부 심화
