@@ -261,4 +261,4 @@ git worktree add ../wt2 -b feature-b
 
 ## 🎓 다음 장
 
-[9장: Image Generation - AI로 이미지 생성](../../session-09/README.md)
+[9장: Image Generation - AI로 이미지 생성](../../../session-09-image/README.md)

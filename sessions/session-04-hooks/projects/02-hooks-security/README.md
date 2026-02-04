@@ -277,4 +277,4 @@ if (tool === 'read_env' || tool === 'write_env') {
 
 ## 🎓 다음 장
 
-[4장: Visual Editor - 클릭 기반 UI 수정](../../session-04/README.md)
+[5장: Visual Editor - 클릭 기반 UI 수정](../../../session-05-visual/README.md)

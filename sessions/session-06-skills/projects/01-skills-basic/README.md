@@ -260,4 +260,4 @@ Project 2에서는 Subagents를 사용하여 여러 Agent가 병렬로 작업하
 ## 🔗 관련 자료
 
 - [Cursor Skills 공식 문서](https://cursor.com/docs/context/skills)
-- [5장 메인 문서](../../README.md)
+- [6장 메인 문서](../../README.md)

@@ -254,5 +254,5 @@ button-login.png를 참고해서 3가지 버전 더 만들어줘:
 
 ## 🔗 관련 자료
 
-- [8장 메인 문서](../../README.md)
+- [9장 메인 문서](../../README.md)
 - [체인지로그 - Image Generation](https://cursor.com/changelog)

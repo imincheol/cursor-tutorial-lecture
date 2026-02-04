@@ -202,4 +202,4 @@ After:
 
 ## 🎓 다음 장
 
-[5장: Skills - 재사용 가능한 능력](../../session-05/README.md)
+[6장: Agent Skills - 재사용 가능한 능력](../../../session-06-skills/README.md)

@@ -165,4 +165,4 @@ node server.js
 
 ## 🎓 다음 장
 
-[3장: Hooks - AI Agent 제어의 핵심](../../session-03/README.md)
+[4장: Hooks - AI Agent 제어의 핵심](../../../session-04-hooks/README.md)

@@ -340,5 +340,5 @@ Subagents (6장):
 ## 🔗 관련 자료
 
 - [Cursor Subagents 공식 문서](https://cursor.com/docs/context/subagents)
-- [6장 메인 문서](../../README.md)
-- [8장: Multi-Agent](../../../session-08/README.md)
+- [7장 메인 문서](../../README.md)
+- [8장: Multi-Agent](../../../session-08-multiagent/README.md)
