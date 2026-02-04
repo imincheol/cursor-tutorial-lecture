@@ -195,7 +195,7 @@ AI로 이미지 생성. UI 목업, 아이콘, 다이어그램.
 
 ## 🚀 시작하기
 
-### 1. 사전 준비
+### 사전 준비
 
 ```bash
 # Cursor 설치
@@ -212,59 +212,6 @@ AI로 이미지 생성. UI 목업, 아이콘, 다이어그램.
 - [ ] Node.js 18+ 설치
 - [ ] Git 설정 완료
 - [ ] 브라우저 확장 프로그램 설치 (Visual Editor용 - Chrome/Edge)
-
-### 2. 학습 시작
-
-```bash
-# 1장부터 시작
-cd sessions/session-01
-cat README.md
-```
-
-### 3. 학습 경로
-
-**기본 과정 (Cursor 핵심 기능)**:
-
-```
-1장: 모드 → Ask, Agent, Plan, Debug
-2장: Rules → AI에게 지침 주기
-3장: Hooks → 코드로 Agent 제어 (핵심!)
-4장: Visual Editor → 클릭 기반 UI 수정
-5장: Skills → 재사용 가능한 능력
-6장: Subagents → 자동 오케스트레이션
-7장: CLI Agent → 터미널 개발
-8장: Multi-Agent → 병렬 개발
-```
-
-**추가 과정**:
-
-```
-9장: Image Generation → AI로 이미지 생성
-10장: Enterprise Features → 팀 협업 기능
-```
-
----
-
-## 📊 학습 성과
-
-**기본 과정 완료 후 (1-8장)**:
-
-- Cursor 모드(Ask, Agent, Plan, Debug) 이해
-- Debug Mode로 버그 원인 정확히 파악
-- Rules로 AI 응답 제어
-- Hooks로 Agent 동작 100% 제어 (핵심!)
-- Visual Editor로 UI 직접 선택해서 수정
-- Skills로 재사용 가능한 능력 확장
-- Subagents로 자동 오케스트레이션 활용
-- CLI Agent로 터미널에서 개발
-- Multi-Agent로 여러 업무 동시 처리
-
-**추가 과정 완료 후 (9-10장)**:
-
-- Image Generation으로 빠른 프로토타이핑
-- Enterprise 기능으로 팀 협업 강화
-
----
 
 ## 🎓 Cursor 기능 맵
 

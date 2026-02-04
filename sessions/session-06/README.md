@@ -1,6 +1,6 @@
-# 6장: Subagents - 자동 오케스트레이션
+# 6장: Agent Skills - 재사용 가능한 능력
 
-> **Agent가 복잡한 작업을 자동으로 분배합니다**
+> **스킬을 설치하면 AI가 더 똑똑해집니다**
 
 ## 📋 목차
 
@@ -304,7 +304,9 @@ globs: ["**/*.py"]
 
 ---
 
-## 🚀 실습 프로젝트
+## 🚀 실습: 외부 스킬 활용
+
+이제 커뮤니티 스킬을 직접 설치하고 활용해봅시다!
 
 ### [Project 1: 외부 스킬 설치 및 활용](./projects/01-skills-basic/README.md)
 
@@ -321,6 +323,8 @@ cursor.directory에서 React 또는 Python 스킬을 검색하여 설치합니�
 **실습 예시**:
 - 스킬 설치 전: "컴포넌트 만들어줘" → 기본적인 컴포넌트
 - 스킬 설치 후: "컴포넌트 만들어줘" → 베스트 프랙티스가 적용된 컴포넌트
+
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-skills-basic/README.md)
 
 ---
 
@@ -358,13 +362,13 @@ cursor.directory에서 React 또는 Python 스킬을 검색하여 설치합니�
 
 **다음 장 예고**:
 
-7장에서는 **CLI Agent**를 배웁니다. IDE 없이 터미널에서도 Agent를 사용하여 개발하는 방법을 알아봅니다.
+7장에서는 **Subagents**를 배웁니다. Agent가 복잡한 작업을 자동으로 여러 하위 에이전트에게 분배하여 처리하는 방법을 알아봅니다.
 
 ---
 
 ## ⏭ 다음 장
 
-[7장: CLI Agent - 터미널에서 개발](../session-07/README.md)
+[7장: Subagents - 자동 오케스트레이션](../session-07/README.md)
 
 ---
 

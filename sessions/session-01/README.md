@@ -220,6 +220,42 @@ function login(user, password) {
 
 ---
 
+## 🚀 실습: Debug 모드 실전 활용
+
+이제 Debug 모드를 실전 시나리오에서 활용해봅시다!
+
+### [Project 2: Debug Mode로 로그인 버그 해결](./projects/02-debug-login-bug/README.md)
+
+**학습 내용**:
+- Debug Mode 활성화 방법 익히기
+- 자동 로그 삽입으로 버그 원인 파악
+- 추측이 아닌 실행으로 버그 해결
+
+**제공 파일**:
+- `index.html` - 로그인 페이지
+- `login.js` - 로그인 로직 (버그 있음)
+- `auth.js` - 인증 함수 (버그 있음)
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-debug-login-bug/README.md)
+
+---
+
+### [Project 3: Debug Mode로 API 오류 추적](./projects/03-debug-api-error/README.md)
+
+**학습 내용**:
+- API 호출 오류를 Debug Mode로 추적
+- 네트워크 요청/응답 디버깅
+- 404 오류 원인 정확히 파악
+
+**제공 파일**:
+- `index.html` - 사용자 목록 페이지
+- `api.js` - API 호출 로직 (버그 있음)
+- `server.js` - 간단한 테스트 서버 (선택)
+
+💡 **지금 바로 실습해보세요!** [Project 3 실습 가이드](./projects/03-debug-api-error/README.md)
+
+---
+
 ## Cursor IDE 차별화 기능
 
 지금까지 Cursor의 4가지 모드를 배웠습니다. 특히 **Debug 모드**는 Cursor만의 강력한 기능이었죠. 이제 Cursor IDE의 다른 차별화된 기능들을 살펴보겠습니다.
@@ -468,36 +504,6 @@ AI에게 의도적으로 버그를 유발하는 프롬프트를 요청하고, Ag
 
 ---
 
-## 🚀 추가 실습 프로젝트
-
-### [Project 2: Debug Mode로 로그인 버그 해결](./projects/02-debug-login-bug/README.md)
-
-**학습 내용**:
-- Debug Mode 활성화 방법 익히기
-- 자동 로그 삽입으로 버그 원인 파악
-- 추측이 아닌 실행으로 버그 해결
-
-**제공 파일**:
-- `index.html` - 로그인 페이지
-- `login.js` - 로그인 로직 (버그 있음)
-- `auth.js` - 인증 함수 (버그 있음)
-
----
-
-### [Project 3: Debug Mode로 API 오류 추적](./projects/03-debug-api-error/README.md)
-
-**학습 내용**:
-- API 호출 오류를 Debug Mode로 추적
-- 네트워크 요청/응답 디버깅
-- 404 오류 원인 정확히 파악
-
-**제공 파일**:
-- `index.html` - 사용자 목록 페이지
-- `api.js` - API 호출 로직 (버그 있음)
-- `server.js` - 간단한 테스트 서버 (선택)
-
----
-
 ## 💡 학습 가이드
 
 ### 진행 방법
@@ -506,9 +512,9 @@ AI에게 의도적으로 버그를 유발하는 프롬프트를 요청하고, Ag
 2. **2부: Debug 모드 학습** - 개념과 차별점 파악
 3. **👉 실습: Project 1** - Debug 모드 간단 체험
 4. **3부: 실전 활용** - 베스트 프랙티스 학습
-5. **Cursor IDE 차별화 기능** - Agent Review, Past Chat, Worktree
-6. **👉 실습: Project 4, 5** - Agent Review & Past Chat 체험
-7. **👉 추가 실습: Project 2, 3** - Debug 모드 심화
+5. **👉 실습: Project 2, 3** - Debug 모드 실전 활용
+6. **Cursor IDE 차별화 기능** - Agent Review, Past Chat, Worktree
+7. **👉 실습: Project 4, 5** - Agent Review & Past Chat 체험
 
 ### 학습 팁
 
@@ -527,18 +533,18 @@ AI에게 의도적으로 버그를 유발하는 프롬프트를 요청하고, Ag
 **2부: Debug 모드**
 - ✅ Debug 모드의 차별화된 가치 (추측 → 실행 기반)
 - ✅ 일반 모드 vs Debug 모드 비교
-- ✅ **실습**: Debug 모드 간단 체험
+- ✅ **실습 1**: Debug 모드 간단 체험
 
 **3부: 실전 활용**
 - ✅ Debug 모드 사용 시나리오
 - ✅ 베스트 프랙티스
-- ✅ **추가 실습**: 로그인 버그, API 오류 추적
+- ✅ **실습 2, 3**: 로그인 버그, API 오류 추적
 
 **Cursor IDE 차별화 기능**
 - ✅ Agent Review 탭 (AI 코드 리뷰)
 - ✅ Past Chat 참조 (이전 대화 재사용)
 - ✅ Local Worktree 관리 (독립 환경)
-- ✅ **실습**: Agent Review & Past Chat 체험
+- ✅ **실습 4, 5**: Agent Review & Past Chat 체험
 
 **다음 장 예고**:
 

@@ -159,6 +159,21 @@ https://cursor.com/transcript/def-456
 
 ---
 
+## 🚀 실습: Blame & Transcripts
+
+이제 Cursor Blame과 Shared Agent Transcripts를 직접 사용해봅시다!
+
+### [Project 1: Blame & Transcripts 체험](./projects/01-blame-transcripts/README.md)
+
+**학습 내용**:
+- Cursor Blame으로 AI 생성 코드 추적
+- Agent Transcript 공유 및 활용
+- 팀 협업 시나리오 체험
+
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-blame-transcripts/README.md)
+
+---
+
 ## 3부: Layout Customization
 
 ### 개념
@@ -385,18 +400,9 @@ Enterprise 플랜에서는 **SSO**와 **SCIM**을 지원합니다.
 
 ---
 
-## 🚀 실습 프로젝트
+## 🚀 실습: Layout & Insights
 
-### [Project 1: Blame & Transcripts 체험](./projects/01-blame-transcripts/README.md)
-
-**학습 내용**:
-
-- Cursor Blame 사용법
-- AI 기여도 추적
-- Shared Transcripts 생성
-- 팀 협업 패턴
-
----
+이제 Layout Customization과 Conversation Insights를 활용해봅시다!
 
 ### [Project 2: Layout & Insights 활용](./projects/02-layout-insights/README.md)
 
@@ -406,6 +412,8 @@ Enterprise 플랜에서는 **SSO**와 **SCIM**을 지원합니다.
 - 작업별 레이아웃 설정
 - Conversation Insights 확인
 - 팀 대시보드 활용
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-layout-insights/README.md)
 
 ---
 

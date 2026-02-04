@@ -173,6 +173,33 @@ export async function preToolExecution(context) {
 }
 ```
 
+---
+
+## 🚀 실습: Hooks 기본 동작
+
+이제 Hooks API를 직접 사용해봅시다!
+
+### [Project 1: Hooks 기본 동작 이해](./projects/01-hooks-basic/README.md)
+
+**학습 내용**:
+- `.cursor/hooks/` 폴더 생성
+- `preToolExecution` Hook 구현
+- `postToolExecution` Hook 구현
+- Context 객체 사용법
+- Agent 동작 추적 (로깅)
+
+**실습 방식**:
+
+로깅 Hook을 만들어 Agent가 어떤 도구를 사용하는지 추적합니다. `preToolExecution`으로 실행 전 로그를 남기고, `postToolExecution`으로 실행 후 결과를 기록합니다.
+
+**제공 파일**:
+- `.cursor/hooks/logger.js` - 로깅 Hook (일부 구현됨)
+- `src/index.js` - 테스트용 파일
+
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-hooks-basic/README.md)
+
+---
+
 ## 🔌 서드파티 Hooks
 
 커뮤니티에서 제공하는 Hooks를 설치하여 사용할 수 있습니다.
@@ -291,31 +318,9 @@ rm -rf tests/ patches/ plan/ ~/
 
 ---
 
-## 🚀 실습 프로젝트
+## 🚀 실습: 보안 Hooks
 
-### [Project 1: Hooks 기본 동작 이해](./projects/01-hooks-basic/README.md)
-
-**학습 내용**:
-
-- Hooks의 `preToolExecution` 이해
-- Hooks의 `postToolExecution` 이해
-- Agent 동작 감시 및 로깅
-
-**실습 방식**:
-
-Agent가 도구를 실행하기 전/후에 Hook이 어떻게 동작하는지 확인합니다. 로깅 Hook을 작성하여 Agent의 모든 동작을 추적합니다.
-
-**제공 파일**:
-- `.cursor/hooks/logger.js` - Hook 구현
-- `src/index.js` - 테스트용 파일
-
-**실습 예시**:
-- Agent에게 "파일 읽어줘" 요청
-- `preToolExecution` → "파일을 읽으려고 합니다" 로그
-- Agent가 파일 읽기 실행
-- `postToolExecution` → "파일 읽기 완료" 로그
-
----
+이제 실제 사고를 방지하는 보안 Hook을 만들어봅시다!
 
 ### [Project 2: 위험 명령 차단 실습](./projects/02-hooks-security/README.md)
 
@@ -343,6 +348,8 @@ Agent가 도구를 실행하기 전/후에 Hook이 어떻게 동작하는지 확
 - 2024년 12월, Claude CLI가 `rm -rf tests/ patches/ plan/ ~/` 실행
 - 사용자의 홈 디렉터리 전체 삭제 (Desktop, Documents 등)
 - Hooks로 100% 예방 가능!
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-hooks-security/README.md)
 
 ---
 

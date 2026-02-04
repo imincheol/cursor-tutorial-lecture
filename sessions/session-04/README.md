@@ -102,7 +102,9 @@ Cursor의 Visual Editor는 브라우저와 직접 통합되어 작동합니다:
 
 ---
 
-## 🚀 실습 프로젝트
+## 🚀 실습: Visual Editor 기본 사용
+
+이제 Visual Editor를 직접 사용해봅시다!
 
 ### [Project 1: Visual Editor로 버튼 스타일 수정](./projects/01-visual-button-style/README.md)
 
@@ -124,7 +126,13 @@ Cursor의 Visual Editor는 브라우저와 직접 통합되어 작동합니다:
 - 기존 방식: "왼쪽 위에 있는 파란색 버튼을..." (설명 복잡)
 - Visual Editor: 버튼 클릭 → "이 버튼을 빨간색으로" (정확!)
 
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-visual-button-style/README.md)
+
 ---
+
+## 🚀 실습: 복잡한 레이아웃 수정
+
+이제 더 복잡한 레이아웃을 수정해봅시다!
 
 ### [Project 2: Visual Editor로 카드 레이아웃 수정](./projects/02-visual-card-layout/README.md)
 
@@ -145,6 +153,8 @@ Cursor의 Visual Editor는 브라우저와 직접 통합되어 작동합니다:
 **실습 예시**:
 - 기존 방식: "두 번째 줄 왼쪽에 있는 카드의..." (복잡한 설명)
 - Visual Editor: 카드 클릭 → "이 카드의 이미지를 더 크게" (간단!)
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-visual-card-layout/README.md)
 
 ---
 

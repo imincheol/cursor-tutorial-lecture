@@ -15,7 +15,7 @@ function handleLogin(event) {
     // 버그 2: 비밀번호 길이 체크 로직 오류
     // >= 8이어야 하는데 > 8로 되어 있음
     // 즉, 8자는 안 되고 9자부터 가능
-    if (password.length > 8) {
+    if (password.length >= 8) {
       showMessage("로그인 성공!", "success");
     } else {
       showMessage(

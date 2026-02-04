@@ -1,6 +1,6 @@
-# 5장: Agent Skills - 재사용 가능한 능력
+# 5장: CLI Agent - 터미널에서 개발
 
-> **스킬을 설치하면 AI가 더 똑똑해집니다**
+> **IDE 없이 터미널에서도 Agent를 사용할 수 있습니다**
 
 ## 📋 목차
 
@@ -228,6 +228,35 @@ cursor --version
 
 ---
 
+## 🚀 실습: CLI Agent 기본 사용
+
+이제 CLI Agent를 터미널에서 직접 사용해봅시다!
+
+### [Project 1: CLI Agent 기본 사용법](./projects/01-cli-basic/README.md)
+
+**학습 내용**:
+- CLI Agent 설치 및 실행
+- Agent 모드, Plan 모드, Ask 모드 사용
+- 슬래시 명령어 활용
+- Headless 모드로 자동화
+
+**실습 방식**:
+
+터미널에서 `cursor` 명령으로 CLI Agent를 실행하고, 간단한 프로그램을 만들어봅니다. 각 모드의 차이를 체험하고, 슬래시 명령어로 효율적으로 작업합니다.
+
+**제공 파일**:
+- `src/hello.js` - 간단한 시작 파일
+
+**실습 예시**:
+- Agent 모드: "hello.js에 인사말 함수 추가해줘"
+- Plan 모드: "계산기 프로그램 만들어줘" (계획 먼저)
+- Ask 모드: "이 코드 설명해줘"
+- Headless: `cursor --headless "README 만들어줘"`
+
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-cli-basic/README.md)
+
+---
+
 ## 3부: Shell Mode
 
 ### Shell Mode란?
@@ -294,31 +323,9 @@ You: !node --version
 
 ---
 
-## 🚀 실습 프로젝트
+## 🚀 실습: 터미널에서 전체 개발
 
-### [Project 1: CLI Agent 기본 사용법 및 Shell Mode](./projects/01-cli-basic/README.md)
-
-**학습 내용**:
-
-- Cursor CLI 설치 및 실행
-- CLI Agent 모드 (Agent, Plan, Ask) 이해 및 사용
-- Shell Mode (`!` 명령) 사용법 익히기
-- 각 모드의 차이점 체험
-
-**실습 방식**:
-
-터미널에서 Cursor CLI를 실행하고, 세 가지 모드(Agent, Plan, Ask)를 각각 사용해봅니다. Shell Mode로 대화 중 명령어를 빠르게 실행하는 방법도 익힙니다.
-
-**제공 파일**:
-- `src/hello.js` - 테스트용 파일
-
-**실습 예시**:
-- Agent 모드: `cursor` → 즉시 코드 작성
-- Plan 모드: `cursor /plan` → 계획 수립 후 실행
-- Ask 모드: `cursor /ask` → 코드 변경 없이 탐색
-- Shell Mode: `!npm test` → 대화 중 명령어 실행
-
----
+이제 Shell Mode를 활용하여 터미널에서 전체 개발 프로세스를 진행해봅시다!
 
 ### [Project 2: 터미널에서 전체 개발 프로세스](./projects/02-terminal-dev/README.md)
 
@@ -345,6 +352,8 @@ TODO API를 터미널에서만 개발합니다. 요구사항 분석부터 코드
 - `!npm test` → 테스트 실행 결과 확인
 - "테스트 실패한 부분 수정해줘" → 즉시 수정
 - `!git status` → 변경사항 확인
+
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-terminal-dev/README.md)
 
 ---
 
