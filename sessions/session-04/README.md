@@ -8,7 +8,6 @@
 - [1부: Copilot CLI vs Cursor CLI](#1부-copilot-cli-vs-cursor-cli)
 - [2부: CLI Agent 모드](#2부-cli-agent-모드)
 - [3부: Shell Mode](#3부-shell-mode)
-- [4부: Cloud Handoff](#4부-cloud-handoff)
 - [실습 프로젝트](#-실습-프로젝트)
 
 ---
@@ -24,7 +23,6 @@
 - Cursor CLI 설치 및 실행
 - CLI Agent 모드 (Agent, Plan, Ask) 이해
 - Shell Mode로 명령어 빠르게 실행
-- Cloud Handoff로 장시간 작업 위임
 - SSH/CI/CD 환경 활용
 
 **공식 문서**:
@@ -35,7 +33,6 @@
 - [Headless 모드](https://cursor.com/docs/cli/headless)
 - [슬래시 명령어](https://cursor.com/docs/cli/reference/slash-commands)
 - [CLI 파라미터](https://cursor.com/docs/cli/reference/parameters)
-- [Cloud Agent](https://cursor.com/docs/cloud-agent)
 - [GitHub Actions 통합](https://cursor.com/docs/cli/github-actions)
 - [체인지로그 - CLI Agent Modes (2026.01.16)](https://cursor.com/changelog)
 
@@ -297,75 +294,11 @@ You: !node --version
 
 ---
 
-## 4부: Cloud Handoff
+## 💡 다음 단계: Cloud Handoff
 
-### Cloud Handoff란?
+CLI Agent를 사용하다 보면 장시간 작업이 필요할 때가 있습니다. 이런 경우 **Cloud Handoff** 기능으로 로컬 작업을 클라우드로 넘겨서 계속 실행할 수 있습니다.
 
-로컬 터미널에서 시작한 작업을 **클라우드로 넘겨서** 계속 실행하는 기능입니다.
-
-```bash
-cursor
-
-You: & 전체 프로젝트를 TypeScript로 변환해줘
-      ↑ & 기호로 시작하면 Cloud Agent로 전송
-
-Agent: 클라우드로 전송되었습니다.
-       cursor.com/agents 에서 확인하세요.
-
-# 터미널 종료해도 계속 실행됨
-# 웹이나 모바일에서 확인 가능
-```
-
-### 사용 시점
-
-**적합한 경우**:
-- 장시간 작업 (대규모 리팩토링, 마이그레이션)
-- 로컬 리소스 부족
-- 작업 중 자리를 비워야 할 때
-- 여러 기기에서 작업 확인
-
-**부적합한 경우**:
-- 빠른 수정 (로컬이 더 빠름)
-- 민감한 데이터 (로컬에서 처리)
-- 네트워크 불안정
-
-### 실전 예시
-
-```bash
-# 시나리오: 퇴근 시간인데 큰 작업이 필요한 경우
-
-cursor
-
-You: & 모든 컴포넌트를 React 18로 마이그레이션해줘
-     & 테스트도 모두 업데이트해줘
-     & 완료되면 PR 생성해줘
-
-Agent: 클라우드로 전송되었습니다.
-
-# 집에 가서 모바일로 확인
-# cursor.com/agents 접속
-# → 작업 진행 상황 확인
-# → 완료되면 알림
-```
-
-### Word-level Inline Diffs
-
-CLI에서도 정확한 변경사항을 **단어 단위**로 확인할 수 있습니다.
-
-```bash
-# 기존: 줄 단위 diff
-- const name = "John"
-+ const userName = "John Doe"
-
-# 새로운: 단어 단위 diff (2026.01.16)
-const [name]userName = "John[ Doe]"
-      ^^^^           ^^^^^^^^
-      삭제됨         추가됨
-```
-
-**공식 문서**: 
-- [Cloud Agent](https://cursor.com/docs/cloud-agent)
-- [Cloud Handoff 체인지로그 (2026.01.16)](https://cursor.com/changelog)
+Cloud Handoff에 대한 자세한 내용은 **9장: Cloud Agent & Handoff**에서 다룹니다.
 
 ---
 

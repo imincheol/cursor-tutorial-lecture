@@ -214,7 +214,7 @@ Agent: 대시보드 컴포넌트 작성 중
 cd ../project-hotfix
 
 # Cursor CLI Agent 실행
-cursor-agent
+cursor
 
 # Agent에게 요청
 "버그 수정해줘: 로그인 시 세션 만료 문제"
@@ -231,7 +231,7 @@ git push
 cd ../project-landing
 
 # Cursor CLI Agent 실행
-cursor-agent
+cursor
 
 # Agent에게 요청
 "랜딩 페이지 히어로 섹션 수정해줘"

@@ -171,11 +171,11 @@ function login(user, password) {
 
 ---
 
-## 🚀 실습: Project 1 - Debug 모드 간단 체험
+## 🚀 실습: Project 2 - Debug 모드 간단 체험
 
 이제 Debug 모드를 직접 체험해봅시다!
 
-### [Project 1: Debug 모드 간단 체험](./projects/02-debug-simple/README.md)
+### [Project 2: Debug 모드 간단 체험](./projects/02-debug-simple/README.md)
 
 **학습 내용**:
 
@@ -195,7 +195,7 @@ function login(user, password) {
 - Agent 모드: "아마도 이 부분이 문제일 것 같습니다..." (추측)
 - Debug 모드: 브라우저에서 실행 → 자동 로그 확인 → "password.length > 8이 문제입니다!" (확인)
 
-💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/02-debug-simple/README.md)
+💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/02-debug-simple/README.md)
 
 Debug 모드는 2장에서 더 복잡한 실전 시나리오(로그인 버그, API 오류)로 심화 학습합니다.
 
@@ -412,11 +412,11 @@ globs: ["**/api/**/*.js"]
 
 ---
 
-## 🚀 실습: Project 2 - Rules 간단 실습
+## 🚀 실습: Project 1 - Rules 간단 실습
 
 이제 배운 내용을 바로 실습해봅시다!
 
-### [Project 2: Rules 간단 실습](./projects/01-rules-simple/README.md)
+### [Project 1: Rules 간단 실습](./projects/01-rules-simple/README.md)
 
 **학습 내용**:
 
@@ -439,7 +439,7 @@ globs: ["**/api/**/*.js"]
 - 샘플 Rule 2 적용 → JSDoc, 화살표 함수, 세미콜론 사용
 - 샘플 Rule 3 적용 → "절대 console.log 사용하지 마세요" → 하지만 무시됨 (한계!)
 
-💡 **지금 바로 실습해보세요!** [Project 2 실습 가이드](./projects/01-rules-simple/README.md)
+💡 **지금 바로 실습해보세요!** [Project 1 실습 가이드](./projects/01-rules-simple/README.md)
 
 ---
 
@@ -477,11 +477,11 @@ Rules는 본질적으로 **프롬프트**입니다.
 
 2. **2부: Debug 모드 학습 + 실습**
    - Debug 모드의 차별화된 가치 파악
-   - 👉 **바로 실습**: Project 1 - Debug 모드 간단 체험
+   - 👉 **바로 실습**: Project 2 - Debug 모드 간단 체험
 
 3. **3부: Rules 학습 + 실습**
    - 지침/규칙의 동작 방식 이해
-   - 👉 **바로 실습**: Project 2 - Rules 간단 실습
+   - 👉 **바로 실습**: Project 1 - Rules 간단 실습
 
 4. **4부: Rules의 한계 인식**
    - Rules가 프롬프트라는 한계 이해
@@ -534,5 +534,5 @@ Rules는 본질적으로 **프롬프트**입니다.
 
 ## 🔗 실습 프로젝트 바로가기
 
-- [Project 1: Debug 모드 간단 체험](./projects/02-debug-simple/README.md) - 2부 학습 후 진행
-- [Project 2: Rules 간단 실습](./projects/01-rules-simple/README.md) - 3부 학습 후 진행
+- [Project 1: Rules 간단 실습](./projects/01-rules-simple/README.md) - 3부 학습 후 진행
+- [Project 2: Debug 모드 간단 체험](./projects/02-debug-simple/README.md) - 2부 학습 후 진행

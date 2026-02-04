@@ -39,7 +39,7 @@
 - 1장: Copilot과 Cursor 비교 (Rules, Debug 소개)
 - 2장: Debug Mode - 실행 기반 디버깅
 - 3장: Visual Editor - 클릭 기반 UI 수정
-- 4장: CLI Agent - 터미널에서 개발 (Plan/Ask 모드, Cloud Handoff)
+- 4장: CLI Agent - 터미널에서 개발 (Plan/Ask 모드)
 - 5장: Hooks - AI Agent 제어 (핵심!)
 - 6장: Agent Skills & Subagents - Agent 능력 확장 (Clarification Questions)
 - 7장: Multi-Agent - 여러 업무 동시 처리 (Worktree 포함)
@@ -104,6 +104,11 @@
 - 중요한 내용은 간략하게라도 개요 설명
 - 총 11개 세션, 22개 실습 프로젝트
 
+**4시간 강의 권장 커버리지**:
+- **집중 강의**: Session 1-5 (핵심 기능 - Rules, Debug, Visual Editor, CLI, Hooks)
+- **간략 소개 + 데모**: Session 6-7 (Skills, Subagents, Multi-Agent)
+- **자율 학습 안내**: Session 8-11 (확장 과정 - Image, Cloud, MCP, Enterprise)
+
 ---
 
 ## 📖 학습 여정
@@ -121,7 +126,7 @@ Copilot과 Cursor, 무엇이 같고 무엇이 다를까요?
   ↓
 3장: Visual Editor → 클릭으로 UI 수정
   ↓
-4장: CLI Agent → 터미널 개발 (Plan/Ask, Handoff)
+4장: CLI Agent → 터미널 개발 (Plan/Ask 모드)
   ↓
 5장: Hooks → AI Agent 제어 (핵심!)
   ↓
@@ -548,6 +553,14 @@ Cursor Blame, Shared Transcripts, Layout Customization 등 팀 협업에 유용�
 # Cmd+Shift+P → "Shell Command: Install"
 ```
 
+**강의 전 체크리스트**:
+
+- [ ] Cursor IDE 설치 (cursor.com)
+- [ ] Cursor CLI 설정 (Cmd+Shift+P → "Shell Command: Install")
+- [ ] Node.js 18+ 설치
+- [ ] Git 설정 완료
+- [ ] 브라우저 확장 프로그램 설치 (Visual Editor용 - Chrome/Edge)
+
 ### 2. 학습 시작
 
 ```bash
@@ -564,7 +577,7 @@ cat README.md
 1장: Copilot 비교 → Rules, Debug 소개
 2장: Debug Mode → 실행 기반 디버깅
 3장: Visual Editor → 클릭 기반 UI 수정
-4장: CLI Agent → 터미널 개발 (Plan/Ask, Handoff)
+4장: CLI Agent → 터미널 개발 (Plan/Ask 모드)
 5장: Hooks → AI Agent 제어 (핵심!)
 6장: Skills & Subagents → Agent 능력 확장 (Clarification Questions)
 7장: Multi-Agent → 여러 업무 동시 처리 (Worktree 포함)
