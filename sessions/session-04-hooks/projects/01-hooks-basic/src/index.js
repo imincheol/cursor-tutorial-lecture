@@ -5,4 +5,8 @@ function hello() {
   console.log('Hello, World!');
 }
 
-module.exports = { hello };
+function greet(name) {
+  return `안녕하세요, ${name}님!`;
+}
+
+module.exports = { hello, greet };

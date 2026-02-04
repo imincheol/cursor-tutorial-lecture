@@ -272,7 +272,7 @@ Agent: [Subagents 분배하여 병렬 구현]
 
 ## ⏭ 다음 장
 
-[8장: Multi-Agent - 병렬 개발](../session-08/README.md)
+[8장: Multi-Agent - 여러 업무 동시 처리](../session-08-multiagent/README.md)
 
 ---
 

@@ -422,14 +422,14 @@ Multi-Agent: 여러 업무를 동시에 처리
 
 ## ⏭ 다음 장
 
-[9장: Image Generation - AI로 이미지 생성](../session-09/README.md)
+[9장: Image Generation - AI로 이미지 생성](../session-09-image/README.md)
 
 ---
 
 ## 🔗 관련 자료
 
 - [Git Worktree 공식 문서](https://git-scm.com/docs/git-worktree)
-- [6장: Subagents - 자동 오케스트레이션](../session-06/README.md)
+- [7장: Subagents - 자동 오케스트레이션](../session-07-subagents/README.md)
 
 ---
 

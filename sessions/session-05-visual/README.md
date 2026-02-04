@@ -1,4 +1,4 @@
-# 4장: Visual Editor - 클릭 기반 UI 수정
+# 5장: Visual Editor - 클릭 기반 UI 수정
 
 > **말로 설명하지 않고 클릭으로 UI를 수정합니다**
 
@@ -160,4 +160,4 @@ Cursor의 Visual Editor는 브라우저와 직접 통합되어 작동합니다:
 
 ## ⏭ 다음 장
 
-[5장: Skills - 재사용 가능한 능력](../session-05/README.md)
+[6장: Agent Skills - 재사용 가능한 능력](../session-06-skills/README.md)

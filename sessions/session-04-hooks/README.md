@@ -1,4 +1,4 @@
-# 3장: Hooks - AI Agent 제어의 핵심
+# 4장: Hooks - AI Agent 제어의 핵심
 
 > **프롬프트가 아닌 코드로 AI Agent를 100% 제어합니다**
 
@@ -28,7 +28,7 @@
 ### Rules (프롬프트)
 
 ```
-.cursorrules:
+AGENTS.md:
 - rm -rf 명령은 절대 사용하지 마세요
 
 결과: AI가 가끔 무시함 ❌
@@ -355,4 +355,4 @@ rm -rf tests/ patches/ plan/ ~/
 
 ## ⏭ 다음 장
 
-[4장: Visual Editor - 클릭 기반 UI 수정](../session-04/README.md)
+[5장: Visual Editor - 클릭 기반 UI 수정](../session-05-visual/README.md)

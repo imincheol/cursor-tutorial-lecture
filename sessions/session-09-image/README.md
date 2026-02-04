@@ -513,7 +513,7 @@ Agent: [컴포넌트 이미지 생성]
 
 ## ⏭ 다음 장
 
-[10장: Enterprise Features - 팀 협업 기능](../session-10/README.md)
+[10장: Enterprise Features - 팀 협업 기능](../session-10-enterprise/README.md)
 
 ---
 
