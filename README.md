@@ -70,7 +70,7 @@ Cursor는 **VS Code 기반**으로 만들어진 AI 네이티브 코드 에디터
 - 6장: Visual Editor - 클릭 기반 UI 수정
 - 7장: Skills - 재사용 가능한 능력
 - 8장: Subagents - 자동 오케스트레이션
-- 9장: Multi-Agent - 병렬 개발 (Worktree)
+- 9장: Multi-Agent - 여러 업무 동시 처리
 
 **추가 과정 (10-11장)**:
 
@@ -178,7 +178,7 @@ Rules의 한계 해결. 코드로 Agent 동작 100% 제어. **(핵심!)**
 
 🟡 중급 | 실습 2개
 
-Git Worktree + 여러 Agent로 병렬 작업.
+여러 Agent를 동시에 활용하여 병렬 작업. IDE 내 채팅 전환 또는 Worktree + CLI Agent.
 
 ---
 
@@ -238,7 +238,7 @@ AI로 이미지 생성. UI 목업, 아이콘, 다이어그램.
 | **Visual Editor**           | 클릭 기반 UI 수정     | 6장 (기본)  |
 | **Agent Skills**            | 재사용 가능한 스킬    | 7장 (기본)  |
 | **Subagents**               | 자동 오케스트레이션   | 8장 (기본)  |
-| **Multi-Agent**             | 여러 업무 동시 처리   | 9장 (기본)  |
+| **Multi-Agent**             | 여러 Agent 동시 활용  | 9장 (기본)  |
 | **Image Generation**        | 이미지 생성           | 10장 (추가) |
 | **Cursor Blame**            | AI 기여도 추적        | 11장 (추가) |
 | **Shared Transcripts**      | 대화 공유             | 11장 (추가) |
