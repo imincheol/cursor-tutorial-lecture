@@ -165,4 +165,4 @@ node server.js
 
 ## 🎓 다음 장
 
-[4장: Hooks - AI Agent 제어의 핵심](../../../session-04-hooks/README.md)
+[2장: Cursor IDE 차별화 기능](../../../session-02-differentiators/README.md)
