@@ -160,7 +160,7 @@ Agent: [작업 시작]
 
 ### 4단계: Subagent vs 수동 Multi-Agent 비교
 
-#### 3-1. 수동 Multi-Agent 방식 (7장)
+#### 3-1. 수동 Multi-Agent 방식 (8장)
 
 ```
 수동 방식:
@@ -320,7 +320,7 @@ Plan 모드:
 ### 수동 vs 자동 선택 가이드
 
 ```
-수동 Multi-Agent (7장):
+수동 Multi-Agent (8장):
 - 여러 접근 방법 실험
 - 정밀한 제어 필요
 - 독립적인 환경 필요
@@ -333,7 +333,7 @@ Subagents (6장):
 
 **다음 장 예고**:
 
-7장에서는 Git Worktree를 배웁니다. 독립적인 작업 환경을 구성하여 여러 접근 방법을 동시에 실험하는 방법을 익힙니다.
+8장에서는 Git Worktree와 Multi-Agent를 배웁니다. 독립적인 작업 환경을 구성하여 여러 접근 방법을 동시에 실험하는 방법을 익힙니다.
 
 ---
 
@@ -341,5 +341,4 @@ Subagents (6장):
 
 - [Cursor Subagents 공식 문서](https://cursor.com/docs/context/subagents)
 - [6장 메인 문서](../../README.md)
-- [Project 1: Skills 기본 사용](../01-skills-basic/README.md)
 - [8장: Multi-Agent](../../../session-08/README.md)

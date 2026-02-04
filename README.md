@@ -12,6 +12,7 @@
 ## 📋 목차
 
 - [교육 대상](#-교육-대상)
+- [Cursor IDE란?](#-cursor-ide란)
 - [강의 개요](#-강의-개요)
 - [4시간 강의 가이드](#-4시간-강의-가이드)
 - [기본 과정 (1-8장)](#-기본-과정-1-8장)
@@ -30,6 +31,33 @@
 
 ---
 
+## 💻 Cursor IDE란?
+
+Cursor는 **VS Code 기반**으로 만들어진 AI 네이티브 코드 에디터입니다. VS Code의 모든 기능과 확장을 그대로 사용하면서, AI 개발에 최적화된 기능들이 추가되어 있습니다.
+
+### GitHub Copilot과의 주요 차이점
+
+| 항목 | Copilot | Cursor |
+|------|---------|--------|
+| **환경** | VS Code 확장 프로그램 | VS Code 기반 독립 에디터 |
+| **모드** | Ask, Edit, Agent, Plan | Ask, Agent, Plan, **Debug** |
+| **실행 기반 디버깅** | ❌ | **Debug 모드** ✅ |
+| **코드 리뷰** | 별도 도구 필요 | **Agent Review 탭** (내장) |
+| **채팅 히스토리** | 제한적 | **Past Chat 참조** |
+| **Worktree 관리** | 수동 | **IDE 통합** |
+
+### 핵심 차별화 기능
+
+- **Debug Mode**: 코드를 실제로 실행하여 버그 원인 파악 (추측 → 확인)
+- **Agent Review**: Git 패널에 통합된 AI 코드 리뷰
+- **Past Chat**: `@past-chat`으로 이전 대화 참조 가능
+- **Worktree**: IDE 하단 상태바에서 쉽게 전환
+- **Visual Editor**: 브라우저에서 UI 요소 직접 선택하여 수정
+
+💡 **자세한 내용은 [1장: 모드](./sessions/session-01/README.md)에서 확인하세요.**
+
+---
+
 ## 📝 강의 개요
 
 **기본 과정 (1-8장) - Cursor 핵심 기능**:
@@ -38,9 +66,9 @@
 - 2장: Rules - AI에게 지침 주기
 - 3장: Hooks - 코드로 Agent 제어 (핵심!)
 - 4장: Visual Editor - 클릭 기반 UI 수정
-- 5장: CLI Agent - 터미널에서 개발
-- 6장: Skills - 재사용 가능한 능력
-- 7장: Subagents - 자동 오케스트레이션
+- 5장: Skills - 재사용 가능한 능력
+- 6장: Subagents - 자동 오케스트레이션
+- 7장: CLI Agent - 터미널에서 개발
 - 8장: Multi-Agent - 병렬 개발 (Worktree)
 
 **추가 과정 (9-10장)**:
@@ -74,25 +102,6 @@
 - **Image Generation** - AI로 이미지 생성
 - **Cursor Blame** - AI 기여도 추적
 - **Shared Transcripts** - 대화 공유
-
----
-
-## 💡 4시간 강의 가이드
-
-4시간은 대략적인 가이드이며, 실제 강의에서는 유연하게 조정합니다.
-
-**기본 과정 (Session 1-8) - Cursor 핵심 기능**:
-- 각 세션은 설명 + 실습 반복 형식
-- 4-5시간 소요
-
-**추가 과정 (Session 9-10)**:
-- 시간 여유 시 또는 자율 학습
-- 1-2시간 소요
-
-**4시간 강의 권장 커버리지**:
-- **집중 강의**: Session 1-5 (모드, Rules, Hooks, Visual Editor, CLI)
-- **간략 소개 + 데모**: Session 6-8 (Skills, Subagents, Multi-Agent)
-- **자율 학습 안내**: Session 9-10 (Image, Enterprise)
 
 ---
 
@@ -132,15 +141,7 @@ Rules의 한계 해결. 코드로 Agent 동작 100% 제어. **(핵심!)**
 
 ---
 
-### [5장: CLI Agent](./sessions/session-05/README.md)
-
-🟢 입문 | 실습 2개
-
-터미널에서 Agent 사용. Plan/Ask 모드, Shell Mode.
-
----
-
-### [6장: Skills](./sessions/session-06/README.md)
+### [5장: Skills](./sessions/session-05/README.md)
 
 🟢 초급 | 실습 1개
 
@@ -148,11 +149,19 @@ Rules의 한계 해결. 코드로 Agent 동작 100% 제어. **(핵심!)**
 
 ---
 
-### [7장: Subagents](./sessions/session-07/README.md)
+### [6장: Subagents](./sessions/session-06/README.md)
 
 🟢 초급 | 실습 1개
 
 자동 오케스트레이션. Clarification Questions로 Agent와 대화.
+
+---
+
+### [7장: CLI Agent](./sessions/session-07/README.md)
+
+🟢 입문 | 실습 2개
+
+터미널에서 Agent 사용. Plan/Ask 모드, Shell Mode.
 
 ---
 
@@ -221,9 +230,9 @@ cat README.md
 2장: Rules → AI에게 지침 주기
 3장: Hooks → 코드로 Agent 제어 (핵심!)
 4장: Visual Editor → 클릭 기반 UI 수정
-5장: CLI Agent → 터미널 개발
-6장: Skills → 재사용 가능한 능력
-7장: Subagents → 자동 오케스트레이션
+5장: Skills → 재사용 가능한 능력
+6장: Subagents → 자동 오케스트레이션
+7장: CLI Agent → 터미널 개발
 8장: Multi-Agent → 병렬 개발
 ```
 
@@ -245,9 +254,9 @@ cat README.md
 - Rules로 AI 응답 제어
 - Hooks로 Agent 동작 100% 제어 (핵심!)
 - Visual Editor로 UI 직접 선택해서 수정
-- CLI Agent로 터미널에서 개발
 - Skills로 재사용 가능한 능력 확장
 - Subagents로 자동 오케스트레이션 활용
+- CLI Agent로 터미널에서 개발
 - Multi-Agent로 여러 업무 동시 처리
 
 **추가 과정 완료 후 (9-10장)**:
@@ -266,10 +275,10 @@ cat README.md
 | **Rules**                   | AI에게 지침 주기      | 2장 (기본)  |
 | **Hooks**                   | Agent 제어 (핵심!)    | 3장 (기본)  |
 | **Visual Editor**           | 클릭 기반 UI 수정     | 4장 (기본)  |
-| **CLI Agent**               | 터미널 Agent          | 5장 (기본)  |
-| **Agent Skills**            | 재사용 가능한 스킬    | 6장 (기본)  |
-| **Subagents**               | 자동 오케스트레이션   | 7장 (기본)  |
-| **Clarification Questions** | Agent가 질문하기      | 7장 (기본)  |
+| **Agent Skills**            | 재사용 가능한 스킬    | 5장 (기본)  |
+| **Subagents**               | 자동 오케스트레이션   | 6장 (기본)  |
+| **Clarification Questions** | Agent가 질문하기      | 6장 (기본)  |
+| **CLI Agent**               | 터미널 Agent          | 7장 (기본)  |
 | **Git Worktree**            | 독립 환경             | 8장 (기본)  |
 | **Multi-Agent**             | 여러 업무 동시 처리   | 8장 (기본)  |
 | **Image Generation**        | 이미지 생성           | 9장 (추가)  |

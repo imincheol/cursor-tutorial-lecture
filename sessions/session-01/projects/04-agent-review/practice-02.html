@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리스트 렌더링</title>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .item {
+      padding: 10px;
+      margin: 5px 0;
+      background: #f0f0f0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>아이템 목록</h1>
+    <div id="list"></div>
+  </div>
+
+  <script>
+    // 아이템 렌더링 함수
+    function renderItems(count) {
+      const list = document.getElementById('list');
+      list.innerHTML = '';
+      
+      for (let i = 0; i < count; i++) {
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.textContent = `아이템 ${i + 1}`;
+        list.appendChild(item);
+      }
+    }
+
+    // 100개 아이템 렌더링
+    renderItems(100);
+  </script>
+</body>
+</html>

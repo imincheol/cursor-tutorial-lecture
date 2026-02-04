@@ -256,7 +256,7 @@ IDE로 돌아가서 대시보드 개발 계속...
 
 ### 언제 무엇을 사용하는가?
 
-**Subagents (7장) - 하나의 목적**:
+**Subagents (6장) - 하나의 목적**:
 ```
 상황: 명확한 단일 작업
 예시: "로그인 기능 추가해줘"
@@ -429,7 +429,7 @@ Multi-Agent: 여러 업무를 동시에 처리
 ## 🔗 관련 자료
 
 - [Git Worktree 공식 문서](https://git-scm.com/docs/git-worktree)
-- [7장: Subagents - 자동 오케스트레이션](../session-07/README.md)
+- [6장: Subagents - 자동 오케스트레이션](../session-06/README.md)
 
 ---
 

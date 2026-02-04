@@ -150,4 +150,4 @@ Cursor의 Visual Editor는 브라우저와 직접 통합되어 작동합니다:
 
 ## ⏭ 다음 장
 
-[5장: CLI Agent - 터미널에서 개발](../session-05/README.md)
+[5장: Skills - 재사용 가능한 능력](../session-05/README.md)

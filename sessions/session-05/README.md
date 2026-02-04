@@ -1,6 +1,6 @@
-# 5장: CLI Agent - 터미널에서 개발
+# 5장: Agent Skills - 재사용 가능한 능력
 
-> **IDE 없이 터미널에서도 Agent를 사용할 수 있습니다**
+> **스킬을 설치하면 AI가 더 똑똑해집니다**
 
 ## 📋 목차
 
@@ -350,4 +350,4 @@ TODO API를 터미널에서만 개발합니다. 요구사항 분석부터 코드
 
 ## ⏭ 다음 장
 
-[6장: Agent Skills - 재사용 가능한 능력](../session-06/README.md)
+[6장: Subagents - 자동 오케스트레이션](../session-06/README.md)
